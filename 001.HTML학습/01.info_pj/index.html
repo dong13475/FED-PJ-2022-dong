@@ -56,10 +56,14 @@
         5. 그룹선택자 : ,(콤마)
         예) h1,div,a {}
 
+        6. 자손선택자 : 띄어쓰기
+        예) div a {} -> div 하위의 모든 a요소들
+
       */
 
       /* 기본마진 패딩 없애기 */
-      html,body{
+      html,
+      body {
         margin: 0;
         padding: 0;
         /* 실제는 body에만 8px이 있지만
@@ -69,7 +73,7 @@
       }
 
       /* 1.박스 공통 클래스 (줄임말) */
-      .bx{
+      .bx {
         /* 가로크기 w 
         아무값도 안쓰면?
         auto인데...
@@ -95,8 +99,8 @@
         border-radius : 값
         값을 50%를 주면 원이 생김
          */
-         border-radius: 10px;
-         /* border-radius: 50%; */
+        border-radius: 10px;
+        /* border-radius: 50%; */
 
         /* 안쪽여백(패딩) p 
             padding : 1개 (4방향)
@@ -106,7 +110,7 @@
             ->>> 마진도 동일함!
         */
         padding: 20px;
-        /* padding: 20px 50px 80px 5px; */ 
+        /* padding: 20px 50px 80px 5px; */
 
         /* 바깥여백(마진) m */
         /* margin: 30px; */
@@ -119,6 +123,14 @@
           이를 중앙정렬하려면 양쪽 마진을 auto로
           줄여서 마영오! 라고 함!
         */
+      }
+
+      /* 메인영역 이미지 */
+      .cont img {
+        width: 100%;
+        /* 한쪽만 크기를 주면
+          이미지는 자동으로 비율유지를 하면서
+          변경된다! 100%는 부모박스를 채움! */
       }
     </style>
   </head>
@@ -134,7 +146,9 @@
         <a href="#">
           <img src="images/logo.png" alt="네이버로고" style="width: 20px" />
         </a>
-        <a href="">정치</a> | <a href="">경제</a> | <a href="">사회</a> |
+        <a href="">정치</a> |
+        <a href="">경제</a> |
+        <a href="">사회</a> |
         <a href="">IT/과학</a> |
         <a href="">TV/연예</a>
       </nav>
