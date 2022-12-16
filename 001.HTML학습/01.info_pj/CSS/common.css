@@ -13,6 +13,7 @@
 /* import 방식 */
 /* @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gugi&display=swap');
  */
+ 
 /* 
         [스타일 시트 문법 영역!
         기본문법]
@@ -225,8 +226,9 @@ body {
 }
 
 /* 2.메인영역 */
-/* 메인영역 이미지 */
-.cont img {
+/* 메인영역 이미지 
+-> 메인의 .cont 직계자식 img만 적용하게함! */
+.cont>img {
   width: 100%;
   /* 한쪽만 크기를 주면
           이미지는 자동으로 비율유지를 하면서
