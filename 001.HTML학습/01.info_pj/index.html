@@ -10,8 +10,22 @@
     <meta charset="UTF-8" />
     <!-- title: 탭에 표시 타이틀 -->
     <title>네이버 요약 뉴스</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gugi&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- 인터널 스타일시트 요소 -->
     <style>
+      /* 
+     font-family: 'Gowun Dodum', sans-serif;
+     font-family: 'Gugi', cursive;
+      */
+
+      /* import 방식 */
+   /*    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gugi&display=swap'); */
+
+
       /* 
         [스타일 시트 문법 영역!
         기본문법]
@@ -145,7 +159,7 @@
         font-style 
         italic : 이탤릭
         normal : 이탤릭해제(기본값) */
-        font-style: italic;
+        /* font-style: italic; */
         /* font-style: normal; */
 
         /* 2. 글자두께 fw :
@@ -172,7 +186,24 @@
         - 콤마로 여러개를 쓰면 대체체를 설정함 
         (앞에 글자가 없어지면 그다음체 적용)
         */
-        font-family: "궁서", "굴림", "맑은 고딕", "돋음";
+        font-family: "Gowun Dodum", sans-serif;
+
+        /* 6, 글자색 : c
+        color - 해시코드/RGB/HSL/웹색상명
+         */
+        color: rgb(163, 21, 163);
+      }
+
+      /* GNB 메뉴 a */
+      #gnb a {
+        /* 글자체 */
+        font-family: "Gugi", cursive;
+        /* a요소는 기본적으로 밑줄과 글자색이 셋팅됨!
+          반드시 a에서 변경해야만 적용된다! (부모에서는 안됨!) */
+        /* 글자색 */
+        color: crimson;
+        /* 밑줄없앰 - text-decoration:none */
+        text-decoration: none; /* tdn */
       }
 
       /* 2.메인영역 */
@@ -191,6 +222,19 @@
         /* 글자중앙정렬 */
         text-align: center;
       }
+
+      /* 하단주소 */
+      .info address {
+        /* 글자체 */
+        font-family: "Gugi", cursive;
+        /* address는 기본 이탤릭 이므로 해제하기 */
+        font-style: normal;
+        /* 글자색 */
+        color: rgb(38, 30, 143);
+        font-size: 25px;
+      }
+
+      
     </style>
   </head>
   <body>

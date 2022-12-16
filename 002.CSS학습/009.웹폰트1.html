@@ -92,22 +92,17 @@
 
             /* 웹폰트 설정 */
 
-            /* Black Han Sans체 */
-           
-           
-            /* Cute Font */
-           
-                       
-            /* Gugi */
-           
-
-            /* BhuTuka */
-           
-            /* Rubik Moonrocks */
-           
+            @font-face {/* 고운돋음 */
+                font-family: 고운돋음;
+                src: url(/002.CSS학습/fonts/GowunDodum-Regular.woff)
+                format("woff");
+            }
+            @font-face {/* RobotoCondensed */
+                font-family: RCR;
+                src: url(/002.CSS학습/fonts/RobotoCondensed-Regular.woff)
+                format("woff");
+            }
             
-            /* Press Start 2P */
-           
            
            
 
@@ -115,16 +110,21 @@
             
             
             /* 적용하기 */
-            .wf1{/* Black Han Sans체 */
-                
+            .wf1{/* GowunDodum체 */
+                  font-family: 고운돋음;
+                  font-weight: normal;/* fwn */
+                  color: #3bb15ecc;
             }
-            .wf2{/* Cute Font */
+            .wf2{
                 
             }
             .wf3{/* Gugi */
                 
             }
-            .wf4{/* BhuTuka */
+            .wf4{/* RobotoCondensed */
+                  font-family: RCR;
+                  font-weight: normal;
+                  color: rgb(179, 25, 25);
                
             }
             .wf5{/* Rubik Moonrocks */
