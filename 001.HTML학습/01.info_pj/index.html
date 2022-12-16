@@ -21,6 +21,8 @@
         [ CSS 박스모델 ]
         -> 모든요소는 박스형태로 그디자인을
         설정한다!
+        참고)
+         https://www.w3schools.com/css/css_boxmodel.asp
 
         - 5가지 속성을 셋팅한다!
         1. width : 가로크기
@@ -58,6 +60,9 @@
 
         6. 자손선택자 : 띄어쓰기
         예) div a {} -> div 하위의 모든 a요소들
+
+        7. 직계자식 선택자 : > (왼쪽꺾쇠)
+        예) header>a{} -> header 바로아래 a요소
 
       */
 
@@ -134,6 +139,41 @@
         /* 글자중앙정렬 tac */
         text-align: center;
       }
+      /* 타이틀 */
+      .top > h1 {
+        /* 1.글자 스타일 fs :
+        font-style 
+        italic : 이탤릭
+        normal : 이탤릭해제(기본값) */
+        font-style: italic;
+        /* font-style: normal; */
+
+        /* 2. 글자두께 fw :
+        font-weight
+        normal : 두께없음
+        bold : 두껍게 */
+        font-weight: normal;
+        /* font-weight: bold; */
+
+        /* 3. 글자크기 fz :
+        font-size
+        - 글자단위 : pt,px,em,rem,vw,vh */
+        font-size: 50px;
+
+        /* 4. 글자줄간격 lh : 
+        line-height
+        (글이 여러줄일때 사이간격용
+        또는 글자 박스에서 세로중앙정렬시) 
+        - 단위없으면 배수 */
+        line-height: 1.7;
+
+        /* 5. 글자체 ff : 
+        font-family 
+        - 콤마로 여러개를 쓰면 대체체를 설정함 
+        (앞에 글자가 없어지면 그다음체 적용)
+        */
+        font-family: "궁서", "굴림", "맑은 고딕", "돋음";
+      }
 
       /* 2.메인영역 */
       /* 메인영역 이미지 */
@@ -151,7 +191,6 @@
         /* 글자중앙정렬 */
         text-align: center;
       }
-
     </style>
   </head>
   <body>
