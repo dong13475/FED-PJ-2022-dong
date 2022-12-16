@@ -1,0 +1,13 @@
+CMD + K + S = 키셋설정창
+동시 코딩 (마우스 커서 여러군데 두기) = OPT 원하는곳 클릭
+주석 달기 = CMD + /
+부분 주석 달기 = OPT + SHIFT + A 
+줄 바꿈 토글 = OPT + Z 
+Prettier 커맨드(줄맞춤) = Ctrl + CMD + P 
+코드 안에서 빠져나와 아래줄에 새줄 만들기(개행) = CMD + 엔터
+윗줄 개행 = CMD + SHIFT + 엔터
+선택 라인 복사 = OPT + SHIFT + 방향키
+코드 라인 이동 = OPT + 방향키 위,아래
+라인 삭제 = CMD + SHIFT + K 
+
+
