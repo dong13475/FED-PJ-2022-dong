@@ -18,12 +18,15 @@
     <!-- 인터널 스타일시트 요소 -->
     <style>
       /* 
-     font-family: 'Gowun Dodum', sans-serif;
-     font-family: 'Gugi', cursive;
+
+      1.타이틀용
+      font-family: 'Gowun Dodum', sans-serif;
+      2.nav,address용
+      font-family: 'Gugi', cursive;
       */
 
       /* import 방식 */
-   /*    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gugi&display=swap'); */
+   /* @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gugi&display=swap'); */
 
 
       /* 
@@ -77,6 +80,11 @@
 
         7. 직계자식 선택자 : > (왼쪽꺾쇠)
         예) header>a{} -> header 바로아래 a요소
+
+        8. 형제선택자 : +
+        예) div+div{} -> 앞에 형제div가 있는 div선택
+        예) a+a{} -> 앞에 a가 있는 a선택
+        -> 첫번째를 제외한 나머지 형제요소들 선택시 많이씀
 
       */
 
@@ -149,7 +157,7 @@
       .top {
         /* 배경색 : bgc
         background-color */
-        background-color: lightskyblue;
+        background-color: rgb(173, 206, 167);
         /* 글자중앙정렬 tac */
         text-align: center;
       }
@@ -191,7 +199,7 @@
         /* 6, 글자색 : c
         color - 해시코드/RGB/HSL/웹색상명
          */
-        color: rgb(163, 21, 163);
+        color: rgb(34, 196, 101);
       }
 
       /* GNB 메뉴 a */
@@ -201,9 +209,21 @@
         /* a요소는 기본적으로 밑줄과 글자색이 셋팅됨!
           반드시 a에서 변경해야만 적용된다! (부모에서는 안됨!) */
         /* 글자색 */
-        color: crimson;
+        color: rgb(23, 80, 49);
         /* 밑줄없앰 - text-decoration:none */
         text-decoration: none; /* tdn */
+      }
+      /* a요소 오버시 */
+      /* hover 가상클래스
+      -> 마우스오버된 상태에 대한 디자인 셋팅 */
+      /* a+a:hover 앞에 a형제가 있는 a에 오버시 */
+      #gnb a+a:hover{
+        /* 글자색 */
+        color: rgb(148, 156, 25);
+        /* 글자 데코레이션 : text-decoration
+        underline(밑줄)/overline(윗줄)/
+        line-through(중간줄)/none(없음) */
+        text-decoration: line-through;
       }
 
       /* 2.메인영역 */
@@ -218,7 +238,7 @@
       /* 3.하단영역 */
       .info {
         /* 배경색 */
-        background-color: antiquewhite;
+        background-color: rgba(130, 190, 52, 0.308);
         /* 글자중앙정렬 */
         text-align: center;
       }
@@ -230,7 +250,7 @@
         /* address는 기본 이탤릭 이므로 해제하기 */
         font-style: normal;
         /* 글자색 */
-        color: rgb(38, 30, 143);
+        color: rgb(30, 143, 124);
         font-size: 25px;
       }
 
