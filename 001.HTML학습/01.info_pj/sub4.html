@@ -23,9 +23,11 @@
 
       <nav id="gnb">
         <a href="index.html">
-          <img src="images/logo.png" alt="네이버로고" style="width: 20px" />
+          <img src="images/logo.png" alt="네이버로고" style="width: 20px" title="메인 바로가기"/>
         </a>
-        <a href="sub1.html">정치</a> | <a href="sub2.html">경제</a> | <a href="sub3.html">사회</a> |
+        <a href="sub1.html">정치</a> |
+        <a href="sub2.html">경제</a> |
+        <a href="sub3.html">사회</a> |
         <a href="sub4.html">IT/과학</a> |
         <a href="sub5.html">TV/연예</a>
       </nav>
@@ -35,7 +37,7 @@
       <!-- 2-1.언론사로고 -->
       <div class="prlogo">
         <a href="http://www.newsis.com/" target="_blank">
-          <img src="./images/pr4.jpg" alt="newsis" />
+          <img src="./images/pr4.jpg" alt="newsis" title="신문사페이지 바로가기" />
         </a>
         <!-- 
           a요소 : anchor(닻)
@@ -112,7 +114,7 @@
         </p>
 
         <p>
-          당초 항우연은 다누리를 달까지 약 1~2개월이 소요되는 '위상전이궤적' 방식을 사용하려 했으나 준비 과정에서 다누리
+          당초 항우연은 다누리를 달까지 약 1~2개월이 소요되는 <abbr title="위상전이궤적">'위적'</abbr> 방식을 사용하려 했으나 준비 과정에서 다누리
           설계 중량이 늘어나면서 불가피하게 속도가 더 느리고 연료를 더 적게 소모하는 BLT 궤적으로 방식을 바꾸게 됐다.
           다누리의 속도가 더 느린 BLT 궤적을 선택했음에도 이처럼 고난이도의 진입 기동 절차가 <ins>아직도 많이</ins> 남은
           셈이다.
@@ -159,6 +161,25 @@
       <h5>
         <a href="https://n.news.naver.com/mnews/article/003/0011594397?sid=105" target="_blank"> 기사원문 </a>
       </h5>
+
+      <hr>
+
+      <!-- 오늘의 작품 & 느낌 -->
+      <article class="work">
+        <h3>오늘의 작품 &amp; 느낌</h3>
+        <figure><img src="./images/the scream.jpg" alt="뭉크의 절규">
+          <figcaption>
+            뭉크의 <cite>&lt;절규&gt;</cite>
+          </figcaption>
+        </figure>
+      </article>
+      
+      <!-- 
+        [html 요소에서 특수문자 처리 ]
+        & 엔퍼센드 &amp;
+        < 여는 꺽쇠 &lt; (lt는 less than ~보다 작은)
+        > 닫는 꺽쇠 &gt; (gt는 greater than ~보다 큰)
+       -->
     </main>
 
     <!-- 3.하단영역 -->
@@ -213,19 +234,33 @@
         
 
       [ 2. 인용관련요소 ]
-      1. <blockquote> 
+      1. 블록인용요소
+        <blockquote> 
         - 블록요소로 별도의 인용구를 구분하는 박스
         - 주의: 내부에 p요소와 같은 다른블록을 쓰면 안됨
         - cite 속성 : 출처표시
         (필수속성은 아니며 url주소가 들어가기 때문에 링크로 오해될 수 있으나 아님! 단순 출처정보)
-      2. <q>
+
+      2. 인라인인용요소 
+        <q>
         - 작은 인용구(쌍따옴표가 자동생성) 
         - 주의: 인라인요소임(blockquote와 구분할것!)
 
-      <abbr>   Defines an abbreviation or acronym
-      <address>   Defines contact information for the author/owner of a document
+      3. 줄임말인용요소
+      <abbr>
+        - 줄임말의 원래 뜻을 표시하는 요소
+        - 필수속성 ->> title 속성으로 툴팁을 띄운다(원래뜻)
+      (참고: title속성은 툴팁을 띄우고자 하는 어떤 요소에도 사용할 수 있다!)
+
+      4. 주소인용
+      <address>
+        - 주소, 대표자, 전화번호 등 사이트 정보표시
+
+      5. 작품명 인용
+      <cite>   
+        - 인용하고 있는 작품명을 표시하기 위한 요소
+
       <bdo>   Defines the text direction
-      <cite>   Defines the title of a work
 
 
 
