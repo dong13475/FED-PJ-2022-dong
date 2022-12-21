@@ -26,14 +26,14 @@
   font-family: 'Gowun Dodum';
 }
 
-/* 2-1.언론사로고   */
+/* 2-1.언론사로고  */
 .prlogo img{
   height: 32px;
   /* 이미지는 가로,세로 중 한쪽만
   주면 자동 비율유지를 함! */
 }
 
-/* 2-2.기사제목  */
+/* 2-2.기사제목 */
 .atit{
   /* 글자크기 fz30 */
   font-size: 30px;
@@ -80,7 +80,7 @@
   color: rgb(206, 36, 36);
 }
 
-/* 2-4.기사내용  */
+/* 2-4.기사내용 */
 .arti p{
   /* 글자크기 : fz */
   font-size: 17px;
@@ -120,6 +120,73 @@
   /* 위아래 마진 */
   margin: 15px 0;
 }
-/* 2-5.기자정보  */
-/* 2-6.기사원문  */
+
+/* p요소 아래 em요소 디자인 변경 */
+.arti p em{
+  /* 글자그림자 : text-shadow 
+  값 ; x축 y축 블러 색 
+  블러는 그림자 경계흐림정도 */
+  text-shadow: 2px 2px 2px rgba(216, 47, 145, 0.527);
+  /* 이탤릭해제 : fsn */
+  font-style: normal;
+  /* 글자색 */
+  color: darkmagenta;
+  /* 글자두껍게 : fwb */
+  font-weight: bold;
+}
+
+/* 2-5.기자정보 */
+.rpt{
+  /* display 출신변경하기
+  디자인 적용과 동시에 인라인특성인
+  글자만큼만 크기가 잡히도록
+  인라인 블록으로 변경함 */
+  display: inline-block;
+  /* 글자크기 fz */
+  font-size: 14px;
+  /* 배경색 bgc */
+  background-color: #a8434341;
+  /* 패딩 */
+  padding: 5px;
+  margin: 15px 0;
+}
+/* 2-6.기사원문 
+별도의 이름없이 구조로만
+기사원문을 선택한다! 직계자식! */
+.cont>h5{
+  /* 내부의 인라인요소 오른쪽 정렬 */
+  text-align: right;
+}
+.cont>h5>a{
+  /* 디자인 적용위해 display변경! */
+  display: inline-block;
+  /* 기본없애기 */
+  margin: 20px 0;
+  padding: 0;
+  /* 가로,세로지정 */
+  width: 70px;
+  height: 70px;
+  /* 테두리 bd */
+  border: 2px solid #dbdbdb;
+  /* 글자중앙 */
+  text-align: center;
+  /* 세로중앙 : 줄간격으로! */
+  line-height: 70px;
+  /* 모서리 둥글게하기 border-radius 
+  brad -> 50%는 원 */
+  border-radius: 50%;
+  /* 배경색 */
+  background-color: lightskyblue;
+}
+/* 가상클래스로 오버시 박스그림자 넣기 */
+.cont>h5>a:hover{
+  /* 박스그림자 bsh
+  box-shadow : x, y, blur spread 색;
+  (내부그림자는 inset씀)
+   - spread 박스그림자 크기(필요시씀)
+  */
+box-shadow: 0px 0px 5px red;
+}
+
+
   

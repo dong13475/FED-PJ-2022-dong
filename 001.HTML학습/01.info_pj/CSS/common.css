@@ -89,6 +89,15 @@ body {
   padding-bottom: 30px;
 }
 
+/* 전체 a요소 공통 셋팅 */
+a{
+      /* 글자색 */
+      color: #222;
+      /* 밑줄없앰 tdn */
+      text-decoration: none;
+      
+}
+
 /* 1.박스 공통 클래스 (줄임말) */
 .bx {
   /* 가로크기 w 
