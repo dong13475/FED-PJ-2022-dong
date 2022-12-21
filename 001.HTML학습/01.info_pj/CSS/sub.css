@@ -80,8 +80,46 @@
   color: rgb(206, 36, 36);
 }
 
-
 /* 2-4.기사내용  */
+.arti p{
+  /* 글자크기 : fz */
+  font-size: 17px;
+  /* 줄간격 : lh 
+  -> 주의 : 단위가 없으면 배수임
+  기준은 글자크기임! */
+  line-height: 1.7;
+  /* 양쪽패딩 : 위아래 양쪽 */
+  padding: 0 10px;
+  /* 자간 : ls */
+  letter-spacing: 1px;
+  /* 글자 들여쓰기 : ti
+  값 : 양수는 들여쓰기, 음수는 내어쓰기 */
+  /* text-indent: 20px; */
+}
+
+/* mark요소 변경하기! */
+.arti p mark{
+  /* 인라인을 블록으로 출신변경! */
+  display: block;
+  /* 글자크기변경 */
+  font-size: 20px;
+  /* 줄간격 주기 */
+  line-height: 2;
+  /* 위아래, 양쪽 패딩 */
+  padding: 20px 50px;
+  /* 배경색 */
+  background-color: #ebebeb;
+  /* 보더 위(top),아래(bottom),
+  왼쪽(left),오른쪽(right) */
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+
+  /* 중앙정렬 */
+  text-align: center;
+
+  /* 위아래 마진 */
+  margin: 15px 0;
+}
 /* 2-5.기자정보  */
 /* 2-6.기사원문  */
   
