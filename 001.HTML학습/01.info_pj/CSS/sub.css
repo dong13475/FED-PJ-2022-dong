@@ -151,7 +151,8 @@
   background-color: #a8434341;
   /* 패딩 */
   padding: 5px;
-  margin: 15px 0;
+  margin: 11px 0;
+  text-indent: 20px;
 }
 /* 2-6.기사원문 
 별도의 이름없이 구조로만
@@ -287,7 +288,7 @@ box-shadow: 0px 0px 5px red;
 
   /* 그라데이션 -> 이미지로! bgi */
   background-image: 
-  linear-gradient(29deg,rgba(98, 53, 150, 0.733),rgba(145, 127, 68, 0.37),rgb(86, 86, 160)90%);
+  linear-gradient(29deg,rgba(98, 53, 150, 0.733),rgba(145, 127, 68, 0.37)45%,rgb(86, 86, 160)90%);
   /* linear-gradient(45deg,red,yellow,blue) */
   /* linear-gradient(방향,색1 %,색2 %,...); 
       *방향: to top, to bottom, to left, to right
@@ -437,4 +438,99 @@ box-shadow: 0px 0px 5px red;
 .secnews dd{
   /* 왼쪽마진 ml */
   margin-left: 100px;
+}
+/* 사진뉴스 타이틀 */
+.pnews h3{
+  text-align: center;
+}
+/* 사진뉴스 타이틀 가상요소 아이콘 넣기 */
+/* 맨 앞 가상요소 ::before 
+태그를 사용하지 않고 요소를 넣는 방법! */
+.pnews h3::before{
+  content:'📷';
+}
+/* 사진뉴스 테이블박스 */
+.pnews table{
+  /* 가로중앙이동 : 마영오씨!
+  -> 블록요소 또는 table 에 적용된다! */
+  margin: 0 auto;
+  border: 2px solid #ccc;
+
+  /* 테이블 기본 사이간격 없애기 */
+  border-collapse:collapse;
+  /* seperate(기본값) */
+}
+  /* 테이블 a요소 */
+  /* 기존 .cont article a 로 셋팅된것이
+  더 쎄기 때문에 여기서 윗 부모를 같은
+  레벨로 넣어서 선택하면 하위에 클래스가 
+  요소(타입)보다 더 높기때문에 우선적용된다! */
+.cont .pnews a{
+  /* 글자크기 */
+  font-size: 14px;
+  /* 줄간격 */
+  line-height: 1.5;
+}
+
+/* tr 이나 td에 child 선택자를 사용가능
+왜? 같은 종류의 요소만 올 수있으므로! */
+
+/* 첫번째 td(table data) - 숫자부분  */
+.pnews td:first-child{
+  /* 가로크기 w */
+  width: 50px;
+  /* 세로크기 h */
+  height: 84px;
+
+  /* 인라인 가로중앙 */
+  text-align: center;
+  /* 배경색 bgc */
+  background-color: #ccc;
+}
+/* 두번째 td */
+.pnews td:nth-child(2){
+  /* 배경색  */
+  background-color: #e4e4e4;
+  /* 양쪽패딩 : 위아래 양쪽 */
+  padding: 0 20px;
+}
+
+/* 세번째 td */
+.pnews td:last-child{
+  background-color: #e4e4e4;
+  padding-right: 7px;
+}
+
+/* 사진뉴스 이미지 */
+.pnews img{
+  height: 70px;
+  /* 이미지는 한쪽만 
+  크기줄때 나머지는 자동비율유지 */
+  /* 세로정렬 */
+  vertical-align: middle;
+  /* td에서만 세로정렬이
+  적용되고 일반적으로는 
+  vertical-align은 인라인요소간
+  세로방향 정렬이다! */
+}
+
+/* 앞에 tr이 있는 tr만 하위 td에 디자인 */
+.pnews tr+tr td{
+  /* 보더탑 bdt */
+  border-top: 2px solid #ccc;
+}
+
+/**************** 말줄임 표시 셋팅하기! ****************/
+ul a,ol a, dl a {
+  /* 1. 디자인 적용위해 block */
+    display: block;
+  /* 2. 가로크기 한계주기 */
+    width: 314px;
+  /* 3. 줄바꿈방지 */
+  white-space: nowrap;
+  /* 4. 넘치는 자식요소 숨기기 */
+  overflow: hidden;
+  /* 넘치는 텍스트 말줄임표 설정 */
+  text-overflow: ellipsis;
+  /* border: 1px solid red; */
 }
