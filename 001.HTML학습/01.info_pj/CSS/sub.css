@@ -151,8 +151,9 @@
   background-color: #a8434341;
   /* 패딩 */
   padding: 5px;
-  margin: 11px 0;
-  text-indent: 20px;
+  margin: 15px 0;
+  margin-left: 15px;
+  /* text-indent: 20px; */
 }
 /* 2-6.기사원문 
 별도의 이름없이 구조로만
@@ -530,7 +531,7 @@ ul a,ol a, dl a {
   white-space: nowrap;
   /* 4. 넘치는 자식요소 숨기기 */
   overflow: hidden;
-  /* 넘치는 텍스트 말줄임표 설정 */
+  /* 5. 넘치는 텍스트 말줄임표 설정 */
   text-overflow: ellipsis;
   /* border: 1px solid red; */
 }
