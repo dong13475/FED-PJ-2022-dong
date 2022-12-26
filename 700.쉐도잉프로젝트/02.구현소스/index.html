@@ -4,7 +4,7 @@
     <!-- 메타요소는 페이지의 기본 정보를 전달함
     이런정보를 메타정보라고 함  -->
     <!-- 페이지 인코딩 셋팅도 메타요소로 셋팅함! 필수! -->
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <!-- meta description 사이트설명
       (구글에서는 이것을 검색컨텐츠로 수집함) -->
     <meta
@@ -15,7 +15,7 @@
     <meta name="keywords" content="도깨비, 도깨비,공유,김은숙,김고은,이동욱,유인나,육성재,금토드라마" />
     <title>도깨비 PJ - 메인페이지</title>
     <!-- 외부CSS 불러오기(main.css만) -->
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
     <!-- 1. 상단영역 -->
@@ -28,23 +28,60 @@
     <div id="cont">
       <main class="cont ibx">
         <!-- 전체 캐릭터 박스 -->
-        <div class="cbx"></div>
-        <!-- 1.공유 : .cat -->
-        <section class="cat">
-          <img src="./images/dc1.png" alt="공유">
-        </section>
-        <!-- 2.김고은 : .cat -->
-        <section class="cat">
-          <img src="./images/dc2.png" alt="김고은">
-        </section>
-        <!-- 3.이동욱 : .cat -->
-        <section class="cat">
-          <img src="./images/dc3.png" alt="이동욱">
-        </section>
-        <!-- 4.유인나 : .cat -->
-        <section class="cat">
-          <img src="./images/dc4.png" alt="유인나">
-        </section>
+        <div class="cbx">
+          <!-- 1.공유 : .cat -->
+          <section class="cat">
+            <!-- 1-1.캐릭터 이미지박스 : .ci -->
+            <figure class="ci">
+              <!-- 캐릭터 이미지 -->
+              <img src="./images/dc1.png" alt="공유" />
+              <!-- 캐릭터 이름 이미지 -->
+              <figcaption>
+                <img src="./images/d01.png" alt="진한이름">
+                <img src="./images/d011.png" alt="흐린이름">
+              </figcaption>
+            </figure>
+          </section>
+          <!-- 2.김고은 : .cat -->
+          <section class="cat">
+            <!-- 2-1.캐릭터 이미지박스 : .ci -->
+            <figure class="ci">
+              <!-- 캐릭터 이미지 -->
+              <img src="./images/dc2.png" alt="김고은" />
+              <!-- 캐릭터 이름 이미지 -->
+              <figcaption>
+                <img src="./images/d02.png" alt="진한이름">
+                <img src="./images/d022.png" alt="흐린이름">
+              </figcaption>
+            </figure>
+          </section>
+          <!-- 3.이동욱 : .cat -->
+          <section class="cat">
+            <!-- 3-1.캐릭터 이미지박스 : .ci -->
+            <figure class="ci">
+              <!-- 캐릭터 이미지 -->
+              <img src="./images/dc3.png" alt="이동욱" />
+              <!-- 캐릭터 이름 이미지 -->
+              <figcaption>
+                <img src="./images/d03.png" alt="진한이름">
+                <img src="./images/d033.png" alt="흐린이름">
+              </figcaption>
+            </figure>
+          </section>
+          <!-- 4.유인나 : .cat -->
+          <section class="cat">
+            <!-- 4-1.캐릭터 이미지박스 : .ci -->
+            <figure class="ci">
+              <!-- 캐릭터 이미지 -->
+              <img src="./images/dc4.png" alt="유인나" />
+              <!-- 캐릭터 이름 이미지 -->
+              <figcaption>
+                <img src="./images/d04.png" alt="진한이름">
+                <img src="./images/d044.png" alt="흐린이름">
+              </figcaption>
+            </figure>
+          </section>
+        </div>
       </main>
     </div>
     <!-- 3. 하단영역 -->
@@ -53,6 +90,5 @@
 
       </footer>
     </div>
-
   </body>
 </html>
