@@ -31,16 +31,24 @@
         
          /* 높이값 300px */
          .bx1{
+            height: 300px;
          }
-         /* 최대높이 600px */
+         /* 최대높이 600px : mah */
          .bx2{
+            max-height: 600px;
+            /* 600px을 유지하다가 넘치면 안커짐 */
          }
-         /* 최소높이 700px */
+         /* 최소높이 700px : mh */
          .bx3{
-             
+             min-height: 700px;
+             /* 최소 높이 700px 유지하다가 내용이 넘치면 
+             자동으로 늘어남 -> 웹 사이트 컨텐츠 높이설정에 쓰임! */
          }
          /* 최소 높이 700px, 최대 높이 800px */
          .bx4{
+            min-height: 700px;
+            max-height: 800px;
+            /* 700px과 800px 사이는 auto */
          }
 
          /* 
@@ -60,6 +68,7 @@
           */
           /* overflow:visible */
           .ov1{
+            overflow: visible; /* ovv */
               /* 
                 visible 은 기본값 - 박스보다 내용이 많으면
                 나간상태 그대로 보임!
@@ -67,12 +76,17 @@
           }
           /* overflow:hidden */
           .ov2{
+            overflow: hidden; /* oh */
               /* 
                 hidden은 넘치는 자식요소 숨기기
+                -> 추가적으로 자식요소의 위아래 마진이
+                부모박스 바깥에 나가는 것을 막고 부모박스
+                안쪽에 마진이 적용되게 할때도 이것을 사용!
               */
           }
           /* overflow-y:scroll */
           .ov3{
+            overflow-y: scroll;
               /* 
                 y축만 스크롤바 트랙이 처음부터 보이며
                 내용이 많아지면 스크롤바가 생성됨!
@@ -83,6 +97,7 @@
 
           /* overflow:auto */
           .ov4{
+            overflow: auto;
               /* 내용이 넘칠경우에 자동으로 스크롤바 트랙과
               스크롤바가 생성됨! */              
           }
