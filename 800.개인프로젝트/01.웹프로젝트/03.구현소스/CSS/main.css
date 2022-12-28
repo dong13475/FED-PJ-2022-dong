@@ -13,3 +13,13 @@
 body{
   outline: 2px dotted red;
 }
+
+.top>.logo{
+  text-align: center;
+  
+}
+
+.top>.logo>img{
+  width: 20%;
+  line-height: center;
+}
