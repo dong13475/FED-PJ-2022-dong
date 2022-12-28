@@ -76,6 +76,53 @@
         내용만큼만 그 크기가 자동으로 설정됨!
         [-> 앱솔루트 판타롱스타킹!] 
 
+        3. 블록이 아닌요소에 앱솔루트를 준 경우
+        자동으로 dispaly:block로 설정됨!
+        이유는 자동크기를 설정할 경우 블록이 아니면
+        크기설정이 안되므로 자동전환된다!
+        -> 일반적으로 모든 앱솔루트는 block이다!
+
+        4. 앱솔루트 마진을 설정할 경우
+        설정이 반영되는 경우는 위치설정과 
+        같은 방향의 마진만 적용된다!
+
+        예)
+        top을 적용했으면 margin-top
+        left을 적용했으면 margin-left
+        bottom을 적용했으면 margin-bottom
+        right을 적용했으면 margin-right
+
+        -> 단, 위치설정 없을 경우엔 top, left가 기준이다!
+        그래서 마진도 margin-top, margin-left만 적용된다!
+
+        5. 위치 이동값의 초기화!
+        - 값으로 auto를 쓰면 된다!
+        예) top: auto
+        -> 언제 초기화 하나?
+        기존에 이미 설정된 하나의 위치값을
+        반대방향으로 위치값 변경시에 초기화를 사용한다!
+        (미디어쿼리나 JS 코딩시에 발생할 수 있음)
+        예) 기존-> top: 50px;
+            변경-> top: auto; bottom: 50px;
+
+        6. 위치이동값을 전부 다 쓰는 경우도 있다!
+        -> 부모박스를 가득 채우거나 일정위치를 잡고
+        크기가 유동적이어야 할때 사용함!
+
+        예) 부모박스를 채우는 앱솔루트는?
+        position: absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        (단, width, height는 설정안함!)
+
+        7. 앱솔루트끼리는 서로 겹쳐진다!
+
+        8. 앱솔루트는 부모자격 박스가 overflow:hidden 으로
+        셋팅되어 넘치는 자식요소를 숨길때 부모자격이 아닌박스가
+        overflow:hidden 이어도 숨겨지지 않고 부모자격박스만
+        숨길 수 있다!
 
         ***********************************************/
 
@@ -161,6 +208,38 @@
         크기를 줄 경우 부모자격박스를
         기준한다! */
       }
+
+      /* 앱솔루트 : 판타롱스타킹! */
+      .a5{
+        position: absolute;
+        /* 크기를 안주면 내용만큼 늘어남! */
+        top: 20%;
+        right: 10%;
+        outline: 2px solid red;
+        /* border: 2px solid blue; */
+      }
+      .a5 img{
+        vertical-align: top; /* vat */
+        /* 
+          박스에 단일한 이미지를 넣을 경우
+          하단에 자연스런 간극 존재한다!(4px)
+          이것을 없애려면 vertical-align
+          인라인요소간 세로정렬 속성의 값으로
+          top/bottom/middle 중 어느것이든 쓰면
+          이것이 사라진다! 알아두자!
+        */
+      }
+
+      /* span 을 앱솔루트로! 
+      -> 자동 display:block 으로 전환! */
+      .spabs{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        /* 부모는 .s8 */
+        border: 4px dotted red;
+      }
+
     </style>
   </head>
   <body>
@@ -171,6 +250,11 @@
     <div class="bx" id="s2">s2</div>
     <div class="bx" id="a2">a2</div>
 
+    <!-- 앱솔루트 : 판타롱스타킹! -->
+    <div class="a5">
+      <img src="./images/ab2.jpg" alt="타노스">
+    </div>
+
     <!-- 부모를 찾는 앱솔루트! -->
     <div class="bx2 s5">s5
       <div class="bx2 s6">s6
@@ -178,6 +262,9 @@
           <div class="bx2 s8">s8
             <div class="abs a3">a3</div>
             <div class="abs a4">a4</div>
+            <span class="spabs">
+              나는 span앱솔루트다!
+            </span>
           </div>
         </div>
       </div>

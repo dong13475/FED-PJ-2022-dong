@@ -20,6 +20,6 @@ body{
 }
 
 .top>.logo>img{
-  width: 20%;
-  line-height: center;
+  width: 250px;
+  margin-bottom: 30px;
 }

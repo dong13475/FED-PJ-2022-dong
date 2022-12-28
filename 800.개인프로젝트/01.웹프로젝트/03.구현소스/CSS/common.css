@@ -8,6 +8,23 @@
   margin: 0 auto;
 }
 .navi{
+  /* text-align: center; */
+  width: 470px;
+  margin: 0 auto;
+  outline: 1px solid red;
+}
+.navi::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.navi li{
+  float: left;
+  padding-left: 31px;
+}
+.navi a{
+  text-decoration: none;
+  color: #000;
   
 }
 /************************** 메인영역 **************************/
