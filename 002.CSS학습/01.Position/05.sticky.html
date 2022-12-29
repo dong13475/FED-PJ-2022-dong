@@ -22,7 +22,7 @@
               도달할때 요소를 fixed하게 화면에 고정해준다!
               -> 만약 top값을 설정하지 않으면
               relative와 유사하게 그대로 위치함!
-              
+
         *******************************************/
         
         width: 600px !important;
@@ -82,12 +82,6 @@
 
       }
 
-      /* 첫번째 박스에 포지션 체크 */
-      #r1 {
-        position: relative;
-        background: url(./images/ab5.jpg) no-repeat center/cover;
-      }
-
       /* 두번째 앱솔루트 */
       #a2{
         position: absolute; /* poa */
@@ -96,6 +90,13 @@
         /* 나의 부모는? 보이는 화면 */
         background: url(./images/ab1.jpg) no-repeat center/cover;
       }
+
+      /* 첫번째 박스에 포지션 체크 */
+      #r1 {
+        position: relative;
+        background: url(./images/ab5.jpg) no-repeat center/cover;
+      }
+
 
       /* 또하나의 relative */
       #r2{
@@ -231,7 +232,7 @@
       right: -140px;
       z-index: 99999;
       /* 트랜지션 : trs */
-      transition:  0.3s;
+      transition: .3s;
      }
      /* 마우스 오버시 나오기 */
      .f3:hover{
@@ -259,6 +260,14 @@
       height: 200px;
       /* 하단간극없앰 vam */
       vertical-align: middle;
+     }
+
+     /* 스티키버튼 */
+     .stkbtn{
+      position: sticky;
+      top: 60%;
+      /* top은 보이는 화면기준위치다! */
+      font-size: 50px;
      }
 
 
@@ -319,6 +328,8 @@
         </div>
       </div>
     </div>
-
+    
+    <!-- 스티키 버튼 -->
+    <button class="stkbtn">나는 스티키!!!</button>
   </body>
 </html>
