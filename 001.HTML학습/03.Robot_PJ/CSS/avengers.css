@@ -9,6 +9,11 @@
     font-family: 'Single Day', cursive;
 */
 
+html{
+  scroll-behavior: smooth;
+  /* #아이디 a요소 이동시 부드러운 스크롤 애니작동됨! */
+}
+
 /* 초기화 */
 html,body,h1,h2,ul,ol{
   margin: 0;
@@ -282,4 +287,33 @@ padding과 border 때문에 숨겨지지 않음!
   /* 아이프레임에는 기본 프레임이 있어서
   이것을 없앰! */
   border: none; /* bdn */
+}
+
+.page{
+  position: relative;
+  /* 부모자격 - .gobtn의 부모 */
+}
+
+/* 이동버튼 디자인 */
+.gobtn{
+  position: absolute;
+  right: 3%;
+  /* 부모는? .page */
+  font-size: 30px;
+  z-index: 99999;/* 제일위! */
+}
+/* 가상클래스로 화살표모양 넣기 */
+#pg1 .gobtn::after{
+  content: '🔻';
+}
+#pg2 .gobtn::after{
+  content: '🔺';
+}
+/* 개별위치 */
+#pg1 .gobtn{
+  bottom: 5%;
+}
+/* 개별위치 */
+#pg2 .gobtn{
+  top: 5%;
 }
