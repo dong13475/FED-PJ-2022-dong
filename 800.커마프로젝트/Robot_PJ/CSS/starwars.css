@@ -94,7 +94,7 @@ html,body{
   box-shadow: x y blur spread 색 
   inset은 내부그림자 */
   box-shadow: 
-  0 0 35px 10px rgb(162, 29, 214),
+  0 0 25px 10px rgb(162, 29, 214),
   inset 1px 1px 20px rgb(185, 135, 60);
 }
 
