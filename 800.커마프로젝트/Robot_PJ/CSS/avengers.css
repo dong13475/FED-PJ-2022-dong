@@ -1,0 +1,325 @@
+@charset "UTF-8";
+/* 어벤저스 CSS - avengers.css */
+
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Single+Day&display=swap');
+
+/* 
+    font-family: 'Monoton', cursive;
+    font-family: 'Single Day', cursive;
+*/
+
+html{
+  scroll-behavior: smooth;
+  /* #아이디 a요소 이동시 부드러운 스크롤 애니작동됨! */
+}
+
+/* 초기화 */
+html,body,h1,h2,ul,ol{
+  margin: 0;
+  padding: 0;
+}
+
+/* 초기셋팅 */
+a{
+  color: #fff;
+  text-decoration: none;
+}
+body{
+  /* 배경이미지 채우기 */
+  background: url(../ab_img/space.jpg) 
+  no-repeat fixed center/cover;
+  /* 전체 body 스크롤바 숨기기 */
+  /* overflow: hidden; */
+}
+/* body의 높이값을 보이는 화면에 맞추기 */
+html,body{
+  height: 100%;
+  /* 
+  body 100%는 html을 기준하며
+  html 100%는 window(보이는화면)을 기준한다!
+  %셋팅시 html과 body 모두 셋팅해야 적용된다!
+  _________________________________________
+
+  가끔 width:100% 를 잡는 경우가 있다
+  아무것도 안주면 width:auto 임. 둘 간의 차이는?
+  width:100%는 컨텐트 영역을 크기를 채우도록 셋팅함
+  따라서 보더나 패딩을 줄 경우 박스가 커지고 스크롤바가 생김.
+  특별한 경우가 아니라면 auto상태로 놓으면 보더와 패딩이
+  내부에 자동으로 포함된다~!
+  */
+}
+
+/* 0. 전체 타이틀 */
+.tit{
+  /* 고정 포지션 */
+  position: fixed;
+  width: 100%;
+  z-index: 9999;/* 가장위 */
+
+  font-family: 'Monoton', cursive;
+  color: #fff;
+  font-size: 70px;
+  /* 글자두께 보통 */
+  font-weight: normal;
+  text-align: center;
+  /* 위아래 패딩 */
+  padding: 50px 0;
+  /* text-shadow: 1px 1px 50px rgb(219, 15, 15); */
+}
+
+/* 1. 페이지박스 공통 */
+.page{
+  height: 100%;
+  /* 한페이지당 html,body 보이는 화면 100%와 같이
+  보이는 화면만큼 크기 확장설정 */
+}
+
+/* 2. 메인 캐릭터 박스 */
+.abx{
+  /* 부모자격 - .cbx의 부모 */
+  position: relative;
+  /* 포스터이미지 크기 */
+  top: 210px;
+  width: 300px;
+  height: 400px;
+  /* 배경이미지 */
+  background: url(../ab_img/ab0.jpg) 
+  no-repeat center/cover;
+  /* 둥근모서리 -> 원형은 50% */
+  border-radius: 50%;
+  /* 마영오! */
+  margin: 0 auto;
+  /* 글로우 효과 : 박스그림자 응용 
+  box-shadow: x y blur spread 색 
+  inset은 내부그림자 */
+  box-shadow: 
+  0 0 35px 10px rgb(80, 92, 255),
+  inset 1px 1px 20px rgb(108, 148, 173);
+}
+
+/* 캐릭터박스 */
+.cbx{
+  /* 앱솔루트 포지션 
+  위치값 주기전 상태: 
+  모두겹침, 싸고있는 박스에 그대로 있고(젠틀),
+  크기는 내용만큼 자동, 
+  나중것이 기본위(제일 나중에 넣은 스타로드이미지가 제일 위에 위치함)*/
+  position: absolute;
+
+  /* 부모는? .abx */
+  
+  /* 
+  [ 앱솔루트 자식박스 
+  부모박스에 정중앙 위치하기 ]
+  top : calc(50% - 자기height절반)
+  left : calc(50% - 자기width절반)
+  -> 원리: 50%밀고 자신크기절반 빼서
+  정중앙으로 위치를 이동하는 것!
+  계산은 calc() CSS함수를 사용!
+  (+,- 연산시 기호 앞뒤를 꼭 띄어쓴다!)
+  */
+  top: calc(50% - 75px);
+  left: calc(50% - 75px);
+
+  /* 박스크기 설정 */
+  width: 130px;
+  height: 170px;
+
+  
+  /* 박스테두리 */
+  /* outline: 3px dotted yellow; */
+
+  /* 처음에 투명 opacity */
+  opacity: 0;
+
+  /* 트랜지션: 속시이지 */
+  transition: 1.3s ease-in-out;
+}
+/* 캐릭터 이미지 */
+.cbx img{
+  /* 크기를 박스에 맞춤! 
+  -> 이미지가 왜곡된다! 어떡하지?
+  -> object-fit:cover 를 쓴다! */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /*
+  [ object-fit 속성 ]
+  -> 이미지나 동영상을 박스에 맞출때
+  옵션을 설정해 주는 속성
+  1. fill : 설정값에 강제적용(기본값)
+  2. contain : 박스에 모두 보임
+  3. cover : 박스를 비율에 맞게 채움
+  -> 빈틈없이 채우며 배경cover와 
+  유사한 효과를 준다!
+  */
+  
+  /* 이미지 둥글게 */
+  border-radius: 50%;
+
+  /* 글로우효과 */
+  box-shadow: 0 0 30px 10px rgb(39, 172, 84);
+}
+
+/* body에 오버시 전체 opacity 보이게하기 */
+body:hover .cbx{
+  opacity: 1;
+}
+
+/* 2-1. 아이언맨 */
+body:hover .cbx:nth-child(1){
+  top: -6%;
+  left: -79%;
+}
+/* 2-2. 타노스 */
+body:hover .cbx:nth-child(2){
+  top: -6%;
+  left: 128%;
+}
+/* 2-3. 토르 */
+body:hover .cbx:nth-child(3){
+  top: 74%;
+  left: -85%;
+}
+/* 2-4. 닥스 */
+body:hover .cbx:nth-child(4){
+  top: 74%;
+  left: 135%;
+}
+/* 2-5. 스타로드 */
+body:hover .cbx:nth-child(5){
+  top: 125%;
+  /* left는 중앙위치이므로
+  셋팅하지 않음! */
+}
+
+/* 캐릭터 설명박스 공통 */
+.cd{
+  position: absolute;
+  top: 50%;
+  /* 처음에 내려가 있고 오버시 0으로 top값 올라옴! */
+
+  /* 부모는? .cbx */
+
+  /* 박스셋팅 */
+  width: 320px;
+  /* 처음에 height값 0로 박스 숨기기
+  -> 이유: 투명상태로 오버되는 경우를 없애기위해 */
+  height: 0;
+  /* 넘치는 자식요소 숨기기 */
+  overflow: hidden;
+  
+  /* 글자셋팅 */
+  font-family: 'Single Day', cursive;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  
+  /* 처음에 투명하게 */
+  opacity: 0;
+  /* 트랜지션: 속시이지 */
+  transition: .5s ease-out;
+}
+
+/* .cd 직계 하위 div로 디자인 이전하기
+-> 만든이유: height값을 0으로 숨기려는데
+padding과 border 때문에 숨겨지지 않음!
+따라서 이것을 직계하위 div로 이전함! */
+.cd>div{
+  border: 2px solid #fff;
+  padding: 15px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* .cbx에 오버시 글자박스 보이기  */
+.cbx:hover .cd{
+  top: 0;
+  opacity: 1;
+  height: auto;
+  /* 전체적으로 트랜지션 설정되어 있으나
+  height값이 특정값(px,%)으로 설정되지 않고
+  auto일 경우 애니메이션 되지 않는다!
+  애니메이션 되지 않게 하려는데 잘됐다!^^
+  만약 적용되는 것을 안되게 하려면 transition에서
+  개별셋팅해야한다! */
+}
+
+/* .cbx에 오버시 글자박스 보이기 */
+
+/* 왼쪽 진영 글자박스 클래스 */
+.ltxt {
+  left: -270%;
+}
+/* 왼쪽 진영 제목 오른쪽정렬 */
+.ltxt h2{
+  text-align: right;
+}
+/* 오른쪽 진영 글자박스 클래스 */
+.rtxt {
+  right: -270%;
+}
+
+
+/* 예고편 페이지 */
+
+/* 서브타이틀 */
+.subtit{
+  position: sticky;
+  top: 120px;
+  padding: 50px 0;
+  text-align: center;
+  color: #fff;
+}
+
+/* 동영상박스 */
+.mvbx{
+  width: 1000px;
+  height: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+/* 아이프레임 */
+.mvbx iframe{
+  /* 아이프레임 부모박스에 맞춤! */
+  width: 100%;
+  height: 100%;
+  /* 아이프레임에는 기본 프레임이 있어서
+  이것을 없앰! */
+  border: none; /* bdn */
+}
+
+.page{
+  position: relative;
+  /* 부모자격 - .gobtn의 부모 */
+}
+
+/* 이동버튼 디자인 */
+.gobtn{
+  position: absolute;
+  right: 3%;
+  /* 부모는? .page */
+  font-size: 30px;
+  z-index: 99999;/* 제일위! */
+}
+/* 가상클래스로 화살표모양 넣기 */
+#pg1 .gobtn::after{
+  content: '🔻';
+}
+#pg2 .gobtn::after{
+  content: '🔺';
+}
+/* 개별위치 */
+#pg1 .gobtn{
+  bottom: 2%;
+}
+/* 개별위치 */
+#pg2 .gobtn{
+  top:2%;
+}
+/* 오버시 a변경 */
+.gobtn:hover{
+  color: coral;
+  text-decoration: overline;
+  text-decoration-style: wavy;
+}
