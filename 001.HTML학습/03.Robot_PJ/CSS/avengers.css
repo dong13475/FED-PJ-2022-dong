@@ -55,6 +55,7 @@ html,body{
   text-align: center;
   /* 위아래 패딩 */
   padding: 50px 0;
+  /* text-shadow: 1px 1px 50px rgb(219, 15, 15); */
 }
 
 /* 2. 메인 캐릭터 박스 */
@@ -75,8 +76,8 @@ html,body{
   box-shadow: x y blur spread 색 
   inset은 내부그림자 */
   box-shadow: 
-  0 0 35px 10px coral,
-  inset 0 0 20px lightskyblue;
+  0 0 35px 10px rgb(80, 92, 255),
+  inset 0 0 20px rgb(108, 148, 173);
 }
 
 /* 캐릭터박스 */
@@ -104,8 +105,8 @@ html,body{
   left: calc(50% - 75px);
 
   /* 박스크기 설정 */
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 170px;
 
   
   /* 박스테두리 */
@@ -115,7 +116,7 @@ html,body{
   opacity: 0;
 
   /* 트랜지션: 속시이지 */
-  transition: 0.8s ease-in-out;
+  transition: 1.3s ease-in-out;
 }
 /* 캐릭터 이미지 */
 .cbx img{
@@ -140,7 +141,7 @@ html,body{
   border-radius: 50%;
 
   /* 글로우효과 */
-  box-shadow: 0 0 30px 10px rgb(180, 59, 59);
+  box-shadow: 0 0 30px 10px rgb(39, 172, 84);
 }
 
 /* body에 오버시 전체 opacity 보이게하기 */
@@ -185,32 +186,52 @@ body:hover .cbx:nth-child(5){
 
   /* 박스셋팅 */
   width: 320px;
-  border: 2px solid #fff;
-  padding: 15px;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.4);
-
+  /* 처음에 height값 0로 박스 숨기기
+  -> 이유: 투명상태로 오버되는 경우를 없애기위해 */
+  height: 0;
+  /* 넘치는 자식요소 숨기기 */
+  overflow: hidden;
+  
   /* 글자셋팅 */
   font-family: 'Single Day', cursive;
   color: #fff;
   text-shadow: 1px 1px 1px #000;
-
+  
   /* 처음에 투명하게 */
   opacity: 0;
   /* 트랜지션: 속시이지 */
-  transition: .4s ease-out;
+  transition: .5s ease-out;
 }
-/* .cbx에 호버시  */
+
+/* .cd 직계 하위 div로 디자인 이전하기
+-> 만든이유: height값을 0으로 숨기려는데
+padding과 border 때문에 숨겨지지 않음!
+따라서 이것을 직계하위 div로 이전함! */
+.cd>div{
+  border: 2px solid #fff;
+  padding: 15px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* .cbx에 오버시 글자박스 보이기  */
 .cbx:hover .cd{
   top: 0;
   opacity: 1;
+  height: auto;
+  /* 전체적으로 트랜지션 설정되어 있으나
+  height값이 특정값(px,%)으로 설정되지 않고
+  auto일 경우 애니메이션 되지 않는다!
+  애니메이션 되지 않게 하려는데 잘됐다!^^
+  만약 적용되는 것을 안되게 하려면 transition에서
+  개별셋팅해야한다! */
 }
 
 /* .cbx에 오버시 글자박스 보이기 */
 
 /* 왼쪽 진영 글자박스 클래스 */
 .ltxt {
-  left: -230%;
+  left: -290%;
 }
 /* 왼쪽 진영 제목 오른쪽정렬 */
 .ltxt h2{
@@ -218,5 +239,5 @@ body:hover .cbx:nth-child(5){
 }
 /* 오른쪽 진영 글자박스 클래스 */
 .rtxt {
-  right: -230%;
+  right: -290%;
 }
