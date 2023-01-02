@@ -25,7 +25,7 @@ body{
   background: url(../ab_img/space.jpg) 
   no-repeat fixed center/cover;
   /* 전체 body 스크롤바 숨기기 */
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 /* body의 높이값을 보이는 화면에 맞추기 */
 html,body{
@@ -45,8 +45,13 @@ html,body{
   */
 }
 
-/* 1. 전체 타이틀 */
+/* 0. 전체 타이틀 */
 .tit{
+  /* 고정 포지션 */
+  position: fixed;
+  width: 100%;
+  z-index: 9999;/* 가장위 */
+
   font-family: 'Monoton', cursive;
   color: #fff;
   font-size: 70px;
@@ -58,11 +63,19 @@ html,body{
   /* text-shadow: 1px 1px 50px rgb(219, 15, 15); */
 }
 
+/* 1. 페이지박스 공통 */
+.page{
+  height: 100%;
+  /* 한페이지당 html,body 보이는 화면 100%와 같이
+  보이는 화면만큼 크기 확장설정 */
+}
+
 /* 2. 메인 캐릭터 박스 */
 .abx{
   /* 부모자격 - .cbx의 부모 */
   position: relative;
   /* 포스터이미지 크기 */
+  top: 210px;
   width: 300px;
   height: 400px;
   /* 배경이미지 */
@@ -77,7 +90,7 @@ html,body{
   inset은 내부그림자 */
   box-shadow: 
   0 0 35px 10px rgb(80, 92, 255),
-  inset 0 0 20px rgb(108, 148, 173);
+  inset 1px 1px 20px rgb(108, 148, 173);
 }
 
 /* 캐릭터박스 */
@@ -231,7 +244,7 @@ padding과 border 때문에 숨겨지지 않음!
 
 /* 왼쪽 진영 글자박스 클래스 */
 .ltxt {
-  left: -290%;
+  left: -270%;
 }
 /* 왼쪽 진영 제목 오른쪽정렬 */
 .ltxt h2{
@@ -239,5 +252,5 @@ padding과 border 때문에 숨겨지지 않음!
 }
 /* 오른쪽 진영 글자박스 클래스 */
 .rtxt {
-  right: -290%;
+  right: -270%;
 }
