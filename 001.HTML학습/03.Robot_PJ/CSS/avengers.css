@@ -254,3 +254,32 @@ padding과 border 때문에 숨겨지지 않음!
 .rtxt {
   right: -270%;
 }
+
+
+/* 예고편 페이지 */
+
+/* 서브타이틀 */
+.subtit{
+  position: sticky;
+  top: 120px;
+  padding: 50px 0;
+  text-align: center;
+  color: #fff;
+}
+
+/* 동영상박스 */
+.mvbx{
+  width: 1000px;
+  height: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+/* 아이프레임 */
+.mvbx iframe{
+  /* 아이프레임 부모박스에 맞춤! */
+  width: 100%;
+  height: 100%;
+  /* 아이프레임에는 기본 프레임이 있어서
+  이것을 없앰! */
+  border: none; /* bdn */
+}
