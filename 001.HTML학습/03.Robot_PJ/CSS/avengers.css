@@ -317,3 +317,9 @@ padding과 border 때문에 숨겨지지 않음!
 #pg2 .gobtn{
   top:2%;
 }
+/* 오버시 a변경 */
+.gobtn:hover{
+  color: coral;
+  text-decoration: overline;
+  text-decoration-style: wavy;
+}
