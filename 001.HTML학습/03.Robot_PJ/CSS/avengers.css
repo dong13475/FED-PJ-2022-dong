@@ -311,9 +311,9 @@ padding과 border 때문에 숨겨지지 않음!
 }
 /* 개별위치 */
 #pg1 .gobtn{
-  bottom: 5%;
+  bottom: 2%;
 }
 /* 개별위치 */
 #pg2 .gobtn{
-  top: 5%;
+  top:2%;
 }
