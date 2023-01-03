@@ -73,12 +73,13 @@ html,body{
   transform: translateY(-200px) rotateX(90deg) scale(0);
 
   /* 트랜지션 */
-  transition: transform 3s ease-in-out;
+  transition: transform 2s ease-in-out;
 }
   /* 오버시 타이틀 트랜스폼 */
   body:hover .tit{
     /* 트랜스폼 : 원래위치로! 그리고 x축 회전, 원래크기! */
     transform: translateY(0) rotateX(720deg) scale(1);
+    transition: transform 1s ease-in;
   }
   
 

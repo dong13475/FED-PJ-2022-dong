@@ -66,6 +66,14 @@ html,body{
   /* 위아래 패딩 */
   padding: 50px 0;
   /* text-shadow: 1px 1px 50px rgb(219, 15, 15); */
+
+  /* 트랜스폼 */
+  transform: translateY(-200px) rotateX(90deg);
+  /* 트랜지션 */
+  transition: transform 3s ease-in-out;
+}
+body:hover .tit{
+  transform: translateY(0) rotateX(720deg) scale(1);
 }
 
 /* 1. 페이지박스 공통 */
@@ -160,6 +168,15 @@ html,body{
 
   /* 글로우효과 */
   box-shadow: 0 0 30px 10px rgb(23, 126, 223);
+  transition: transform 1s ease-in-out;
+}
+
+/* 오버시 이미지 회전 */
+body:hover .cbx>img{
+  transform: rotateY(720deg);
+}
+body .cbx>img{
+  transform-origin: 50px 170px;
 }
 
 /* body에 오버시 전체 opacity 보이게하기 */
