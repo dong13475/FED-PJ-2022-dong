@@ -50,13 +50,82 @@
         /* 5등분 가로크기 */
         width: 20%;
         text-align: center;
+        margin-bottom: 50px;
       }
       /* 이미지를 원형으로! */
       .cont>div>img{
         width: 200px;
         height: 200px;
         border-radius: 50%;
+        /* 트랜지션: 속시이지 */
+        transition: transform .6s;
       }
+
+      /* 
+        [ Transform 효과주기 ]
+        - 선택요소의 크기, 회전, 이동, 기울임
+          등 변형을 하기위한 속성
+        - 2D, 3D 지원됨
+
+        1. rotateY(각도deg) - Y축회전
+        - deg 는 각도의 단위(도:degree)
+      */
+      #trans1:hover img{
+        /* 트랜스폼 Y축회전 - tfry */
+        transform: rotateY(180deg);
+        /* CSS 필터적용하기 
+        : 필터속성은 흑백, 흐림, 세피아, 명암,
+        채도 등 출력 이미지를 변경하고자 할때
+        사용하는 속성
+        (참고)
+        https://www.w3schools.com/cssref/playit.php?filename=playcss_filter&preval=blur(5px)
+        */
+        filter:grayscale(100%)
+      }
+
+      /* 
+        2. rotateX(각도deg) - X축회전
+        - deg 는 각도의 단위(도:degree)
+      */
+      #trans2 img{
+        /* 트랜스폼 X축회전 : tfrx */
+        transform: rotateX(180deg);
+        /* 필터 흐림효과 */
+        filter:blur(2px);
+      }
+      #trans2:hover img{
+        /* 트랜스폼 X축회전 : tfrx */
+        transform: rotateX(0deg);
+        /* 흐림 복원 */
+        filter:blur(0px);
+      }
+
+      /* 
+        3. translateX(거리) - x축이동
+        - 단위 : px, % 등
+        - 현재 위치로부터 이동
+        - 기준점은 요소의 왼쪽
+        - % 단위를 쓸경우 기준은 요소의 width값
+        - 이동방향 : + 오른쪽, - 왼쪽
+      */
+      #trans3:hover img{
+        /* 트랜스폼 X축 위치이동 tftx */
+        transform: translateX(-50%);
+      }
+      /* 
+        4. translateY(거리) - y축이동
+        - 단위 : px, % 등
+        - 현재 위치로부터 이동
+        - 기준점은 요소의 위쪽
+        - % 단위를 쓸경우 기준은 요소의 height값
+        - 이동방향 : + 아래쪽, - 위쪽
+      */
+      #trans4:hover img{
+        /* 트랜스폼 Y축 위치이동 tfty */
+        transform: translateY(200%);
+      }
+
+      
     </style>
   </head>
   <body>
@@ -64,6 +133,7 @@
     <h1 class="tit">트랜스폼 연습</h1>
     <!-- 내용박스 -->
     <div class="cont">
+      <!-- .cont>#trans$*10>img[src=images/cast0$.jpg alt=캐릭터] -->
       <div id="trans1">
         <img src="images/cast01.jpg" alt="캐릭터" />
       </div>
