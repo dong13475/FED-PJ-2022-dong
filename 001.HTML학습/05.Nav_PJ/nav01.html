@@ -42,6 +42,12 @@
         position: relative;
         
         padding: 0 32px;
+        /* nav와 서브메뉴 간격을 넓히고 싶다면
+        아래쪽 패딩으로 앱솔루트 .smenu와
+        연결되어 있게 한다! 떨어지면 내려가다 닫힘!
+        (빈공간이 생겨서) */
+        padding-bottom: 15px;
+
       }
 
       .gnb a{
@@ -68,14 +74,52 @@
         그런데 맨위로 오게하는 의도로 9를
         여러번 쓰는 경우가 많다! */
 
+        /* top값없이 앱솔루트 위치 이동하기 */
+        margin-top: 15px;
+
         /* 트랜스폼으로 가로방향 중앙이동 */
         transform: translateX(-50%);
 
         width: 200px;
-        background-color: blue;
+        background-color: rgba(0, 0, 0, 0.26);
         border-radius: 15px;
+
+        /* 내부 컨텐츠 숨기기 */
+        height: 0;
+        overflow: hidden;
+
+        /* 서브메뉴 처음에 투명 */
+        opacity: 0;
+
+        /* 서브메뉴 등장 트랜지션 : 속시이지 */
+        transition: all .4s ease-out;
       }
 
+      /* 상위메뉴 오버시 하위메뉴 보이기 
+      -> 트랜지션 애니를 하려면 구체적인 크기가 
+      있어야함. auto값은 애니메이션 안됨! */
+      .gnb>ul>li:first-child:hover .smenu{
+        height: 190px;
+      }
+      .gnb>ul>li:nth-child(2):hover .smenu{
+        height: 230px;
+      }
+      .gnb>ul>li:nth-child(3):hover .smenu{
+        height: 40px;
+      }
+      .gnb>ul>li:nth-child(4):hover .smenu{
+        height: 120px;
+      }
+      .gnb>ul>li:nth-child(5):hover .smenu{
+        height: 40px;
+      }
+      .gnb>ul>li:last-child:hover .smenu{
+        height: 160px;
+      }
+      /* 서브메뉴 투명도 공통 오버시 */
+      .gnb>ul>li:hover .smenu{
+        opacity: 1;
+      }
       /* 서브메뉴 a요소 */
       .smenu a{
         display: block;
