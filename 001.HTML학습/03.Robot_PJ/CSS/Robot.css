@@ -226,9 +226,11 @@ body *{
   height: 200px;
   /* 그라데이션 */
   background-image: 
-  linear-gradient(-25deg,rgb(191, 202, 32), rgb(195, 209, 116), #748b1d, #cdcebb);
+  linear-gradient(-25deg,rgb(191, 202, 32), rgb(195, 209, 116),
+  #748b1d, #cdcebb);
     /* 몸깎기 */
-    clip-path: polygon(10% 0,0 20%,0 50%,10% 100%,90% 100%,100% 50%,100% 20%,90% 0);
+    clip-path: polygon(10% 0,0 20%,0 50%,10% 100%,
+    90% 100%,100% 50%,100% 20%,90% 0);
 }
 /* 가상요소로 몸통 하단만들기 */
 .body::after{
@@ -241,9 +243,11 @@ body *{
   height: 170px;
   /* 그라데이션 */
   background-image: 
-  linear-gradient(25deg,rgb(199, 188, 29), rgb(31, 98, 143), #d4af07, #bfc49b);
+  linear-gradient(25deg,rgb(199, 188, 29), rgb(31, 98, 143),
+  #d4af07, #bfc49b);
     /* 몸깎기 */
-    clip-path: polygon(5% 0,0 10%,0 50%,10% 100%,90% 100%,100% 50%,100% 20%,90% 0);
+    clip-path: polygon(10% 0,0 20%,0 50%,10% 100%,
+    90% 100%,100% 50%,100% 20%,90% 0);
 }
 
 
