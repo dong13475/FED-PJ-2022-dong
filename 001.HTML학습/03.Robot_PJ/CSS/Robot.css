@@ -10,12 +10,12 @@ html,body,h1,h2,p,ul,ol{
 /******* 공통클래스 *******/
 /* 메탈소재1 배경 */
 .mt1{
-  background: url(../images/metal01.jpg)
+  background: url(../images/gmetal2.jpg)
   no-repeat center/cover;
 }
 /* 메탈소재2 배경 */
 .mt2{
-  background: url(../images/metal02.jpg)
+  background: url(../images/gmetal3.jpg)
   no-repeat center/cover;
 }
 
@@ -42,15 +42,38 @@ body *{
 
 /* 로봇머리 */
 .head{
+  position: relative;
+  /* 부모자격 - 하위 div들 */
   width: 250px;
   height: 250px;
   /* 마,영,오! */
   margin: 0 auto;
+  border-radius: 45% 45% 50% 50%;
 }
+/* 로봇머리 직계하위 div는 모두 앱솔루트 */
+.head>div{
+  position: absolute;
+}
+
+/* 로봇 머리에 가상요소로 머리털박스 만들기 */
+.head::before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: -59px;
+  left: 50%;
+  /* 부모는? .head */
+  width: 40px;
+  height: 60px;
+  background: url(../images/robothat.png)
+  no-repeat 0/100% 100%;
+  transform: translateX(-10%);
+}
+
 /** 눈공통 **/
 .eye{
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
 
   /* 배경공통 */
   background-color: #fff;
@@ -65,16 +88,56 @@ body *{
 }
 /* 왼쪽눈 */
 .e1{
+  top: 45px;
+  left: 40px;
   background-image: url(../images/e1.jpg);
 }
 /* 오른쪽눈 */
 .e2{
+  top: 45px;
+  right: 40px;
   background-image: url(../images/e2.jpg);
 }
 /* 코 */
+.nose{
+  top: 85px;
+  left: 50%;
+  width: 60px;
+  height: 85px;
+  background: url(../images/nose.jpg)
+  no-repeat 0/110% 100%;
+  transform: translateX(-50%);
+  border-radius: 50px;
+}
 /* 입 */
+.mouth{
+  top: 170px;
+  left: 50%;
+  width: 110px;
+  height: 50px;
+  background: url(../images/mouth.png)
+  no-repeat 0/100% 100%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  /* transform: skewX(45deg); */
+}
+/* 귀 공통 */
+.ear{
+  width: 60px;
+  height: 80px;
+  top: 43px;
+  z-index: -1;
+}
 /* 왼쪽귀 */
+.er1{
+  left: -35px;
+  border-radius: 35% 0 0 40%;
+}
 /* 오른쪽귀 */
+.er2{
+  right: -35px;
+  border-radius: 0 35% 40% 0;
+}
 
 /************************** 3. 하단영역 **************************/
 
