@@ -45,10 +45,13 @@ body *{
   position: relative;
   /* 부모자격 - 하위 div들 */
   width: 250px;
-  height: 250px;
+  height: 150px;
   /* 마,영,오! */
   margin: 0 auto;
-  border-radius: 45% 45% 50% 50%;
+  border-radius: 35% 35% 0 0; 
+  /* 턱깎기 */
+  /* clip-path: polygon
+  (0 0, 0 50%, 30% 100%, 60% 100%, 100% 50%, 100% 0); */
 }
 /* 로봇머리 직계하위 div는 모두 앱솔루트 */
 .head>div{
@@ -68,6 +71,34 @@ body *{
   background: url(../images/robothat.png)
   no-repeat 0/100% 100%;
   transform: translateX(-10%);
+}
+.head:hover::before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  /* 부모는? .head */
+  width: 60px;
+  height: 70px;
+  background: url(../images/robothat2.png)
+  no-repeat 0/100% 100%;
+  transform: translateX(-40%);
+}
+/* 머리박스 가상요소로 턱만들기 */
+.head::after{
+  content: '';
+  display: block;
+  position: absolute;
+  /* 부모박스 높이만큼 밀어준다! */
+  top: 100%;
+  z-index: -1;
+  width: 250px;
+  height: 100px;
+  background: url(../images/gmetal2.jpg)
+  no-repeat bottom/100%;
+  /* 턱깎기 */
+  clip-path: polygon(0 0,33.33% 100%,66.66% 100%,100% 0);
 }
 
 /** 눈공통 **/
@@ -124,6 +155,34 @@ body *{
   /* transform: skewX(45deg); */
   transform: rotate(-20deg);
 }
+/* 입옆에 별모양점 가상요소로 만들기 */
+.mouth::before,.mouth::after{
+  content: '';
+  display: block;
+  position: absolute;
+  top: -10px;
+  right: -25px;
+  /* 부모는? .mouth */
+  width: 15px;
+  height: 15px;
+  background-color: rgb(70, 49, 49);
+
+  /* 삼각형 클리핑 속성으로 만들기 */
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+.mouth::after{
+  transform: rotate(180deg) translateY(-30%);
+}
+
+/* 
+  [ CSS 클리핑 속성 ]
+  -> clip-path : polygon(x1, y1, x2, y2...)
+  -> 각 좌표쌍은 띄어쓰기로 각 점은 콤마로 구분
+  -> 각 점을 연결하여 도형모양만 출력한다!
+  -> px은 각 도형 크기 내부의 수치로 쓰고
+  %는 도형을 기준한 위치를 %로 나타낸다!
+*/
+
 /* 귀 공통 */
 .ear{
   width: 60px;
@@ -134,13 +193,75 @@ body *{
 /* 왼쪽귀 */
 .er1{
   left: -35px;
-  border-radius: 35% 0 0 40%;
+  border-radius: 55% 0 0 40%;
 }
 /* 오른쪽귀 */
 .er2{
   right: -35px;
-  border-radius: 0 35% 40% 0;
+  border-radius: 0 55% 40% 0;
 }
+
+
+/****** 로봇몸통 ******/
+.body{
+  /* 부모자격 : 하위 직계 div들 */
+  position: relative;
+  width: 200px;
+  height: 420px;
+  margin: 0 auto;
+  margin-top: 130px;
+}
+
+/* 몸통 하위 직계 div 모두 앱솔루트! */
+.body>div{
+  position: absolute;
+}
+/* 가상요소로 몸통 상단만들기 */
+.body::before{
+  content: '';
+  display: block;
+  position: absolute;
+  left: -50px;
+  width: 300px;
+  height: 200px;
+  /* 그라데이션 */
+  background-image: 
+  linear-gradient(-25deg,rgb(191, 202, 32), rgb(195, 209, 116), #748b1d, #cdcebb);
+    /* 몸깎기 */
+    clip-path: polygon(10% 0,0 20%,0 50%,10% 100%,90% 100%,100% 50%,100% 20%,90% 0);
+}
+/* 가상요소로 몸통 하단만들기 */
+.body::after{
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: -50px;
+  width: 300px;
+  height: 170px;
+  /* 그라데이션 */
+  background-image: 
+  linear-gradient(25deg,rgb(199, 188, 29), rgb(31, 98, 143), #d4af07, #bfc49b);
+    /* 몸깎기 */
+    clip-path: polygon(5% 0,0 10%,0 50%,10% 100%,90% 100%,100% 50%,100% 20%,90% 0);
+}
+
+
+/* 목 */
+.neck{
+  top: -40px;
+  left: 64px;
+  width: 70px;
+  height: 50px;
+  z-index: -2;
+}
+/* 왼팔 */
+/* 오른팔 */
+/* 왼다리 */
+/* 오른다리 */
+/* 왼어깨 */
+/* 오른어깨 */
+/* TV */
 
 /************************** 3. 하단영역 **************************/
 
