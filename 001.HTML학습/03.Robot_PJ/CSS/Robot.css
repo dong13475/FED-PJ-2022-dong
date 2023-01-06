@@ -91,12 +91,14 @@ body *{
   top: 45px;
   left: 40px;
   background-image: url(../images/e1.jpg);
+  transform: rotate(20deg);
 }
 /* 오른쪽눈 */
 .e2{
   top: 45px;
   right: 40px;
   background-image: url(../images/e2.jpg);
+  transform: rotate(-20deg);
 }
 /* 코 */
 .nose{
@@ -112,14 +114,15 @@ body *{
 /* 입 */
 .mouth{
   top: 170px;
-  left: 50%;
+  left: 85px;
   width: 110px;
   height: 50px;
   background: url(../images/mouth.png)
   no-repeat 0/100% 100%;
-  transform: translateX(-50%);
+  /* transform: translateX(50deg); */
   border-radius: 5px;
   /* transform: skewX(45deg); */
+  transform: rotate(-20deg);
 }
 /* 귀 공통 */
 .ear{
