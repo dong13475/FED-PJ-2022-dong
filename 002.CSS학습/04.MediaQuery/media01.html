@@ -203,7 +203,7 @@
         .screen img:first-child {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(2) {
         display: inline;
         }
@@ -223,7 +223,7 @@
         .screen img:nth-child(2) {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(3) {
         display: inline;
         }
@@ -242,7 +242,7 @@
         .screen img:nth-child(3) {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(4) {
         display: inline;
         }
@@ -261,7 +261,7 @@
         .screen img:nth-child(4) {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(5) {
         display: inline;
         }
@@ -280,7 +280,7 @@
         .screen img:nth-child(5) {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(6) {
         display: inline;
         }
@@ -299,7 +299,7 @@
         .screen img:nth-child(6) {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(7) {
         display: inline;
         }
@@ -318,7 +318,7 @@
         .screen img:nth-child(7) {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(8) {
         display: inline;
         }
@@ -337,7 +337,7 @@
         .screen img:nth-child(8) {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(9) {
         display: inline;
         }
@@ -356,12 +356,26 @@
         .screen img:nth-child(9) {
         display: none;
         }
-        /* 3. 다음 이미지 숨기기 */
+        /* 3. 다음 이미지 보이기 */
         .screen img:nth-child(10) {
         display: inline;
         }
       }
       /* 730px 이하 미디어쿼리 끝 */
+
+      /************************************************ 
+        가로모드와 세로모드 변경코드!!!
+      ************************************************/
+
+      /* 세로모드 시작 */
+      @media screen and (orientation:portrait) {
+        .tit{
+          font-size: 100px;
+          color: red;
+        }
+      }
+      /* 세로모드 끝 */
+
     </style>
   </head>
   <body>
