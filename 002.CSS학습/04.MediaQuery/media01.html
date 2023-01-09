@@ -365,16 +365,52 @@
 
       /************************************************ 
         가로모드와 세로모드 변경코드!!!
+        -> 가로/세로 모드는 그 길이가 더 긴것을 
+        기준한다! 모바일 전용이 아니다!
+        -> 모바일 화면의 제한을 주려면 가로크기의
+        한계값을 설정하는 방법을 사용한다!
+        예) 
+        @media screen and 
+        (orientation:portrait) and
+        (max-width:1000px) { CSS코드 }
       ************************************************/
 
       /* 세로모드 시작 */
-      @media screen and (orientation:portrait) {
-        .tit{
-          font-size: 100px;
-          color: red;
+      @media screen and (orientation:portrait) and 
+      (max-width:1000px) {
+        /* .bx의 배경속성변경 */
+        .bx{
+        background-size: auto 60%;
+        background-position: top;
+        }
+        /* .screen 위치값변경 */
+        .screen{
+          top: 126px;
         }
       }
       /* 세로모드 끝 */
+
+      /* 가로모드 시작 */
+      @media screen and (orientation:landscape) and 
+      (max-width:1000px) {
+        /* .bx의 배경속성변경 */
+        .bx{
+        background-size: auto 53%;
+        background-position: center -100px;
+        }
+        /* .screen 위치값변경 */
+        .screen{
+          top: 18px;
+          transform: translateX(-49%);
+        }
+        /* 타이틀 위치변경 */
+        .tit{
+          text-align: left;
+          text-indent: 15px;
+
+        }
+      }
+      /* 가로모드 끝 */
 
     </style>
   </head>
