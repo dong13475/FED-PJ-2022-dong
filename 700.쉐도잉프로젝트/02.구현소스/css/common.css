@@ -7,15 +7,19 @@
 #top{
   background-color: #fff;
 }
+/* 속박스 */
 .top{
+  position: relative;
+  /* 부모자격 - tmenu */
   height: 128px;
 }
+
 /* 1-1.로고 */
 h1.logo{
-  /* 로고 아래로 내려보내기 - padding을 준다
+  /* 로고 아래로 내려보내기 - padding-top으로 밀어준다!
   마진을 주지 않는 이유는 마진을 주면 
   부모박스 바깥으로 빠져나오기 때문 */
-  padding: 20px;
+  padding-top: 20px;
   /*** 로고 가운데 오게 하는 2가지 방법 ***/
 
   /* tac로 가운데 오게 하기 (박스길이는 그대로) */
@@ -23,9 +27,9 @@ h1.logo{
 
   /* 이미지 크기만큼 width를 줘 박스크기를 줄인다음 
   마영오를 줘 가운데로 오게한다 */
-  outline: 1px solid red;
-  width: 126px;
+  width: 100px;
   margin: 0 auto;
+  outline: 1px solid red;
 }
 /* 로고 이미지 */
 .logo img{
@@ -49,6 +53,24 @@ nav.gnb ul{
   line-height: 40px;
   margin: 0 10px;
 }
+/* 1-3. 탑메뉴 */
+aside.tmenu{
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* 부모는? .top */
+}
+/* 회원가입등 메뉴 박스 */
+.tmenu ul{
+  /* 플렉스 박스 : 하위 li요소 옆으로 흐름! */
+  display: flex;
+}
+/* SNS 메뉴 박스 */
+.tmenu ol{
+  /* 플렉스 박스 : 하위 li요소 옆으로 흐름! */
+  display: flex;
+}
+
 
 /******************** 2.메인영역 ********************/
 .cont{
