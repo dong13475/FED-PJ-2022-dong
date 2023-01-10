@@ -37,7 +37,7 @@ body *{
 /* 2-1. 로봇박스 */
 .robx{
   /* 패딩 위,아래 */
-  padding: 200px 0 400px;
+  padding: 200px 0 650px;
 }
 
 /* 로봇머리 */
@@ -285,7 +285,11 @@ body *{
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #ccc;
+  border: 3px solid gold;
+  background-color: goldenrod;
+  /* 보더,패딩포함 크기유지 */
+  box-sizing: border-box;
+  
 }
 /* 팔 하단 */
 .arm span{
@@ -299,6 +303,30 @@ body *{
   border-radius: 20px;
   /* 회전축 변경 : 세로방향 top */
   transform-origin: top;
+}
+/* 팔하단 가상요소로 손박스 만들기 */
+.arm span::after{
+  content: '';
+    /* 가상요소에서 content를 사용하는 이유는
+   태그를 만든것과 같기때문 */
+  display: block;
+  position: absolute;
+  bottom: -138px;
+  width: 100px;
+  height: 135px;
+  outline: 2px dashed lime;
+}
+/* 왼쪽손 배경이미지 */
+.a1 span::after{
+  background: url(../images/hand_left.png)
+  no-repeat bottom/100%;
+  left: -15px;
+}
+/* 오른쪽손 배경이미지 */
+.a2 span::after{
+  background: url(../images/hand_right.png)
+  no-repeat bottom/100%;
+  right: -15px;
 }
 /* 왼팔 */
 .a1{
@@ -318,8 +346,44 @@ body *{
 .a2 span{
   transform: rotate(-15deg);
 }
+/* 다리공통 */
+.leg{
+  top: 95%;
+  /* 부모박스 높이만큼 아래로 밀어냄 */
+  width: 95px;
+  height: 240px;
+  z-index: -1;
+  border-radius: 25px;
+  /* 회전축변경 : 가로중앙 세로10%지점 */
+  transform-origin: center 15%;
+}
+/* 다리하단 공통 */
+.leg span{
+  position: absolute;
+  /* 부모는? .arm */
+  top: 100%;
+  /* left: 5px; */
+  display: block;
+  width: 85px;
+  height: 250px;
+  border-radius: 20px;
+  /* 회전축 변경 : 세로방향 top */
+  transform-origin: top;
+}
 /* 왼다리 */
+.l1{
+  left: -25px;
+}
+.l1 span{
+  left: 3px;
+}
 /* 오른다리 */
+.l2{
+  right: -25px;
+}
+.l2 span{
+  right: 3px;
+}
 
 /* 어깨공통 */
 .shd{
