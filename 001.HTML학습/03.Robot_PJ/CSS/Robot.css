@@ -44,6 +44,8 @@ body *{
 .head{
   position: relative;
   /* 부모자격 - 하위 div들 */
+  z-index: 1;
+  /* .body보다 위 */
   width: 250px;
   height: 150px;
   /* 마,영,오! */
@@ -192,12 +194,12 @@ body *{
 }
 /* 왼쪽귀 */
 .er1{
-  left: -35px;
+  left: -45px;
   border-radius: 55% 0 0 40%;
 }
 /* 오른쪽귀 */
 .er2{
-  right: -35px;
+  right: -45px;
   border-radius: 0 55% 40% 0;
 }
 
@@ -257,14 +259,87 @@ body *{
   left: 64px;
   width: 70px;
   height: 50px;
-  z-index: -2;
+  border-radius: 0 0 20px 20px;
+  border-bottom: 15px ridge goldenrod;
+}
+/* 팔공통 */
+.arm{
+  top: 25px;
+  width: 80px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 25px;
+  /* 회전축변경 : 가로중앙 세로10%지점 */
+  transform-origin: center 15%;
+}
+/* 팔공통 가상요소로 연결부분 만들기 */
+.arm::before{
+  content: '';
+  /* 가상요소에서 content를 사용하는 이유는
+   태그를 만든것과 같기때문 */
+  display: block;
+  position: absolute;
+  bottom: -35px;
+  left: -2px;
+  z-index: 1;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+/* 팔 하단 */
+.arm span{
+  position: absolute;
+  /* 부모는? .arm */
+  top: 100%;
+  left: 5px;
+  display: block;
+  width: 70px;
+  height: 190px;
+  border-radius: 20px;
+  /* 회전축 변경 : 세로방향 top */
+  transform-origin: top;
 }
 /* 왼팔 */
+.a1{
+  left: -115px;
+  transform: rotate(25deg);
+}
+/* 왼팔하단 */
+.a1 span{
+  transform: rotate(15deg);
+}
 /* 오른팔 */
+.a2{
+  right: -115px;
+  transform: rotate(-25deg);
+}
+/* 오른팔하단 */
+.a2 span{
+  transform: rotate(-15deg);
+}
 /* 왼다리 */
 /* 오른다리 */
+
+/* 어깨공통 */
+.shd{
+  top: 0px;
+  width: 85px;
+  height: 100px;
+  /* border-radius: 40%; */
+}
 /* 왼어깨 */
+.s1{
+  left: -120px;
+  border-radius: 50% 5% 5% 50%;
+  transform: rotate(8deg);
+}
 /* 오른어깨 */
+.s2{
+  right: -120px;
+  border-radius: 5% 50% 50% 5%;
+  transform: rotate(-8deg);
+}
 /* TV */
 
 /************************** 3. 하단영역 **************************/
