@@ -2,6 +2,16 @@
 
 /* RObot PJ 메인 CSS - robot.css */
 
+      /* 웹폰트 CDN */
+      @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Black+Ops+One&family=Chakra+Petch&family=Orbitron:wght@500&display=swap');
+
+      /* 
+          font-family: 'Barlow', sans-serif;
+          font-family: 'Black Ops One', cursive;
+          font-family: 'Chakra Petch', sans-serif;
+          font-family: 'Orbitron', sans-serif;
+      */
+
 /* 초기화 */
 html,body,h1,h2,p,ul,ol{
   margin: 0;
@@ -31,6 +41,104 @@ body{
 } */
 
 /************************** 1. 상단영역 **************************/
+
+/* 1-1. 로고 */
+.logo{
+  /* 픽스드 포지션 셋팅 */
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  
+  /* 박스셋팅 */
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  text-align: center;
+  /* 박스배경 */
+  background: pink url(../images/robot_03.png)
+  no-repeat center 10px/160px;
+
+  /* 박스그림자 */
+  box-shadow: 
+  inset 0 0 20px 5px #000,
+  0 0 10px 5px rgb(57, 247, 89);
+
+  /* 글자셋팅 */
+  color: aquamarine;
+  font: 45px/200px 'Orbitron';
+  /* font: 스두크/줄체; */
+  text-shadow: 2px 2px 5px #000;
+  
+}
+/* 1-2. 링크타이틀 */
+.link{
+  position: absolute;
+  top: 100px;
+  right: 50px;
+}
+/* 링크 a */
+.link a{
+  /* a요소 필수셋팅: 글자색+밑줄없앰 */
+  color: lawngreen;
+  text-decoration: none;
+  /* 글자:스두크/줄체 */
+  font: 50px "Black Ops One";
+  /* 글자그림자 */
+  text-shadow: 2px 2px 2px #000;
+}
+/* 마우스 오버시 */
+.link a:hover{
+  /* 글자색 */
+  color: orangered;
+  /* 글자데코 */
+  text-decoration: overline;
+  /* 글자데코스타일 */
+  text-decoration-style: wavy;
+}
+/* 1-3. 탑이동버튼 */
+.btnTop{
+  /* 픽스드 포지션 */
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+
+  /* 박스셋팅 */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px outset #fff;
+  background-color: #ccc;
+}
+/* 버튼 a요소 */
+.btnTop a{
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* 글자셋팅 */
+  color: blue;
+  font: 30px/90px 'Black Ops One';
+  /* 
+    line-height가 높이값인 100px
+    이므로 중앙 정렬위해 100px이 아닌이유는?
+    버튼은 기본적으로 box-sizing:border-box
+    이므로 패딩과 보더가 내부에 포함된다!
+    따라서 컨텐트 영역이 그만큼 작아진다!
+    박스보더가 5px이므로 양쪽합은 10px이다
+    이것을 빼니까 90px인 것이다!
+  */
+  text-decoration: none;
+}
+/* 버튼 마우스 오버시 */
+.btnTop:hover{
+  background-color: #ff0;
+  border-style: inset;
+}
+/* a요소 글자색 */
+.btnTop:hover a{
+  color: red;
+}
 
 /************************** 2. 메인영역 **************************/
 
@@ -545,10 +653,82 @@ body{
 
 /* 2-2-1.제목 */
 .dcbx h2{
-  
+  /* 스티키 포지션! */
+  position: sticky;
+  top: 10px;
+  /* 글자셋팅 */
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 35px;
+  color: lime;
+
+  /* 박스셋팅 */
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.322);
+  /* 둥근모서리 */
+  border-radius: 20px;
 }
 /* 2-2-2.출처 */
+.dcbx small{
+  /* 글자셋팅 */
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 12px;
+  line-height: 3;
+  color: #ff0;
+  /* 박스셋팅 */
+  display: block;
+  text-align: center;
+}
 /* 2-2-3.내용단락 */
+.dcbx p{
+  /* 글자셋팅 */
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  
+  /**************************************
+    [ 다단설정하기 ]
+    - 다중열속성
+    -> colrumn-count : 다중열개수 cmc
+    -> colrumn-rule : 다중열구분선 cmr
+    -> colrumn-pag : 다중열사이간격 cmg
+   **************************************/
+  
+  /* 다중열개수 */
+  column-count: 3;
+
+  /* 다중열구분선: 셋팅이 보더와 유사 */
+  column-rule: 5px dotted lightgreen;
+  /* column-rule: 두께 종류 색상; */
+
+  /* 다중열사이간격 */
+  column-gap: 55px;
+
+  /* 양쪽정렬 : taj */
+  text-align: justify;
+  /* 단어깨기 : wbb */
+  word-break: break-all;
+  /* 단어깨기는 
+  문단이 1byte문자인 영문자일경우
+  기본적으로 단어 단위로 줄바꿈을 하는
+  셋팅이 되어 있다. 이때 양쪽정렬시
+  중간에 큰 공백이 생기는 원인이 된다
+  그래서 단어를 글자단위로 모두깨주는
+  설정이 word-break: break-all 이다! 
+  한글과 같은 2byte문자는 자동으로 깨져있음 */
+  
+  /* 들여쓰기 : ti */
+  text-indent: 20px;
+}
+/* 설명문단 첫번째 글자만 가상요소로
+글자 디자인 변경하기 */
+.dcbx p::first-letter{
+  /* 글자셋팅 */
+  font-size: 30px;
+  font-weight: bold;
+  color: orange;
+}
 
 /************************** 3. 하단영역 **************************/
 
