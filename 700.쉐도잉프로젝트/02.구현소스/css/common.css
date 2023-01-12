@@ -9,7 +9,7 @@
 }
 /* 속박스 */
 .top{
-  position: relative;
+  /* position: relative; */
   /* 부모자격 - tmenu */
   height: 128px;
 }
@@ -50,10 +50,57 @@ nav.gnb ul{
 .gnb>ul>li>a{
   color: #222;
   text-decoration: none;
-  line-height: 40px;
-  margin: 0 10px;
   font-size: 1.7rem;
+  line-height: 4rem;
+  margin: 0 10px;
 }
+
+/* GNB 서브메뉴 배경 상위메뉴 li에 가상요소로 만들기 
+서브메뉴가 있는 li에 sm이름의 클래스를 준다! */
+.gnb>ul>li.sm::before{
+  content: '';
+  position: absolute;
+  top: 128px;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  /* 부모는? */
+  height: 0;
+  background-color: #fff;
+  transition: .6s ease-out;
+}
+/* 상위메뉴 오버시 서브배경보이기 */
+.gnb>ul>li.sm:hover::before{
+  height: 200px;
+  border-bottom: 2px solid red;
+
+}
+
+
+
+/* GNB 서브메뉴 */
+.smenu{
+  text-align: center;
+  background-color: #fff;
+  /* 숨기기 */
+  /* height: 0;
+  overflow: hidden; */
+  /* 트랜지션 */
+  transition: .4s ease-out;
+}
+/* 상위메뉴 오버시 하위메뉴 보이기 */
+.gnb>ul>li:hover .smenu{
+  height: 120px;
+}
+.smenu a{
+  font-size: 1.4rem;
+  line-height: 2;
+  color: #222;
+  text-decoration: none;
+  /* a는 인라인요소기 때문에 tac가 안먹힌다
+  따라서 싸고있는 .smenu에 tac를 입력해준다 */
+}
+
 /* 1-3. 탑메뉴 */
 aside.tmenu{
   position: absolute;
