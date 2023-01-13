@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/* CGV PJ 메인 페이지 CSS - main.css */
+
+/* 외부 공통 CSS 합치기 */
+@import url(./reset.css);
+@import url(./core.css);
+
+/* 공사중 표시 */
+body *{
+  outline: 1px dashed ghostwhite;
+}
+
+/* 전체배경색 */
+body{
+  background-color: #000;
+}
+
+/******************* 1.상단영역 *******************/
+/* 사이즈는 속박스에 주는게 맞다! */
+/* 속박스 */
+.top{
+  height: 80px;
+  /* 배경이미지 */
+  background: url(../images/curtain.jpg) repeat-x;
+}
+/* 1-1.로고 */
+.tit{
+  font-family: 'Jua', sans-serif;
+  color: aquamarine;
+  font-size: 40px;
+  line-height: 80px;
+  text-align: center;
+
+  /* 글로우 효과 */
+  text-shadow: 0 0 4px aquamarine;
+  /* 애니메이션: 이시이지반방마 */
+  animation: titAni .5s ease-in infinite alternate;
+
+}
+/* 타이틀 글로우 효과 애니메이션 키프레임 */
+@keyframes titAni{
+  to{
+    text-shadow: 0 0 12px aquamarine;
+  }
+} /* 키프레임 */
+
+/******************* 1.메인영역 *******************/
+/* 속박스 */
+.cont{
+  position: relative;
+  /* 부모자격 - .screen */
+  height: 788px;
+  /* 극장배경 넣기 */
+  background: url(../images/bg.jpg)
+  no-repeat center top/* 위치 *//100%/* 크기 */;
+}
+/* 2-1.스크린 */
+.screen{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  height: 100px;
+  background-color: #f00;
+}
+
+/******************* 1.하단영역 *******************/
+.info{
+  height: 100px;
+}
