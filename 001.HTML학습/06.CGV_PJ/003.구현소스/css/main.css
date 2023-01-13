@@ -54,15 +54,85 @@ body{
   background: url(../images/bg.jpg)
   no-repeat center top/* 위치 *//100%/* 크기 */;
 }
+
 /* 2-1.스크린 */
 .screen{
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 100px;
-  height: 100px;
-  background-color: #f00;
+  top: 136px;
+  left: 257px;
+  width: 701px;
+  height: 397px;
+  background-color: rgb(27, 27, 27);
 }
+/* 유튜브 아이프레임 */
+.screen iframe{
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 2-2.예고편 선택메뉴 */
+.mlist{
+  position: absolute;
+  width: 50%;
+  bottom: 61px;
+  left: 50%;
+  width: 701px;
+  transform: translateX(-49%);
+
+  /* 앱솔루트 부모자격이 있는 요소의
+  overflow가 적용됨! */
+  overflow: hidden;
+}
+/* 선택메뉴 ul */
+.mlist ul{
+  /* 플렉스박스 */
+  display: flex;
+  /* 진행방향정렬 : 양쪽끝 맞춘후 사이간격일정 */
+  justify-content: space-between;
+}
+/* 선택메뉴 상위li */
+.mlist ul>li{
+
+}
+/* 포스터 이미지 */
+.mlist img{
+  width: 99px;
+  height: 140px;
+}
+
+/* 영화정보박스 */
+.movtxt{
+  /* 플렉스박스 */
+  display: flex;
+  /* 플렉스 진행방향 */
+  flex-direction: column;
+  /* 진행방향정렬 : 중앙 */
+  justify-content: center;
+
+  /* 앱솔루트 포지션 */
+  position: absolute;
+  top: 100%;
+  width: 99px;
+  height: 140px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.603);
+
+  /* 글자셋팅 */
+  font-family: 'Cute Font', cursive;
+  font-size: 14px;
+  line-height: 2;
+  
+  /* 트랜지션 : 속시이지 */
+  transition: top .5s cubic-bezier(0.54,-0.09, 0.56, 1.12);
+}
+/* 상위li에 마우스 오버시 영화정보 올라오기 */
+.mlist ul>li:hover .movtxt{
+  top: 0;
+
+}
+
+
 
 /******************* 1.하단영역 *******************/
 .info{
