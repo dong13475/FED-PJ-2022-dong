@@ -9,11 +9,23 @@
       text-align: center;
     }
 
+    /* 체크박스 숨기기 */
+    input[type=radio]{
+      display: none;
+      /* input요소를 숨겨도 작동은 된다! */
+    }
+
+    /* 라벨요소 */
     label{
       display: inline-block;
       line-height: 1.5;
       font-size: 25px;
       margin: 10px;
+    }
+    /* 라디오 버튼 체크시 라벨변경
+    체크된 라디오버튼의 다음 형제 라벨요소선택 */
+    input:checked + label{
+      outline: 10px dotted orangered;
     }
 
     ul.ball{
@@ -55,9 +67,33 @@
     }
     /* 3. 3의배수번째
     nth:nth-child(3n) -> 3의배수번째
-    n에 1부터 대입된 결과임! */
+    n에 0부터 대입된 결과임! */
     #rdo3:checked ~ ul>li:nth-child(3n){
       background-color: lightseagreen;
+    }
+    /* 4. 2의배수+1번째
+    nth:nth-child(2n+1) -> 2의배수+1번째
+    n에 0부터 대입된 결과임! */
+    #rdo4:checked ~ ul>li:nth-child(2n+1){
+      background-color: lightskyblue;
+    }
+    /* 5. 1부터 20번째
+    nth:nth-child(-n+20) -> 1부터 20번째
+    n에 0부터 대입된 결과임!
+    -n이므로 뒤에서부터 선택되어 첫번째까지
+    선택돔 -> (20-n)라고 쓰면 문법오류임! */
+    #rdo5:checked ~ ul>li:nth-child(-n+20){
+      background-color: lightpink;
+    }
+    /* 6. 21부터 37번째 
+    li:nth-child(20) ~ li:nth-child(-n+37)
+    -> 출발은 20번째 요소 뒤인 21번부터 출발
+    n에 0부터 대입된 결과임! 끝에서부터 거꾸로
+    번호를 선택함! */
+    #rdo6:checked ~ 
+    ul>li:nth-child(20) ~ 
+    li:nth-child(-n+37){
+      background-color: lightsteelblue;
     }
 
   </style>
@@ -77,14 +113,36 @@
     input요소로 들어간다!
   -->
 
-  <label for="rdo1">1. 짝수번째</label>
-  <input type="radio" id="rdo1" name="rdo"> <br>
+  <input type="radio" id="rdo1" name="rdo"> 
+  <label for="rdo1">
+    1. 짝수번째 :nth-child(even)
+  </label> <br>
 
-  <label for="rdo2">2. 홀수번째</label>
-  <input type="radio" id="rdo2" name="rdo"> <br>
+  <input type="radio" id="rdo2" name="rdo"> 
+  <label for="rdo2">
+    2. 홀수번째 :nth-child(odd)
+  </label> <br>
 
-  <label for="rdo3">3. 3의배수번째</label>
-  <input type="radio" id="rdo3" name="rdo"> <br>
+  <input type="radio" id="rdo3" name="rdo"> 
+  <label for="rdo3">
+    3. 3의배수번째 :nth-child(3n)
+  </label> <br>
+
+  <input type="radio" id="rdo4" name="rdo"> 
+  <label for="rdo4">
+    4. 2의배수+1번째 :nth-child(2n+1)
+  </label> <br>
+
+  <input type="radio" id="rdo5" name="rdo"> 
+  <label for="rdo5">
+    5. 1부터 20번째 :nth-child(-n+20)
+  </label> <br>
+
+  <input type="radio" id="rdo6" name="rdo"> 
+  <label for="rdo6">
+    6. 21부터 37번째 
+    li:nth-child(20) ~ li:nth-child(-n+37)
+  </label> <br>
 
     <!-- ul.ball>li*50{$} -->
   <ul class="ball">
