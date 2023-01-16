@@ -163,10 +163,7 @@ body{
     1. running : 작동
     2. paused : 멈춤
   */
-
 }
-
-
 
 /* 문짝부모에 오버시 문짝애니작동! */
 .cont:hover .door{
@@ -189,9 +186,6 @@ body{
     transform: rotateY(-60deg);
   }
 } /* openDoor 키프레임 */
-
-
-
 
 
 /* 손잡이 */
