@@ -83,7 +83,7 @@ body{
   내크기보다 좀더 많이 아랫쪽으로 이동함! */
   transform: translateY(120%);
   /* 애니메이션 : 이시이지반방마 */
-  animation: upAni .6s ease-in-out 1s forwards;
+  animation: upAni .6s cubic-bezier(0.68, -0.38, 0.49, 1.57) 1s forwards;
 }
 /* 문프레임 */
 .frame{
