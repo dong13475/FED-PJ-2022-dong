@@ -12,6 +12,8 @@ html,body,h1{
 }
 body{
   background-color: #9c0;
+  /* 배경색 애니메이션 : 이시이지반방마 */
+  animation: bgAni 10s linear infinite ;
 }
 
 /* 배경색 키프레임 */
@@ -20,19 +22,19 @@ body{
     background-color: #9c0;
   }
   20%{
-    background-color: rgb(93, 117, 18);
+    background-color: rgb(190, 170, 53);
   }
   40%{
-    background-color: rgb(48, 59, 15);
+    background-color: rgb(18, 117, 31);
   }
   60%{
-    background-color: rgb(128, 153, 55);
+    background-color: rgb(42, 134, 134);
   }
   80%{
-    background-color: rgb(172, 202, 81);
+    background-color: rgb(106, 63, 177);
   }
   100%{
-    background-color: rgb(213, 255, 88);
+    background-color: #9c0;
   }
 }
 
@@ -67,6 +69,8 @@ body{
 /* 전체랩핑박스 */
 .wrap{
   overflow: hidden;
+  /* 3D문이 잘려보이지 않게 위아래 패딩줌! */
+  padding: 50px 0;
 }
 
 /* 전체문부모 */
@@ -75,8 +79,9 @@ body{
   height: 300px;
   margin: 0 auto;
   background-color: #900;
-  /* 트랜스폼 y축 이동 */
-  transform: translateY(100%);
+  /* 트랜스폼 y축 이동 : 패딩을 고려하여
+  내크기보다 좀더 많이 아랫쪽으로 이동함! */
+  transform: translateY(120%);
   /* 애니메이션 : 이시이지반방마 */
   animation: upAni .6s ease-in-out 1s forwards;
 }
