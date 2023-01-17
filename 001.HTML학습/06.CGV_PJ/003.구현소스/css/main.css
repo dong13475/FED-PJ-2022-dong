@@ -7,7 +7,7 @@
 
 /* 공사중 표시 */
 body *{
-  outline: 1px dashed ghostwhite;
+  /* outline: 1px dashed ghostwhite; */
 }
 
 /* 전체배경색 */
@@ -19,6 +19,10 @@ body{
 /* 사이즈는 속박스에 주는게 맞다! */
 /* 속박스 */
 .top{
+  position: relative;
+  /* 부모자격 - .gnb */
+  z-index: 999;
+  /* GNB서브메뉴를 올리기위한 설정! */
   height: 80px;
   /* 배경이미지 */
   background: url(../images/curtain.jpg) repeat-x;
@@ -43,6 +47,77 @@ body{
     text-shadow: 0 0 12px aquamarine;
   }
 } /* 키프레임 */
+
+/* 1-2.GNB메뉴 */
+.gnb{
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+}
+/* ul박스 */
+.gnb ul{
+  display: flex;
+  font-family: 'Jua', sans-serif;
+  /* 폰트는 상속된다! 따라서 여러하위요소에 같은체를
+  적용하고 싶으면 부모요소에 적용시키면된다! */
+}
+/* 상위li 두번째부터 */
+.gnb ul>li+li{
+  margin-left: 20px;
+}
+/* 상위메뉴 a */
+.gnb ul>li>a{
+  font-size: 2rem;
+}
+
+/* 서브메뉴 */
+.smenu{
+  position: absolute;
+  width: 140px;
+  padding: 3px;
+  background: url(../images/bg_smenu.png)
+  no-repeat center/cover;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #fff;
+}
+/* 메뉴박스 가상요소로 삼각형 만들기 */
+.smenu::before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+
+  /* 삼각형 만들기 : 보더사용 */
+  border-bottom: 10px solid red;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+/* 서브메뉴 ol */
+.smenu ol{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+/* 서브메뉴 a */
+.smenu a{
+  display: block;
+  /* a요소 확장 - display:block으로 a요소 끝까지 가게하기 */
+  font-size: 1.6rem;
+  line-height: 1.7;
+}
+/* 서브메뉴 마우스 오버시 */
+.smenu a:hover{
+  color: red;
+}
+/* 오버시 가상요소로 이모티콘 */
+.smenu a:hover::after{
+  content: '🍟';
+  /* 오른쪽 끝으로 보내기 */
+  float: right;
+}
 
 /******************* 1.메인영역 *******************/
 /* 속박스 */
