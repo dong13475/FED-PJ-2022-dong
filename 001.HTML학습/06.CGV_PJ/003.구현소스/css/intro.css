@@ -72,7 +72,7 @@ html,body{
 
   /* transform: scale(1.5) rotate(-15deg); */
 }
-/* 로고 애니 키프레임 */
+/* 로고 애니 키프레임1 */
 @keyframes logoAni1 {
   50%{
     transform: scale(1.5) rotate(0deg);
@@ -81,7 +81,7 @@ html,body{
     transform: scale(1.5) rotate(-15deg);
   }
 }
-/* 로고 애니 키프레임 */
+/* 로고 애니 키프레임2 */
 @keyframes logoAni2 {
   0%{
     transform: scale(1.5) rotate(-15deg);
