@@ -84,12 +84,13 @@ body{
 /* 오버시 변경 */
 .gnb ul>li:hover>a{
   transform: scale(1.3);
+  color: rgb(57, 124, 224);
   /* 애니메이션으로 글로우 효과주기 */
   animation: aglow .5s ease-in infinite alternate;
 }
 @keyframes aglow{
   to{
-    text-shadow: 0 0 12px rgb(0, 255, 0);
+    text-shadow: 0 0 12px rgb(54, 207, 161);
   }
 }
 
