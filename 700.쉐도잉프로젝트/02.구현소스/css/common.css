@@ -37,7 +37,7 @@ h1.logo {
   마영오를 줘 가운데로 오게한다 */
   width: 100px;
   margin: 0 auto;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 /* 로고 이미지 */
 .logo img {

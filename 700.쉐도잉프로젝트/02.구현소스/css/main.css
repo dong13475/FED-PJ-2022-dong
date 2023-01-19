@@ -184,8 +184,8 @@ body{
   -1px 0 #000,
    0 1px #000,
    0 -1px #000;
-   /* 글자크기로 인해 줄간격조정 */
-   line-height: 1;
+  /* 글자크기로 인해 줄간격조정 */
+  line-height: 1;
 }
 /* 각 캐릭터 박스별 첫글자 색 변경 - 3개변경 */
 .cat:nth-child(2) .cd p:first-child::first-letter{
@@ -196,4 +196,12 @@ body{
 }
 .cat:nth-child(4) .cd p:first-child:first-letter{
   color: lightgreen;
+}
+
+/* 등장글자 이미지 */
+#mvtxt{
+  position: absolute;
+  top: 30vh;
+  right: 5vw;
+  width: min(20vw,327px);
 }
