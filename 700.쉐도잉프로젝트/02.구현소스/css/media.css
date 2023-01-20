@@ -3,23 +3,22 @@
 /* 도깨비PJ 공통 미디어쿼리 - media.css */
 
 /* 1200px사이즈 이하 미디어쿼리 시작 */
-@media screen and (max-width:1200px) {
+@media screen and (max-width: 1200px) {
   /* 하단 - 브랜드 바로가기 */
-  .brand{
+  .brand {
     top: 159px;
     right: 10px;
   }
-  aside.tmenu{
+  aside.tmenu {
     right: 20px;
   }
 }
 /* 1200px사이즈 이하 미디어쿼리 끝 */
 
-
 /* 1024px사이즈 이하 미디어쿼리 시작 */
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 1024px) {
   /* 전체 글자크기 변경 */
-  html{
+  html {
     /* rem단위 글자 모두 변경 */
     font-size: 8.235px;
     /* 
@@ -30,18 +29,18 @@
       => 결과 :  8.235
     */
   }
-  
+
   /* 메인속박스 */
-  .cont{
+  .cont {
     /* 가로크기에 대한 비율을 만들어준다! */
     min-height: 100vw;
   }
   /* 전체 캐릭터 박스 */
-  .cbx{
+  .cbx {
     margin-top: 10vw;
   }
   /* 캐릭터 각 박스 공통 */
-  .cat{
+  .cat {
     position: relative;
     /* 부모자격 - .cd */
     width: 49%;
@@ -52,60 +51,64 @@
     margin-top: 0;
   }
   /* 캐릭터 설명박스 */
-  .cd{
+  .cd {
     position: absolute;
     z-index: 1;
   }
   /* 등장글자 없앰 */
-  #mvtxt{
+  #mvtxt {
     display: none;
   }
 }
 /* 1024px사이즈 이하 미디어쿼리 끝 */
 
-
-/* 500px사이즈 이하 미디어쿼리 시작 */
-@media screen and (max-width:500px) {
+/* 780px사이즈 이하 미디어쿼리 시작 */
+@media screen and (max-width: 780px) {
   /* 디스플레이 없애기 */
-  .tmenu, .gnb{
+  .tmenu,
+  .gnb {
     display: none;
   }
+  /* 햄버거버튼 보이기 */
+  .ham {
+    display: block;
+  }
   /* 상단영역 */
-  .top{
+  .top {
     height: 80px;
   }
   /* 캐릭터박스 한줄에 하나 */
-  .cat{
+  .cat {
     width: 99%;
   }
   /* 캐릭터 설명박스 */
-  .cd{
+  .cd {
     /* 자리차지 포지션으로 전환! */
     position: static;
   }
   /* 설명박스 제목 */
-  .cd h3{
+  .cd h3 {
     font-size: 4.5vw;
   }
   /* 설명박스 문단 */
-  .cd p{
+  .cd p {
     font-size: 4vw;
     padding: 3vw;
   }
   /* 문단 첫글자 */
-  .cd p:first-child::first-letter{
+  .cd p:first-child::first-letter {
     font-size: 8vw;
   }
 
   /* 하단영역 */
   /* 브랜드 바로가기 */
-  .brand{
+  .brand {
     bottom: 10px;
     top: auto;
   }
   /* 하단링크 일부 숨기기(li:1~4) */
-  .blink li:nth-child(-n+3){
+  .blink li:nth-child(-n + 3) {
     display: none;
   }
 }
-/* 500px사이즈 이하 미디어쿼리 끝 */
+/* 780px사이즈 이하 미디어쿼리 끝 */
