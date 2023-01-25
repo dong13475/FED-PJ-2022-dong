@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function jumsu(){
+      var jumsu = document.getElementById("jumsu");
+      var jexp = document.querySelector("#jexp");
+      var score = jumsu.value;
+      var msg;
+      var fc;
+      if(score >= 90){
+          msg = "매우잘함";
+          fc = "blue";
+        }
+        else if(score >= 80){
+          msg = "잘함";
+          fc = "green";
+        }
+        else if(score >= 70){
+          msg = "보통";
+          fc = "purple";
+        }
+        else if(score >= 60){
+          msg = "노력요함";
+          fc = "orange";
+        }
+        else{
+          msg = "재시험";
+          fc = "red";
+        }
+      jexp.innerText = "평가결과는 "+msg;
+      jexp.style.color = fc;
+    }
+  </script>
+</head>
+<body>
+  <h1>JS 제어문</h1>
+  <hr>
+  <h2>if문 연습</h2>
+  <h3 id="jexp">평가출력</h3>
+  <label for="jumsu">점수입력:</label>
+  <input type="text" id="jumsu" placeholder="점수를 입력하세요!" maxlength="3">
+  <button class="sbtn" onclick="jumsu()">평가하기</button>
+</body>
+</html>
