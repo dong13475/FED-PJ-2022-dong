@@ -182,7 +182,7 @@ body{
   /* 부모자격 - .screen */
   /* 비율설정 */
   aspect-ratio: 1200 / 788;
-  height: 788px;
+  /* height: 788px; */
   /* 극장배경 넣기 */
   background: url(../images/bg.jpg)
   no-repeat center top/* 위치 *//100%/* 크기 */;
@@ -191,7 +191,7 @@ body{
 /* 2-1.스크린 */
 .screen{
   position: absolute;
-  top: 17.3%;
+  top: 17.2%;
   left: 21.3%;
   width: 58.6%;
   height: 50.6%;
@@ -262,7 +262,7 @@ body{
 
   /* 글자셋팅 */
   font-family: 'Cute Font', cursive;
-  font-size: 14px;
+  font-size: min(14px,1.1vw);
   line-height: 2;
   
   /* 트랜지션 : 속시이지 */
@@ -271,6 +271,13 @@ body{
 /* 상위li에 마우스 오버시 영화정보 올라오기 */
 .mlist ul>li:hover .movtxt{
   top: 0;
+}
+
+/* 영화정보박스 제목만 병경 */
+.movtxt li:first-child{
+  font-size: min(17px,1.2vw);
+  color: aqua;
+  white-space: nowrap;
 }
 
 
