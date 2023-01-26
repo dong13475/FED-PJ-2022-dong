@@ -180,6 +180,8 @@ body{
 .cont{
   position: relative;
   /* 부모자격 - .screen */
+  /* 비율설정 */
+  aspect-ratio: 1200 / 788;
   height: 788px;
   /* 극장배경 넣기 */
   background: url(../images/bg.jpg)
@@ -189,10 +191,10 @@ body{
 /* 2-1.스크린 */
 .screen{
   position: absolute;
-  top: 136px;
-  left: 257px;
-  width: 701px;
-  height: 397px;
+  top: 17.3%;
+  left: 21.3%;
+  width: 58.6%;
+  height: 50.6%;
   background-color: rgb(27, 27, 27);
 }
 /* 유튜브 아이프레임 */
@@ -205,10 +207,9 @@ body{
 /* 2-2.예고편 선택메뉴 */
 .mlist{
   position: absolute;
-  width: 50%;
-  bottom: 61px;
+  bottom: 5%;
   left: 50%;
-  width: 701px;
+  width: 60%;
   transform: translateX(-49%);
 
   /* 앱솔루트 부모자격이 있는 요소의
