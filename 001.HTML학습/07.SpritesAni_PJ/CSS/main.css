@@ -30,12 +30,68 @@ body {
 }
 
 /* 1. 타이틀 */
+.mtit{
+  position: absolute;
+  top: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 52px;
+  z-index: 1;
+}
 
 /* 2.메뉴 */
+.gnb{
+  position: absolute;
+  top: 15vh;
+  left: 2vw;
+  z-index: 1;
+}
+.gnb ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gnb a{
+  color: #fff;
+  text-decoration: none;
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-size: 32px;
+  line-height: 3;
+}
+/* 마우스 오버시 */
+.gnb a:hover{
+  color: rgb(255, 115, 0);
+  text-decoration: line-through;
+}
 
 /* 3. TV셋 */
+.tvset{
+  position: relative;
+  /* 부모자격 - .screen */
+  width: 1280px;
+  height: 720px;
+  background: url(../images/tvset.png) no-repeat;
+  /* 배경위치조정 */
+  background-position: -36px 0;
+  /* 중앙정렬 - 마영오 */
+  margin: 0 auto;
+}
 
 /* 스크린 */
+.screen{
+  position: absolute;
+  top: 212px;
+  left: 414px;
+  width: 453px;
+  height: 228px;
+  background-color: #f00;
+
+  /* 배경넣기 */
+  background: url(../images/street.jpg) repeat-x;
+  background-size: auto 100%;
+}
 
 /* 스크린배경이동 키프레임 */
 
