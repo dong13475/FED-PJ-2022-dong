@@ -70,27 +70,60 @@
     overflow-x: hidden;
   }
   /* 디스플레이 없애기 */
-  .tmenu{
+  .tmenu,
+  .smbx,
+  .gnb > ul > li > a::after,
+  .gnb{
     display: none;
   }
-  /* GNB메뉴 변경하기 */
-  .gnb{
+  /* GNB메뉴 변경하기
+  -> .top에 .on을 준 경우 적용됨!
+  -> 메뉴를 fixed로 변경 */
+  .top.on .gnb{
+    display: block;
     position: fixed;
     top: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #f00;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
   }
+  /* 플렉스박스 방향을 세로로변경! */
   nav.gnb ul{
     flex-direction: column;
     text-align: center;
+    margin-top: 15vh;
+  }
+  /* GNB상위메뉴 a변경 */
+  .gnb > ul > li > a {
+    font-size: 5vh;
+    line-height: 10vh;
+    color: #fff;
+  }
+
+  /* 로고 */
+  h1.logo{
+    position: relative;
+    z-index: 99999;
   }
 
   /* 햄버거버튼 보이기 */
   .ham {
     display: block;
+
   }
+  /* 햄버거버튼 상위.top에 클래스on 줄경우 x버튼으로 변경 */
+  .top.on .ham{
+    z-index: 99999;
+    color: #fff;
+    transform: scale(1.5);
+  }
+  .top.on .ham::before{
+    content: '×';
+  }
+
+
+
   /* 상단영역 */
   .top {
     position: relative;
