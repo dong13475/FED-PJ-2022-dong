@@ -44,16 +44,22 @@
         // 1. 로딩함수 호출확인
         console.log("로딩완료!");
 
-        // 2. 대상선정
+        // 2. 대상선정 /////////////////////////
         // 2-1. 이벤트 대상: .mini 
         var mini = document.querySelectorAll(".mini");
 
         // 2-2. 변경대상: .Bcase
         var Bcase = document.querySelector(".Bcase");
+
+        // 2-3. 리셋버튼: .rbtn
+        var rbtn = document.querySelector(".rbtn");
+
+        // 2-4. 전체개수표시: .stxt span
+        var stxt = document.querySelector(".stxt span");
         
         // console.log(mini,Bcase);
 
-        // 3. 이벤트 셋팅하기
+        // 3. 이벤트 셋팅하기 /////////////////////
         // 이벤트 종류: click
         // for문으로 버튼개수만큼 돌아서 셋팅하기!
         // for(시;한;증;){코드}
@@ -65,8 +71,14 @@
           console.log("돌아!",i);
           // 1. 미니언즈 이미지마다 클릭설정하기
           mini[i].onclick = function(){
+
+            // 바깥for문의 i는 최종결과의 값만 내부에찍힘
+            // i값이 하나씩 전달되지 않는다!(참고로알아둘것!)
+            // console.log("for문변수:",i);
+
             // 1. 클릭된 이미지의 data-cnt값 읽어오기
             var cnt = this.getAttribute("data-cnt");
+            // this 키워드 : 이벤트설정된 요소 자신!!!
             // getAttribute(속성명) -> 속성값 읽어오기
             // alert("나는 몇개? "+cnt);
 
@@ -79,13 +91,47 @@
 
             } ///// for문 /////
 
+            // 3. for문으로 미니언즈를 모두 추가후
+            // 현재개수 표시 함수 호출!!!
+            showCnt();
 
           }; ///// click 이벤트함수 /////
 
           // mini.item(순번)
           // mini[순번]
+        }; ////// for문 //////
 
-        } ////// for문 //////
+        // 4. 리셋버튼 셋팅하기
+        // 대상: 이벤트대상 - rbtn / 변경대상 - Bcase
+        // 변경내용: Bcase의 내용지우기
+        rbtn.onclick = function(){
+          // 1. 호출확인
+          console.log("다지워~!");
+          // 2. 파란상자내용 지우기
+          Bcase.innerHTML = "";
+          // 3. 개수표시 초기화
+          stxt.innerText = "0";
+        }; ////// click 이벤트함수 ///////////
+
+        // 리셋버튼 디자인변경
+        rbtn.style.fontSize = "40px";
+        rbtn.style.margin = "10px";
+
+        // 5. 현재 미니언즈 개수 표시하기
+        // 대상: .stxt span
+        // 할당형 함수를 만들어서 미니언즈를 추가할때마다
+        // 이 함수를 호출하게 한다!
+        var showCnt = function(){
+          // 1. 호출확인
+          console.log("지금 몇개?");
+          // 2. 파란상자안의 미니언즈 이미지개수 읽어오기
+          var cnt = Bcase.querySelectorAll("img").length;
+          // 3. 표시요소에 개수 출력하기:
+          //  .stxt span -> stxt
+          stxt.innerText = cnt;
+
+        }; //////// showCnt 함수 /////////
+
 
       } ///////// loadFn함수 ////////////
       //////////////////////////////////
@@ -108,6 +154,11 @@
       <요소 data-내가만든이름="값">
     -->
 
+    <!-- 현재 미니언즈 개수표시 -->
+    <h2 class="stxt">
+      현재 미니언즈 그룹개수는 : <span>0</span>개
+    </h2>
+    
     <!-- 리셋을 한다면 이렇게...! -->
     <button class="rbtn">리셋</button>
 
