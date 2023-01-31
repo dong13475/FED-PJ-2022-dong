@@ -50,7 +50,7 @@
     }
     /* #top에 오버시 자기자신 */
     #top:hover{
-      /* 배경색 변경 */
+      /* 배경색변경 */
       background-color: #fff;
     }
     
@@ -87,6 +87,27 @@
       outline: 2px dashed yellow;
     }
 
+    /* 로고 */
+    .logo img{
+      height: 50px;
+    }
+    /* 로고 두번째 이미지 처음에 숨김 */
+    .logo img:last-child,
+    /* .store 두번째 이미지 처음에 숨김 */
+    .store img:last-child,
+    /* #top오버시 첫번째 로고 숨기기 */
+    #top:hover .logo img:first-child,
+    /* #top오버시 .store 첫번째 이미지 숨기기 */
+    #top:hover .store img:first-child{
+      display: none;
+    }
+    /* #top오버시 두번째 로고 보이기 */
+    #top:hover .logo img:last-child,
+    /* #top오버시 .store 두번째 이미지 보이기 */
+    #top:hover .store img:last-child{
+      display: inline;
+    }
+
     /* 네비게이션 박스 */
     .gnb{
       position: relative;
@@ -114,12 +135,27 @@
     .gnb dt{
       line-height: 110px;
     }
+    .gnb dt a{
+      /* 트랜지션 */
+      transition: .4s ease-in-out;
+    }
+    /* #top오버시 dt a 글자색 변경 */
+    #top:hover .gnb dt a{
+      color: #222;
+    }
+
     /* 서브메뉴 : dd */
     .gnb dd{
       line-height: 40px;
     }
     .gnb dd a{
       color: #222;
+    }
+    
+    /* 3. 기타파트 : .tlink */
+    .tlink{
+      display: flex;
+      list-style: none;
     }
 
   </style>
@@ -138,7 +174,10 @@
       <div>
         <h1 class="logo">
           <a href="#">
+            <!-- 오버전 이미지 -->
             <img src="./images/nav03/logo_w.png" alt="로고">
+            <!-- 오버시 이미지 -->
+            <img src="./images/nav03/logo_b.png" alt="로고">
           </a>
         </h1>
       </div>
@@ -288,9 +327,12 @@
               <img src="./images/nav03/lang_i_w.png" alt="다국어아이콘">
             </a>
           </li>
-          <li>
+          <li class="store">
             <a href="#">
+              <!-- 오버전 이미지 -->
               <img src="./images/nav03/store_i3_w.png" alt="스토어아이콘">
+              <!-- 오버시 이미지 -->
+              <img src="./images/nav03/store_i3_b.png" alt="스토어아이콘">
             </a>
           </li>
         </ul>
