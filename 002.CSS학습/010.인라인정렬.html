@@ -57,12 +57,12 @@
                  */
                 /* 글자내용 넘칠때 말줄임표 ... 셋팅 */
                  /* 1.한줄짜리 글자 줄바꿈방지 */
-                 white-space: nowrap;
+                white-space: nowrap;
                  /* 2.넘치는 자식요소 숨기기 */
-                 overflow: hidden;
+                overflow: hidden;
                  /* 3.넘치는 글자 말줄임표 셋팅 */
-                 text-overflow: ellipsis;
-                 
+                text-overflow: ellipsis;
+                
             }
 
             /* 5번박스 - 이미지 정중앙 */
@@ -91,6 +91,38 @@
                 그래서 1000px은 적용안된다! */
             }
 
+            /* 동적인 높이의 박스의 글자가 정중앙에 오기 */
+            .bx7{
+                /* 테이블 디스플레이 */
+                display: table;
+                width: 50%;
+                /* 4:3비율 */
+                aspect-ratio: 4 / 3;
+                /* 가로중앙 */
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            /* 테이블 디스플레이 아래에는 테이블 셀 필요! */
+            .bx7 span{
+                display: table-cell;
+                vertical-align: middle;
+                /* td에서만 vertical-align:middle이
+                세로중앙정렬로 적용됨!
+                원래는 인라인요소간 진행방향 세로정렬속성이다! */
+            }
+            
+
+            /* 동적인 높이가 vh단위인 박스의 글자가 정중앙에 오기 */
+            .bx8{
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                /* 높이값을 보이는 화면의 20%로 설정 */
+                height: 20vh;
+                /* 줄간격을 같은 vh로 설정함! */
+                line-height: 20vh;
+            }
         </style>
     </head>
     <body>
@@ -114,6 +146,16 @@
         <h2>박스안의 글자가 박스의 정중앙에 오기</h2>
         <div class="bx bx4">
             나는 김수현이 너무너무너무너무너무 좋다! 
+        </div>
+
+        <h2>동적인 높이의 박스의 글자가 정중앙에 오기</h2>
+        <div class="bx bx7">
+            <span>나는 공유가 더 좋다! </span>
+        </div>
+
+        <h2>동적인 높이가 vh단위인 박스의 글자가 정중앙에 오기</h2>
+        <div class="bx bx8">
+            나는 김유정이 더 좋다! 
         </div>
 
         <h2>박스안의 이미지가 박스의 정중앙에 오기</h2>
