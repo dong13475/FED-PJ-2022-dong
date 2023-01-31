@@ -19,7 +19,7 @@ html,body{
     font-family: 'Hahmlet', serif;
     /* 글자색 */
     color: #222;
-    /* 테이블 기본간극 없애기
+    /* 테이블 기본간극 없애기 
     table태그에 border="1"을 넣고
     확인해 본다! */
     border-collapse: collapse;
@@ -29,7 +29,7 @@ html,body{
 /* 드라마 테이블 전체 */
 #drama{
     font-size: 24px;
-    margin: 0 auto;
+    margin: 0 auto; 
     width: 1000px;
     /* 테이블은 width 지정이 없으면
     내용만큼 늘어남! 좁으면 아래로 내용이
@@ -55,23 +55,24 @@ html,body{
     border-top: 2px solid #555;
     border-bottom: 2px solid #555;
 }
-/* tbody 마지막 tr에 아랫줄 두꺼운 보더넣기 */
+/* tbody 마지막 tr에 아랫줄 두꺼운보더넣기 */
 #drama tbody tr:last-child td{
     border-bottom: 2px solid #555;
 }
 /* tbody의 첫번째 td(번호항목) 중앙정렬 */
 #drama tbody td:first-child{
     text-align: center;
+    /* background-color: #f00; */
 }
 /* 하단부분(tfoot) */
 #drama tfoot td{
     text-align: center;
     padding: 45px 0;
 }
-/* 본문 배경색 홀수만 넣기
-짝수는 even, 홀수는 odd */
+/* 본문 배경색 짝수만 넣기 
+짝수-even, 홀수-odd */
 #drama tbody tr:nth-child(even) td{
-    background-color: #eeeeee;
+    background-color: #f0f0f0;
 }
 /* 링크 a 변경 */
 #drama a{
@@ -84,10 +85,54 @@ html,body{
     text-decoration: underline;
     text-decoration-style: wavy;
 }
-
 #drama tfoot a:hover{
     color: darkgreen;
     text-decoration: overline;
     text-decoration-style: double;
 }
+
+
+
+/* 구분테이블 박스 */
+.gubun{
+    width: 1000px;
+    margin: 0 auto;
+    /* outline: 1px dashed red; */
+    margin-bottom: 100px;
+
+    /* 자식float감싸기 */
+    overflow: hidden;
+}
+/* 구분테이블 */
+table#gubun{
+    font-size: 20px;
+    border: 1px solid #999;
+
+    /* 오른쪽 끝으로 보내기 */
+    float: right;
+
+    /* td(테이블셀)에 사이간격주기 */
+    border-collapse: separate;
+    border-spacing: 10px;
+    /* 
+    셀 사이간격
+    border-spacing: 가로 세로;
+    border-spacing: 양방향; 
+    */
+}
+
+/* 구분테이블 td */
+#gubun td{
+    padding: 10px;
+    /* border: 1px solid #000; */
+}
+/* 구분테이블 첫번째 tr의 첫번째 td의 오른쪽 점선넣기 */
+#gubun tr:first-child td:first-child{
+    border-right: 3px dotted #999;
+}
+/* 구분테이블의 두번째 tr부터 끝까지 td 위쪽점선보더 넣기 */
+#gubun tr+tr td{
+    border-top: 3px dotted #999;
+}
+
 
