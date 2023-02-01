@@ -19,6 +19,7 @@
     window.addEventListener("DOMContentLoaded",function(){
       var btns = document.querySelectorAll("button");
       for(var i=0; i<btns.length; i++){
+        ////// 클릭이벤트 함수 ///////
         btns[i].onclick = function(){
           var btxt = this.innerText;
           var tg = this.parentElement.querySelector(".forCls");
@@ -29,9 +30,9 @@
             if(btxt==="for문옵션연습"&&(j>=3&&j<=6) || j===8) continue;
             tg.innerHTML += `<img src="./images/num/num_0${j}.png" alt="숫자이미지">`;
           } /// for문 ///
-        };
+        }; ////// 클릭이벤트 함수 ////////
       } //// for문 /////
-    });
+    }); //////////// 로드구역 ////////////
   </script>
 </head>
 <body>
