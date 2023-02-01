@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>For문 옵션</title>
+    <style>
+      .forCls {
+        height: 100px;
+        border: 4px dotted lightseagreen;
+      }
+
+      .forCls img {
+        height: 100px;
+      }
+    </style>
+    <!-- JS코드구역 -->
+    <script>
+      //////// 로드구역 ////////
+      window.addEventListener("DOMContentLoaded",
+      function(){
+
+        // 로딩확인
+        console.log("로딩완료!");
+
+        /************************************** 
+          [ JS 기능정의 ]
+          -> 버튼 클릭시 해당버튼의 내용으로
+          연결된 대상에 이미지를 연속정으로
+          넣어준다!
+          1. 이벤트대상: button
+          2. 이벤트종류: click
+          3. 변경대상: .forCls
+          4. 변경내용: 변경대상에 이미지넣기
+            -> 연속된 이미지를 for문으로 넣기
+         **************************************/
+
+        // 1. 대상선정
+        // 이벤트 대상: button
+        var btns = document.querySelectorAll("button");
+        
+        // 변경 대상: .forCls
+        var tg = document.querySelectorAll(".forCls");
+        
+        console.log(btns,tg);
+
+        // 2. 이벤트 설정 및 기능구현
+        // for(시;한;증){코드}
+        for(var i = 0; i < btns.length; i++){
+
+          console.log("나야나!",i);
+
+          // 1. 이벤트 설정하기
+          btns[i].onclick = function(){
+
+            // 1. 버튼요소 텍스트 읽기
+            // this === btns[i]
+            var btxt = this.innerText; 
+            console.log(btxt);
+
+            // 2. 버튼별 for문 옵션 적용하기
+            // 출력하고자 하는 .forCls박스순번
+            var num=0;
+            btxt=="for문옵션1"?
+            num=1:(btxt=="for문옵션2"?num=2:num=0);
+            // 삼항 연산자 (비?집:놀이동산)
+
+            console.log("순번",num);
+
+            // 3. 이미지 출력하기
+            // 이미지 10개 출력하기
+            // 이미지이름이 1부터 10까지를 활용함!
+            // 초기화
+            tg[num].innerHTML = "";
+            
+            // for문으로 이미지넣기
+            for(var j = 1; j <= 10; j++){
+              // 이미지 넣을 대상은?
+              // .forCls를 담은 tg변수
+              tg[num].innerHTML += `<img src="./images/num/num_0${j}.png" alt="숫자이미지">`;
+            } ///// for문 /////
+
+          }; ///// click 이벤트함수 /////
+
+
+          // btns[i].addEventListener("click",function(){})
+
+        } /////// for문 ///////
+
+      }); //////// 로드구역 ////////
+    </script>
+  </head>
+
+  <body>
+    <h1>for문 옵션</h1>
+    <hr />
+
+    <h2>기본for문</h2>
+    <button>기본호출</button>
+    <br /><br />
+    <div class="forCls"></div>
+    <hr />
+
+    <h2>4번과 7번빼고 돌리기</h2>
+    <button>for문옵션1</button>
+    <br /><br />
+    <div class="forCls"></div>
+
+    <hr />
+
+    <h2>5번까지만 돌리기</h2>
+    <button>for문옵션2</button>
+    <br /><br />
+    <div class="forCls"></div>
+
+    <hr />
+  </body>
+</html>
