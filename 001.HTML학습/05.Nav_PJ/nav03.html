@@ -265,8 +265,9 @@
       // 호출확인
       console.log("로딩완료!");
 
-      // 구현1 : 메뉴 이미지 오버시 이미지 변경하기
-      // 대상: 
+      //////////////////////////////////////////////
+      // 구현내용 : 메뉴 이미지 오버시 이미지 변경하기
+      // 1. 대상선정: 
       // .simg img:last-child
       // .lang img:last-child
       // .store img:last-child
@@ -278,11 +279,58 @@
       `);
 
       console.log(tg);
+      
+      // 2. 이벤트 설정 및 구현하기
+      // 대상의 수만큼 for문으로 설정함!
+      // for(시;한;증){코드}
+
+      // 한계수 셋팅 : 대상의 개수
+      var limit = tg.length;
+
+      for(var i = 0; i < limit; i++){
+        // console.log("나야나!",i);
+
+        // 대상요소를 구체적으로 선택함
+        // i는 0,1,2 순으로 들어옴 - 순번
+        // tg에는 대상이 컬렉션집합으로 들어가있음
+        // tg.item(순번) / tg[순번]
+        // 사용이벤트속성 : onmouseover / onmouseout
+
+        // [ 대상에 마우스 오버시 ]
+        tg[i].onmouseover = function(){
+          // this키워드로 오버된 요소 자신의 정보를
+          // 알아낸다!
+          // this === tg[i]
+
+          // 1. 이미지의 설명속성값을 읽어옴!
+          // 이미지설명속성값으로 대상을 구분함!
+          var ialt = this.alt;
+          console.log("이미지설명:",ialt);
+
+          // 2. 변경될 이미지의 경로를 대상별로 할당
+          var isrc;
+          // switch case문으로 분기(나눠주기)!
+          switch(ialt){
+            case "스토리 이미지":
+              isrc="./images/nav03/story_red_s.png"; 
+              break;
+            case "다국어아이콘":
+              isrc="./images/nav03/lang_i_on.png"; 
+              break;
+            case "스토어아이콘":
+              isrc="./images/nav03/store_i3_on.png"; 
+              break;
+          } /////// switch case문 ///////
+
+          console.log("변경이미지:",isrc);
+          
+        }; ///// mouseover 이벤트함수 /////
 
 
+      } /////// for문 ////////
 
 
-    }); /////// 로드구역 ///////
+    }); /////// 로드구역 /////////
   </script>
 </head>
 <body>
