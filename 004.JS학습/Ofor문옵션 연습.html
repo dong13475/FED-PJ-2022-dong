@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .forCls{
+      height: 100px;
+      border: 4px dotted #000;
+    }
+
+    .forCls img{
+      height: 100px;
+    }
+  </style>
+  <script>
+    ///////// 로드구역 //////////
+    window.addEventListener("DOMContentLoaded",function(){
+      var btns = document.querySelectorAll("button");
+      for(var i=0; i<btns.length; i++){
+        btns[i].onclick = function(){
+          var btxt = this.innerText;
+          var tg = this.parentElement.querySelector(".forCls");
+          tg.innerHTML = "";
+          for(var j=1; j<=10; j++){
+            if(btxt==="for문옵션1"&&(j===2 || j===9)) continue;
+            if(btxt==="for문옵션2"&&j===6) break;
+            if(btxt==="for문옵션연습"&&(j>=3&&j<=6) || j===8) continue;
+            tg.innerHTML += `<img src="./images/num/num_0${j}.png" alt="숫자이미지">`;
+          } /// for문 ///
+        };
+      } //// for문 /////
+    });
+  </script>
+</head>
+<body>
+  <h1>for문 옵션연습</h1>
+  <hr>
+  <div>
+    <h2>기본for문</h2>
+    <button>기본호출</button>
+    <br><br>
+    <div class="forCls"></div>
+  </div>
+  <hr>
+
+  <div>
+    <h2>2번과 9번빼고 돌리기</h2>
+    <button>for문옵션1</button>
+    <br><br>
+    <div class="forCls"></div>
+  </div>
+  <hr>
+
+  <div>
+    <h2>5번까지만 돌리기</h2>
+    <button>for문옵션2</button>
+    <br><br>
+    <div class="forCls"></div>
+  </div>
+  <hr>
+
+  <div>
+    <h2>3~6,8빼고 돌리기</h2>
+    <button>for문옵션연습</button>
+    <br><br>
+    <div class="forCls"></div>
+  </div>
+  <hr>
+
+</body>
+</html>
