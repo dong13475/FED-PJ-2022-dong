@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS실험실 1 : 따라다니는 원</title>
+  <style>
+    body{
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+    .mover{
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: rgba(255, 0, 0, 0.479);
+      /* 트랜지션: 속시이지
+      - 이징을 반드시 ease-out을 준다
+      따라다니는 반응이 시작할때 발 움직여야함 */
+      transition: .3s ease-out;
+    }
+  </style>
+  <!-- JS코딩구역 -->
+  <script>
+    // 로딩구역
+    window.addEventListener("load",function(){
+
+      console.log("로딩완료!");
+
+      // 움직일 대상: 돌아다니는 원 .mover
+      var mover = document.querySelector(".mover");
+      // 이벤트 대상: body
+      // 이벤트 종류: mousemove - 마우스가 대상위에서 
+      // 움직일때 발생
+      document.body.onmousemove = function(){
+        // 마우스 포인터 위치 알아내기
+        // x좌표 : event.pageX
+        // y좌표 : event.pageY
+        // console.log("x:",event.pageX,"\ny:",event.pageY);
+        // \n : enter키
+
+        // 무버에게 위치값 이동 셋팅하기
+        mover.style.top = (event.pageY)+"px";
+        mover.style.left = (event.pageX)+"px";
+
+        // 무버에게 위치값 이동 셋팅하기(무버중앙이동보정)
+        // 마우스포인터 한가운데로 원이동시키기
+        // mover.style.top = (event.pageY-15)+"px";
+        // mover.style.left = (event.pageX-15)+"px";
+        
+      }; /////// mousemove 이벤트함수 //////
+
+    }); // 로딩구역
+  </script>
+</head>
+<body>
+  <!-- 돌아다니는 원 -->
+  <div class="mover"></div>
+</body>
+</html>
