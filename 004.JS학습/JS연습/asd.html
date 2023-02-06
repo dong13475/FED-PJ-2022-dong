@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: url(https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564)
+          no-repeat fixed center/cover;
+      }
+      h2 {
+        font-size: 5vh;
+        color: #fff;
+        text-shadow: 0 0 5px #000;
+        text-align: center;
+      }
+    </style>
+    <script>
+      const scene = [
+        'https://www.thetimes.co.uk/imageserver/image/%2Fmethode%2Fsundaytimes%2Fprod%2Fweb%2Fbin%2F1ee63066-4239-11ec-b414-b1f6389ab345.jpg?crop=2667%2C1500%2C0%2C0&resize=1200',
+
+        'https://www.asml.com/-/media/asml/images/careers/working-at-asml/south-korea/gyeongbokgung_palace_south_korea.jpg?mw=1920&rev=5154661f5c8943bb8c81419c01b327e2&hash=30B844A1D30F8A9B2BB0A2FE6377E953',
+
+        'https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564',
+      ];
+      callMe('함수위에서 호출!');
+      function callMe(txt) {
+        console.log('나, 불렀어?', txt);
+      }
+      const myHome = function (txt) {
+        console.log('오!나의집!', txt);
+      };
+      myHome('익명함수 아래에서 호출!');
+      //////////////////////////////////////
+      let seq = 0;
+      const cnt = scene.length;
+      console.log('scene배열개수:', cnt);
+      setInterval(function () {
+        document.body.style.backgroundImage = `
+      url(${scene[seq]})`;
+        seq++;
+        if (seq === cnt) seq = 0;
+      }, 3000);
+      setTimeout(function(){
+        myFn("동해물과","백두산이","마르고 닳도록","하느님이 보우하사","우리나라 만세!!!");
+      },2000);
+      function myFn(){
+        console.log("내함수!",arguments, typeof arguments, typeof scene);
+        const tg = document.body;
+        // for (let i = 0; i < arguments.length; i++){
+        //   tg.innerHTML += `<h2>${arguments[i]}</h2>`;
+        // }
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
