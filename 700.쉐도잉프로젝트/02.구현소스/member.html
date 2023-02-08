@@ -156,7 +156,7 @@
                 maxlength="20" placeholder="아이디를 입력해주세요!">
                 <!-- 메시지박스 -->
                 <span class="msg">
-                  요기요기
+                  
                 </span>
               </li>
               <!-- 2.비밀번호 -->
@@ -166,7 +166,7 @@
                 maxlength="20" placeholder="비밀번호를 입력해주세요!">
                 <!-- 메시지박스 -->
                 <span class="msg">
-                  요기요기
+                  
                 </span>
               </li>
               <!-- 3.비밀번호확인 -->
@@ -176,7 +176,7 @@
                 maxlength="20" placeholder="비밀번호확인을 입력해주세요!">
                 <!-- 메시지박스 -->
                 <span class="msg">
-                  요기요기
+                  
                 </span>
               </li>
               <!-- 4.이름 -->
@@ -186,7 +186,7 @@
                 maxlength="20" placeholder="이름을 입력해주세요!">
                 <!-- 메시지박스 -->
                 <span class="msg">
-                  요기요기
+                  
                 </span>
               </li>
               <!-- 5.성별 -->
@@ -220,18 +220,33 @@
                 </select>
                 <!-- 메시지박스 -->
                 <span class="msg">
-                  요기요기
+                  
                 </span>
               </li>
               <!-- 7.이메일 뒷주소 직접입력창 -->
               <li>
-                <label for="email2">이메일 뒷주소 직접입력</label>
+                <label class="ee" for="email2">이메일 뒷주소 직접입력</label>
                 <input type="text" name="email2" id="email2" placeholder="이메일뒷주소">
               </li>
               <!-- 8.서브밋 버튼 -->
               <li>
                 <input id="btnj" type="submit" value="가입하기">
                 <!-- submit버튼은 클릭시 form요소의 모든 입력내용을 action지정 페이지로 전송한다! -->
+
+                <!-- 
+                  [ 참고: submit기능 ]
+                  1. 일반button 요소가 form요소안에 
+                  위치하면 클릭시 서브밋된다!
+                  2. 어떤요소라도 JS코드로 form요소의
+                  submit() 내장함수를 호출하면 서브밋된다!
+
+                  (실제예코드)
+
+                <button>버튼전송</button>
+
+                <a href="#" onclick="document.
+                querySelector('form').submit()">a요소전송</a>
+                -->
               </li>
             </ul>
           </form>
