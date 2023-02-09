@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>객체를 위한 for문</title>
+    <title>객체를 위한 for문 - 사실 안써도 된다!</title>
     <style>
       h1,
       .btns,
@@ -86,10 +86,10 @@
 
         /* DOM선택 함수 */
         // const qs = (x) => {document.querySelector(x)};
-        const qs = x => document.querySelector(x);
-        
+        const qs = (x) => document.querySelector(x);
+
         // const qsa = (x) => {document.querySelectorAll(x)};
-        const qsa = x => document.querySelectorAll(x);
+        const qsa = (x) => document.querySelectorAll(x);
         // 화살표함수 원형 : () => {}
         /* 
           선언적 함수로 만들면?
@@ -98,7 +98,7 @@
           }
         */
 
-    /**************************************************** 
+        /**************************************************** 
       [ 구현내용 ]
       - 버튼을 클릭하면 해당 영화의 정보를 화면에 보여준다!
       - 이벤트 대상: button
@@ -109,100 +109,76 @@
           대상의 각 내용에 맞게 객체로부터 정보를 셋팅함!
     ****************************************************/
 
-      // 1. 대상변수 할당하기
+        // 1. 대상변수 할당하기
 
-      // 이벤트 대상 : .btns button
-      const btns = qsa(".btns button");
-      // console.log(btns);
+        // 이벤트 대상 : .btns button
+        const btns = qsa(".btns button");
+        // console.log(btns);
 
-      // 2. 이벤트 대상에 click 이벤트 설정하기
-      // for of문 사용!
+        // 2. 이벤트 대상에 click 이벤트 설정하기
+        // for of문 사용!
 
-      for(let x of btns){ // x는 각각의 버튼
-        // 2-1. 클릭이벤트 설정하기
-        x.onclick = () => {
+        for (let x of btns) {
+          // x는 각각의 버튼
+          // 2-1. 클릭이벤트 설정하기
+          x.onclick = () => {
+            // 1. 클릭된 버튼의 글자읽기
+            let btxt = x.innerText;
+            // console.log(btxt);
 
-          // 1. 클릭된 버튼의 글자읽기
-          let btxt = x.innerText;
-          // console.log(btxt);
+            // 2. 버튼 텍스트와 같은 객체속성명의
+            // 값을 변수에 할당하기
+            let data = mvi[btxt];
+            // console.log("할당객체:",data);
 
-          // 2. 버튼 텍스트와 같은 객체속성명의
-          // 값을 변수에 할당하기
-          let data = mvi[btxt];
-          // console.log("할당객체:",data);
+            // 3. 해당요소에 데이터 넣기
 
-          // 3. 해당요소에 데이터 넣기
-          // for in문 사용!!!
-          // for (변수 in 객체){코드}
-          // -> 변수는 속성명!
-          for(let z in data){
-            // z는? 속성명
-            // 속성값은 어떻게 가져와? 객체명[z]
-            // console.log(z,data[z]);
-
-            // 각 속성명에 해당하는 데이터 셋팅하기!
-            // switch case문으로 분기!!
-            switch(z){
-              // 1. 포스터넣기 .photo
-              case "포스터":
-                qs(".photo").innerHTML =
-                `<img src="${data[z]}" alt"${btxt}의 포스터">`;
-                break;
-              // 2. 제목넣기 .tit
-              case "제목":
-                qs(".tit").innerText = "☆영화명 : "+data[z];
-                break;
-              // 3. 장르넣기 .sum
-              case "개요":
-                qs(".sum").innerText = "★장르 : "+data[z];
-              // 4. 감독넣기 .dir
-              case "감독":
-                qs(".dir").innerText = "☆감독 : "+data[z];
-              // 5. 배우넣기 .act
-              case "출연":
-                qs(".act").innerText = "★배우 : "+data[z];
-              
-            } ///// switch case문 /////
+            // 1. 포스터넣기 .photo
+            qs(".photo").innerHTML = `<img src="${data["포스터"]}" alt"${btxt}의 포스터">`;
+            // 2. 제목넣기 .tit
+            qs(".tit").innerText = "☆영화명 : " + data["제목"];
+            // 3. 장르넣기 .sum
+            qs(".sum").innerText = "★장르 : " + data["개요"];
+            // 4. 감독넣기 .dir
+            qs(".dir").innerText = "☆감독 : " + data["감독"];
+            // 5. 배우넣기 .act
+            qs(".act").innerText = "★배우 : " + data["출연"];
 
             /// 영화 한마디 넣기 ///
             // for of문으로 문자데이터 잘라넣기!
             // 한글자씩 span태그로 싸서 해당요소에 넣음!
-            if(z === "문구"){
-              // 1. 데이터 담기
-              let txt = data[z];
-              console.log("문구데이터:",txt);
-              // 태그로 싼 새로운 데이터 넣을 변수
-              let newtxt = ""; // 기본String값 초기화
 
-              // 문구 데이터를 for of문으로 하나씩 넣기
-              for(let m of txt){ // m은 한글자씩!
-                console.log("한글자씩:",m);
-                // 스페이스 문자일 경우 띄어쓰기기호로!
-                if(m === " "){
-                  newtxt += "&nbsp;&nbsp;&nbsp;";
-                } ///// if문 /////
-                else{ // 그밖에 문자일 경우
-                  newtxt += `<span>${m}</span>`;
-                } ///// else /////
+            // 1. 데이터 담기
+            let txt = data["문구"];
+            console.log("문구데이터:", txt);
+            // 태그로 싼 새로운 데이터 넣을 변수
+            let newtxt = ""; // 기본String값 초기화
 
-              } ///// for of문 /////
+            // 문구 데이터를 for of문으로 하나씩 넣기
+            for (let m of txt) {
+              // m은 한글자씩!
+              console.log("한글자씩:", m);
+              // 스페이스 문자일 경우 띄어쓰기기호로!
+              if (m === " ") {
+                newtxt += "&nbsp;&nbsp;&nbsp;";
+              } ///// if문 /////
+              else {
+                // 그밖에 문자일 경우
+                newtxt += `<span>${m}</span>`;
+              } ///// else /////
+            } ///// for of문 /////
 
-              // 문구 데이터를 대상에 출력!
-              // 대상은 .show
-              qs(".show").innerHTML = newtxt;
+            // 문구 데이터를 대상에 출력!
+            // 대상은 .show
+            qs(".show").innerHTML = newtxt;
 
-              // 영화한마디 박스 보이게 하기
-              // 대상은 .showtit
-              qs(".showtit").style.display = "block";
-              
-            } ///// if문 /////
-            
-          } ///// for in문 /////
-          
-        }; ///// click 이벤트 함수 /////
-      } ///// for of문 /////
+            // 영화한마디 박스 보이게 하기
+            // 대상은 .showtit
+            qs(".showtit").style.display = "block";
+          }; ///// click 이벤트 함수 /////
+        } ///// for of문 /////
 
-    /********************************************* 
+        /********************************************* 
       [ 객체를 위한 for in 문 ]
 
       - 구문: 
