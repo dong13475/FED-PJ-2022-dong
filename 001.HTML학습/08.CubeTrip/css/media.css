@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* 큐브트립 미디어쿼리 CSS - media.css */
+/* 미디어쿼리는 다른파일에서 @import방식으로 사용하면 안된다!
+반드시 link방식으로 html파일에 삽입한다! */
+
+/* 모바일 미디어쿼리 */
+@media only screen and (max-width:950px) {
+
+   
+}
+
+/* 미디어쿼리  */

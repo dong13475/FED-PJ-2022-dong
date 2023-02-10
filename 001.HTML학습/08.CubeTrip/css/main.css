@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* 큐브트립 메인 CSS - main.css */
+
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css?family=Black+And+White+Picture|East+Sea+Dokdo|Jua&display=swap');
+/*
+    font-family: 'Black And White Picture', sans-serif;
+    font-family: 'East Sea Dokdo', cursive;
+    font-family: 'Jua', sans-serif;
+*/
+
+html,body{
+    margin: 0;
+    padding: 0;
+}
