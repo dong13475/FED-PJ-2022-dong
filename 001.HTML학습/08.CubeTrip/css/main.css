@@ -12,12 +12,12 @@
 /* 변수셋팅 */
 :root {
   /* 큐브 공통크기 */
-  --csz: 300px;
+  --csz: 25vw;
 }
 
 /* 초기화 */
 html,
-body,h1,ul {
+body,h1,h2,ul,p {
   margin: 0;
   padding: 0;
 }
@@ -40,6 +40,66 @@ body{
 }
 
 /********************** 2. 메뉴버튼 **********************/
+.city{
+  position: fixed;
+  top: 5vw;
+  right: 5vw;
+}
+.city ul{
+  width: min(15vw,200px);
+  list-style: none;
+  perspective: 50vw;
+}
+.city li{
+  height: 10vh;
+  /* 보이는 화면의 10% -> li는 6개이므로 총 60%차지 */
+  background-image: linear-gradient(to right,
+  transparent,blue);
+  /* 축변경 */
+  transform-origin: right;
+  /* 트랜지션 : 속시이지 */
+  transition: .3s;
+}
+/* li에 오버시 y축회전하기 */
+.city li:nth-child(1):hover{
+  transform: rotateY(35deg);
+  background-image: linear-gradient(to right,
+  transparent,pink);
+}
+.city li:nth-child(2):hover{
+  transform: rotateY(25deg);
+  background-image: linear-gradient(to right,
+  transparent,rgb(226, 114, 132));
+}
+.city li:nth-child(3):hover{
+  transform: rotateY(45deg);
+  background-image: linear-gradient(to right,
+  transparent,rgb(228, 66, 93));
+}
+.city li:nth-child(4):hover{
+  transform: rotateY(-25deg);
+  background-image: linear-gradient(to right,
+  transparent,rgb(233, 12, 49));
+}
+.city li:nth-child(5):hover{
+  transform: rotateY(-45deg);
+  background-image: linear-gradient(to right,
+  transparent,rgb(153, 23, 45));
+}
+.city li:nth-child(6):hover{
+  transform: rotateY(-35deg);
+  background-image: linear-gradient(to right,
+  transparent,rgb(82, 4, 17));
+}
+.city a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  font: 5vh/10vh 'East Sea Dokdo', cursive;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+}
 
 /********************** 3. 큐브박스 **********************/
 
@@ -69,7 +129,7 @@ body{
   transform-style: preserve-3d;
 
   /* 입체를 잘보이게 하기위해 약간회전함 */
-  transform: rotateX(10deg) rotateY(30deg);
+  /* transform: rotateX(10deg) rotateY(30deg); */
 
   /* outline: 2px solid blue; */
 }
@@ -87,25 +147,25 @@ body{
   outline: 1px solid #555;
 }
 
-/* 1. 앞면 */
+/* 1. 앞면 : 시티메인 */
 .cube span:nth-child(1) {
-  background: url(../images/newyorkCity.jpg) no-repeat right/auto 105%;
-
+  background: url(../images/cityMain.jpg) no-repeat center/cover;
+  
   /* 화면방향(z축) */
   transform: translateZ(calc(var(--csz) / 2));
   /* 큐브사이즈의 절반을 앞쪽으로 이동 */
 }
 
-/* 2. 오른면 */
+/* 2. 오른면 : 런던 */
 .cube span:nth-child(2) {
-  background: url(../images/seoulCity.jpg) no-repeat center/cover;
+  background: url(../images/London_city.jpg) no-repeat center/cover;
 
   /* 화면방향(z축) */
   transform: rotateY(90deg) translateZ(calc(var(--csz) / 2));
   /* 먼저 y축회전후 큐브사이즈의 절반을 앞쪽으로 이동 */
 }
 
-/* 3. 뒷면 */
+/* 3. 뒷면 : 파리 */
 .cube span:nth-child(3) {
   background: url(../images/parisCity.jpg) no-repeat center/cover;
 
@@ -113,25 +173,25 @@ body{
   transform: rotateY(180deg) translateZ(calc(var(--csz) / 2));
 }
 
-/* 4. 왼쪽면 */
+/* 4. 왼쪽면 : 베를린 */
 .cube span:nth-child(4) {
-  background: url(../images/cityMain.jpg) no-repeat center/cover;
+  background: url(../images/berlin_city.jpg) no-repeat center/cover;
 
   /* 화면방향(z축) */
   transform: rotateY(-90deg) translateZ(calc(var(--csz) / 2));
 }
 
-/* 5. 윗면 */
+/* 5. 윗면 : 서울 */
 .cube span:nth-child(5) {
-  background: url(../images/citys.jpg) no-repeat center/100% 120%;
+  background: url(../images/seoulCity.jpg) no-repeat center/cover;
 
   /* 화면방향(z축) */
   transform: rotateX(90deg) translateZ(calc(var(--csz) / 2));
 }
 
-/* 6. 아랫면 */
+/* 6. 아랫면 : 뉴욕 */
 .cube span:nth-child(6) {
-  background: url(../images/London_city.jpg) no-repeat center/cover;
+  background: url(../images/newyorkCity.jpg) no-repeat right/auto 105%;
 
   /* 화면방향(z축) */
   transform: rotateX(-90deg) translateZ(calc(var(--csz) / 2));
@@ -167,4 +227,56 @@ body{
     /* transform: rotateX(370deg) rotateY(-330deg) rotateZ(360deg); */
     /* z축회전도 적용할 수 있음 */
   }
+}
+
+/********************* 4. 도시정보박스 *********************/
+.cbx{
+  position: absolute;
+  top: calc(50% - var(--csz) / 2);
+  left: calc(50% - var(--csz) / 2);
+  /* 
+  정중앙계산: 50% - 크기절반 
+  calc() 연산시 주의사항 
+  -> +,-는 기호앞뒤 띄어쓰기 
+  -> *,/는 붙여써도 됨
+  */
+  width: var(--csz);
+  height: var(--csz);
+
+  /* 글자설정 */
+  font-family: 'Jua', sans-serif;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+
+  /* 처음에 투명하게 */
+  opacity: 0;
+  
+  /* outline: 2px dashed red; */
+}
+/* 도시정보 속박스 */
+.ctxt{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #fff;
+  /* 크기유지 */
+  box-sizing: border-box;
+}
+/* 도시명 */
+h2.cname{
+  line-height: min(7vw,100px);
+  text-align: center;
+  font-size: min(40px,2.5vw);
+}
+/* 도시설명 */
+p.cinfo{
+  /* 타이틀을 제외한 영역채우기 */
+  height: calc(100% - min(7vw,100px) );
+  box-sizing: border-box;
+
+  
+  padding: min(10px,2vw);
+  font-size: min(16px,1vw);
+  line-height: min(28px,1.5vw);
+  background-color: rgba(0, 0, 0, 0.301);
 }
