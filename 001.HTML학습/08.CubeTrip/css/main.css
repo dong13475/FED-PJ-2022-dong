@@ -26,6 +26,24 @@ body{
   background-image: linear-gradient(to bottom,
   #777 30%, #ccc 70%);
 }
+/* 스크롤바 디자인 클래스 */
+/* -webkit- 밴더사명(크롬,사파리) 접두어 */
+/* (참고: -ms-(ie), -o-(오페라), -moz-(파이어폭스) */
+/* 클래스명 scbar */
+.scbar::-webkit-scrollbar{
+  /* 전체 스크롤바 크기변경 */
+  width: 5px;
+}
+.scbar::-webkit-scrollbar-thumb{
+  /* 스크롤바 */
+  background-color: #555;
+  border-radius: 3px;
+}
+.scbar::-webkit-scrollbar-track{
+  /* 스크롤바 트랙 */
+  background-color: #ddd;
+  border-radius: 3px;
+}
 
 /********************** 1. 전체제목 **********************/
 .tit{
@@ -197,37 +215,6 @@ body{
   transform: rotateX(-90deg) translateZ(calc(var(--csz) / 2));
 }
 
-/* 큐브회전 클래스 */
-.cube-ani {
-  /* 애니메이션: 이시이지반방마 */
-  animation: cubeAni 4s linear infinite;
-  /* 애니메이션 처음에 멈춰있기 */
-  animation-play-state: paused;
-}
-/* 큐브회전 작동 클래스 + .on */
-.cube-ani.on {
-  animation-play-state: running;
-}
-
-/* 큐브회전 키프레임 */
-@keyframes cubeAni {
-  to {
-    transform: rotateX(370deg) rotateY(-330deg);
-    /* 
-      x축 양의 방향으로 10도에서 출발
-      양의 방향 360도 + 10도 = 370도
-      음의 방향 -360도 + 10도 = -350도
-      _______________________________
-
-      y축 양의 방향으로 30도에서 출발
-      양의 방향 360도 + 30도 = 390도
-      음의 방향 -360도 + 30도 = -330도
-    */
-
-    /* transform: rotateX(370deg) rotateY(-330deg) rotateZ(360deg); */
-    /* z축회전도 적용할 수 있음 */
-  }
-}
 
 /********************* 4. 도시정보박스 *********************/
 .cbx{
@@ -275,8 +262,11 @@ p.cinfo{
   box-sizing: border-box;
 
   
-  padding: min(10px,2vw);
-  font-size: min(16px,1vw);
+  padding: min(10px,1vw);
+  font-size: min(16px,2vw);
   line-height: min(28px,1.5vw);
   background-color: rgba(0, 0, 0, 0.301);
+
+  /* 내용 넘칠때만 세로크스롤바 자동생성 */
+  overflow: auto;
 }
