@@ -20,6 +20,10 @@
   .city li {
     flex: 1;
   }
+  /* li에 오버시 트랜스폼 없애기 */
+  .city li:hover{
+    transform: none !important;
+  }
 
   /* 2. 큐브크기 변경하기 */
   :root {
