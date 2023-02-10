@@ -17,6 +17,20 @@ body{
   --csz: 300px;
 }
 
+/* 작동버튼 */
+.btngo{
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  border-radius: 10px;
+}
+.btngo:hover{
+  background-color: rgb(255, 136, 0);
+  cursor: pointer;
+}
+
 /* 큐브 */
 .cube{
   position: absolute;
@@ -136,12 +150,18 @@ body{
 .cube-ani{
   /* 애니메이션: 이시이지반방마 */
   animation: cubeAni 4s linear infinite;
+  /* 애니메이션 처음에 멈춰있기 */
+  animation-play-state: paused;
+}
+/* 큐브회전 작동 클래스 + .on */
+.cube-ani.on{
+  animation-play-state: running;
 }
 
 /* 큐브회전 키프레임 */
 @keyframes cubeAni {
   to{
-    /* transform: rotateX(370deg) rotateY(-330deg); */
+    transform: rotateX(370deg) rotateY(-330deg);
     /* 
       x축 양의 방향으로 10도에서 출발
       양의 방향 360도 + 10도 = 370도
@@ -153,7 +173,7 @@ body{
       음의 방향 -360도 + 30도 = -330도
     */
 
-    transform: rotateX(370deg) rotateY(-330deg) rotateZ(360deg);
+    /* transform: rotateX(370deg) rotateY(-330deg) rotateZ(360deg); */
     /* z축회전도 적용할 수 있음 */
   }
 }
