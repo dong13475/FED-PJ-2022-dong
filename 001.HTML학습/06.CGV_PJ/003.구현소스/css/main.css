@@ -6,19 +6,19 @@
 @import url(./core.css);
 
 /* 공사중 표시 */
-body *{
+body * {
   /* outline: 1px dashed ghostwhite; */
 }
 
 /* 전체배경색 */
-body{
+body {
   background-color: #000;
 }
 
 /******************* 1.상단영역 *******************/
 /* 사이즈는 속박스에 주는게 맞다! */
 /* 속박스 */
-.top{
+.top {
   position: relative;
   /* 부모자격 - .gnb */
   z-index: 999;
@@ -28,8 +28,8 @@ body{
   background: url(../images/curtain.jpg) repeat-x;
 }
 /* 1-1.로고 */
-.tit{
-  font-family: 'Jua', sans-serif;
+.tit {
+  font-family: "Jua", sans-serif;
   color: aquamarine;
   font-size: 40px;
   line-height: 80px;
@@ -38,75 +38,73 @@ body{
   /* 글로우 효과 */
   text-shadow: 0 0 4px aquamarine;
   /* 애니메이션: 이시이지반방마 */
-  animation: titAni .5s ease-in infinite alternate;
-
+  animation: titAni 0.5s ease-in infinite alternate;
 }
 /* 타이틀 글로우 효과 애니메이션 키프레임 */
-@keyframes titAni{
-  to{
+@keyframes titAni {
+  to {
     text-shadow: 0 0 12px aquamarine;
   }
 } /* 키프레임 */
 
 /* 1-2.GNB메뉴 */
-.gnb{
+.gnb {
   position: absolute;
   bottom: 10px;
   right: 10px;
 }
 /* ul박스 */
-.gnb ul{
+.gnb ul {
   display: flex;
-  font-family: 'Jua', sans-serif;
+  font-family: "Jua", sans-serif;
   /* 폰트는 상속된다! 따라서 여러하위요소에 같은체를
   적용하고 싶으면 부모요소에 적용시키면된다! */
 }
 /* 상위li */
-.gnb ul>li{
+.gnb ul > li {
   position: relative;
   /* 부모자격 : .smenu */
   padding-bottom: 5px;
   /* 서브메뉴와 공간연결을 위해 하단패딩줌! */
 }
 /* 상위li 두번째부터 */
-.gnb ul>li+li{
+.gnb ul > li + li {
   margin-left: 20px;
 }
 /* 상위메뉴 a */
-.gnb ul>li>a{
+.gnb ul > li > a {
   font-size: 2rem;
   /* 트랜스폼 적용위해 인라인블록
   - a는 인라인요소이므로 디자인이 먹히지 않기때문! */
   display: inline-block;
   /* 오버시 효과 트랜지션으로 주기 */
-  transition:  .2s ease-out;
+  transition: 0.2s ease-out;
 }
 /* 오버시 변경 */
-.gnb ul>li:hover>a{
+.gnb ul > li:hover > a {
   transform: scale(1.3);
   color: rgb(57, 124, 224);
   /* 애니메이션으로 글로우 효과주기 */
-  animation: aglow .5s ease-in infinite alternate;
+  animation: aglow 0.5s ease-in infinite alternate;
 }
-@keyframes aglow{
-  to{
+@keyframes aglow {
+  to {
     text-shadow: 0 0 12px rgb(54, 207, 161);
   }
 }
 
 /* 서브메뉴 */
-.smenu{
+.smenu {
   position: absolute;
   /* 부모박스 가로로방향 중앙맞추기 */
   left: 50%;
   /* 부모는? .gnb ul>li */
-  transform: translate(-50%,5px);
+  transform: translate(-50%, 5px);
   /* x축은 자기크기의 
   50%만큼 왼쪽이동, y축은 5px이동 */
   width: 140px;
   padding: 3px;
-  background: url(../images/bg_smenu.png)
-  no-repeat center/cover;
+  background: url(../images/bg_smenu.png) no-repeat center/cover;
   border-radius: 5px;
   box-shadow: 0 0 5px #fff;
 
@@ -114,14 +112,13 @@ body{
   display: none;
 }
 /* 상위메뉴 li에 오버시 서브메뉴 보이기 */
-.gnb ul>li:hover .smenu{
+.gnb ul > li:hover .smenu {
   display: block;
 }
 
-
 /* 메뉴박스 가상요소로 삼각형 만들기 */
-.smenu::before{
-  content: '';
+.smenu::before {
+  content: "";
   display: block;
   position: absolute;
   top: -10px;
@@ -136,70 +133,70 @@ body{
   border-right: 10px solid transparent;
 }
 /* 서브메뉴 ol */
-.smenu ol{
+.smenu ol {
   border: 1px solid #ccc;
   padding: 10px;
 }
 /* 서브메뉴 a */
-.smenu a{
+.smenu a {
   display: block;
   /* a요소 확장 - display:block으로 a요소 끝까지 가게하기 */
   font-size: 1.6rem;
   line-height: 1.7;
 }
 /* 서브메뉴 마우스 오버시 */
-.smenu a:hover{
+.smenu a:hover {
   color: red;
 }
 /* 오버시 가상요소로 이모티콘 */
-.smenu a:hover::after{
-  content: '🍟';
+.smenu a:hover::after {
+  content: "🍟";
   /* 오른쪽 끝으로 보내기 */
   float: right;
 }
 /* 예매 */
-.gnb ul>li:nth-child(2) .smenu a:hover::after{
-  content: '👀';
+.gnb ul > li:nth-child(2) .smenu a:hover::after {
+  content: "👀";
 }
 /* 극장 */
-.gnb ul>li:nth-child(3) .smenu a:hover::after{
-  content: '🎬';
+.gnb ul > li:nth-child(3) .smenu a:hover::after {
+  content: "🎬";
 }
 /* 이벤트&컬처 */
-.gnb ul>li:nth-child(4) .smenu a:hover::after{
-  content: '🎈';
+.gnb ul > li:nth-child(4) .smenu a:hover::after {
+  content: "🎈";
 }
 
 /* 서브메뉴 li보더 상단 구분선 클래스 */
-.bdt{
+.bdt {
   border-top: 1px solid #ccc;
 }
 
 /* 영사기박스 */
-#cam{
+#cam {
   position: absolute;
   bottom: -10px;
   right: -60px;
   z-index: -1;
 }
 /* 영사기이미지 */
-#cam img{
+#cam img {
   position: relative;
   z-index: 1;
   /* 영사기가 위! */
   width: 50px;
   transform: rotate(25deg);
-  transition: .5s ease-out .3s;
+  transition: 0.5s ease-out 0.3s;
 }
 /* .gnb마우스오버시 영사기 */
-.gnb:hover #cam img{
+.gnb:hover #cam img {
   transform: rotate(0);
   /* 오버시 기다림 없음 */
   transition-delay: 0s;
 }
 
 /* 빔박스 */
-.beam{
+.beam {
   position: absolute;
   top: -16px;
   right: 10px;
@@ -212,39 +209,251 @@ body{
   /* outline: 2px dotted lime; */
 
   /* 트랜지션: 속시이지 */
-  transition: .3s ease-out;
+  transition: 0.3s ease-out;
 }
 /* .gnb오버시 빔쏘기 */
-.gnb:hover .beam{
+.gnb:hover .beam {
   width: 200px;
   /* 카메라 도는 0.5초 기다림 */
-  transition-delay: .5s;
+  transition-delay: 0.5s;
   /* 애니메이션: 이시이지반방마 */
-  animation: beamAni .01s linear infinite alternate;
+  animation: beamAni 0.01s linear infinite alternate;
 }
 /* 빔 빛흔들리기 애니 키프레임 */
 @keyframes beamAni {
-  to{
-    opacity: .5;
+  to {
+    opacity: 0.5;
+  }
+} /* 키프레임 */
+
+/* 1-3. 찾아오는길 애니박스 */
+.anibx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* 부모는? .top */
+  width: 144px;
+  height: 80px;
+  /* 원근설정 : 직계하위 span적용! */
+  perspective: 50vh; /* 대상을 싸고있는 부모에게 준다! */
+  cursor: pointer;
+}
+/* 극장가는 길 타이틀박스 */
+.anibx>span {
+  /* 커튼 대문 역할 */
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 144px;
+  height: 80px;
+  /* 나간글자 숨기기 */
+  overflow: hidden;
+  text-align: center;
+  line-height: 80px;
+  font-family: "Cute Font", cursive;
+  color: #fff;
+  font-size: 2rem;
+  /* 줄바꿈방지 */
+  white-space: nowrap;
+  /* 배경이미지 넣기 */
+  background: url(../images/curtain.jpg)
+  no-repeat;
+  /* 애니메이션 : 이시이지반방마 */
+  animation: anibxAni 2.5s cubic-bezier(0.68, -0.55, 0.71, 0.99) infinite;
+  /* 트랜지션 : 속시이지 */
+  transition: transform .4s ease-in-out;
+  /* 트랜스폼 중심축 변경 */
+  transform-origin: top;
+}
+/* 오버시 타이틀 들취지기 */
+.anibx:hover>span{
+  transform: rotateX(80deg);
+  outline: 1px solid aqua;
+  font-size: 0;
+}
+/* 타이틀 애니 키프레임 */
+@keyframes anibxAni {
+  0% {
+    text-indent: 0;
+  }
+  /* 50%~70% 오른쪽으로 나감! */
+  50% {
+    text-indent: 0;
+  }
+  70% {
+    text-indent: 250px;
+  }
+  /* 위치변경 왼쪽 바깥 */
+  70.1% {
+    text-indent: -250px;
+  }
+  /* 80%~100% 왼쪽에서 들어옴! */
+  80% {
+    text-indent: -250px;
+  }
+  100% {
+    text-indent: 0;
   }
 } /* 키프레임 */
 
 
+/* 샐애니박스 */
+.cellAni {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 144px;
+  height: 80px;
+  /* background-color: #f00; */
+
+  /* 배경넣기 */
+  background: url(../images/street.jpg) repeat-x;
+  background-size: auto 100%;
+
+  /* 애니메이션: 이시이지반방마 */
+  animation: street 4s linear infinite;
+}
+
+/* 스크린배경이동 키프레임 */
+@keyframes street {
+  to {
+    background-position: -136px 0;
+  }
+}
+
+/* 키프레임 */
+
+/* 3-1.걷는존 */
+.spani1 {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  margin: 0 auto;
+  background: url(../images/spAni03.png) no-repeat;
+  background-size: auto 100%;
+
+  /* 애니메이션: 이시이지반방마 */
+  animation: spani1 1s steps(8) infinite;
+
+  /* outline: 5px solid red; */
+}
+
+/* 걷는존 키프레임 */
+@keyframes spani1 {
+  to {
+    background-position: -362px 0;
+  }
+  /* 배경이미지 x축 이동일 경우
+  그림판에서 height값 기준(176px)으로
+  줄였을때 이미지 전체 가로크기(797px)를
+  마이너스 값으로 써주면된다! */
+}
+
+/* 키프레임 */
+
+/* 
+  [ 스프라이츠를 이용한 장면 넘기기 애니를 하려면? ]
+  1. 배경이미지 전체 길이를 알아야함
+  -> 이유: 이동셋팅시 가로이동일 경우에 전체길이값을 써야함!
+
+  (비율이 유지되는 이미지이므로 가로/세로중 한쪽값을 변경하면
+  다른쪽값은 자동으로 변경된다!)
+
+  참고) 비례식사용
+      가로 : 세로 = 1472px : 325px = x : 176px
+      x = 1472*176/325 = 797.14
+      전체가 8장면 이므로 한 장면당 100px(99.625px)로 정해짐
+
+    -> 더 편한 방법은 그림판에서 축소/확대를 사용하여
+    길이를 알아내면 된다!
+  
+  2. 코딩법:
+
+      animation: 이름 시간 steps(장면개수) infinite;
+
+      -> 장면찍는 steps를 사용할때는 이징(가속도)불필요!
+
+      [ 여러줄 애니메이션 처리법 ]
+      배경이미지 이동을 x,y축으로 분리하여 셋팅함
+      -> 시간설정은 x축은 적당히 설정후
+      y축은 x축애니시간*줄수 로 설정한다!
+      예) x축 애니를 2초로 설정후 y축은 5줄이면
+      2*5 즉, 10초로 설정한다!
+
+      1. x축이동 : steps(장면수)
+          background-position-x : 값;
+
+      2. y축이동 : steps(줄수)
+          background-position-y : 값;
+ */
+
+/* 3-2.꼬마 */
+.spani2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  height: 29px;
+  background: url(../images/spAni001.png) no-repeat;
+  /* 배경사이즈 변경 */
+  background-size: 200px;
+  /* 애니메이션: 이시이지반방마 */
+  animation: spani2 1s steps(10) infinite;
+}
+
+/* 꼬마 키프레임 */
+@keyframes spani2 {
+  to {
+    background-position: -200px 0;
+  }
+}
+/* 키프레임 */
+
+/* 3-3.몬스터 */
+.spani3 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: url(../images/spAni02.png) no-repeat;
+  /* 배경사이즈 변경 */
+  background-size: 240px;
+  /* 애니메이션: 이시이지반방마 */
+  animation: spani3X 1s steps(6) infinite, spani3Y 3s steps(3) infinite;
+  /* x축은 6장면을 1초간 작동
+  y축은 3줄을 3초간 작동 */
+}
+
+/* 몬스터 키프레임 X축 */
+@keyframes spani3X {
+  to {
+    background-position-x: -240px;
+  }
+  /* x축은 가로크기를 마이너스로 씀 */
+}
+/* 몬스터 키프레임 Y축 */
+@keyframes spani3Y {
+  to {
+    background-position-y: -120px;
+  }
+  /* y축은 세로크기를 마이너스로 씀 */
+}
+
 /******************* 1.메인영역 *******************/
 /* 속박스 */
-.cont{
+.cont {
   position: relative;
   /* 부모자격 - .screen */
   /* 비율설정 */
   aspect-ratio: 1200 / 788;
   /* height: 788px; */
   /* 극장배경 넣기 */
-  background: url(../images/bg.jpg)
-  no-repeat center top/* 위치 *//100%/* 크기 */;
+  background: url(../images/bg.jpg) no-repeat center top /* 위치 *//100% /* 크기 */;
 }
 
 /* 2-1.스크린 */
-.screen{
+.screen {
   position: absolute;
   top: 17.2%;
   left: 21.3%;
@@ -253,14 +462,14 @@ body{
   background-color: rgb(27, 27, 27);
 }
 /* 유튜브 아이프레임 */
-.screen iframe{
+.screen iframe {
   width: 100%;
   height: 100%;
   border: none;
 }
 
 /* 2-2.예고편 선택메뉴 */
-.mlist{
+.mlist {
   position: absolute;
   bottom: 5.4%;
   left: 50%;
@@ -272,7 +481,7 @@ body{
   /* overflow: hidden; */
 }
 /* 선택메뉴 ul */
-.mlist ul{
+.mlist ul {
   /* 플렉스박스 */
   display: flex;
   /* 진행방향정렬 : 양쪽끝 맞춘후 사이간격일정 */
@@ -281,11 +490,11 @@ body{
   perspective: 50vh;
 }
 /* 상위li 두번째 부터 끝까지 왼쪽마진 */
-.mlist ul>li+li{
+.mlist ul > li + li {
   margin-left: 1.5%;
 }
 /* 선택메뉴 상위li */
-.mlist ul>li{
+.mlist ul > li {
   position: relative;
   /* 부모자격 - .movtxt */
   flex: 1;
@@ -297,12 +506,12 @@ body{
   /* 회전축변경 : 하단 */
   transform-origin: bottom;
   /* 트랜지션 : 속시이지 */
-  transition: .4s;
+  transition: 0.4s;
 }
 /* 마우스 오버시 + 클래스"on"적용시
 포스터 일어나기! */
-.mlist ul>li:hover,
-.mlist ul>li.on {
+.mlist ul > li:hover,
+.mlist ul > li.on {
   /* x축회전 */
   transform: translateX(0);
   /* 다른 li보다 위 */
@@ -311,13 +520,13 @@ body{
   outline: 1px solid aqua;
 }
 /* 포스터 이미지 */
-.mlist img{
+.mlist img {
   width: 100%;
   /* height: 140px; */
 }
 
 /* 영화정보박스 */
-.movtxt{
+.movtxt {
   /* 플렉스박스 */
   display: flex;
   /* 플렉스 진행방향 */
@@ -335,29 +544,27 @@ body{
   background-color: rgba(0, 0, 0, 0.603);
 
   /* 글자셋팅 */
-  font-family: 'Cute Font', cursive;
-  font-size: min(14px,1.1vw);
+  font-family: "Cute Font", cursive;
+  font-size: min(14px, 1.1vw);
   line-height: 2;
-  
+
   /* 트랜지션 : 속시이지 */
-  transition: top .5s cubic-bezier(0.54,-0.09, 0.56, 1.12);
+  transition: top 0.5s cubic-bezier(0.54, -0.09, 0.56, 1.12);
 }
 /* 상위li에 마우스 오버시 영화정보 올라오기 */
-.mlist ul>li:hover .movtxt{
+.mlist ul > li:hover .movtxt {
   top: 0;
 }
 
 /* 영화정보박스 제목만 병경 */
-.movtxt li:first-child{
-  font-size: min(17px,1.2vw);
+.movtxt li:first-child {
+  font-size: min(17px, 1.2vw);
   color: aqua;
   white-space: nowrap;
 }
 
-
-
 /******************* 1.하단영역 *******************/
-.info{
+.info {
   /* 플렉스 박스 */
   display: flex;
   /* 수직방향정렬 : ai */
@@ -365,37 +572,37 @@ body{
   height: 100px;
 }
 /* 3-1.로고 */
-.logo{
-margin-right: 20px;
+.logo {
+  margin-right: 20px;
 }
 /* 3-2.회사정보 */
-.corp address{
-  font-family: 'Cute Font', cursive;
+.corp address {
+  font-family: "Cute Font", cursive;
   color: #fff;
   font-style: normal;
   font-size: 1.8rem;
   line-height: 2rem;
 }
 /* 3-3.SNS */
-.sns{
+.sns {
   /* 오른쪽 끝위치 */
   margin-left: auto;
 }
-.sns ol{
+.sns ol {
   /* 플렉스 박스 */
   display: flex;
 }
-.sns li{
+.sns li {
   width: 34px;
   height: 34px;
   /* outline: 1px dashed yellow; */
 }
 /* li사이간격 */
-.sns li+li{
+.sns li + li {
   margin-left: 5px;
 }
 /* a확장 */
-.sns a{
+.sns a {
   display: block;
   width: 100%;
   height: 100%;
@@ -409,15 +616,15 @@ margin-right: 20px;
 /* sns 오버시 글자색(아이콘색) */
 
 /* 페북 */
-.sns a[class$=book]:hover{
+.sns a[class$="book"]:hover {
   color: rgb(56, 127, 209);
 }
 /* 트위터 */
-.sns a[class^='fa-brands fa-square-tw']:hover{
+.sns a[class^="fa-brands fa-square-tw"]:hover {
   color: rgb(139, 181, 216);
 }
 /* 인스타 */
-.sns a[class*=ins]:hover{
+.sns a[class*="ins"]:hover {
   color: rgb(238, 144, 196);
 }
 
