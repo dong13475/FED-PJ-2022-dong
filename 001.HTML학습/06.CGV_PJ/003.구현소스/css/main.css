@@ -242,6 +242,8 @@ body {
 .anibx>span {
   /* 커튼 대문 역할 */
   position: absolute;
+  /* 변경속성 top 초기값 셋팅!(애니위해서) */
+  top: 0;
   z-index: 1;
   display: block;
   width: 144px;
@@ -261,14 +263,14 @@ body {
   /* 애니메이션 : 이시이지반방마 */
   animation: anibxAni 2.5s cubic-bezier(0.68, -0.55, 0.71, 0.99) infinite;
   /* 트랜지션 : 속시이지 */
-  transition: transform .4s ease-in-out;
-  /* 트랜스폼 중심축 변경 */
-  transform-origin: top;
+  transition: top .4s ease-in-out .2s;
 }
-/* 오버시 타이틀 들취지기 */
+/* 오버시 + 클래스 "on"적용시 타이틀애니박스 보이기 */
+.anibx.on>span,
 .anibx:hover>span{
-  transform: rotateX(80deg);
-  outline: 1px solid aqua;
+  top: -100%;
+  /* top은 기본값이 auto이므로
+  애니메이션 하려면 top:0 으로 초기값 필요! */
   font-size: 0;
 }
 /* 타이틀 애니 키프레임 */
@@ -647,3 +649,43 @@ body {
   따옴표를 쓰지 않아도 된다!
   (띄어쓰기, 특수문자 등 있다면 따옴표사용)
 ***********************************************/
+
+/* 구글맵박스 */
+.gmap{
+  position: fixed;
+  top: -50%;
+  /* 처음에 top값으로 위쪽에 숨김! */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 정중앙이동 */
+
+  width: 600px;
+  height: 450px;
+  background-color: lightcoral;
+  border: 20px solid hotpink;
+  border-radius: 10px;
+
+  z-index: 999;
+  /* 트랜지션: 속시이지 */
+  transition: top .8s cubic-bezier(0.54, -0.72, 0.27, 1.55);
+}
+/* 구글맵에 클래스 "on"적용시 등장하기 */
+.gmap.on{
+  top: 50%;
+}
+/* 닫기버튼 */
+.cbtn{
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+/* 기본 포커스 아웃라인 제거 */
+.cbtn:focus{
+  outline: none;
+}

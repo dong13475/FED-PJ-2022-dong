@@ -35,6 +35,39 @@ window.addEventListener("DOMContentLoaded", ()=>{
     }; ///// click이벤트 함수 /////
     
   } ///// for of 문 /////
-  
+
+  /*********************************************** 
+    [ 극장가는 길 구글맵보기 기능 ]
+    - 극장가는길 박스 클릭시 구글맵 등장
+    - 구글맵박스의 닫기버튼 클릭시 구글맵 퇴장
+    -> 방법: CSS셋팅된 클래스 "on"넣기/빼기
+  ***********************************************/
+  // 1. 대상선정
+  // 1-1. 이벤트 대상 : .anibx -> 애니메이션 버튼박스
+  const anibx = qs(".anibx");
+  // 1-2. 이벤트 대상 : .cbtn -> 닫기버튼 
+  const cbtn = qs(".cbtn");
+
+  // 1-3. 변경대상 : .gmap -> 구글맵박스
+  const gmap = qs(".gmap");
+  // console.log(anibx,gmap);
+
+  // 2. 맵버튼에 클릭이벤트 설정하기
+  // -> 클릭시 구글맵박스에 클래스 넣기
+  // -> 추가 : 애니박스에 클래스 넣기(열려있는상태유지)
+  anibx.onclick = () => {
+    gmap.classList.add("on");
+    anibx.classList.add("on");
+  };
+  ///// click 함수 /////
+
+  // 3. 닫기버튼에 클릭이벤트 설정하기
+  // -> 클릭시 구글맵박스에 클래스 빼기
+  // -> 추가 : 애니박스에 클래스뺴기(닫힌상태)
+  cbtn.onclick = () => {
+    gmap.classList.remove("on");
+    anibx.classList.remove("on");
+  };
+  ///// click 함수 /////
   
 }); ////////// 로드구역 //////////
