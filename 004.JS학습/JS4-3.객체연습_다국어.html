@@ -176,6 +176,7 @@
           // 요소.on이벤트명 = function(전달변수){}
           // 여기서 전달변수가 event에서 전달하는 변수임
           // 변수명을 보통 e / evt 로 많이 씀!
+          console.log(opt);
           
           
           // 2. 다국어 언어코드에 따른 객체값 셋팅하기
@@ -189,7 +190,9 @@
           menu.forEach((ele,idx)=>{ 
             // ele - 각 메뉴a요소 / idx 요소순번
             ele.innerText = data["메뉴"][idx];
-
+            
+          }); ///// forEach /////
+          
             // 4. 메인 이미지 변경하기
             // 대상: mimg변수
             // src속성값 변경하기
@@ -205,7 +208,6 @@
             info.innerText = data["주소"];
             // 객체 데이터 중 "주소"속성의 값을 넣는다!
             
-          }); ///// forEach /////
 
         }; ///// change /////
 
