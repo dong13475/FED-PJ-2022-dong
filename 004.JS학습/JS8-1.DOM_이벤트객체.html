@@ -65,13 +65,31 @@
             e.currentTarget.style.backgroundColor = "yellow";
             // e.target.style.backgroundColor = "yellow";
 
-            // 이벤트 버블링 막기
-            // event.stopPropagation();
+            // 이벤트 버블링만 막기
+            event.stopPropagation();
+
+            // 이벤트 버블링과 같은 이벤트에 기능 설정된 것까지 
+            // 모두 막기 -> stopImmediatePropagation()
+            // event.stopImmediatePropagation();
+            // 이것이 설정된 함수의 기능은 실행되지만
+            // 다른곳에 설정된 동일 이벤트기능은 실행을 막아준다!
 
             // 이벤트 속성값 찍기
             showLog("엄마집");
-            
           }; ///// click /////
+
+          /////////////////////////////////////////
+          /// 엄마집 추가 기능 동일이벤트 등록하기 ///
+          /////////////////////////////////////////
+          // -> 이벤트 리스너 사용해야 동일요소, 동일이벤트 등록가능!
+          
+          qs("p").addEventListener("click",(e) => {
+            // currentTarget 이벤트를 받고 있는 요소자신
+            e.currentTarget.style.border = "10px dotted red";
+
+            // 이벤트 속성값 찍기
+            showLog("엄마집");
+          }); ///// click /////
 
           // 내방 //
           // -> 함수화 한다
@@ -85,6 +103,7 @@
             // 배경색 변경이 target으로 되어 있다면
             // 그것이 최종 변경색으로 반영된다!
             // 왜? target은 이벤트가 발생한 요소이므로!!!
+            
 
             // a요소 기본 이동기능 막기!
             event.preventDefault();
@@ -105,6 +124,9 @@
             // 2. 방법2 : 이벤트 리스너로 등록한 경우!
             // -> removeEventListener() 메서드로 삭제한다!
             qs("a").removeEventListener("click",sonFn);
+
+            // 기존의 a요소 디자인 초기화하기
+            qs("a").setAttribute("style","");
             
           }; ///// click /////
           

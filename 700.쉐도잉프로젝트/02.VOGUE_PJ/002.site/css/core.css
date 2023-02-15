@@ -32,7 +32,7 @@ font-family: 'Roboto Condensed', sans-serif;
 
 /* 공사중 표시 */
 body * {
-    /* outline: 1px dashed gray; */
+    outline: 1px dashed gray;
 }
 
 /************* 2. 공통 class *************/
@@ -83,6 +83,31 @@ body * {
     background-size: cover;
 }
 
+/* 컨텐츠박스 */
+.cbx{
+    position: relative;
+    /* 부모자격 */
+}
+/* 3. 컨텐츠 타이틀 박스(h2) */
+.cbx h2{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+
+    /* 글자설정 - 영문체, 한글체 */
+    font-family: pist, nbg;
+    font-size: 33px;
+    font-weight: normal;
+    text-align: center;
+    color: #fff;
+}
+
+
+
+
+
 /* 글자 숨김 클래스(IR배경이미지 설명 등  숨기기) */
 .ir {
     display: block;
@@ -90,4 +115,5 @@ body * {
     height: 0;
     overflow: hidden;
 }
+
 
