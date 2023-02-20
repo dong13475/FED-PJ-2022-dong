@@ -68,11 +68,13 @@
 @media screen and (max-width: 800px) {
   /* 메인 타이틀 */
   .tit {
-    font-size: 8vw;
+    font-size: min(40px,8.7vw);
   }
   /* 선택메뉴 ul */
   .mlist ul {
     flex-wrap: wrap;
+    /* 사이간격 : 위아래,양쪽 */
+    gap: 1vh 2.2%;
   }
   /* 선택메뉴 상위li */
   .mlist ul > li {
@@ -81,6 +83,9 @@
     -> flex-basis는 width와 같지만
     flex 통합설정에서는 flex-basis로 
     재정의 된다! */
+  }
+  .mlist ul>li+li{
+    margin-left: 0;
   }
   /* 속박스 */
   .cont {
