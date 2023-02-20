@@ -92,7 +92,8 @@ function loadFn() {
   abtn.forEach((ele, idx) => {
     ele.onclick = () => {
       goSlide(idx);
+      // console.log(idx);
     }; ///// click 함수 /////
   }); ///// forEach //////
 } //////////// loadFn 함수 //////////////
-/////////////////////////////////////////
+////////////////////////////////////////
