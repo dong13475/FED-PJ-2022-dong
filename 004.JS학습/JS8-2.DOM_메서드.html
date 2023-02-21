@@ -253,6 +253,25 @@
         // 변경대상: 이벤트대상
         // 변경내용: 삭제 셋팅하기
         /////////////////////////////////////////////
+        // 대상선정: #div02 ul li
+        const deltg = document.querySelectorAll("#div02 ul li");
+        console.log(deltg);
+
+        // 대상에 클릭이벤트 설정하기
+        for(let x of deltg){
+          // 1. 대상 내부의 이미지요소
+          let ximg = x.querySelector("img");
+
+          // 2. 내부이미지에 title속성 변경하기
+          ximg.title = `
+          ${ximg.alt + (ximg.alt === "아이언맨"?"을":"를")} 클릭하시면 삭제됩니다!
+          `;
+          // alt값이 "아이언맨" -> 조사가 "을" 나머지는 "를"
+
+          // 3. 기존 li에 클릭시 지우기 셋팅
+          x.onclick = () => x.remove();
+
+        } ////// for of /////////
 
         ///// 맨앞요소를 맨뒤로 이동하기 ////////////////////
         // 이벤트 종류: click
