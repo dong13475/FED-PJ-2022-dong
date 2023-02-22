@@ -13,55 +13,62 @@
         // console.log(setit);
 
         // 화면높이값의 절반구하기
-        const hv = window.innerHeight/2;
-        // console.log("반높이",hv);
+        const hv = window.innerHeight / 2;
+        // console.log("반높이:",hv);
 
-        // 등장액션 대상 위치값 리턴함수 /////
-        const retVal = ele => ele.getBoundingClientRect().top;
-        // [ 보이는화면을 기준한 위치값리턴 : 
+        // 등장액션 대상 위치값 리턴함수/////
+        const retVal = (ele) => ele.getBoundingClientRect().top;
+        // [ 보이는화면을 기준한 위치값리턴 :
         // getBoundingClientRect() ]
-        // top속성은 Y축위치값을 나타냄
+        // top속성값은 Y축위치값을 나타냄
         // 보이는 화면 상단에 닿을 경우 0
         // 통과하여 위로 올라가면 마이너스값이다!
 
-        /////////////////////////////////
-        ///// 클래스 넣기 함수 만들기 /////
-        /////////////////////////////////
-        const showIt = x => { // x - 등장요소
-          if(retVal(x) < hv && retVal(x) > hv-10){
+        ////////////////////////////////
+        // 클래스 넣기 함수 만들기 ///////
+        ////////////////////////////////
+        const showIt = (x) => {
+          // x - 등장요소
+          if (retVal(x) < hv && retVal(x) > hv - 10) {
             console.log("작동!~~~~");
             x.classList.add("on");
-          } 
-        }; ///////// showIt ////////////
-        
+          }
+        }; //////////// showIt //////////
 
-        // 스크롤 이동시 윈동우에 세로스크롤 위치값 찍기
+        // 스크롤 이동시 윈도우에 세로스크롤 위치값 찍기
         // 대상: window
         // 이벤트: scroll
         window.addEventListener("scroll", () => {
-
           // 스크롤등장 요소 개수만큼 for문으로 돌리기
-          for(let x of setit) showIt(x);
-          
-          
-          
-          // 스크롤시 스크롤 위치값 찍기
+          for (let x of setit) showIt(x);
+
+          // 스크롤시 스크롤 위치값  찍기
           // => window.scrollY
           // let scTop = window.scrollY;
           // console.log(scTop);
 
           // 현재 첫번째 박스 위치값
           // let bxpos = retVal(setit[0]);
+          // let bxpos2 = retVal(setit[1]);
+          // let bxpos3 = retVal(setit[2]);
           // console.log(bxpos);
 
-          // if(bxpos < hv && bxpos > 0){
-          //   console.log("작동!~~~~");
-          //   setit[0].classList.add("on");
-          // } 
-          
-        }); ////////// scroll /////////////
-
-
+          // if(bxpos < hv && bxpos > hv-10){
+          //     // aaa=0;
+          //     console.log("작동!~~~~");
+          //     setit[0].classList.add("on");
+          // }
+          // if(bxpos2 < hv && bxpos2 > hv-10){
+          //     // aaa=0;
+          //     console.log("작동!~~~~");
+          //     setit[1].classList.add("on");
+          // }
+          // if(bxpos3 < hv && bxpos3 > hv-10){
+          //     // aaa=0;
+          //     console.log("작동!~~~~");
+          //     setit[2].classList.add("on");
+          // }
+        }); /////////// scroll ////////////////
 
         // 구현내용: 글자를 박스에 넣고 하나씩 날아오면서 등장
         // 1.대상선정: .stage
@@ -131,10 +138,12 @@
         background-size: cover;
         background-position: center;
       }
+
       /* 스크롤등장박스1 */
       .sa1 {
         background-image: url(https://file.mk.co.kr/meet/neds/2016/12/image_readtop_2016_867027_14817626712716670.jpg);
       }
+
       /* 스크롤등장박스2 */
       .sa2 {
         top: 150vh;
@@ -142,18 +151,20 @@
         right: auto;
         left: 5vw;
       }
+
       /* 스크롤등장박스3 */
       .sa3 {
         top: 220vh;
         background-image: url(http://www.ccoart.com/news/photo/202301/3855_8223_1250.jpg);
       }
+
       /* 스크롤등장 초기화 클래스 */
       .setit {
         transform: translateY(20%);
         opacity: 0;
         transition: all 1.2s ease-in-out;
       }
-      /* 스크롤등장 클래스 .setit+.on */
+      /* 스크롤등장 클래스 .setit + .on */
       .setit.on {
         transform: translateY(0);
         opacity: 1;
