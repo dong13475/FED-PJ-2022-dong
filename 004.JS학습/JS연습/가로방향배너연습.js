@@ -48,6 +48,7 @@ function loadFn(){
 
   abtn.forEach((ele,idx)=>{
     ele.onclick = () => {
+      event.preventDefault();
       clearAuto();
       goSlide(idx);
     };
