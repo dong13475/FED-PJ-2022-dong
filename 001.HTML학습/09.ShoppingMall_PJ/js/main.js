@@ -145,7 +145,7 @@ function loadFn() {
 
     // 2-2. 방향별 읽어올 슬라이드 순번으로 "data-seq"값 읽어오기
     let cseq = clist[seq].getAttribute("data-seq");
-    // console.log("현재순번:",cseq);
+    console.log("현재순번:",cseq);
 
     // 2-3. 블릿초기화
     for(let x of indic) x.classList.remove("on");
@@ -158,6 +158,8 @@ function loadFn() {
   // 3. 이동버튼대상에 이벤트 설정하기
   abtn.forEach((ele, idx) => {
     ele.onclick = () => {
+      // 0. 기본이동막기
+      event.preventDefault();
       // 1. 인터발지우기함수 호출!
       clearAuto();
       // 2. 슬라이드 함수 호출!
