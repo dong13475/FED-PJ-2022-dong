@@ -39,9 +39,9 @@ window.addEventListener("DOMContentLoaded", () => {
   // 상단이동버튼 대상: .tbtn
   const tbtn = q(".tbtn");
 
-  // 화면높이값의 3분의2구하기
-  const hv = window.innerHeight / 3*2;
-  // console.log("3분의2높이:",hv);
+  // 화면높이값의 2/3구하기
+  const hv = (window.innerHeight / 3) * 2;
+  // console.log("2/3높이:",hv);
 
   ////////////////////////////////
   // 클래스 넣기 함수 만들기 ///////
