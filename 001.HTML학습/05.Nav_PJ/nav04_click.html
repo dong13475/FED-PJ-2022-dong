@@ -262,17 +262,14 @@
         // console.log(gnb);
 
         // 2. 이벤트 셋팅하기 //////////////
-
-        // 요소순번변수
-        let idx = 0;
         
-        for(let x of gnb){ // x는 li요소
+        // forEach((요소,순번)=>{코드});
+        gnb.forEach((x,idx)=>{ // x는 li요소 / idx는 요소순번
           x.onclick = () => {
             // (00) 초기화함수 호출 : initMenu()
             // idx(순번)을 보내는 이유?
             // 자신의 순번을 빼고 초기화하기 위하여~!!!
             initMenu(idx);
-            idx++; // 순번1씩 증가
 
             // (0) 하위 .smenu
             let tg = x.querySelector(".smenu");
@@ -281,10 +278,10 @@
             let hv = tg.querySelector("ol").clientHeight;
 
             // clientHeight -> 패딩을 포함한 요소의 높이값
-            console.log("ol높이값:",hv);
+            // console.log("ol높이값:",hv);
 
             // hv값 전환하기
-            console.log("타겟높이값:",tg.clientHeight);
+            // console.log("타겟높이값:",tg.clientHeight);
 
             // (2) 타겟의 높이값이 0이 아니면 0으로 hv값 변경
             // if문 
@@ -306,9 +303,10 @@
             // (4) 상위메뉴에 오버시와 같은 디자인적용: 
             // 클래스 on넣기/뻬기
             x.classList.toggle("on");
-
+            
           }; //////// click /////////
-        } ////////// for of /////////
+
+        }); ////////// forEach /////////
 
         // .smenu 클릭시 상위 li로 이벤트 버블링 막기!
         // 버블링을 막지않으면 ol밑에 li클릭시에도 smenu가 닫힌다
@@ -331,23 +329,88 @@
         /********************************** 
           메뉴 초기화 함수 : 처음상태로 돌림
         **********************************/
-        function initMenu (idx){ // idx는 호출한 순번
+       // 참고: function initMenu (seq=1000){}
+       // 파라미터 변수에 어떤값을 할당해 놓으면
+       // 함수호출시 아무값도 입력하지 않을때 이값을
+       // 넣고 함수 내부로 들어간다!
+        function initMenu (seq=1000){ // seq는 호출한 순번
           // 호출확인
-          console.log("왕빛나!",idx);
+          console.log("왕빛나!",seq);
 
           // 1. 모든 서브메뉴 높이값 0만들기
           // 대상: .smenu -> smenu변수
-          smenu.forEach((ele)=>{
+          smenu.forEach((ele,idx)=>{
+            // 호출한 순번과 같으면 넘어가!
+            if(idx===seq) return;
+            console.log("smenu순번:",idx);
+
+            // 높이값 0만들기
             ele.style.height = 0;
           }); ///// forEach /////
           
           // 2. 서브메뉴있는 li의 클래스 "on"지우기
           // 대상: .gnb>ul>li:has(.smenu) -> gnb변수
-          gnb.forEach((ele)=>{
+          gnb.forEach((ele,idx)=>{
+            // 호출한 순번과 같으면 넘어가!
+            if(idx===seq) return;
+            console.log("li순번:",idx);
+
+            // 클래스 on 빼기
             ele.classList.remove("on");
           }); //// forEach ////
+
+          /****************************************** 
+            [ forEach메서드에서 중간뛰어넘기 ]
+            for문과 같은 제어문이 아니므로 
+            continue 키워드는 사용할 수 없다!
+            그런데 함수구역이므로 return키워드를 
+            사용하면 해당 순번을 빠져나가서 
+            제외되고 나머지 순번순회는 계속된다
+          ******************************************/
           
         } //////// initMenu함수 //////////
+
+        // gnb 요소
+        const gnbBx = document.querySelector(".gnb");
+
+        // 타임아웃변수
+        let autoTgnb;
+        
+        /// gnb 마우스 아웃시 자동초기화 ///
+        gnbBx.addEventListener("mouseleave",()=>{
+            console.log("아웃~!!");
+            autoTgnb = setTimeout(()=>{
+            initMenu();
+            // 보내는값 없이 호출시 모두 초기화한다!
+          },500);
+        }); ///////// mouseleave /////////////
+
+        /// gnb 마우스 오버시 타임아웃 지우기!(실행쓰나미 방지!) ///
+        gnbBx.addEventListener("mouseenter",()=>{
+            console.log("오버~!!");
+            // 타임아웃 지우기
+            clearTimeout(autoTgnb);
+        }); ///////// mouseleave /////////////
+
+        /***************************************** 
+          {mouseover / mouseout} 
+                      VS 
+                {mouseenter / mouseleave}
+
+            -> mouseover, mouseout은 하위 요소에 
+            발생한 같은 이벤트가 버블링된다!
+            반면,
+            -> mouseenter, mouseleave는 하위 요소에
+            발생한 같은 이벤트가 버블링되지 않는다!
+
+            왜?
+            이벤트가 요소의 경계선을 기준한 것이므로
+            하위 요소의 경계선과 불일치 하므로
+            이벤트 버블링이 겹쳐지지 않는것이다!
+
+            -> 주의사항: 이벤트 버블링이 필요한경우는
+            반드시 mouseover/mouseout을 사용하자!
+        *****************************************/
         
       }); //////// 로드구역 /////////
     </script>
