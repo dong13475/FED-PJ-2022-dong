@@ -132,7 +132,7 @@
             let obj2 = retVal(setit[1]);
             // 세번째 포스터요소 위치
             let obj3 = retVal(setit[2]);
-            // console.log(obj1,"/",obj2,"/",obj3);
+            console.log(obj1,"/",obj2,"/",obj3);
 
             // 1. 첫번째 포스터구간일때
             if((obj1 < winH/2 && obj1 > 0) || 
@@ -167,7 +167,7 @@
             
             // 떨어지는 여자 top위치값 계산하기 : wtop
             let wtop = winH * scTop / scLimit;
-            console.log("w위치",wtop);
+            // console.log("w위치",wtop);
 
             // 떨어지는 여자의 top값에 적용하기
             woman.style.top = wtop + "px";
