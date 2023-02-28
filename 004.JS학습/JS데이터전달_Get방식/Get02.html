@@ -87,8 +87,28 @@
       //////// 로드구역 ////////////////////////
       // DOMContentLoaded는 html만 모두 그려지면 발생하는 이벤트!
       window.addEventListener("DOMContentLoaded", function () {
+
         // 로딩구역 확인
         console.log("로딩완료!!!");
+
+        // 샵명에 따라 페이지의 데이터 셋팅하기 //
+        // 1. 대상선정: 
+        // (1) 타이틀박스 : #title
+        const tit = document.querySelector("#title");
+        // (2) 메인박스 : #main
+        const main = document.querySelector("#main");
+
+        // 2. 데이터 적용하기
+        // (1) 타이틀넣기
+        tit.innerText = pm;
+        // (2) 타이틀박스 배경색 넣기
+        tit.style.backgroundColor = sdata[pm]["배경색"];
+        // (3) 메인박스 배경이미지 넣기
+        main.style.backgroundImage = `url(images/${sdata[pm]["이미지"]})`;
+        
+        
+        
+        
       }); /////////// 로드구역 //////////////////////////////////
       /////////////////////////////////////////////////////////
     </script>
