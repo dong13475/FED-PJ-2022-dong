@@ -28,6 +28,7 @@ function loadFn() {
     // console.log(mdata);
 
     for(let tm in mdata){ // tm은 mdata의 속성명
+      // console.log("첫번째:",tm);
       hcode +=
       `
       <li>
@@ -45,6 +46,7 @@ function loadFn() {
             // -> mdata[tm] - mdata[속성명] -> 속성값!
             // -> 속성값은 서브메뉴이고 객체로 구성됨!
             for(let sm in mdata[tm]){ // sm - 속성명(하위메뉴)
+              // console.log("두번째:",sm);
               hcode += `<dl>
                 <dt>
                   <a href="#">${sm}</a>
@@ -53,6 +55,7 @@ function loadFn() {
               // [3]. 서브메뉴 (최하위메뉴) 반복코드
               // -> 서브메뉴는 배열이므로 for of 사용!
               for(let sub of mdata[tm][sm]){
+                // console.log("세번째:",sub);
                 hcode += 
                 `<dd>
                   <a href="#">${sub}</a>
