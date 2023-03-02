@@ -1,7 +1,7 @@
 ///// 각 서브별 데이터 셋팅하기 /////
 // sinfo -> sub page information(서브페이지정보)
 const sinfo = {
-  "fashion": {
+"fashion": {
     "제목": "Fashion",
     "메뉴": ["전체", "트렌드", "아이템", "피플", "화보"],
     "경로": "fashion",
