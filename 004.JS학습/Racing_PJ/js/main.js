@@ -75,6 +75,13 @@ window.addEventListener("DOMContentLoaded", () => {
         // 위치이동하기
         t1.style.left = (++t1pos) + "px";
 
+        // 거북버튼 클릭시 포커스가 들어가므로
+        // 엔터키보드 작동으로 클릭이 가능해진다!
+        // 이것을 방지하기위해서 매번 포커스를 빼기!
+        ele.blur();
+        // blur() 메서드 - 포커스가 사라짐
+        // focus() 메서드 - 포커스가 들어감
+
         // 토끼자동이동함수 호출
         goR1();
         
@@ -146,13 +153,42 @@ window.addEventListener("DOMContentLoaded", () => {
       // (2) 거북아 멈춰라! -> 거북멈춤상태값 1로 변경!
       t1Stop = 1;
 
+      // 메시지 랜덤을 위한 랜덤수 만들기
+      // 0~2 사이의 랜덤수
+      // 1~3 을 먼저 만든후 -> Math.random()*3
+      // 내림을 하면 0~2됨! -> Math.floor(Math.random()*3)
+
+      let rnum = Math.floor(Math.random()*3);
+
+      cg("랜덤수:"+rnum);
+
       // (3) 승자판별 후 메시지 보여주기
-      if(r1pos > t1pos) msg.innerText = "토끼승!";
-      else if(r1pos < t1pos) msg.innerText = "거북승!";
-      else msg.innerText = "비김! 재승부!";
+      if(r1pos > t1pos) 
+        msg.innerText = msgtxt["토끼"][rnum];
+      else if(r1pos < t1pos) 
+        msg.innerText = msgtxt["거북"][rnum];
+      else 
+        msg.innerText = "비김! 재승부!";
 
       // (4) 메시지 박스 보이기
       msg.style.display = "block";
+      msg.style.zIndex = 101;
+
+      // (5) 전체 반투명 암전주기
+      qs(".cover").innerHTML += 
+      "<div style='position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#000;opacity:0.5;z-index:100'></div>";
+      // 주의사항: body하위에 새로운 요소를
+      // 추가하면 전체 body 직계하위에 있는
+      // 요소들에 셋팅된 이벤트가 소실된다!
+      // 왜? DOM이 재구조화 되기 떄문이다!
+      // 처음부터 편성된 박스에 넣어주면 
+      // 이런 문제가 해결된다!
+      // 여기서도 .cover요소 안에 새로운 요소를
+      // 넣어준 이유가 그렇다!
+      // ("처음으로" 버튼 기능소실때문)
+
+      //  (6) 버튼 위로 올리기
+      qs("#btns").style.zIndex = 200;
       
       
     } ////////////// if ///////////////
