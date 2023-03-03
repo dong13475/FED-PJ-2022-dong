@@ -55,6 +55,7 @@
         display: block;
         padding: 23px 35px;
         transition: color .2s;
+        white-space: nowrap;
       }
       /* 마우스 오버시 글자색변경 */
       .gnb a:hover{
@@ -98,7 +99,7 @@
         margin: 0;
         padding: 0;
         list-style: none;
-        transition: 0.4s ease-out;
+        transition: 0.8s ease-out;
       }
       .slidePg ul li {
         flex: 1;
@@ -120,25 +121,99 @@
         // 1. 대상선정: 
         // (1) 타겟박스 : .tpg 
         const tpg = document.querySelector(".tpg");
-        // (2) 가로이동박스 : .slidePg
+        // (2) sticky박스 : .slidePg
         const spg = document.querySelector(".slidePg");
-        // console.log(tpg,spg);
 
-        // html 코드변수
-        let hcode = "<ul>";
+        // 리스트 넣기 함수 호출!
+        makeList();
+        
+        // (3) 가로이동박스 : .slidePg ul
+        const mvbx = spg.querySelector("ul");
 
-        // 2. 가로이동박스에 디자인 요소 넣기
-        for(let x=1; x<8; x++){
-          hcode += `
-            <li>
-              <img src="images/dance/${x}.jpg" alt="댄스">  
-            </li>
-          `;
-        } ////// for ////////////
-        hcode += "</ul>";
+        // console.log(tpg,spg,mvbx);
 
-        // 가로이동박스에 코드넣기
-        spg.innerHTML = hcode;
+        /************************** 
+          스크롤시 스티키구간에서 
+          가로방향 이동 구현하기
+        **************************/
+        // 대상: mvbx
+        // 이벤트 : scroll
+
+        ///// 스크롤 이벤트 설정 /////////////
+        window.addEventListener("scroll",movePage); 
+
+        /************************************** 
+          함수명: retVal (return Value)
+          기능: getBoundingClientRect()값 리턴
+        **************************************/
+        const retVal = x => x.getBoundingClientRect().top;
+        /* 
+        [ 보이는화면을 기준한 위치값리턴 :
+          getBoundingClientRect() ]
+          top속성값은 Y축위치값을 나타냄
+          보이는 화면 상단에 닿을 경우 0
+          통과하여 위로 올라가면 마이너스값이다!
+          [ 메서드명 구성 ]
+          get 가져와
+          Bounding 한계에서
+          clientRect 사용자브러우저 화면으로 부터
+          (Rect는 Rectangle 줄임말)
+        */
+        
+        /******************************* 
+          함수명: movePage
+          기능: 가로방향이동하기
+        *******************************/
+        function movePage(){
+
+          // 스크롤 위치값 확인
+          // console.log(window.scrollY);
+
+          // 1. 타겟박스의 바운딩위치값 찍기
+          // 타겟박스 -> 스티키박스의 부모박스(멈추는 구간)
+          let tgpos = retVal(tpg);
+          console.log("바운딩값:",tgpos);
+
+          // 2. 가로이동박스(mvbx)의 left값 변경하기
+          // 타겟박스의 바운딩값을 left값으로 넣어준다!
+          // 이유: 바운딩수치 === left값수치 === -3000px
+          // -> 최대이동값이 마이너스로 한계값이 일치함
+          // 대상: mvbx
+          // 적용구간설정: 0 이하 -3000px 이상
+          if(tgpos <= 0 && tgpos >= -3000)
+            mvbx.style.left = tgpos + "px";
+          else if(tgpos > 0)
+            mvbx.style.left = 0;
+          
+          
+        } /////////// movePage 함수 ///////////
+
+
+
+
+        /*********************** 
+          함수명 : makeList
+          기능 : 리스트 넣기
+        ***********************/
+        function makeList(){
+          // html 코드변수
+          let hcode = "<ul>";
+  
+          // 2. 가로이동박스에 디자인 요소 넣기
+          for(let x=1; x<8; x++){
+            hcode += `
+              <li>
+                <img src="images/dance/${x}.jpg" alt="댄스">  
+              </li>
+            `;
+          } ////// for ////////////
+          hcode += "</ul>";
+  
+          // 가로이동박스에 코드넣기
+          spg.innerHTML = hcode;
+
+        } ////////// makeList 함수 ////////////
+        
 
 
 
@@ -166,7 +241,7 @@
             // relative를 가진 요소를 기준한 offset정보임!
 
             // 확인
-            console.log("left:",eLeft,"\nwidth:",eWidth);
+            // console.log("left:",eLeft,"\nwidth:",eWidth);
 
             // 2. 움직이는 배경박스 변경하기
             mbg.style.left = eLeft + "px";
