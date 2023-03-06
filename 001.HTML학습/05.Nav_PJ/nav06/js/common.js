@@ -25,55 +25,57 @@ function loadFn() {
   hcode += `<ul>`;
   // [1]. 상위메뉴 반복코드 생성
   // mdata객체를 가져와서 반복시킨다 -> for in문!
-    // console.log(mdata);
+  // console.log(mdata);
 
-    for(let tm in mdata){ // tm은 mdata의 속성명
-      // console.log("첫번째:",tm);
-      hcode +=
-      `
+  for (let tm in mdata) {
+    // tm은 mdata의 속성명
+    // console.log("첫번째:",tm);
+    hcode += `
       <li>
         <a href="#">${tm}</a>
         <div class="smenu">
-          <h2>
-            <div class="stit">${tm}</div>
-            <a href="#">전체보기 ＞</a>
-          </h2>
-          <div class="swrap">
-            `;
-            
-            // [2]. 하위메뉴 반복코드
-            // -> 객체데이터 이므로 for in 사용!
-            // -> mdata[tm] - mdata[속성명] -> 속성값!
-            // -> 속성값은 서브메뉴이고 객체로 구성됨!
-            for(let sm in mdata[tm]){ // sm - 속성명(하위메뉴)
-              // console.log("두번째:",sm);
-              hcode += `<dl>
+          <!-- 하위메뉴 구조랩핑박스 .smbx -->
+          <aside class="smbx">
+            <h2>
+              <div class="stit">${tm}</div>
+              <a href="#">전체보기 ＞</a>
+            </h2>
+            <div class="swrap">
+              `;
+
+    // [2]. 하위메뉴 반복코드
+    // -> 객체데이터 이므로 for in 사용!
+    // -> mdata[tm] - mdata[속성명] -> 속성값!
+    // -> 속성값은 서브메뉴이고 객체로 구성됨!
+    for (let sm in mdata[tm]) {
+      // sm - 속성명(하위메뉴)
+      // console.log("두번째:",sm);
+      hcode += `<dl>
                 <dt>
                   <a href="#">${sm}</a>
                 </dt>`;
 
-              // [3]. 서브메뉴 (최하위메뉴) 반복코드
-              // -> 서브메뉴는 배열이므로 for of 사용!
-              for(let sub of mdata[tm][sm]){
-                // console.log("세번째:",sub);
-                hcode += 
-                `<dd>
+      // [3]. 서브메뉴 (최하위메뉴) 반복코드
+      // -> 서브메뉴는 배열이므로 for of 사용!
+      for (let sub of mdata[tm][sm]) {
+        // console.log("세번째:",sub);
+        hcode += `<dd>
                   <a href="#">${sub}</a>
                 </dd>`;
-              } ///////// for of ///////////
-                
-              hcode += `</dl>`;
-            } //////// for in ///////////
-            
-            hcode += `
-          </div>
+      } ///////// for of ///////////
+
+      hcode += `</dl>`;
+    } //////// for in ///////////
+
+    hcode += `
+            </div>
+          </aside>
         </div>
       </li>
       `;
-    } ////////// for in ///////////
-    hcode += "</ul>";
+  } ////////// for in ///////////
+  hcode += "</ul>";
 
-    // 4. GNB 박스에 출력하기
-    gnb.innerHTML = hcode;
-
+  // 4. GNB 박스에 출력하기
+  gnb.innerHTML = hcode;
 } //////////// loadFn 함수 //////////////

@@ -2,84 +2,173 @@
 
 @import url(./reset.css);
 /* 웹폰트 CDN */
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR&display=swap");
 /* font-family: 'Noto Sans KR', sans-serif; */
 
 /* 네비게이션 유형6 : 공통CSS - common.css */
 
 /* 공사중 */
 body * {
-  outline: 1px dashed red;
+  /* outline: 1px dashed red; */
 }
 
 /* 중앙속박스 */
-.ibx{
+.ibx {
   max-width: 1920px;
   margin: 0 auto;
 }
 
 /* 1. 상단영역 */
-#top{
-  font-family: 'Noto Sans KR', sans-serif;
+#top {
+  font-family: "Noto Sans KR", sans-serif;
   background-color: #222;
 }
-.top{
+.top {
   min-height: 350px;
 }
 /* 1-1. 탑메뉴영역 */
-.tmenu{
+.tmenu {
   height: 80px;
+  overflow: hidden;
 }
+/* 로고 */
+#logo{
+  display: block;
+  width: 125px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
 /* 1-2. GNB영역 */
-.gnb{
+.gnb {
+  position: relative;
+  /* 부모자격 - .smenu */
   max-width: 1300px;
   margin: 0 auto;
+  /* 줄바꿈방지 */
+  white-space: nowrap;
 }
-.gnb>ul{
+.gnb > ul {
   display: flex;
   gap: 0 40px;
 }
-.gnb>ul>li>a{
+.gnb > ul > li > a {
+  line-height: 60px;
   color: #ccc;
 }
 
 /* 하위메뉴 */
-.smenu{
-  display: flex;
+.smenu {
   position: absolute;
+  left: 0;
+  /* 부모요소인 .gnb기준 왼쪽 0 으로 붙는다! */
   background-color: #fff;
   width: 1300px;
-  display: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.211);
+
+  /* 숨기기장치 :overflow,height,opacity(효과) */
+  overflow: hidden;
+  /* 넘치는 자식요소 숨기기 */
+  height: 0;
+  /* 높이값 : 0 -> 각각의 서브높이만큼 오버시 변경! */
+  opacity: 0;
+  /* 투명도 : 0 -> 오버시 1로 보이게함 */
+
+  /* 트랜지션: 속시이지 */
+  transition: .4s ease-in-out;
 }
-/* 임시 첫번째메뉴만 보임 */
-.gnb>ul>li:first-child .smenu{
+/* 하위메뉴 구조랩핑박스 .smbx */
+.smbx{
+  /* h2,div의 플렉스 박스 */
   display: flex;
 }
 
+/* 임시 첫번째메뉴만 보임 */
+/* 대상이 display:none; 처리되있을때
+다시 보이게 하고싶으면 원래 display속성대로 
+해줘야한다 예) flex면 flex로 block이면 block으로! */
+/* .gnb > ul > li:nth-child(9) .smenu {
+  display: block;
+} */
+
 /* 서브메뉴 타이틀 */
-.smenu h2{
+.smenu h2 {
   width: 166px;
   padding: 20px;
   font-weight: normal;
+  border-right: 1px solid #e3e3e3;
 }
 /* 타이틀 */
-.smenu h2 div{
+.smenu h2 div {
   font-size: 25px;
   margin-bottom: 15px;
 }
 /* 전체보기 */
-.smenu h2 a{
-  font-size: 14px;
-
+.smenu h2 a {
+  font-size: 13px;
 }
 
 /* 서브메뉴(최하위) */
-.swrap{
+.swrap {
+  /* 플렉스박스 */
   display: flex;
+  /* 플렉스 줄바꿈설정 */
+  flex-wrap: wrap;
+
   width: 100%;
-  padding: 20px;
+  padding: 5px 60px;
 }
 /* 서브 각 박스 (dl) */
-.swrap dl{
+.swrap dl {
   width: 200px;
+}
+
+/* 하위메뉴 dt */
+.swrap dt{
+  position: relative;
+  /* 가로크기 일정함! */
+  width: 120px;
+  font-size: 16px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  /* 하단보더 */
+  border-bottom: 1px solid #e3e3e3;
+}
+/* dt,dd 하단선 */
+.swrap dt::after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  transform: translateY(6px);
+  background-color: #555;
+  transition: width .2s;
+}
+.swrap dd a{
+  /* a요소 글자있는 부분까지만 선이 생기게함! */
+  display: inline-block;
+  color: #777;
+}
+.swrap dd a::after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  transform: translateY(-10px);
+  background-color: #555;
+  transition: width .2s;
+}
+/* dt오버시 하단선 */
+.swrap dt:hover::after,
+.swrap dd a:hover::after{
+  width: 100%;
+}
+/* 서브메뉴(dd) */
+.swrap dd{
+  font-size: 13px;
+  line-height: 2.5;
+}
+/* dd a오버시 글자 */
+.swrap dd a:hover{
+  color: #000;
 }
