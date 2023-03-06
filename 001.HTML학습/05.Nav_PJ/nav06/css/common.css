@@ -20,6 +20,8 @@ body * {
 
 /* 1. 상단영역 */
 #top {
+  position: relative;
+  /* 부모자격 - .smenu */
   font-family: "Noto Sans KR", sans-serif;
   background-color: #222;
 }
@@ -41,20 +43,38 @@ body * {
 
 /* 1-2. GNB영역 */
 .gnb {
-  position: relative;
-  /* 부모자격 - .smenu */
+  /* position: relative; */
+  /* 부모자격 - .smenu -> 사용안하기로! */
   max-width: 1300px;
   margin: 0 auto;
+
   /* 줄바꿈방지 */
   white-space: nowrap;
+  /* GNB배경박스(.bgbx)보다 위 */
+  z-index: 1;
 }
 .gnb > ul {
   display: flex;
-  gap: 0 40px;
+  /* gap: 0 40px; */
 }
+/* 상위메뉴 a요소 */
 .gnb > ul > li > a {
+  /* a요소 확장! */
+  display: block;
+  padding: 0 20px;
+
+  /* 100%안하면 디자인을 안먹는다 */
   line-height: 60px;
   color: #ccc;
+}
+/* 상위메뉴 li에 호버시 */
+.gnb > ul > li:hover > a{
+  background-image: linear-gradient(to right, red, yellow);
+  /* 그라데이션 배경색을 글자영역에만 보이게 하기
+  -webkit-접두어를 사용한다!
+  이는 아직 공식속성에 포함되지 않음! */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* 하위메뉴 */
@@ -62,10 +82,14 @@ body * {
   position: absolute;
   left: 0;
   /* 부모요소인 .gnb기준 왼쪽 0 으로 붙는다! */
-  background-color: #fff;
-  width: 1300px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.211);
+  /* background-color: #fff; */
+  width: 100%;
+  /* 부모는? #top
+  -> 최상위 부모박스에 부모자격줌! */
 
+  background-color: #fff;
+  /* 박스그림자 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.211);
   /* 숨기기장치 :overflow,height,opacity(효과) */
   overflow: hidden;
   /* 넘치는 자식요소 숨기기 */
@@ -81,6 +105,10 @@ body * {
 .smbx{
   /* h2,div의 플렉스 박스 */
   display: flex;
+  /* 화면에 꽉차는 .smenu 박스안에서
+  1300px 중앙정렬로 셋팅한다! */
+  width: 1300px;
+  margin: 0 auto;
 }
 
 /* 임시 첫번째메뉴만 보임 */
@@ -171,4 +199,20 @@ body * {
 /* dd a오버시 글자 */
 .swrap dd a:hover{
   color: #000;
+}
+
+/* 서브메뉴 배경박스 */
+.bgbx{
+  position: absolute;
+  top: 140px;
+  width: 100%;
+
+  /* 변경요소 : height, opacity */
+  height: 0;
+  opacity: 0;
+  
+  
+
+  /* 트랜지션 -> .smenu와 동일 */
+  transition: .4s ease-in-out;
 }

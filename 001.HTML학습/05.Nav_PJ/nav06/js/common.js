@@ -78,4 +78,70 @@ function loadFn() {
 
   // 4. GNB 박스에 출력하기
   gnb.innerHTML = hcode;
+
+  /****************************************** 
+    GNB 메뉴 오버시 서브메뉴 보이기
+    _____________________________
+
+    [기능정의]
+    상위메뉴 li에 오버시 하위메뉴 .smenu
+    박스의 내부 데이터만큼 height값이 생기며
+    opacity 투명도가 1로 변경되는 트랜지션수행 
+    아웃시 원상복귀함!
+  ******************************************/
+
+  // 1. 대상선정
+  // 이벤트 대상 : .gnb>ul>li 
+  const list = document.querySelectorAll(".gnb>ul>li");
+  // 이벤트 종류 : mouseenter / mouseleave
+  // 변경 대상1 : .smenu
+  // 변경 내용1 : height값, opacity값
+
+  // console.log(bgbx);
+
+  // 2. 하위메뉴 + 메뉴변경 style변경함수 만들기
+  // ele - 변경요소, hv - 높이값, opa - 투명도값
+  const stFn = (ele,hv,opa) => {
+    ele.style.height = hv + "px";
+    ele.style.opacity = opa;
+  }; ///// stFn ////////
+
+  // 3. 상위메뉴 li에 이벤트 설정하기
+  for(let x of list){
+    ////// (1) 마우스 오버시 //////////
+    x.onmouseenter = () => {
+      // (1) 하위메뉴 박스 .smenu 선택하기
+      let tg = x.querySelector(".smenu");
+
+      // (2) 하위메뉴 박스 내부박스 높이값 구하기
+      let hv = tg.querySelector(".smbx").clientHeight;
+      // console.log("내부높이:",hv);
+
+      /* 
+      하위메뉴 style변경하기
+      tg.style.height = hv+"px";
+      tg.style.opacity = 1; 
+      */
+      
+      // (3) 스타일 변경요소 함수호출
+      // stFn(요소,높이값,투명도)
+      stFn(tg,hv,1);
+      // stFn(bgbx,hv,1);
+      
+    }; ///////// onmouseenter ///////////
+
+    ////// (2) 마우스 아웃시 //////////
+    x.onmouseleave = () => {
+      // (1) 하위메뉴 박스 .smenu 선택하기
+      let tg = x.querySelector(".smenu");
+
+      // (3) 스타일 변경요소 함수호출
+      // stFn(요소,높이값,투명도)
+      stFn(tg,"0",0);
+      // stFn(bgbx,"0",0);
+      
+    }; ///////// onmouseleave ///////////
+  } ///////// for of ///////////
+
+
 } //////////// loadFn 함수 //////////////
