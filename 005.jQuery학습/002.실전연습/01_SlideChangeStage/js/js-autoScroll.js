@@ -187,7 +187,11 @@ indic.forEach((ele,idx,obj) => {
     console.log("메뉴클릭 페이지번호",pgnum);
 
     // 4. 업데이트 페이지호출 -> 페이지이동, 메뉴변경
-    updatePg(obj);
+    // 개별객체를 업데이트 할때는 obj가 필요했으나
+    // GNB메뉴와 인디케이터가 모두 업데이트 돼야하므로
+    // 개별 obj가 필요없게됨!
+    updatePg(gnb);
+    updatePg(indic);
     
   } /////////// movePg 함수 //////////////
   
@@ -199,7 +203,7 @@ indic.forEach((ele,idx,obj) => {
   function updatePg(obj){ // obj - 변경할 메뉴전체 객체
 
     // 1. 함수호촐확인
-    console.log("업데이트!");
+    // console.log("업데이트!");
 
     // 2. 페이지 이동하기
     // scrollTo(가로,세로)
@@ -211,6 +215,72 @@ indic.forEach((ele,idx,obj) => {
 
     // 4. 해당메뉴에 클래스 넣기
     obj[pgnum].parentElement.classList.add("on");
+
+    // 5. 페이지 이동후 해당 페이지 액션주기
+    // pageAction함수 호출!!!
+    setTimeout(()=>pageAction(pgnum),1000);
+    
+    
   } ////////// updatePg 함수 //////////////
+
+
+  /***************************************** 
+    함수명 : initCSS 
+    기능 : 등장할 요소들의 초기값 셋팅
+  *****************************************/
+  // 1. 대상선정: .minfo
+  const minfo = document.querySelectorAll(".minfo");
+  // console.log(minfo);
+
+  // 2. 이벤트설정
+  minfo.forEach((ele,idx)=>{initCSS(ele,idx)});
+
+  // 3. 함수만들기
+  function initCSS(ele,seq){ // ele - 요소, seq - 순번
+    // 1. 함수호출확인
+    console.log("초기화!",seq);
+
+    // 2. 해당요소 스타일속성 선택 
+    let sty = ele.style;
+
+    // 3. 각 요소별 초기화하기
+    if(seq===0){ // 1번페이지
+
+    } ///// if ////////
+    else if(seq===1){ // 2번페이지
+      // 투명하게!
+      sty.opacity = 0;
+    } ///// else if ////////
+
+  } //////// initCSS 함수 ///////////
+
+
+  /********************************** 
+    함수명 : pageAction
+    기능 : 페이지별 액션주기
+  **********************************/
+  function pageAction(seq){ // seq - 변경순번
+    // 1. 호출확인
+    console.log("액션!!!",seq);
+
+    // 2. 변경대상 스타일 속성선택
+    let sty = minfo[seq].style;
+
+    // 3. 전체초기화!
+    minfo.forEach((ele,idx)=>{initCSS(ele,idx)});
+
+    // 4. 해당 페이지 액션주기
+    if(seq===0){ // 1번페이지
+
+    } ///// if ////////
+    else if(seq===1){ // 2번페이지
+      // 투명도 복원하기!
+      sty.opacity = 1;
+      // 트랜지션주기
+      sty.transition = "1.5s ease-in";
+    } ///// else if ////////
+
+  } ////////// pageAction 함수 //////////
+  
 
 } /////////// loadFn 함수 /////////////
