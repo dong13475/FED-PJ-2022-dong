@@ -79,9 +79,13 @@ function loadFn() {
   ******************************************************/
 
   // 0. 변수 설정하기
-  // 전체 페이지변수
+  // (1) 전체 페이지변수
   let pgnum = 0; // 현재 페이지번호(첫페이지 0)
-  
+  // (2) 전체 페이지수
+  const pgcnt = document.querySelectorAll(".page").length;
+  console.log("전체페이지수:",pgcnt);
+  // (3) 광스크롤 금지변수(0-허용,1-불허용)
+  let prot_sc = 0;
 
   // 1. 전체 휠 이벤트 설정하기 /////
   window.addEventListener("wheel", wheelFn, { passive: false });
@@ -104,15 +108,19 @@ function loadFn() {
     // (3) 방향에 따른 페이지번호 증감
     // 스크롤 아랫방향 : 페이지번호 증가
     if(dir<0) {
+      // 페이지번호 1씩증가
       pgnum++;
-      if(pgnum>6) pgnum = 6;
-      
-    }
+      // 한계수 : 페이지 끝번호(페이지수-1)
+      if(pgnum>pgcnt - 1) pgnum = pgcnt - 1;
+    } ///////////// if ///////////////
+
     // 스크롤 윗방향 : 페이지번호 감소
     else {
+      // 페이지번호 1씩감소
       pgnum--;
+      // 한계수 : 페이지 첫번호 -> 0
       if(pgnum<0) pgnum = 0;
-    }
+    } ////////// else //////////////
 
     console.log("페이지번호:",pgnum);
     
