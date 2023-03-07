@@ -7,8 +7,10 @@
     <!-- 외부 JS -->
     <script src="./js/js-autoScroll.js"></script>
     <style>
-      html{
-        /* 부드러운 스크롤 적용! (스크롤애니메이션) */
+      html {
+        /* 부드러운 스크롤 적용! (스크롤애니메이션)
+        -> 스크롤이동시간, 이징가속도는 조절할 수 없다!
+        제이쿼리 코딩으로 이것을 조절할 예정임! */
         scroll-behavior: smooth;
       }
       html,
@@ -99,14 +101,15 @@
         right: 2%;
       }
       /* 메뉴플렉스박스 */
-      .gnb ul{
+      .gnb ul {
         display: flex;
       }
       .gnb li {
         margin: 0 7px;
       }
-      /* 메뉴에 마우스 오버시 */
-      .gnb a:hover {
+      /* 메뉴에 마우스 오버시 + li.on 인경우 */
+      .gnb a:hover,
+      .gnb li.on a {
         display: inline-block; /* 트랜스폼적용위해 */
         color: lime;
         text-decoration: overline; /* 윗줄 */
@@ -187,5 +190,32 @@
       <section id="pg6" class="page"></section>
       <section id="pg7" class="page"></section>
     </div>
+
+    <!-- 3. 인디케이터(위치표시자) -->
+    <nav class="indic">
+      <ul>
+        <li class="on">
+          <a href="#pg1"><span>아수라</span></a>
+        </li>
+        <li>
+          <a href="#pg2"><span>고산자</span></a>
+        </li>
+        <li>
+          <a href="#pg3"><span>인천상륙작전</span></a>
+        </li>
+        <li>
+          <a href="#pg4"><span>봉이김선달</span></a>
+        </li>
+        <li>
+          <a href="#pg5"><span>비밀은없다</span></a>
+        </li>
+        <li>
+          <a href="#pg6"><span>아가씨</span></a>
+        </li>
+        <li>
+          <a href="#pg7"><span>탐정홍길동</span></a>
+        </li>
+      </ul>
+    </nav>
   </body>
 </html>
