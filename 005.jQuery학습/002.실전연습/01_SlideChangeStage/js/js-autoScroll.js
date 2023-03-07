@@ -9,7 +9,6 @@ setTimeout(() => {
 // (1) 로딩함수 호출 ////////
 window.addEventListener("DOMContentLoaded", loadFn);
 
-
 /******************************** 
   함수명: loadFn
   기능: 페이지 로딩시 기능수행
@@ -18,31 +17,29 @@ function loadFn() {
   // 호출확인
   console.log("로딩완료!");
 
-// [ 이벤트 연결 대상선정하기 ] ///////
-// (1) GNB메뉴
-const gnb = document.querySelectorAll(".gnb a");
-// (2) 인디케이터 메뉴
-const indic = document.querySelectorAll(".indic a");
-// console.log(indic);
+  // [ 이벤트 연결 대상선정하기 ] ///////
+  // (1) GNB메뉴
+  const gnb = document.querySelectorAll(".gnb a");
+  // (2) 인디케이터 메뉴
+  const indic = document.querySelectorAll(".indic a");
+  // console.log(indic);
 
-// [ 이벤트 연결 함수등록하기 ] ///////
-// (1) GNB메뉴 이벤트연결
-gnb.forEach((ele,idx,obj) => { 
-  // ele-요소, idx-순번, obj - 전체객체
-  ele.addEventListener("click",() => movePg(idx,obj));
-  // 전체 객체(obj)를 함수에 전달하는 이유는?
-  // -> 인디케이터도 GNB와 같은 기능을 수행하기떄문에
-  // 호출시 자기자신 전체를 보내야 각각에 맞게 기능을 
-  // 수행할 수 있다!
+  // [ 이벤트 연결 함수등록하기 ] ///////
+  // (1) GNB메뉴 이벤트연결
+  gnb.forEach((ele, idx, obj) => {
+    // ele-요소, idx-순번, obj - 전체객체
+    ele.addEventListener("click", () => movePg(idx, obj));
+    // 전체 객체(obj)를 함수에 전달하는 이유는?
+    // -> 인디케이터도 GNB와 같은 기능을 수행하기떄문에
+    // 호출시 자기자신 전체를 보내야 각각에 맞게 기능을
+    // 수행할 수 있다!
+  }); ////////// forEach ///////////
 
-}); ////////// forEach ///////////
-
-// (2) 인디케이터 메뉴 이벤트연결
-indic.forEach((ele,idx,obj) => { 
-  // ele-요소, idx-순번, obj - 전체객체
-  ele.addEventListener("click",() => movePg(idx,obj));
-}); ////////// forEach ///////////
-
+  // (2) 인디케이터 메뉴 이벤트연결
+  indic.forEach((ele, idx, obj) => {
+    // ele-요소, idx-순번, obj - 전체객체
+    ele.addEventListener("click", () => movePg(idx, obj));
+  }); ////////// forEach ///////////
 
   /****************************************************** 
     [ 휠 이벤트를 이용한 페이지 이동 컨트롤하기! ]
@@ -116,7 +113,7 @@ indic.forEach((ele,idx,obj) => {
   let pgnum = 0; // 현재 페이지번호(첫페이지 0)
   // (2) 전체 페이지수
   const pgcnt = document.querySelectorAll(".page").length;
-  console.log("전체페이지수:",pgcnt);
+  console.log("전체페이지수:", pgcnt);
   // (3) 광스크롤 금지변수(0-허용,1-불허용)
   let prot_sc = 0;
 
@@ -124,33 +121,34 @@ indic.forEach((ele,idx,obj) => {
   window.addEventListener("wheel", wheelFn, { passive: false });
 
   // 2. 휠 이벤트 함수 만들기 //////
-  function wheelFn(e) { // e - 이벤트 전달변수
+  function wheelFn(e) {
+    // e - 이벤트 전달변수
     // (0) 기본기능 멈추기
     // addEventListener 옵션 passive:false 필수!
     e.preventDefault();
 
     ///// 광스크롤막기! //////
-    if(prot_sc) return;
+    if (prot_sc) return;
     prot_sc = 1; // 신호 1개만 허용!
-    setTimeout(()=>prot_sc=0,800);
+    setTimeout(() => (prot_sc = 0), 800);
     // 0.8초의 시간후 다시 허용상태전환 //
 
     // (1) 호출확인
     // console.log("휠~~~~");
-    
+
     // (2) 휠 방향 알아내기
     // 이벤트객체.wheelDelta
     let dir = e.wheelDelta;
-    console.log("방향:",dir);
+    console.log("방향:", dir);
     // 휠을 내리면 마이너스(올리면 플러스)
 
     // (3) 방향에 따른 페이지번호 증감
     // 스크롤 아랫방향 : 페이지번호 증가
-    if(dir<0) {
+    if (dir < 0) {
       // 페이지번호 1씩증가
       pgnum++;
       // 한계수 : 페이지 끝번호(페이지수-1)
-      if(pgnum>pgcnt - 1) pgnum = pgcnt - 1;
+      if (pgnum > pgcnt - 1) pgnum = pgcnt - 1;
     } ///////////// if ///////////////
 
     // 스크롤 윗방향 : 페이지번호 감소
@@ -158,33 +156,31 @@ indic.forEach((ele,idx,obj) => {
       // 페이지번호 1씩감소
       pgnum--;
       // 한계수 : 페이지 첫번호 -> 0
-      if(pgnum<0) pgnum = 0;
+      if (pgnum < 0) pgnum = 0;
     } ////////// else //////////////
 
-    console.log("페이지번호:",pgnum);
-    
+    console.log("페이지번호:", pgnum);
+
     // (4) 페이지 이동하기 + 메뉴변경 -> updatePg함수호출!
     updatePg(gnb);
     updatePg(indic);
-    
   } /////////// wheelFn 함수 ///////////
-
 
   /************************************** 
     함수명: movePg
     기능: 메뉴 클릭시 해당위치로 이동하기
   **************************************/
-  function movePg(seq,obj){ 
+  function movePg(seq, obj) {
     // seq - 순번, obj - 요소전체객체
 
     // 1. 기본기능막기
     event.preventDefault();
     // 2. 호출 확인
-    console.log("이동!",seq,obj);
+    console.log("이동!", seq, obj);
 
     // 3. 페이지번호(pgnum)업데이트 하기!
     pgnum = seq;
-    console.log("메뉴클릭 페이지번호",pgnum);
+    console.log("메뉴클릭 페이지번호", pgnum);
 
     // 4. 업데이트 페이지호출 -> 페이지이동, 메뉴변경
     // 개별객체를 업데이트 할때는 obj가 필요했으나
@@ -192,37 +188,33 @@ indic.forEach((ele,idx,obj) => {
     // 개별 obj가 필요없게됨!
     updatePg(gnb);
     updatePg(indic);
-    
   } /////////// movePg 함수 //////////////
-  
 
   /**************************************** 
     함수명: updatePg
     기능: 페이지 이동시 설정값 업데이트하기
   ****************************************/
-  function updatePg(obj){ // obj - 변경할 메뉴전체 객체
+  function updatePg(obj) {
+    // obj - 변경할 메뉴전체 객체
 
     // 1. 함수호촐확인
     // console.log("업데이트!");
 
     // 2. 페이지 이동하기
     // scrollTo(가로,세로)
-    window.scrollTo(0,window.innerHeight*pgnum);
+    window.scrollTo(0, window.innerHeight * pgnum);
     // 세로 이동위치: 윈도우높이값*페이지번호
 
     // 3. 메뉴 초기화하기(클래스 on 제거)
-    for(let x of obj) x.parentElement.classList.remove("on");
+    for (let x of obj) x.parentElement.classList.remove("on");
 
     // 4. 해당메뉴에 클래스 넣기
     obj[pgnum].parentElement.classList.add("on");
 
     // 5. 페이지 이동후 해당 페이지 액션주기
     // pageAction함수 호출!!!
-    setTimeout(()=>pageAction(pgnum),1000);
-    
-    
+    setTimeout(() => pageAction(pgnum), 1000);
   } ////////// updatePg 함수 //////////////
-
 
   /***************************************** 
     함수명 : initCSS 
@@ -233,54 +225,139 @@ indic.forEach((ele,idx,obj) => {
   // console.log(minfo);
 
   // 2. 이벤트설정
-  minfo.forEach((ele,idx)=>{initCSS(ele,idx)});
+  minfo.forEach((ele, idx) => {
+    initCSS(ele, idx);
+  });
 
   // 3. 함수만들기
-  function initCSS(ele,seq){ // ele - 요소, seq - 순번
+  function initCSS(ele, seq) {
+    // ele - 요소, seq - 순번
     // 1. 함수호출확인
-    console.log("초기화!",seq);
+    // console.log("초기화!", seq);
 
-    // 2. 해당요소 스타일속성 선택 
+    // 2. 해당요소 스타일속성 선택
     let sty = ele.style;
 
     // 3. 각 요소별 초기화하기
-    if(seq===0){ // 1번페이지
 
-    } ///// if ////////
-    else if(seq===1){ // 2번페이지
+    // 트랜지션 공통초기화
+    sty.transition = "none";
+
+    // 페이지별 초기화
+    if (seq === 0) {
+      // 1번페이지
+      // 오른쪽에 나가있음!
+      sty.left = "150%";
+    } ///// if /////////////
+    else if (seq === 1) {
+      // 2번페이지
       // 투명하게!
       sty.opacity = 0;
-    } ///// else if ////////
-
-  } //////// initCSS 함수 ///////////
-
+    } ///// else if //////////
+    else if (seq === 2) {
+      // 3번페이지
+      // 위로 올라가있음!
+      sty.top = "-20%";
+    } ///// else if //////////
+    else if (seq === 3) {
+      // 4번페이지
+      // 중앙 스케일0
+      sty.transform = "translate(-50%, -50%) scale(0)";
+    } ///// else if //////////
+    else if (seq === 4) {
+      // 5번페이지
+      // y축회전
+      sty.transform = "translate(-50%, -50%) rotateY(180deg)";
+      // 투명하게
+      sty.opacity = 0;
+    } ///// else if //////////
+    else if (seq === 5) {
+      // 6번페이지
+      // 스케일0, 평면회전
+      sty.transform = "translate(-50%, -50%) scale(0) rotate(720deg)";
+    } ///// else if //////////
+    else if (seq === 6) {
+      // 7번페이지
+      // x축확대
+      sty.transform = "translate(-50%, -50%) scaleX(10)";
+      // 투명하게
+      sty.opacity = 0;
+    } ///// else if //////////
+  } ///////////// initCSS 함수 ////////
 
   /********************************** 
     함수명 : pageAction
     기능 : 페이지별 액션주기
   **********************************/
-  function pageAction(seq){ // seq - 변경순번
+  function pageAction(seq) {
+    // seq - 변경순번
     // 1. 호출확인
-    console.log("액션!!!",seq);
+    console.log("액션!!!", seq);
 
     // 2. 변경대상 스타일 속성선택
     let sty = minfo[seq].style;
 
     // 3. 전체초기화!
-    minfo.forEach((ele,idx)=>{initCSS(ele,idx)});
+    minfo.forEach((ele, idx) => {
+      initCSS(ele, idx);
+    });
 
     // 4. 해당 페이지 액션주기
-    if(seq===0){ // 1번페이지
-
-    } ///// if ////////
-    else if(seq===1){ // 2번페이지
+    if (seq === 0) {
+      // 1번페이지
+      // 중앙으로 들어옴!
+      sty.left = "50%";
+      // 트랜지션주기
+      sty.transition = "all 0.4s cubic-bezier(0.21, 0.78, 0.96, 1.39) 0s";
+    } ///// if /////////////
+    else if (seq === 1) {
+      // 2번페이지
       // 투명도 복원하기!
       sty.opacity = 1;
       // 트랜지션주기
       sty.transition = "1.5s ease-in";
-    } ///// else if ////////
+    } ///// else if //////////
+    else if (seq === 2) {
+      // 3번페이지
+      // 위에서 중앙으로 이동!
+      sty.top = "50%";
+      // 트랜지션주기
+      sty.transition = "all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s";
+    } ///// else if //////////
+    else if (seq === 3) {
+      // 4번페이지
+      // 중앙 스케일 복원
+      sty.transform = "translate(-50%, -50%) scale(1)";
+      // 트랜지션주기
+      sty.transition = "1s ease-in-out";
+    } ///// else if //////////
+    else if (seq === 4) {
+      // 5번페이지
+      // y축회전 원상복귀
+      sty.transform = "translate(-50%, -50%) rotateY(0deg)";
+      // 나타나게함
+      sty.opacity = 1;
+      // 트랜지션주기
+      sty.transition = "1s ease-in-out";
+    } ///// else if //////////
+    else if (seq === 5) {
+      // 6번페이지
+      // 스케일0, 평면회전
+      sty.transform = "translate(-50%, -50%) scale(1) rotate(0deg)";
+      // 트랜지션주기
+      sty.transition = "1s ease-in-out";
+    } ///// else if //////////
+    else if (seq === 6) {
+      // 7번페이지
+      // x축확대
+      sty.transform = "translate(-50%, -50%) scaleX(1)";
+      // 투명하게
+      sty.opacity = 1;
+      // 트랜지션주기
+      sty.transition = "1s ease-in-out";
+    } ///// else if //////////
+  } /////////// pageAction 함수 /////////////
 
-  } ////////// pageAction 함수 //////////
-  
-
-} /////////// loadFn 함수 /////////////
+  // 첫페이지 페이지액션 적용위해 최초호출하기
+  setTimeout(() => pageAction(0), 1000);
+} ////////////// loadFn 함수 ///////////////////

@@ -15,7 +15,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 /* 공통셋팅 */
 a {
@@ -46,6 +46,8 @@ h3 {
 .page {
   position: relative;
   /* 부모자격 */
+  overflow: hidden;
+  /* 넘치는 자식요소 숨기기 */
 
   /* 한페이지 보이는 화면 채우기 */
   height: 100vh;
