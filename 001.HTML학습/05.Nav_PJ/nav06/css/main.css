@@ -7,36 +7,48 @@
 @import url(./reset.css);
 @import url(./common.css);
 
-
 /* 배너전체박스 */
-.banbx{
+.banbx {
   position: relative;
   /* 부모자격 */
-  height: 100vh;
+  /* height: 100vh; */
+  /* aspect-ratio: 1/0.4; */
+  /* background-color: red; */
+  padding: 80px 0;
+}
+/* 가상요소로 배경색 넣기 */
+.banbx.ban1::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 70%;
+  background-color: #222;
 }
 
 /* 배너컨텐츠박스 */
 .bancont {
   /*슬라이드부모*/
-  position: absolute;
-  /* 부모는? .page */
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
+  /* 자리를 차지함! */
+  /* top: 10%; */
+  /* transform: translateY(-50%); */
   /* 세로중앙! */
   left: 25vw;
   width: 50vw;
   aspect-ratio: 1/0.55;
   /* border: 2px solid red; */
   box-sizing: border-box;
-  outline: 5px dotted blue;
+  /* outline: 5px dotted blue; */
 }
+
 
 .slide {
   display: flex;
   /* 플렉스박스!!! */
   gap: 0 10vw;
   /* 양쪽간격 5vw */
-  
+
   /*사진을 싸고 있는 슬라이드*/
   position: absolute;
   top: 0;
@@ -55,11 +67,14 @@
   /* 가로크기를 부모박스 크기에 맞춤! */
   /* height 값은 flex박스 자식요소에서
   등분할시 자동 100%임! */
-  outline: 2px dashed red;
-  transition: .4s;
-  filter: brightness(70%);
+  /* outline: 2px dashed red; */
+  transition: 0.4s;
+  /* filter: brightness(70%); */
+
+  /* 박스그림자 */
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.281);
 }
-.slide li:nth-child(3){
+.ban1 .slide li:nth-child(3) {
   transform: scale(1.2);
   filter: brightness(100%);
 }
@@ -75,17 +90,56 @@
 /*이동버튼*/
 .abtn {
   position: absolute;
+  width: 24px;
+  height: 51px;
   top: 50%;
   transform: translateY(-50%);
   /*Y축 중앙이동*/
+
+  background-image: url(../img_nav06/main.png);
+  background-size: 190px 175px;
+  background-repeat: no-repeat;
+  /* outline: 1px solid red; */
 }
 
 /*왼쪽버튼*/
 .ab1 {
-  left: 50px;
+  left: 16.5vw;
+  background-position: -26px -124px;
 }
-
 /*오른쪽버튼*/
 .ab2 {
-  right: 50px;
+  right: 16.5vw;
+  background-position: -166px -53px;
+}
+
+/* IR - 이미지 리플레이스먼트 */
+.ir {
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+
+/* 2번배너 셋팅 */
+/* 배너 최상위박스 */
+.ban2{
+  width: 50%;
+  overflow: hidden;
+  margin: 100px auto;
+  padding: 0;
+}
+/* 컨텐츠 박스 */
+.ban2 .bancont{
+  width: 100%;
+  aspect-ratio: 1/1;
+  transform: translateX(-50%);
+}
+/* 버튼위치 */
+.ban2 .ab1{
+  left: 20px;
+}
+.ban2 .ab2{
+  right: 20px;
 }

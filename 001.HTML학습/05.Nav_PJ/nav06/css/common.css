@@ -8,6 +8,9 @@
 /* 네비게이션 유형6 : 공통CSS - common.css */
 
 /* 공사중 */
+html{
+  overflow-x: hidden;
+}
 body * {
   /* outline: 1px dashed red; */
 }
@@ -24,10 +27,12 @@ body * {
   /* 부모자격 - .smenu */
   font-family: "Noto Sans KR", sans-serif;
   background-color: #222;
+  z-index: 999;
 }
-.top {
+/* .top {
   min-height: 350px;
-}
+} */
+
 /* 1-1. 탑메뉴영역 */
 .tmenu {
   height: 80px;
@@ -51,7 +56,7 @@ body * {
   /* 줄바꿈방지 */
   white-space: nowrap;
   /* GNB배경박스(.bgbx)보다 위 */
-  z-index: 1;
+  /* z-index: 1; */
 }
 .gnb > ul {
   display: flex;
@@ -182,7 +187,7 @@ body * {
   display: block;
   width: 0;
   height: 1px;
-  transform: translateY(-10px);
+  transform: translateY(-9px);
   background-color: #555;
   transition: width .2s;
 }
@@ -211,8 +216,10 @@ body * {
   height: 0;
   opacity: 0;
   
+  background-color: #fff;
+  /* 박스그림자 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.226);
   
-
   /* 트랜지션 -> .smenu와 동일 */
   transition: .4s ease-in-out;
 }
