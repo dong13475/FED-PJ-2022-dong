@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>07.드래그기본</title>
     <style>
@@ -20,6 +19,80 @@
           no-repeat center top/cover;
       }
     </style>
+    <script>
+      // 로드구역 ////////////////////
+      window.addEventListener("DOMContentLoaded", () => {
+        // 대상선정
+        const tg = document.querySelector(".tg");
+        console.log(tg);
+
+        /********************************************** 
+          [ 드래그 기능 구현을 위한 이벤트 ]
+
+          1. 딸 -> 마우스 포인터 누름 -> mousedown
+
+          2. 각 -> 마우스 포인터 올라옴 -> mouseup
+
+          3. 질질 -> 마우스 움직일때 -> mousemove
+          -> 드래그 상태는 "딸"상태에서 "질질"하는것!
+
+          mousedown 할때 드래그 상태변수값을 1로 변경
+          mouseup 할때 드래그 상태변수값을 0으로 변경
+
+        **********************************************/
+
+        // 변수만들기 /////////////////
+        // (1) 드래그 상태변수 : true - 드래그중, false - 드래그아님
+        let drag = false; 
+        // (2) 첫번째 위치포인트 first x , first y
+        let fx,fy;
+        // (3) 마지막 위치포인트 last x , last y
+        let lx,ly;
+        // (4) 움직일때 위치포인트 move x, movw y
+        let mvx,mvy;
+        // (5) 위치이동 차이 결과변수 result x, result y
+        let rx,ry;
+        
+        // 함수만들기 ///////////
+        // (1) 드래그상태 true
+        const dTrue = () => drag = true;
+
+        // (1) 드래그상태 false
+        const dFalse = () => drag = false;
+
+        // (3) 드래그 움직일때 작동함수
+        const dMove = () => {
+          // console.log("드래그상태",drag);
+          // 드래그 상태일때만 실행
+          if(drag){
+            // 드래그 상태에서 움직일때 위치값 : mvx,mvy
+            mvx = event.pageX;
+            mvy = event.pageY;
+            
+            console.log(`fx:${fx}/fy:${fy}`);
+            console.log(`mvx:${mvx} / mvy:${mvy}`);
+          } ///////// if : 드래그일때 /////////
+
+        }; ///////// dMove함수 ////////////
+
+        // (4) 첫번째 위치포인트 셋팅함수
+        const firstPoint = () => {fx=event.pageX; fy=event.pageY};
+        
+        
+        // 이벤트 등록하기 ///////////////
+        // (1) 마우스 내려갈때 : 드래그 true + 첫번째 위치값
+        tg.addEventListener("mousedown",()=>{dTrue();firstPoint();});
+        // (2) 마우스 올라올때
+        tg.addEventListener("mouseup",dFalse);
+        // (3) 마우스 움직일때
+        tg.addEventListener("mousemove",dMove);
+        // (4) 마우스 벗어날때
+        tg.addEventListener("mouseleave",dFalse);
+        
+        
+        
+      }); /////////// 로드구역 ////////////////////
+    </script>
   </head>
   <body>
     <div class="tg"></div>
