@@ -65,17 +65,135 @@
       }
 
       /* 1. 아이언맨 */
+      .svg1 {
+        background: url(./images/man.jpg) no-repeat top/cover;
+        /* 원형박스 */
+        border-radius: 50%;
+      }
+      .svg1 > svg {
+        /* 트랜지션 회전 (-90도) */
+        transform: rotate(-90deg);
+        /* svg내부요소에 트랜지션은
+        적용되지 않는다!(별도의 속성이 따로있다!)
+        svg요소까지는 일반html요소 속성이 적용된다! */
+      }
 
       /* circle 설정 */
+      .c1 {
+        /* 채우기색 - 기본색 검정 
+            투명(transparent)
+            없음(none) - 뚫린상태 
+        */
+        fill: none;
+        /* 선색 - 기본은 안나옴 */
+        stroke: red;
+        /* 선두께 - 기본은 1px 
+        단위안쓰면 기본적으로 px
+        선두께는 선중앙으로부터 생김 */
+        stroke-width: 20;
+
+        /*
+          선끝처리 : stroke-linecap 
+            1) butt : 끝에 중심선이 보임(기본값)
+            2) square : 끝에 사각형으로 덮음
+            3) round : 끝에 둥근모양으로 덮음
+        */
+        stroke-linecap: round;
+
+        /* [대쉬선 속성 : stroke-dasharray ]
+        - 선,공백 순으로 대쉬선 셋팅함 
+        -> 50%를 써본다!
+        -> 6조각 이니까 6배한다!
+        50% * 6 = 300%
+        */
+        stroke-dasharray: 300%;
+
+        /* [대쉬어레이 시작위치밀기 : stroke-dashoffset ]
+        stroke-dashoffset값을
+        stroke-dasharray값과 같은
+        값을 주면 공백부터 시작함! */
+        stroke-dashoffset: 300%;
+
+        /* 트랜지션 */
+        transition: stroke-dashoffset 0.8s ease-in-out;
+      }
       /* 컨텐츠 박스에 마우스 오버시 라인애니 */
+      .svg1:hover .c1 {
+        stroke-dashoffset: 0;
+      }
 
       /* 2. 블랙위도우 */
+      .svg2 {
+        background: url(./images/black.jpg) no-repeat top/cover;
+      }
+      /* 사각형 svg - rect */
+      .rt1 {
+        fill: none;
+        stroke: black;
+        stroke-width: 20;
+        stroke-linecap: round;
+        /* 대쉬선 */
+        stroke-dasharray: 15%;
+        stroke-dashoffset: 102%;
+
+        /* 트랜지션 */
+        transition: 0.6s;
+      }
+      .svg2:hover .rt1 {
+        stroke-dashoffset: 0;
+      }
 
       /* 3. 닥스박스 : 다각형(6각형) */
+      .svg3 {
+        background: url(./images/doc.jpg) no-repeat top/cover;
+        /* 다각형 클리핑 적용하기! 
+        clip-path: polygon(x1 y1,x2 y2,....) */
 
+        clip-path: polygon(150px 0px, 300px 100px, 300px 200px, 150px 300px, 0px 200px, 0px 100px);
+      }
+      /* 150 10, 290 100, 290 200, 150 290, 10 200, 10 100 */
       /* 다각형 */
+      .pg1 {
+        fill: none;
+        stroke: lightgreen;
+        stroke-width: 20;
+        stroke-linecap: round;
+        /* 대쉬선 */
+        stroke-dasharray: 300%;
+        stroke-dashoffset: 300%;
+        /* 트랜지션 */
+        transition: 0.6s;
+      }
+      .svg3:hover .pg1 {
+        stroke-dashoffset: 0;
+      }
 
       /* 4. 완다 : path */
+      .svg4 svg{
+            background: url(./images/wan.jpg) no-repeat top/cover;
+            /* 클립핑 svg모양대로 보임 */
+            clip-path: url(#myClip);
+        }
+        /* 패스 */
+        .pa1{
+            /* 채우기 */
+            fill:none;
+            /* 선색 */
+            stroke: orangered;
+            /* 선두께 */
+            stroke-width: 20;
+            /* 선끝 */
+            stroke-linecap: round;
+            /* 데쉬: 50% X 6조각 = 300% */
+            stroke-dasharray: 340%;
+            stroke-dashoffset: 340%;
+            /* 트랜지션 */
+            transition: .7s ease-out;
+        }
+        /* 완다에 오버시 선그리기 */
+        .svg4:hover .pa1{
+            stroke-dashoffset: 0;
+        }
 
       /* 미디어쿼리 */
       @media screen and (max-width: 1000px) {
@@ -84,26 +202,72 @@
   </head>
   <body>
     <!-- 0. 로고 -->
-    <div class="mvlogo"></div>
+    <div class="mvlogo">
+      <svg viewbox="0 0 130 52"><rect fill="#EC1D24" width="100%" height="100%"></rect><path fill="#FEFEFE" d="M126.222 40.059v7.906H111.58V4h7.885v36.059h6.757zm-62.564-14.5c-.61.294-1.248.44-1.87.442v-14.14h.04c.622-.005 5.264.184 5.264 6.993 0 3.559-1.58 5.804-3.434 6.705zM40.55 34.24l2.183-18.799 2.265 18.799H40.55zm69.655-22.215V4.007H87.879l-3.675 26.779-3.63-26.78h-8.052l.901 7.15c-.928-1.832-4.224-7.15-11.48-7.15-.047-.002-8.06 0-8.06 0l-.031 39.032-5.868-39.031-10.545-.005-6.072 40.44.002-40.435H21.278L17.64 26.724 14.096 4.006H4v43.966h7.95V26.78l3.618 21.192h4.226l3.565-21.192v21.192h15.327l.928-6.762h6.17l.927 6.762 15.047.008h.01v-.008h.02V33.702l1.845-.27 3.817 14.55h7.784l-.002-.01h.022l-5.011-17.048c2.538-1.88 5.406-6.644 4.643-11.203v-.002C74.894 19.777 79.615 48 79.615 48l9.256-.027 6.327-39.85v39.85h15.007v-7.908h-7.124v-10.08h7.124v-8.03h-7.124v-9.931h7.124z"></path><path fill="#EC1D24" d="M0 0h30v52H0z"></path><path fill="#FEFEFE" d="M31.5 48V4H21.291l-3.64 22.735L14.102 4H4v44h8V26.792L15.577 48h4.229l3.568-21.208V48z"></path></svg>
+    </div>
     <div class="wrap">
       <!-- 1.아이언맨 : 원 -->
       <section>
-        <div class="cbx svg1"></div>
+        <div class="cbx svg1">
+          <svg>
+            <circle class="c1" cx="150" cy="150" r="140" transform="">
+              <!-- <circle class="c1" cx="150" cy="150" r="140" transform="rotate(-90,150,150)"> -->
+            </circle>
+          </svg>
+        </div>
       </section>
       <!-- 2. 블랙위도우 : 사각형 -->
       <section>
-        <div class="cbx svg2"></div>
+        <div class="cbx svg2">
+          <svg>
+            <rect class="rt1" width="280" height="280" x="10" y="10"></rect>
+          </svg>
+        </div>
       </section>
       <!-- 3.닥스박스 : 다각형(6각형) -->
       <section>
-        <div class="cbx svg3"></div>
+        <div class="cbx svg3">
+          <svg>
+            <!-- 
+              [defs요소] : 요소에 효과를 정의함
+
+              [linearGradient요소] : 선형그라데이션
+              - id속성 : 적용할 요소에 이 id명을 연결함
+                  예) stroke:url(#아이디명)
+              - x1,y1 하나의점에서 x2,y2 하나의 점
+                방향으로 그라데이션이 적용된다!
+
+              [stop요소] : 색상옵션 설정요소
+              - offset속성: 색상변경 지점
+              - stop-color속성: 실제색적용
+            -->
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="rgb(43, 255, 0)" />
+                <stop offset="30%" stop-color="rgb(0, 81, 255)" />
+                <stop offset="60%" stop-color="rgb(255, 0, 212)" />
+                <stop offset="100%" stop-color="rgb(238, 255, 0)" />
+              </linearGradient>
+            </defs>
+            <polygon style="stroke:url(#grad1);" class="pg1" points="150,10 290,100 290,200 150,290 10,200 10,100"></polygon>
+          </svg>
+        </div>
       </section>
       <section>
-        <div class="cbx svg4"></div>
+        <div class="cbx svg4">
+          <svg>
+            <path class="pa1" d="M27.72,33.29c0,0,45.99,49.6,18.04,101c0,0-36.97,45.99-15.33,82.96c0,0,11.72,18.04,24.35,24.35c0,0,21.64,4.51-7.21,37.87c0,0-23.45,24.35,99.2-7.21c0,0,64.93,3.61,78.46-29.76c0,0,81.16-74.85,18.94-101c0,0-35.17-26.15,7.21-53.21c0,0,54.11-54.11-14.43-46.89c0,0-151.5,27.05-120.84-7.21c0,0,17.13-20.74-41.48-8.12C74.61,26.08-2.94,14.35,27.72,33.29z"></path>
+          </svg>
+        </div>
       </section>
     </div>
 
     <!-- 클리핑용 svg -->
+<svg>
+  <clippath id="myClip" class="clipSVG">
+      <path class="pa1" d="M27.72,33.29c0,0,45.99,49.6,18.04,101c0,0-36.97,45.99-15.33,82.96c0,0,11.72,18.04,24.35,24.35c0,0,21.64,4.51-7.21,37.87c0,0-23.45,24.35,99.2-7.21c0,0,64.93,3.61,78.46-29.76c0,0,81.16-74.85,18.94-101c0,0-35.17-26.15,7.21-53.21c0,0,54.11-54.11-14.43-46.89c0,0-151.5,27.05-120.84-7.21c0,0,17.13-20.74-41.48-8.12C74.61,26.08-2.94,14.35,27.72,33.29z"></path>
+  </clippath>
+</svg>
 
     <!-- 
         [ SVG란? ]
