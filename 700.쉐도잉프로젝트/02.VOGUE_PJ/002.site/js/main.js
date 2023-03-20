@@ -101,8 +101,12 @@ window.addEventListener("DOMContentLoaded", () => {
     // 문서 전역에 클릭이벤트가 적용된다!
     e.preventDefault();
     // 부드러운 스크롤 전역 스크롤 값을
-    // 0으로 변경하여 최상단으로 이동함!
+    // 0으로 변경하여 위치값 일치시킴!
     pos = 0;
+
+    // 위치이동하기
+    window.scrollTo(0,0);
+    
   }; ///////// click ////////////
   
   
