@@ -60,7 +60,8 @@
 
       ************************************************/
 
-      // 엄격모드
+      // 엄격모드 : 선언없이 쓰는 변수를 막는 등 엄격한
+      // JS문법을 적용하도록 제한한다!(프로젝트에서 선호됨!)
       // "use strict";
       // (참고) https://www.w3schools.com/js/js_strict.asp
 
@@ -125,7 +126,57 @@
       console.log("11.단독으로:",this);
 
       // 3. 함수에서 전역객체(window)를 의미 확인!
+      // (함수)() -> 함수자신을 바로 실행!
+      // 익명함수
+      (function(){
+        console.log("12.익명함수 바로실행:",this);
+        // 엄격모드에서 this는 undifined임! window객체가 아님!
+      })();
+      // 화살표함수
+      (() => {
+        console.log("13.화살표함수 바로실행:",this);
+        // 엄격모드에서도 화살표함수는 this가 window객체를 가리킴!
+      })();
       
+      // 이벤트 함수 내부에서의 this키워드 의미!!!
+
+      window.addEventListener("DOMContentLoaded",()=>{
+
+        // .pic박스에 마우스 오버시
+        // mouseover는 이벤트 버블링이 발생함(자식요소 오버시)
+        // 만약 이를 원하지 않는 경우 mouseenter를 사용함!
+        // 경계선 기준의 mouseenter/mouseleave는 이베트버블링이
+        // 발생하지 않는다! (요소의 경계선만 기준하기 때문)
+        qs(".pic").onmouseenter = function(){
+          console.log("마우스오버!");
+
+          // 하위요소의 클릭 이벤트 설정하기
+          // ㅎㅎ 버튼 : 일반익명함수로 생성 
+          qs(".hh").onclick = function(){
+            console.log("익명",this);
+            // 나는 누구인가 찍기
+            qs("#exp").innerText = 
+            this.getAttribute("data-nm");
+            // this가 자기자신이므로 자신의 값이 찍힘
+          }; ////////// .hh의 click /////////
+
+          // ㅋㅋ 버튼 : 화살표함수로 생성
+          qs(".kk").onclick = () => {
+            console.log("화살표:",this);
+            // 나는 누구인가 찍기
+            qs("#exp").innerText = 
+            this.getAttribute("data-nm");
+            // this가 이벤트를 설정한 상위요소 이므로 
+            // 위의 요소의 값이 찍힘
+            // -> 화살표함수는 무조건 window가 아님!
+            // 이벤트함수로 설정할때는 싸고 있는 
+            // 상위이벤트 요소가 익명함수로 설정된 경우 
+            // 상위요소를 가리킨다!
+          }; ////////// .kk의 click /////////
+
+        }; ///////// .pic의 mouseover ///////////
+        
+      }); /////////////// load ////////////////
       
     </script>
   </head>
