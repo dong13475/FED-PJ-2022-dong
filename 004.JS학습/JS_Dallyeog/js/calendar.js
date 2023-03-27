@@ -62,8 +62,9 @@ function MakeDallyeok() {
       for (let i = 0; i < thisFirst.getDay(); i++) {
         // cg(i);
         // 반복횟수 만큼 배열 앞쪽에 추가한다!
+        // 전달은 클래스 "bm"으로 구분함!
         // 전달 마지막 날짜부터! -> prevLast.getDate()
-        dset.unshift(`<span style="color:#ccc" class="bdt">${prevLast.getDate() - i}</span>`);
+        dset.unshift(`<span style="color:#ccc" class="bm">${prevLast.getDate() - i}</span>`);
         // 마지막날짜 - i증가변수 = 1씩작아지는 숫자추가됨
         // unshift() 배열 앞에 값을 추가하는 메서드
       } ///// for //////
@@ -77,9 +78,10 @@ function MakeDallyeok() {
     } /////////// for ////////////
 
     // 3. 다음달 나머지 칸 삽입하기
+    // 다음달은 클래스 "am"으로 구분함!
     // 반복구성 : 1부터 2주분량정도
     for (let i = 1; i < 14; i++) {
-      dset.push(`<span style="color:#ccc" class="bdt">${prevLast.getDate() - i}</span>`);
+      dset.push(`<span style="color:#ccc" class="am">${i}</span>`);
     } //////// for ////////
 
     // cg(dset);
@@ -118,6 +120,49 @@ function MakeDallyeok() {
           let cmonth = monthTit.innerText;
           // 일
           let cdate = ele.innerText;
+
+          // 전달/다음달은 span태그가 있으므로 구분함!
+          let isSpan = ele.querySelector("span");
+          cg(isSpan);
+          // 없을 경우 null값이 나옴 -> if문에서 false처리됨!
+          if(isSpan){ /// null이 아닐때만 true처리되어 들어감!
+            // 
+            let cls = isSpan.classList.contains("bm");
+            cg(cls);
+            if(cls){ ///// 전달일경우
+              // 월에서 1을 뺀다
+              // Number(문자형숫자) -> 숫자형변환
+              // -,*,/ 연산은 브라우저가 자동변환해준다
+              // 그러나 "+"연산은 문자 더하기 가능하므로
+              // 이것을 강제 형변환해야 안전하다!
+              cmonth = Number(cmonth) - 1;
+              cg("이전달"+cmonth);
+
+              // 만약 1월이면 이전달은 0이 아니므로
+              // 12로 처리
+              if(cmonth === 0){
+                cmonth = 12;
+                // 년도도 전년도로 1뺌
+                cyear = Number(cyear) - 1;
+              } //////// if ////////
+            } ///////// if ///////
+
+            else{ ///// 다음달일 경우
+              // 월에서 1을 더한다
+              cmonth = Number(cmonth) + 1;
+              cg("다음달:"+cmonth);
+
+              // 만약 12월이면 다음달은 13이 아니므로
+              // 1로 처리
+              if(cmonth === 13){
+                cmonth = 1;
+                // 년도도 다음년도로 1더함
+                cyear = Number(cyear) + 1;
+              } //////// if ////////
+
+            } //////// else ////////
+            
+          } /////// if ///////
 
           // 최종날짜 데이터
           let comp = cyear + "-" + addZero(cmonth) + "-" + addZero(cdate);
