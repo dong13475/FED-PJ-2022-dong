@@ -167,8 +167,12 @@ function MakeDallyeok(sel) { // sel - 달력넣을 요소 선택자
           // 최종날짜 데이터
           let comp = cyear + "-" + addZero(cmonth) + "-" + addZero(cdate);
           cg(comp);
+
+          // 달력의 히든필드의 저장
+          qs(sel+" .dinfo").value = comp;
+          
         })
-    );
+    ); ////// forEach //////////
   }; ///////// initDallyeok //////////
 
   const addZero = (x) => (x < 10 ? "0" + x : x);
@@ -225,6 +229,8 @@ function MakeDallyeok(sel) { // sel - 달력넣을 요소 선택자
           <!-- 해당월의 달력날짜 구성박스 -->
           <div class="dates"></div>
         </section>
+        <!-- 달력날짜 저장용 히든필드 -->
+        <input type="hidden" class="dinfo">
       </div>
     `;
   } /////////// insertHcode 함수 //////////////
