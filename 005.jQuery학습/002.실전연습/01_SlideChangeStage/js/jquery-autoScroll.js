@@ -32,7 +32,7 @@ $(".gnb a").click(chgMenu);
 // 인디케이터 클릭시 : 대상 - .indic a
 $(".indic a").click(chgMenu);
 
-// 새로고침시 스크롤위치 캐싱 변경하기
+// 새로고침시 스크롤위치 캐싱 변경하기(맨위로!)
 $("html,body").animate({scrollTop:"0px"});
 
 /************************************* 
