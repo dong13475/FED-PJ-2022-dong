@@ -204,9 +204,16 @@ $(() => {
   .click(function(){
     let fn = () => { // 콜백함수
 
-      // 다음버튼 보이기
-      $(this).next().delay(500).slideDown(300);
-      
+      // 첫번째 메시지
+      msg.html(`여긴없겠지?`)
+      .fadeIn(200)
+      .delay(1000) // 1초 지연(애니앞에서만 적용됨)
+      .fadeIn(200,()=>{
+        // 두번째 메시지
+        msg.html(`그래도 무서우니<br>윗층으로 가자!`);
+        // 다음버튼 보이기
+        $(this).next().delay(500).slideDown(300);
+      }); //////// fadeIn ///////////
       
     }; //////// fn 함수 ////////////
 
@@ -220,9 +227,54 @@ $(() => {
   .click(function(){
     let fn = () => { // 콜백함수
 
-      // 다음버튼 보이기
-      $(this).next().delay(500).slideDown(300);
-      
+      // 무.서.워... 메시지
+      msg.html(`무`)
+      .fadeIn(200)
+      .delay(500)
+      .fadeIn(200,()=>msg.html(`무.`))
+      .delay(500)
+      .fadeIn(200,()=>msg.html(`무.서`))
+      .delay(500)
+      .fadeIn(200,()=>msg.html(`무.서.`))
+      .delay(500)
+      .fadeIn(200,()=>msg.html(`무.서.워`))
+      .delay(500)
+      .fadeIn(200,()=>msg.html(`무.서.워.`))
+      .delay(500)
+      .fadeIn(200,()=>msg.html(`무.서.워..`))
+      .delay(500)
+      .fadeIn(200,()=>msg.html(`무.서.워...`))
+      .delay(500)
+      .fadeIn(200,()=>{
+        // 7번방 좀비가 올라와서 달려든다!
+        bd.eq(7)
+        .find(".mz")
+        .animate({ // 윗층으로 올라옴
+          bottom: bd.eq(7).height()+"px"
+          // li높이값 만큼 bottom을 올려준다!
+        },500,"easeOutElastic")
+        .delay(500) // 기다림
+        .animate({
+          // 달려들기
+          right: bd.eq(7).width()*1.2+"px"
+        },1000,"easeOutBounce",()=>{
+          // 물린후 대사
+          msg.css({left:"-106%"})
+          .html(`아~악! 물렸다!<br>어서 치료주사방으로!!`)
+
+          // 미니언즈 좀비 이미지 변경(1초후)
+          setTimeout(()=>{
+            mi.find("img")
+            .attr("src","images/mz1.png")
+            .css({filter:"grayscale(100%)"});
+            // 흑백변경: 필터(그레이스케일)
+
+            // 다음버튼 보이기
+            $(this).next().delay(500).slideDown(300);
+
+          }, 1000);
+        })
+      })
       
     }; //////// fn 함수 ////////////
 
@@ -236,9 +288,30 @@ $(() => {
   .click(function(){
     let fn = () => { // 콜백함수
 
-      // 다음버튼 보이기
-      $(this).next().delay(500).slideDown(300);
-      
+      // 주사기돌기(animate는 transform 적용안됨!)
+      $(".inj").css({
+        transform:"rotate(-150deg)", // 반시계방향회전
+        transition:".5s .5s", // 0.5초후 0.5초간 애니
+        zIndex:"9999", // 미니언즈 보다 위
+      }); ////// css ///////
+
+      // 미니언즈 다시 태어나다!(1초후)
+      setTimeout(()=>{
+        // 이미지 변경
+        mi.find("img")
+        .attr("src","images/m2.png")
+        .css({filter:"grayscale(0)"}); // 다시컬러!
+
+        // 대사
+        msg.html(`이제 조금만 더<br>가면 탈출이닷!`)
+        .fadeIn(200);
+
+        // 주사기없애기
+        $(".inj").hide();
+        
+        // 다음버튼 보이기
+        $(this).next().delay(500).slideDown(300);
+      },1000);
       
     }; //////// fn 함수 ////////////
 
