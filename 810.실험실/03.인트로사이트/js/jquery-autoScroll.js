@@ -16,6 +16,12 @@
   3. 할당형 변수는 호출 호이스팅이 불가하므로
   상단에서 바로 함수를 호출하거나 이벤트 등록한 경우
   이를 생성자 함수 하단으로 이동시킨다!
+
+  4. 생성자함수 내부에서 this키워드의 의미는?
+  생성자함수 자신! 여기서는 AutoScroll생성자함수를 말함!
+  -> 할당형 함수 내부의 this키워드는 생성자함수 자신을 말함
+  -> 이벤트에 속한 함수일 경우 이벤트 대상인 나자신(this)는
+  어떻게 표현하지? -> event.currentTarget
   
 *****************************************************/
 function AutoScroll(){
@@ -40,28 +46,24 @@ const indic = $(".indic li");
 // 각 페이지별 등장요소
 const minfo = $(".minfo");
 
-/******************************* 
-  이벤트 등록하기
-*******************************/
-// 윈도우 휠이벤트 발생시
-$(window).on("wheel", wheelFn);
-// GNB메뉴 클릭시 : 대상 - .gnb a
-$(".gnb a").click(chgMenu);
-// 인디케이터 클릭시 : 대상 - .indic a
-$(".indic a").click(chgMenu);
+// 인스턴스 생성시 접근하여 
+// 변경가능한 속성 2가지 선정함!
 
-// 새로고침시 스크롤위치 캐싱 변경하기(맨위로!)
-$("html,body").animate({ scrollTop: "0px" });
+// (1) 이동시간
+this.sc_speed = 700;
+// (2) 이징값
+this.easing = "easeInOutQuint";
+
 
 /************************************* 
   함수명 : wheelFn
   기능 : 마우스휠 이벤트 발생시 호출됨
   - 한페이지씩 자동스크롤 기능
 *************************************/
-function wheelFn() {
+this.wheelFn = () => {
   // 광휠금지
   if (prot[0]) return;
-  chkCrazy(0);
+  this.chkCrazy(0);
 
   console.log("휠~~~!");
 
@@ -84,7 +86,7 @@ function wheelFn() {
   console.log(pno);
 
   // 3. 스크롤 이동하기 + 메뉴에 클래스"on"넣기
-  movePg();
+  this.movePg();
 } //////////// wheelFn 함수 //////////////
 
 // 광클 초기값
@@ -93,46 +95,49 @@ prot[1] = 0;
   함수명 : chgMenu
   기능 : 메뉴 클릭시 메뉴변경과 페이지이동
 *****************************************/
-function chgMenu() {
+this.chgMenu = () => {
   // 0. 광클금지
   if (prot[1]) return;
-  chkCrazy(1);
+  this.chkCrazy(1);
 
   // 1. 클릭된 a요소의 부모 li 순번을 구함 === pno
-  let idx = $(this).parent().index();
+  let idx = $(event.currentTarget).parent().index();
+  // this키워드는 생성자함수의 객체를 가리킴
+  // 따라서 이벤트 발생자신은 event.currentTarget!
 
-  console.log("나,클릭?", this, idx);
+  console.log("나,클릭?", this, event.currentTarget, idx);
 
   // 2. 전역페이지번호에 순번 업데이트
   pno = idx;
 
   // 3. 페이지 이동 + 메뉴에 클래스"on"넣기
-  movePg();
+  this.movePg();
 } /////////////// chgMenu 함수 ///////////////
 
 /***************************************** 
   함수명 : chkCrazy
   기능 : 광적동작 체크하여 제어리턴
 *****************************************/
-function chkCrazy(seq) {
+this.chkCrazy = (seq) => {
   // seq - 관리변수 순번
   prot[seq] = 1;
-  setTimeout(() => (prot[seq] = 0), 700);
+  setTimeout(() => (prot[seq] = 0), this.sc_speed);
+  // 생성시 셋팅가능한 이동시간(이동시간동안 막기)
 } ////////////// chkCrazy 함수 ///////////////
 
 /***************************************** 
   함수명 : movePg
   기능 : 페이지이동 애니메이션
 *****************************************/
-function movePg() {
+this.movePg = () => {
   // 대상: html,body -> 두개를 모두 잡아야 공통적으로 적용됨!
   $("html,body").animate(
     {
       scrollTop: $(window).height() * pno + "px",
     },
-    800,
-    "easeOutQuint",
-    showEle // 이동후 콜백함수 호출
+    this.sc_speed, // 생성시 셋팅가능한 이동시간
+    this.easing, // 생성시 셋팅가능한 이징값
+    // showEle // 이동후 콜백함수 호출
   );
 
   // 대상 : GNB메뉴, 인디케이터 메뉴
@@ -141,37 +146,50 @@ function movePg() {
 } ////////// movePg 함수 //////////////
 
 // 등장할 요소 초기화
-minfo.css({
-  opacity: 0,
-  transform: "translate(-50%,50%)",
-  transition: ".6s ease-out",
-}); ///////// css ///////////
+// minfo.css({
+//   opacity: 0,
+//   transform: "translate(-50%,50%)",
+//   transition: ".6s ease-out",
+// }); ///////// css ///////////
 
 /***************************************** 
   함수명 : showEle
   기능 : 페이지이동후 요소 등장하기
 *****************************************/
-function showEle() {
-  // .minfo 페이지별 등장하기!
-  pg.eq(pno)
-    .find(".minfo")
-    .css({
-      opacity: 1,
-      transform: "translate(-50%,-50%)",
-    }) ///////// css ///////////
-    // 다른페이지 초기화
-    .parents(".page")
-    .siblings()
-    .find(".minfo")
-    .css({
-      opacity: 0,
-      transform: "translate(-50%,50%)",
-      transition: ".6s ease-out",
-    }); ///////// css ///////////
-} ///////////// showEle 함수 ///////////////
+// this.showEle = () => {
+//   // .minfo 페이지별 등장하기!
+//   pg.eq(pno)
+//     .find(".minfo")
+//     .css({
+//       opacity: 1,
+//       transform: "translate(-50%,-50%)",
+//     }) ///////// css ///////////
+//     // 다른페이지 초기화
+//     .parents(".page")
+//     .siblings()
+//     .find(".minfo")
+//     .css({
+//       opacity: 0,
+//       transform: "translate(-50%,50%)",
+//       transition: ".6s ease-out",
+//     }); ///////// css ///////////
+// } ///////////// showEle 함수 ///////////////
 
 // 등장액션함수 최초호출 //
-setTimeout(showEle, 1000);
+// setTimeout(showEle, 1000);
+
+/******************************* 
+  이벤트 등록하기
+*******************************/
+// 윈도우 휠이벤트 발생시
+$(window).on("wheel", this.wheelFn);
+// GNB메뉴 클릭시 : 대상 - .gnb a
+$(".gnb a").click(this.chgMenu);
+// 인디케이터 클릭시 : 대상 - .indic a
+$(".indic a").click(this.chgMenu);
+
+// 새로고침시 스크롤위치 캐싱 변경하기(맨위로!)
+$("html,body").animate({ scrollTop: "0px" });
 
 } /////////// AutoScroll 생성자 함수 //////////
 
