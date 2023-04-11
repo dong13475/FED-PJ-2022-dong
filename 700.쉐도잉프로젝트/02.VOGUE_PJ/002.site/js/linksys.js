@@ -1,5 +1,68 @@
 // 보그 PJ 링크시스템 JS - linksys.js
 
+// 제이쿼리 로드구역 /////
+$(()=>{
+
+  /************************************* 
+    로그인, 회원가입, 갤러리 아이콘 넣기
+  *************************************/
+  // 대상 : .sns a:last (마지막 카카오스토리 a요소)
+  // 다상추가 : .mosns a:last (모바일 카카오스토리 a요소)
+  // 변경내용 : 대상요소 앞에 형제요소로 a요소 삽입
+  // 제이쿼리 메서드 : 
+  // before(요소) -> 선택요소 앞에 형제요소 추가!
+  // after(요소) -> 선택요소 뒤에 형제요소 추가!
+  // 모바일 sns도 추가! -> .mosns a:last
+  $(".sns a:last,.mosns a:last").before(`
+    <a href="#" class="fi fi-laptop">
+      <span class="ir"> 로그인 </span>
+    </a>
+    <a href="#" class="fi fi-user-secret">
+      <span class="ir"> 회원가입 </span>
+    </a>
+    <a href="#" class="fi fi-camera">
+      <span class="ir"> 갤러리 </span>
+    </a>
+  `); /////////// before ///////////////
+
+  // 모바일 sns 4번째 a요소 뒤에 (after()메서드)
+  // <br> 요소 넣기
+  $(".mosns a").eq(3).after("<br>");
+
+  /// sns 파트 a 요소들에 툴팁넣기 ///
+  // each((순번,요소)=>{코드})
+  $(".sns a").each((idx,ele)=>{
+    // attr(속성명) - 읽어오기
+    // attr(속성명,값) - 속성 변경하기
+    // -> 값으로 자식요소인 .ir의 텍스트를 읽어감!
+    // $(ele).attr("title",$(ele).find(".ir").text().trim());
+    let irTxt = $(ele).find(".ir").text().trim()
+    // 툴팁넣기
+    $(ele).attr("title",irTxt);
+    
+  }); ////////// each ///////////
+
+  // 주의 : 항상 html DOM 변경후에 이벤트 작업할것!
+  // 먼저 이벤트를 걸고 DOM 변경을 하면 이벤트가 풀린다~!
+  /***************************************** 
+    SNS 메뉴 파트 링크 셋팅하기 (DT+Mobile)
+  *****************************************/
+  $(".sns a,.mosns a").click(function(e){
+    // 기본이동막기
+    e.preventDefault();
+
+    // 1. 클릭된 a요소 text읽기
+    let atxt = $(this).text();
+    console.log(atxt);
+
+  }); //////////////// click ////////////////
+
+}); ///////////// JQB /////////////////
+
+
+
+
+
 
 ////////// 로딩구역 ///////////
 window.addEventListener("DOMContentLoaded",linkFn);
