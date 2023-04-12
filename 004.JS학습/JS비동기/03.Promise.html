@@ -1,64 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JS비동기 : 3. Promise 사용법</title>
-        <script>
-            /******************************************************************* 
-              [프라미스(Promise)란? "원하는 결과를 보장해! 약속해!"]
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS비동기 : 3. Promise 사용법</title>
+    <script>
+      /******************************************************************* 
+        [프라미스(Promise)란? "원하는 결과를 보장해! 약속해!"]
 
-                "생성코드"는 시간이 걸릴 수 있는 코드이다.
-                "사용코드"는 결과를 기다려야 하는 코드이다.
-                Promise는 생성 코드와 소비 코드를 연결하는 JavaScript 객체다!
-                __________________________________________________________
+        "생성코드"는 시간이 걸릴 수 있는 코드이다.
+        "사용코드"는 결과를 기다려야 하는 코드이다.
+        Promise는 생성 코드와 사용 코드를 연결하는 JavaScript 객체다!
+        __________________________________________________________
 
-                ((구문))
-                let 약속변수 = new Promise(function(성공함수, 실패함수) {
-                // 생성코드 : 시간이 걸리는 코드
+        ((구문))
+        let 약속변수 = new Promise(function(성공함수, 실패함수) {
+        // 생성코드 : 시간이 걸리는 코드
 
-                성공함수(리턴값사용가능); // 성공시호출
-                실패함수(리턴값사용가능);  // 에러시 호출
-                });
+        성공함수(리턴값사용가능); // 성공시호출
+        실패함수(리턴값사용가능);  // 에러시 호출
+        });
 
-                // 사용코드 : 약속객체가 완료될때까지 기다림!!!
-                약속변수.then(
-                function(변수) { 성공시코드 },
-                function(변수) { 실패시코드 }
-                );
+        // 사용코드 : 약속객체가 완료될때까지 기다림!!!
+        약속변수.then(
+        function(변수) { 성공시코드 },
+        function(변수) { 실패시코드 }
+        );
+      *******************************************************************/
+      function 화면뿌려(이거) {
+        document.getElementById("show").innerHTML += 이거 + "<br>";
+      }
 
+      //////////// 로드구역 //////////////////////
+      window.addEventListener("load",()=>{
+        
+        // 1. 기본 약속객체 만들기
+        let 처음약속 = new Promise(
+          function(성공함수,실패함수){
+          let 통과 = 1; // 1-성공테스트,0-실패테스트
 
-         *******************************************************************/
-            
-        </script>
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
-            body {
-                background-image: linear-gradient(to bottom, #494949, gray);
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                text-align: center;
-            }
-            #show {
-                font-family: "Gamja Flower", cursive;
-                font-size: 4vw;
-                background-image: linear-gradient(to bottom, lightgreen, pink, orangered, aquamarine);
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-repeat: no-repeat;
-                font-weight: bold;
-            }
-            #doc{
-                width: 50%;
-                height: 50vh;
-                margin: 0 auto;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="show"></div>
-        <div id="doc"></div>
-    </body>
+          // 이 자리에는 시간이 걸리는 실행코드가 위치함!
+
+          if(통과){
+            성공함수("성공!!!");
+          }
+          else{
+            실패함수("에러남!!!");
+          }
+        }); /////////// 처음약속 Promise ///////////
+
+        // Promise에서 호출되는 처리후 실행메서드 : then(함수1,함수2)
+        // 함수1 - 성공시실행구역
+        // 함수2 - 실패시실행구역
+        처음약속.then(
+          // 성공시 실행함수
+          function(전달변수){
+            화면뿌려(전달변수);
+          },
+          // 실패시 실행함수
+          function(전달변수){
+            화면뿌려(전달변수);
+          }); //////// then 메서드 /////////
+
+        // 2. 시간이 걸리는 코드를 약속객체에 넣고 처리하기
+        // new Promise(function(변수){}) -> 하나의 변수는 성공처리함수다!
+        let 약속기다림 = new Promise(function(성공){
+          // 처리시간이 걸리는 코드 넣기
+          setTimeout(function(){
+            // 성공함수호출!
+            성공("오마이갓김치!!!");
+          },3000); ////// setTimeout ///////
+        }); /////////// 약속기다림 Promise ////////////
+
+        // 약속객체로 부터 처리후 then메서드에 실행코드 넣기
+        // then(함수) -> 하나의 함수만 쓰면 성공처리함수를 받음!
+        약속기다림.then(function(값){
+          화면뿌려("와~~~우!"+값);
+          화면뿌려(`<img src="https://ojsfile.ohmynews.com/STD_IMG_FILE/2014/0103/IE001663873_STD.jpg" style="height:70vh" alt="약속">`);
+        }); //////// then 메서드 /////////
+        
+      }); ///////////// load ///////////////////
+      
+    </script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
+      body {
+        background-image: linear-gradient(to bottom, #494949, gray);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        text-align: center;
+      }
+      #show {
+        font-family: "Gamja Flower", cursive;
+        font-size: 4vw;
+        background-image: linear-gradient(to bottom, lightgreen, pink, orangered, aquamarine);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-repeat: no-repeat;
+        font-weight: bold;
+      }
+      #doc {
+        width: 50%;
+        height: 50vh;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="show"></div>
+    <div id="doc"></div>
+  </body>
 </html>
