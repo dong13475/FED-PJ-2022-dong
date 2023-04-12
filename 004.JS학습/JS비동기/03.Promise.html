@@ -80,6 +80,22 @@
             인스턴스변수.send()
             -> open() -> onload -> send() 순으로 코딩
 
+            [ 웹서버 파일 요청시 주의사항! ]
+            1. 요청한 파일이 현재 페이지의 도메인주소와
+            다른경우 (이종도메인) XSS공격 등의 이유로
+            브라우저에서 이걸을 금지하고 있다!
+            (일반 XMLHttpRequest 요청으로 가져오기는 가능함!)
+            
+            2. Promise를 사용하여 파일을 요청하고 
+            에러발생시 이것을 실패함수로 처리할때
+            이종도메인 에러는 Promise의 에러도 발생시키므로
+            실패함수처리가 되지 않는다!!!
+
+            3. 이것은 근본적인 브라우저 정책이므로
+            해결방법은 같은 도메인의 파일을 요청하는 것이다!
+            (외부도메인 파일을 같은 서버에 저장하여 사용하는 경우가 많다!)
+
+
             
       *******************************************************************/
       function 화면뿌려(이거) {
@@ -143,7 +159,11 @@
             let ajax = new XMLHttpRequest();
 
             // (2) 비동기 파일요청 열기(전송기능메모리생성)
-            ajax.open("GET","https://tombap8.github.io/FED-PJ-2022-tom/001.HTML%ED%95%99%EC%8A%B5/06.CGV_PJ/001.%EB%B6%84%EC%84%9D%EC%84%A4%EA%B3%84/CGV_Mockup.pdf");
+            ajax.open("GET","VogueWF.pdf");
+            // 같은 도메인의 파일을 Promise처리헤야
+            // 실패처리까지 모두 완전하게 이루어진다!
+            
+            // ajax.open("GET","https://tombap8.github.io/FED-PJ-2022-tom/001.HTML%ED%95%99%EC%8A%B5/06.CGV_PJ/001.%EB%B6%84%EC%84%9D%EC%84%A4%EA%B3%84/CGV_Mockup.pdf");
 
             // (3) 결과를 리턴받는 onload이벤트 함수구역만들기
             ajax.onload = function(){
