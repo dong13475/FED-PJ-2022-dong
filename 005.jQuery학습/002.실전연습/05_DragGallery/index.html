@@ -96,12 +96,12 @@
         // 3. 한계값 설정하기
 
         // (1) 첫번째 한계값 설정 : 화면크기의 1/3로 설정
-        let fpt = $(window).width()/3;
+        let fpt = $(window).width()/5;
         console.log("첫번째 한계값:",fpt);
 
         // (2) 마지막 한계값 설정 : 
         // 드래그박스가로크기 - 화면크기 2/3
-        let lpt = move.width() - (fpt*2);
+        let lpt = move.width() - (fpt*4);
         console.log("마지막한계값:",lpt);
 
         // (3) 마우스 이벤트로 left값 체크하여 제한하기

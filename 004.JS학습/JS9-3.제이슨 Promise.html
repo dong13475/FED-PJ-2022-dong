@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS9-3. 제이슨 연습</title>
+    <title>JS9-3. 제이슨 연습 - Promise적용!</title>
     <!-- 제이슨 불러오기! -->
     <script src="./JS9-3.Data.json"></script>
     <script>
@@ -21,7 +21,6 @@
 
         -> 참고
         https://www.w3schools.com/js/js_json_intro.asp
-
 
         ________________________________
 
@@ -46,30 +45,50 @@
         예) 객체변수명[속성명]
 
       *****************************************************/
+      // 제이슨변수 
+      let myjson;
 
-      // 변수에 제이슨 파싱후 할당!
-      let myjson = JSON.parse(JSON.stringify(jsonData));
+      // Promise 적용하기!!!
+      let myProm = new Promise((success)=>{
 
-      // 제이슨 파싱 확인
-      console.log(myjson);
-      // shopping -> 메뉴 찍기
-      console.log(myjson.shopping.메뉴);
+        // 시간이 걸리는 것을 가정하여 setTimeout 셋팅
+        setTimeout(()=>{
+          // 변수에 제이슨 파싱후 할당!
+          myjson = JSON.parse(JSON.stringify(jsonData));
+          // 성공함수호출
+          success("제이슨성공!");
+        },6000); // 6초 지연!
+        
+      }); ///////// myProm ///////////
 
-      // "living" 속성의 데이터를 for in문으로 돌아 찍기!
-      let mydata = myjson["living"];
-      for (let x in mydata) {
-        // x는 속성명
-        document.write(`<h2>${x} : ${mydata[x]}</h2>`);
-      } /////////// for in ///////////////
+      // Promise 성공후 실행메서드 then()
+      myProm.then((msg)=>{
+        // 성공메세지 확인
+        console.log(msg);
 
-      document.write("<hr>"); // 구분선
+        // 제이슨 파싱 확인
+        console.log(myjson);
+        // shopping -> 메뉴 찍기
+        console.log(myjson.shopping.메뉴);
+  
+        // "living" 속성의 데이터를 for in문으로 돌아 찍기!
+        let mydata = myjson["living"];
+        for (let x in mydata) {
+          // x는 속성명
+          document.write(`<h2>${x} : ${mydata[x]}</h2>`);
+        } /////////// for in ///////////////
+  
+        document.write("<hr>"); // 구분선
+  
+        // "fashion" 속성의 데이터를 for in문으로 돌아 찍기!
+        let mydata2 = myjson["fashion"];
+        for (let x in mydata2) {
+          // x는 속성명
+          document.write(`<h2>${x} : ${mydata2[x]}</h2>`);
+        } /////////// for in ///////////////
 
-      // "fashion" 속성의 데이터를 for in문으로 돌아 찍기!
-      let mydata2 = myjson["fashion"];
-      for (let x in mydata2) {
-        // x는 속성명
-        document.write(`<h2>${x} : ${mydata2[x]}</h2>`);
-      } /////////// for in ///////////////
+      }); //////// then 메서드 //////////
+
     </script>
   </head>
   <body></body>
