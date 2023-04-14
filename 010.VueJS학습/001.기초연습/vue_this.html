@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Vue JS의 this키워드와 Arrow Function</title>
     <script>
-        ///////// 로딩구역 /////////////////////
-        window.addEventListener("load", () => {
+      ///////// 로딩구역 /////////////////////
+      window.addEventListener("load", () => {
+        console.log("로딩완료!");
 
-            console.log("로딩완료!");
-
-          
-            /****************************************************** 
+        /****************************************************** 
 
             원래 Vue Instance내에서 this는 Vue Instance를 가리키고 
             있습니다. 하지만 함수가 선언이 될때, 어떤 방식으로 함수를 
@@ -42,20 +39,17 @@
             }
 
             ******************************************************/
-
-        }); ///////////// 로딩구역 ///////////////////
-        //////////////////////////////////////////////
+      }); ///////////// 로딩구역 ///////////////////
+      //////////////////////////////////////////////
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <p>originalNumber: {{ originalNumber }}</p>
-        <p>arrowNumber: {{ arrowNumber }}</p>
-        <button @click="originalFunction()">기존 방식</button>
-        <button @click="arrowFunction()">arrow function</button>
+      <p>originalNumber: {{ originalNumber }}</p>
+      <p>arrowNumber: {{ arrowNumber }}</p>
+      <button @click="originalFunction()">기존 방식</button>
+      <button @click="arrowFunction()">arrow function</button>
     </div>
-
-</body>
-
+  </body>
 </html>
