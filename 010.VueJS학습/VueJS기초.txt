@@ -38,7 +38,7 @@ https://rintiantta.github.io/jpub-vue/
  M - Model : 화면에 데이터를 구성하는 역할
  V - View : 실제출력화면(DOM)
  VM - View Model : 뷰 인스턴스 객체의 비즈니스를 구성하는 역할
-                    -> VM은 모델과 뷰의 중간역할자임!
+                -> VM은 모델과 뷰의 중간역할자임!
 
 
 4. 제이슨(JSON)은 무엇인가?
