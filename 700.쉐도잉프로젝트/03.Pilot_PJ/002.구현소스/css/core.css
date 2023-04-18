@@ -4,24 +4,24 @@
 /******** 웹폰트 **********/
 /* 나눔고딕체 */
 @font-face {
-    font-family: NG;
-    src: url(../fonts/NanumGothic.woff) format("woff");
+  font-family: NG;
+  src: url(../fonts/NanumGothic.woff) format("woff");
 }
 /* Ubuntu체 */
 @font-face {
-    font-family: UB;
-    src: url(../fonts/UbuntuCondensed-Regular.woff) format("woff");
+  font-family: UB;
+  src: url(../fonts/UbuntuCondensed-Regular.woff) format("woff");
 }
 
 /* 공통 class */
 
 /* 페이지 공통 class */
 .page {
-    /* 한페이지 보이는 화면 채우기 */
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    /* 
+  /* 한페이지 보이는 화면 채우기 */
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* 
                 width: 100vw;
                 height: 100vh;
                 보이는 화면 기준의 뷰포트단위를 쓰면
@@ -36,48 +36,47 @@
 
 /* IR(배경이미지 설명 숨기기) class */
 .ir {
-    display: block;
-    width: 0;
-    height: 0;
-    overflow: hidden;
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 /* 숨기기 class */
-.bld{
-    display: none;
+.bld {
+  display: none;
 }
 
 /* 중앙 속박스 */
 .ibx {
-    width: 1920px;
-    max-width: 100%;
-    /* 1920px보다 작을땐 100%를 유지함! */
-    margin: 0 auto;
-    /* 마영오 - 중앙정렬 */
+  width: 1920px;
+  max-width: 100%;
+  /* 1920px보다 작을땐 100%를 유지함! */
+  margin: 0 auto;
+  /* 마영오 - 중앙정렬 */
 }
-
 
 /*드래그 선택 안되게 하는 CSS*/
 .nonesel {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge*/
-    user-select: none;
-    /* Non-prefixed version, currently 
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge*/
+  user-select: none;
+  /* Non-prefixed version, currently 
     not supported by any browser */
 }
 
 .nonedrag {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
