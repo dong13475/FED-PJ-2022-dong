@@ -166,9 +166,9 @@
   /* 부모자격 */
   flex: 1; /* 기본등분할 설정 */
   /* 
-        개별적으로 비율을 넓히려면
-        flex-basis를 사용한다!
-    */
+    개별적으로 비율을 넓히려면
+    flex-basis를 사용한다!
+  */
   overflow: hidden;
   /* 넘치는 이미지 숨기기 */
 }
@@ -196,11 +196,11 @@
 
 /********** 2-2.남자패션영역 ***********/
 /* #men {
-    background-color: darkorange;
+  background-color: darkorange;
 } */
 /********** 2-3.여자패션영역 ***********/
 /* #women {
-    background-color: hotpink;
+  background-color: hotpink;
 } */
 /* 여자패션 이미지영역 */
 #women .imgc {
@@ -209,7 +209,7 @@
 }
 /********** 2-4.스타일패션영역 ***********/
 /* #style {
-    background-color: khaki;
+  background-color: khaki;
 } */
 /* 스타일패션 이미지영역 */
 #style .imgc {
