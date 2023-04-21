@@ -32,8 +32,26 @@ $(".gnb a").click(chgMenu);
 // 인디케이터 클릭시 : 대상 - .indic a
 $(".indic a").click(chgMenu);
 
+// 키보드 이벤트발생시 업데이트
+// 1. Page Up(33) / Up Arrow (38)
+// 2. Page Down(34) / Down Arrow (40)
+$(document).keydown((e) => {
+  // 이전페이지이동
+  if (e.keyCode === 33 || e.keyCode === 38) {
+    pno--;
+    if (pno === -1) pno = 0;
+    movePg();
+  }
+  // 다음페이지이동
+  else if (e.keyCode === 34 || e.keyCode === 40) {
+    pno++;
+    if (pno === pgcnt) pno = pgcnt - 1;
+    movePg();
+  }
+}); ///////////// keydown ///////////////
+
 // 새로고침시 스크롤위치 캐싱 변경하기(맨위로!)
-$("html,body").animate({scrollTop:"0px"});
+$("html,body").animate({ scrollTop: "0px" });
 
 /************************************* 
   함수명 : wheelFn
@@ -67,7 +85,6 @@ function wheelFn() {
 
   // 3. 스크롤 이동하기 + 메뉴에 클래스"on"넣기
   movePg();
-
 } //////////// wheelFn 함수 //////////////
 
 // 광클 초기값
@@ -77,11 +94,10 @@ prot[1] = 0;
   기능 : 메뉴 클릭시 메뉴변경과 페이지이동
 *****************************************/
 function chgMenu() {
-
   // 0. 광클금지
-  if(prot[1]) return;
+  if (prot[1]) return;
   chkCrazy(1);
-  
+
   // 1. 클릭된 a요소의 부모 li 순번을 구함 === pno
   let idx = $(this).parent().index();
 
@@ -92,64 +108,68 @@ function chgMenu() {
 
   // 3. 페이지 이동 + 메뉴에 클래스"on"넣기
   movePg();
-
 } /////////////// chgMenu 함수 ///////////////
-
 
 /***************************************** 
   함수명 : chkCrazy
   기능 : 광적동작 체크하여 제어리턴
 *****************************************/
-function chkCrazy(seq){ // seq - 관리변수 순번
+function chkCrazy(seq) {
+  // seq - 관리변수 순번
   prot[seq] = 1;
-  setTimeout(() => prot[seq] = 0, 700);
+  setTimeout(() => (prot[seq] = 0), 700);
 } ////////////// chkCrazy 함수 ///////////////
-
 
 /***************************************** 
   함수명 : movePg
   기능 : 페이지이동 애니메이션
 *****************************************/
-function movePg(){
+function movePg() {
   // 대상: html,body -> 두개를 모두 잡아야 공통적으로 적용됨!
-  $("html,body").animate(
-    {
-      scrollTop: $(window).height() * pno + "px",
-    },800,"easeOutQuint",showEle // 이동후 콜백함수 호출
+  $("html,body")
+    .stop()
+    .animate(
+      {
+        scrollTop: $(window).height() * pno + "px",
+      },
+      700,
+      "easeInOutQuint",
+      showEle // 이동후 콜백함수호출!
     );
 
-    // 대상 : GNB메뉴, 인디케이터 메뉴
-    gnb.eq(pno).addClass("on").siblings().removeClass("on");
-    indic.eq(pno).addClass("on").siblings().removeClass("on");
-
+  // 대상 : GNB메뉴, 인디케이터 메뉴
+  gnb.eq(pno).addClass("on").siblings().removeClass("on");
+  indic.eq(pno).addClass("on").siblings().removeClass("on");
 } ////////// movePg 함수 //////////////
 
 // 등장할 요소 초기화
 minfo.css({
-  opacity:0,
+  opacity: 0,
   transform: "translate(-50%,50%)",
-  transition: ".6s ease-out"
+  transition: ".6s ease-out",
 }); ///////// css ///////////
-
 
 /***************************************** 
   함수명 : showEle
   기능 : 페이지이동후 요소 등장하기
 *****************************************/
-function showEle(){
+function showEle() {
   // .minfo 페이지별 등장하기!
-  pg.eq(pno).find(".minfo")
-  .css({
-    opacity:1,
-    transform: "translate(-50%,-50%)"
-  }) ///////// css ///////////
-  // 다른페이지 초기화
-  .parents(".page").siblings().find(".minfo")
-  .css({
-    opacity:0,
-    transform: "translate(-50%,50%)",
-    transition: ".6s ease-out"
-  }); ///////// css ///////////
+  pg.eq(pno)
+    .find(".minfo")
+    .css({
+      opacity: 1,
+      transform: "translate(-50%,-50%)",
+    }) ///////// css ///////////
+    // 다른페이지 초기화
+    .parents(".page")
+    .siblings()
+    .find(".minfo")
+    .css({
+      opacity: 0,
+      transform: "translate(-50%,50%)",
+      transition: ".6s ease-out",
+    }); ///////// css ///////////
 } ///////////// showEle 함수 ///////////////
 
 // 등장액션함수 최초호출 //
