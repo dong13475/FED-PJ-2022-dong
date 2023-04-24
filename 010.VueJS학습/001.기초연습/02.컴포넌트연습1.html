@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02.컴포넌트 연습1</title>
+    <style>
+      /* 타이틀 */
+      .tit {
+        text-align: center;
+        /* 글자 최소크기 지정 */
+        font-size: max(3vw, 25px);
+      }
+
+      /* 그리드 박스 */
+      .grid {
+        /* 그리드 박스 */
+        display: grid;
+
+        /* 1200px최대크기, 마영오! */
+        max-width: 1200px;
+        margin: 0 auto;
+
+        /****************************************** 
+        [ 가로 그리드 템플릿 ] 
+        grid-template-columns
+        ******************************************/
+
+        /* 1. 가로 사이즈를 구체적인
+        단위를 사용하여 설정하기(설정한 
+        수치의 개수만큼 컬럼(기둥)생성) */
+        /* grid-template-columns: 100px 200px 300px 400px; */
+
+        /* 2. fr단위로 가로전체에 대한 비율을 설정
+        -> 사용한 개수만큼 가로 컬럼이 생성됨!
+        fraction(부분) */
+        /* grid-template-columns: 1fr 3fr 5fr 2fr; */
+
+        /* 3. repeat(수치의 반복수, 반복수치) */
+        grid-template-columns: repeat(5, 1fr);
+
+        /* 3번 repeat() 에 대한 다양한 실험!
+            비율이 여러가지일 경우 띄어쓰기로 
+            크기 수치를 표현함
+            -> 비의 반복수 * 반복수치의 개수
+            -> 2 * 3 = 6 개의 컬럼생성됨!
+        */
+        /* grid-template-columns: repeat(2,300px 1fr 3fr); */
+
+        /******************************************* 
+            [ 세로 그리드 탬플릿 ]
+            grid-template-rows
+        *******************************************/
+        /* 1. 구체적인 수치 높이값을 쓴만큼 셋팅
+        -> 나머지는 자동셋팅 */
+        /* grid-template-rows: 100px 200px 300px; */
+
+        /* 2. 높이값 전체에서의 비를 쓴만큼 셋팅 */
+        /* grid-template-rows: 1fr 3fr 5fr 2fr; */
+
+        /* 3. repeat(수치의 반복수, 반복수치) */
+        /* grid-template-rows: repeat(4,300px); */
+
+        /* 
+        4. 모든높이값 돌일하게 셋팅하기 
+        grid-auto-rows: 수치값; -> 기본값 auto
+        */
+        /* grid-auto-rows: 400px; */
+
+        /*********************************** 
+            [ 수평방향 간격 ]
+            grid-column-gap
+        ***********************************/
+        grid-column-gap: min(1vw, 10px);
+
+        /*********************************** 
+            [ 수직방향 간격 ]
+            grid-row-gap
+        ***********************************/
+        grid-row-gap: min(1.5vw, 15px);
+      }
+
+      /* 갤러리 박스 */
+      .grid > div {
+        position: relative;
+        /* 부모자격 */
+        aspect-ratio: 280 / 400;
+
+        /* 이미지 확대시 넘치는 이미지 숨기기 */
+        overflow: hidden;
+      }
+
+      /* 그리드 갤러리 이미지 */
+      .grid img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* 트랜지션: 속시이지 */
+        transition: 0.3s;
+      }
+      /* 오버시 이미지 확대 */
+      .grid > div:hover img {
+        /* transform: scale(1.3); */
+        /* 애니메이션: 이시이지반방마 */
+        animation: magAni 10s linear infinite alternate;
+      }
+
+      /* 계속 확대/축소 애니 키프레임 */
+      @keyframes magAni {
+        to {
+          transform: scale(1.5);
+        }
+      } /* 키프레임 */
+
+      /* 상품설명박스 */
+      .grid aside {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      /* 상품명 글자박스(h2) */
+      .grid aside h2 {
+        font-size: min(1.8vw, 24px);
+        font-weight: normal;
+        margin: min(1.2vw, 14px) 0 0;
+        /* 마진: 위 양쪽 아래 */
+      }
+      /* 상품가격 글자박스(h3) */
+      .grid aside h3 {
+        font-size: min(1.4vw, 18px);
+        font-weight: normal;
+        margin: min(0.8vw, 10px) 0;
+        /* 마진: 위 아래 양쪽 */
+      }
+
+      /* 1100px이하 미디어쿼리 시작 */
+      @media screen and (max-width: 1100px) {
+        .grid {
+          /* 가로방향 4개 */
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      /* 1100px이하 미디어쿼리 끝 */
+
+      /* 1000px이하 미디어쿼리 시작 */
+      @media screen and (max-width: 1000px) {
+        .grid {
+          /* 가로방향 3개 */
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* 1000px이하 미디어쿼리 끝 */
+
+      /* 800px이하 미디어쿼리 시작 */
+      @media screen and (max-width: 800px) {
+        .grid {
+          /* 가로방향 2개 */
+          grid-template-columns: repeat(2, 1fr);
+        }
+        /* 상품명 글자박스 */
+        .grid aside h2 {
+          font-size: 3vw;
+          margin: 2vw 0 0;
+        }
+        /* 상품가격 글자박스 */
+        .grid aside h3 {
+          font-size: 2vw;
+          margin: 2vw 0;
+        }
+      }
+
+      /* 800px이하 미디어쿼리 끝 */
+
+      /* 600px이하 미디어쿼리 시작 */
+      @media screen and (max-width: 600px) {
+        body {
+          margin: 0;
+        }
+        .grid {
+          /* 가로방향 1개 */
+          grid-template-columns: repeat(1, 1fr);
+          /* 수직간격 */
+          grid-row-gap: 0;
+        }
+        /* 상품명 글자박스 */
+        .grid aside h2 {
+          font-size: 5.5vw;
+          margin: 4vw 0 0;
+        }
+        /* 상품가격 글자박스 */
+        .grid aside h3 {
+          font-size: 4vw;
+          margin: 4vw 0;
+        }
+      }
+
+      /* 600px이하 미디어쿼리 끝 */
+    </style>
+    <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <!-- 제이쿼리 라이브러리 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- 제이쿼리 UI CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+
+    <script>
+      $(()=>{ /////////////// JQB ////////////////
+
+        /*********************************************** 
+          [ VueJS 컴포넌트란? ]
+          1. 기능을 가진 UI모듈별 템플릿과 JS를 하나로 
+          묶어서 다른 모듈과 분리하여 개발하거나 관리할 수
+          있게하는 방법!
+
+          2. 컴포넌트는 설계도다!
+          - html요소의 설계도이며 이를 기반으로 실제
+          웹페이지에 생성한것을 인스턴스라고 부른다!
+
+          3. 컴포넌트는 재사용을 목적으로 한다!
+          - 하나를 수정하면 모든 부분이 수정되는 편리함이 있다!
+          - 부분적으로 조금 다른 컴포넌트를 제작할 수 있다!
+
+          4. 전역 컴포넌트 등록하기
+          ->>> Vue.component() 메서드 사용!!!
+          (1) 사용자정의 태그로 html 요소로 삽입한다!
+          -> 새로운 태그명을 지어서 컴포넌트가 들어갈
+          자리를 표시한다!
+          예) 
+          <div id="vapp">
+            <hi-ok></hi-ok>
+          </div>
+
+          -> 사용자 정의 태그이름의 형식은 케밥케이스로 만든다!
+          (규칙이다!) : 단어중간에 대쉬를 사용한 이름!
+          
+          
+        <div>
+          <img src="img_gallery/1.jpg" alt="dress" />
+          <aside>
+            <h2>상품명1</h2>
+            <h3>상품가격1</h3>
+          </aside>
+        </div>
+        ***********************************************/
+
+      }); ////////////// JQB //////////////////////
+    </script>
+  </head>
+
+  <body>
+    <!-- 타이틀 -->
+    <h1 class="tit">그리드1 - 이미지 갤러리</h1>
+    <!-- 그리드 레이아웃 박스 -->
+    <div class="grid">
+
+    </div>
+
+    <!-- 
+        .grid>div*50>img[src=img_gallery/$.jpg alt=dress]+(aside>h2{상품명$}+h3{상품가격$})
+    
+        젠코딩(에밋코딩) 약어소개
+        _____________________
+        
+        * 여러개
+        > 자식
+        + 형제
+        [] 속성
+        {} 데이터 -> 태그내부값
+        $ 연속번호자리
+    -->
+  </body>
+</html>
