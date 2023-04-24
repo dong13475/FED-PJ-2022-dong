@@ -301,7 +301,7 @@ const clearAuto = () => {
 }; ///////// clearAuto 함수 ///////////
 
 // 배너이동시 자동넘기 지우기 셋팅
-slide.on("mousemove dragstart dragstop",clearAuto);
+slide.on("drag dragstart dragstop",clearAuto);
 
 // 자동넘김 인터발 셋팅하기 ///////
 // 변수에 담아 정지하기 //////
