@@ -246,7 +246,7 @@ function showTit() {
   let bantit = bantxt[clsnm];
 
   // 호출확인
-  console.log("배너타이틀!", clsnm, bantit);
+  // console.log("배너타이틀!", clsnm, bantit);
 
   // 모든 추가 타이틀 지우기
   $(".btit").remove();
@@ -334,4 +334,5 @@ const banAutoSlide = () => {
 
 // 자동넘김 최초호출!
 banAutoSlide();
+
 
