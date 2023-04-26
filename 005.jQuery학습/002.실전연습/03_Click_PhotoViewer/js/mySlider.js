@@ -1,7 +1,8 @@
-// 무한이동 드래그&클릭형 배너 JS - drag.js
+// 슬라이드 공통 기능함수 ////
 
-// 제이쿼리 코드 블록 /////////////////////
-$(() => {
+function mySlider(ele) {
+  // ele - 대상요소
+
   // 호출확인
   console.log("로딩완료!");
 
@@ -28,13 +29,13 @@ $(() => {
   // 양쪽버튼 구분 : .lb(왼쪽버튼) / .rb(오른쪽버튼)
   // 변경대상: #viewer ul
   // 변경내용: 슬라이드의 left값을 이동하여 애니메이션함!
-  let slide = $("#viewer ul");
+  let slide = $(ele).find(".viewer ul");
 
   // 변경에 사용할 제이쿼리 메서드:
   // animate({CSS속성},시간,이징,함수)
 
   // 변경대상: 블릿 - #indic li
-  let indic = $("#indic li");
+  let indic = $(ele).find(".indic li");
 
   // 광클 금지상태변수
   let prot = 0; // 1-불허용, 0-허용
@@ -43,115 +44,120 @@ $(() => {
   const aniT = 600;
 
   // 애니메이션 이징 변수
-  const aniE = "easeOutQuint";
+  const aniE = "easeOutCubic";
 
-  $(".abtn").click(function () {
-    // console.log("진입:",prot);
+  $(ele)
+    .find(".abtn")
+    .click(function (e) {
+      // console.log("진입:",prot);
 
-    /// 광클금지 ////////
-    if (prot) return;
-    prot = 1; //잠금!
-    setTimeout(() => (prot = 0), aniT);
-    // 0.6초후 prot=0 잠금해제!
+      // 기본기능막기!
+      e.preventDefault();
 
-    // console.log("통과:",prot);
+      /// 광클금지 ////////
+      if (prot) return;
+      prot = 1; //잠금!
+      setTimeout(() => (prot = 0), aniT);
+      // 0.6초후 prot=0 잠금해제!
 
-    // 자동넘김 지우기함수 호출!
-    // clearAuto();
+      // console.log("통과:",prot);
 
-    // 1. 오른쪽여부
-    // is(클래스/아이디명) -> 선택요소해당여부 리턴
-    let isR = $(this).is(".rb");
+      // 자동넘김 지우기함수 호출!
+      // clearAuto();
 
-    // 호출확인(방향확인)
-    // console.log("오른쪽버튼인가? ",isR);
+      // 1. 오른쪽여부
+      // is(클래스/아이디명) -> 선택요소해당여부 리턴
+      let isR = $(this).is(".rb");
 
-    // 2. 버튼별 분기하여 기능구현
-    if (isR) {
-      // 오른쪽버튼
+      // 호출확인(방향확인)
+      // console.log("오른쪽버튼인가? ",isR);
 
-      slide.animate(
-        {
-          left: "-100%",
-        }, // CSS설정
-        aniT, // 시간
-        aniE, // 이징
-        function () {
-          // 이동후 실행함수
-          // append(요소)
-          // -> 자식요소로 맨뒤추가(이동)
-          $(this) // slide
-            .append($("li", this).first())
-            // 첫번째 li요소선택-> 맨뒤로 이동!
-            // $(요소,this) -> 나자신 하위요소
-            // first() 첫번째 요소
-            .css({
-              left: "0",
-            });
-          // 동시에 left값을 0으로 변경!
-        }
-      ); ///////// animate ///////
-    } /////////// if ///////////
-    else {
-      // 왼쪽버튼
+      // 2. 버튼별 분기하여 기능구현
+      if (isR) {
+        // 오른쪽버튼
 
-      // 맨뒤요소를 맨앞에 이동
-      slide
-        .prepend(slide.find("li").last())
-        // prepend(요소) 자식요소로 앞에 추가(이동)
-        // find(요소) 자손요소찾기
-        // last() 마직막요소
-
-        // 동시에 left값 -100%
-        .css({
-          // ### 드래그시 위치를 보정해준다!
-          // sldW는 슬라이드 기준값, spos 현재 left값
-          left: -sldW + spos + "px",
-        })
-        // 그후 left값 0으로 애니메이션
-        .animate(
+        slide.animate(
           {
-            left: "0",
-          },
-          aniT, //시간
-          aniE // 이징
-        ); ////// animate //////
-    } /////////// else ///////////
+            left: "-100%",
+          }, // CSS설정
+          aniT, // 시간
+          aniE, // 이징
+          function () {
+            // 이동후 실행함수
+            // append(요소)
+            // -> 자식요소로 맨뒤추가(이동)
+            $(this) // slide
+              .append($("li", this).first())
+              // 첫번째 li요소선택-> 맨뒤로 이동!
+              // $(요소,this) -> 나자신 하위요소
+              // first() 첫번째 요소
+              .css({
+                left: "0",
+              });
+            // 동시에 left값을 0으로 변경!
+          }
+        ); ///////// animate ///////
+      } /////////// if ///////////
+      else {
+        // 왼쪽버튼
 
-    // 3. 등장슬라이드와 같은 순번의 블릿변경하기
-    // 변경내용: 블릿 li에 class="on"을 주고
-    // 나머지 li에는 class="on"을 지운다!
+        // 맨뒤요소를 맨앞에 이동
+        slide
+          .prepend(slide.find("li").last())
+          // prepend(요소) 자식요소로 앞에 추가(이동)
+          // find(요소) 자손요소찾기
+          // last() 마직막요소
 
-    // 같은 순번 슬라이드는
-    // 오른쪽일때 2번째 슬라이드(순번1)
-    // 왼쪽일때 1번째 슬라이드(순번0)
-    // eq(순번) -> 몇번째 요소
-    // eq(isR?1:0) -> isR?1:0 -> 3항연산자
-    // isR이 true이면(1이면) 1을 출력, 아니면 0출력
-    let sseq = slide
-      .find("li")
-      .eq(isR ? 1 : 0)
-      .attr("data-seq");
-    console.log("슬순:", sseq);
+          // 동시에 left값 -100%
+          .css({
+            // ### 드래그시 위치를 보정해준다!
+            // sldW는 슬라이드 기준값, spos 현재 left값
+            left: -sldW + spos + "px",
+          })
+          // 그후 left값 0으로 애니메이션
+          .animate(
+            {
+              left: "0",
+            },
+            aniT, //시간
+            aniE // 이징
+          ); ////// animate //////
+      } /////////// else ///////////
 
-    // 등장슬라이드 순번과 동일한 블릿순번에
-    // 클래스 "on"주기
-    // 제이쿼리 클래스주기 메서드는? addClass(클명)
-    // 제이쿼리 클래스 컨트롤 메서드
-    // 1. addClass()
-    // 2. removeClass()
-    // 3. toggleClass()
+      // 3. 등장슬라이드와 같은 순번의 블릿변경하기
+      // 변경내용: 블릿 li에 class="on"을 주고
+      // 나머지 li에는 class="on"을 지운다!
 
-    // 변경대상: #indic li -> indic 변수
+      // 같은 순번 슬라이드는
+      // 오른쪽일때 2번째 슬라이드(순번1)
+      // 왼쪽일때 1번째 슬라이드(순번0)
+      // eq(순번) -> 몇번째 요소
+      // eq(isR?1:0) -> isR?1:0 -> 3항연산자
+      // isR이 true이면(1이면) 1을 출력, 아니면 0출력
+      let sseq = slide
+        .find("li")
+        .eq(isR ? 1 : 0)
+        .attr("data-seq");
+      console.log("슬순:", sseq);
 
-    // 해당순번(sseq)의 블릿li에 클래스"on" 넣기
-    indic
-      .eq(sseq)
-      .addClass("on")
-      // 다른형제요소들 -> siblings() 은 클래스지워!
-      .siblings()
-      .removeClass("on");
-  }); /////////// click /////////////
+      // 등장슬라이드 순번과 동일한 블릿순번에
+      // 클래스 "on"주기
+      // 제이쿼리 클래스주기 메서드는? addClass(클명)
+      // 제이쿼리 클래스 컨트롤 메서드
+      // 1. addClass()
+      // 2. removeClass()
+      // 3. toggleClass()
+
+      // 변경대상: #indic li -> indic 변수
+
+      // 해당순번(sseq)의 블릿li에 클래스"on" 넣기
+      indic
+        .eq(sseq)
+        .addClass("on")
+        // 다른형제요소들 -> siblings() 은 클래스지워!
+        .siblings()
+        .removeClass("on");
+    }); /////////// click /////////////
 
   // 블릿순번을 결정하기 위한 슬라이드 고유번호
   // 새로운 속성 만들기!!!
@@ -239,11 +245,14 @@ $(() => {
   // ->  선택요소에 강제 이벤트발생 메서드
 
   /**************************************** 
-      블릿 클릭시 이동기능 구현하기
-      - 대상: #indic li -> indic변수
-      - 이벤트: click -> click() 메서드
+       블릿 클릭시 이동기능 구현하기
+       - 대상: #indic li -> indic변수
+       - 이벤트: click -> click() 메서드
   ****************************************/
-  indic.click(function () {
+  indic.click(function (e) {
+    // 기본기능막기!
+    e.preventDefault();
+
     /// 광클금지 ////////
     if (prot) return;
     prot = 1; //잠금!
@@ -390,13 +399,13 @@ $(() => {
   ### 슬라이드 드래그 기능넣기 ###
 *********************************************/
   // 0. 커버
-  const cover = $(".cover");
+  const cover = $(ele).find(".cover");
 
   // 1. 드래그 설정하기 : x축고정
   slide.draggable({ axis: "x" });
 
   // 2. 가로크기 기준값 설정하기
-  const sldW = $("#viewer").width();
+  const sldW = $(ele).find(".viewer").width();
   console.log("슬라이드width:", sldW);
 
   // 왼쪽으로 드래그시 튐현상방지 위해 위치보정값 공유하기!
@@ -423,9 +432,13 @@ $(() => {
     }, aniT);
 
     // (1) 왼쪽방향일때 -> 오른쪽버튼 클릭시
-    if (spos < -50) $(".rb").trigger("click");
+    if (spos < -50) $(ele).find(".rb").trigger("click");
     // (2) 오른쪽방향일때 -> 왼쪽버튼 클릭시
-    else if (spos > 50) $(".lb").trigger("click");
+    else if (spos > 50) $(ele).find(".lb").trigger("click");
+    // (3) 기타 제자리!
+    else slide.animate({ left: "0" }, 300);
   }); ////////// dragstop //////////////
-  
-}); //////////////// jQB ////////////////////
+} ////////////////// mySlider 함수 ////////////////
+
+// 함수내보내기
+export default mySlider;
