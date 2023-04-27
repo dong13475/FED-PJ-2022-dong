@@ -38,9 +38,15 @@ Vue.component("list-comp", {
   // 컴포넌트 내부 변수셋팅
   data: function () {
     return {
+      // 1. 상품이미지 경로
       gsrc: `img_gallery/${this.haha}.jpg`,
+      // 2. 상품명
       gname: `Sofia23` + this.haha + this.endlet + (this.myseq % 2 ? "🎆" : "🎇"),
-      gprice: this.insComma(12340 * this.haha) + `원`,
+      // 3. 단위가격(원가격)
+      gprice: this.insComma((123400 * this.haha) / 2) + `원`,
+      // 4. 할인가격 : 30% 할인된 가격(원가격 * 0.7)
+      sale: this.insComma(Math.round(((123400 * this.haha) / 2) * 0.7)) + `원`,
+      // Math.round() - 반올림
     };
   },
   // 컴포넌트 내부 메서드셋팅
@@ -59,6 +65,19 @@ Vue.component("list-comp", {
     //정규식함수(숫자 세자리마다 콤마해주는 기능)
     insComma(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+
+    // 세일표시 여부 리턴 메서드
+    condiRet() {
+      return (
+        this.haha == 3 ||
+        this.haha == 5 ||
+        this.haha == 14 ||
+        this.haha == 25 ||
+        this.haha == 38 ||
+        this.haha == 45 ||
+        this.haha == 50
+      );
     },
   },
 }); ////////// VueJS 컴포넌트 ///////////
@@ -86,53 +105,60 @@ Vue.component("win-comp", {
 
 ////////// win-comp VueJS 인스턴스 생성하기 ///////////
 new Vue({
-  el:"#pbg",
+  el: "#pbg",
   // DOM이 모두 로딩된 후 실행구역!
-  mounted:function(){
+  mounted: function () {
     // [ 제이쿼리 기능구현 ]
 
     // 공유번호변수
     let nowNum = 1;
-    
-    // 1. 갤러리 리스트 클릭시 큰이미지박스 보이기
-    $(".grid>div").click(function(){
 
+    // 1. 갤러리 리스트 클릭시 큰이미지박스 보이기
+    $(".grid>div").click(function () {
       // 1. 클릭된 이미지 경로 읽어오기
       let isrc = $(this).find("img").attr("src");
       console.log(isrc);
-      
+
       // 2. 클릭된 이미지 경로를 큰 이미지에 src로 넣기
-      $(".gimg img").attr("src",isrc);
-      
+      $(".gimg img").attr("src", isrc);
+
       // 3. 큰이미지박스 보이기
       $("#bgbx").show();
 
       // 4. 다음/이전 이미지 변경을 위한 data-num속성읽기
       nowNum = $(this).attr("data-num");
-      console.log("현재이미지번호:",nowNum);
-      
+      console.log("현재이미지번호:", nowNum);
+
       // 5. 값 셋팅하기
       setVal();
-      
     }); /////// click ////////
 
-
     /// 상품명 / 가격 등 데이터 셋업 함수 ///
-    function setVal(){
+    function setVal() {
       // nowNum값에 의한 대상선정!
       const tg = $(`.grid>div[data-num=${nowNum}]`);
-      console.log(tg.find("h2").text());
-      console.log(tg.find("h3").text());
-      
-      // 상품명/가격 큰박스에 넣기
+      // console.log(tg.find("h2").text());
+      // console.log(tg.find("h3").text());
+
+      // 상품명 큰박스에 넣기
       $("#gtit,#gcode").text(tg.find("h2").text());
-      $("#gprice,#total").text(tg.find("h3").text());
-      
+      // 상품가격 큰박스에 넣기
+      // 세일일 경우와 아닌경우 나누기!
+      if(tg.find("h3 span").first().is(".del")){
+        $("#gprice,#total").html(
+          "<small>30% 세일가</small> "+tg.find("h3 span").last().text());
+      }
+      else{
+        $("#gprice,#total").text(
+          tg.find("h3 span").first().text());
+      }
+
+
+
     } ///////// setVal 함수 ///////////
 
-
     // 2. 닫기버튼 클릭시 큰이미지박스 숨기기
-    $(".cbtn").click(function(e){
+    $(".cbtn").click(function (e) {
       // 기본이동막기
       e.preventDefault();
       // 큰이미지박스 숨기기
@@ -146,29 +172,27 @@ new Vue({
     // })
 
     // 3. 이전/다음버튼 클릭시 이미지변경하기
-    $(".abtn").click(function(e){
+    $(".abtn").click(function (e) {
       // 1. 기본이동막기
       e.preventDefault();
       // 2. 오른쪽버튼 여부
       let isB = $(this).is(".rb");
       // 3. 분기하기
-      if(isB){ // 오른쪽버튼
+      if (isB) {
+        // 오른쪽버튼
         nowNum++;
-        if(nowNum===51) nowNum=1;
-      }
-      else{ // 왼쪽버튼
+        if (nowNum === 51) nowNum = 1;
+      } else {
+        // 왼쪽버튼
         nowNum--;
-        if(nowNum===0) nowNum=50;
+        if (nowNum === 0) nowNum = 50;
       }
-      
+
       // 4. 큰 이미지 변경하기
-      $(".gimg img").attr("src",`img_gallery/${nowNum}.jpg`)
-      
+      $(".gimg img").attr("src", `img_gallery/${nowNum}.jpg`);
+
       // 5. 값 셋팅하기
       setVal();
-      
     }); /////// click ////////
-    
-  } ///////// mounted 함수구역 /////////
-
+  }, ///////// mounted 함수구역 /////////
 }); /////////// VueJS 인스턴스 /////////////
