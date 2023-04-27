@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG 애니메이션 무비 인트로</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        background-color: #000;
+      }
+      /* 라인svg 스테이지 */
+      .stg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      /* 라인설정 */
+      .line1 {
+        stroke: cyan;
+        /* 선색-흰색 */
+        stroke-width: 3;
+        /* 선두께 */
+        stroke-dasharray: 150%;
+        /* 50% * 3조각 = 150% */
+        stroke-dashoffset: 150%; /* 공백부터 */
+
+        /* 애니메이션: 이시이지반방마 */
+        animation: lineAni 5s ease-in-out 2s forwards;
+      }
+      /* 라인애니메이션 키프레임 */
+      @keyframes lineAni {
+        to {
+          stroke-dashoffset: 0;
+        }
+      } /* 키프레임 */
+
+      /* 공통 CLASS */
+      .ir {
+        /* IR */
+        display: block;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
+      /* 스틸컷 박스 */
+      #stc {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      /* 스틸컷 개별박스 공통 */
+      #stc > div {
+        position: absolute;
+        /* 부모는? #stc */
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: cover;
+        opacity: 0;
+        /* 모두투명! */
+      }
+      /* 윗박스 */
+      #stc > div:first-child {
+        top: -15%;
+        width: 100%;
+        height: 50%;
+        background-image: url(./images/sc1.jpg);
+        /* 삼각형 클리핑 */
+        clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+      }
+      /* 오른쪽박스 */
+      #stc > div:nth-child(2) {
+        top: 0;
+        right: -15%;
+        width: 50%;
+        height: 100%;
+        background-image: url(./images/sc4.jpg);
+        /* 삼각형 클리핑 */
+        clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+      }
+      /* 아래쪽박스 */
+      #stc > div:nth-child(3) {
+        bottom: -15%;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-image: url(./images/sc3.jpg);
+        /* 삼각형 클리핑 */
+        clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+      }
+      /* 왼쪽박스 */
+      #stc > div:nth-child(4) {
+        top: 0;
+        left: -15%;
+        width: 50%;
+        height: 100%;
+        background-image: url(./images/sc2.jpg);
+        /* 삼각형 클리핑 */
+        clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+      }
+
+      /* 삼각형과 이미지박스 */
+      #mtit {
+        position: absolute;
+        width: 60%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0);
+        /* 애니메이션으로 배경색 투명도를 변경함 */
+      }
+      /* 로고이미지 */
+      #mtit img {
+        position: absolute;
+        left: 9.5%;
+        width: 80%;
+        opacity: 0;
+        padding: 45px 0;
+      }
+      /* 삼각형 */
+      .tribox {
+        position: relative;
+        display: block; /* 박스중앙 먹히게 */
+        margin: 0 auto;
+        width: 25%;
+      }
+      .tribox polygon {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 5;
+        stroke-dasharray: 330%;
+        stroke-dashoffset: 330%;
+      }
+      /* 오디오버튼 */
+      .audPlay {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+
+        cursor: pointer;
+      }
+    </style>
+    <!-- 제이쿼리 라이브러리 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- 제이쿼리 UI CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+      $(() => {
+        //////////// JQB //////////////
+
+        // 0. 대상선정
+        // 스틸컷
+        const stc = $("#stc>div");
+
+        // 1. 스틸컷 박스 투명도 1, 원위치 애니!
+        // (1) 첫번째 박스
+        stc.eq(0).delay(7000).animate(
+          {
+            top: "0",
+            opacity: 1,
+          },
+          2000,
+          "easeInOutCubic"
+        );
+        // (2) 두번째 박스
+        stc.eq(1).delay(7000).animate(
+          {
+            right: "0",
+            opacity: 1,
+          },
+          3000,
+          "easeInOutCubic"
+        );
+        // (3) 세번째 박스
+        stc.eq(2).delay(7000).animate(
+          {
+            bottom: "0",
+            opacity: 1,
+          },
+          4000,
+          "easeInOutCubic"
+        );
+        // (4) 네번째 박스
+        stc.eq(3).delay(7000).animate(
+          {
+            left: "0",
+            opacity: 1,
+          },
+          5000,
+          "easeInOutCubic",
+          titAni // 콜백함수 호출!
+        );
+
+        // 2. 타이틀 로고 애니함수
+        function titAni() {
+          // (1) 로고 보이기
+          $("#mtit img").animate(
+            {
+              opacity: 1,
+            },
+            2000,
+            "easeInOutCubic"
+          );
+          // (2) 배경투명도 변경
+          $("#mtit").animate(
+            {
+              backgroundColor: "rgb(0, 0, 0, 0.7)",
+            },
+            2000,
+            "easeInOutBounce"
+          );
+
+          // (3) 삼각형 애니
+          $(".tribox polygon").delay(2000).animate(
+            {
+              strokeDashoffset: "0%",
+            },
+            2000,
+            "linear"
+          );
+        } ////////// titAni 함수 /////////////
+
+        // 3. 오디오 기능 구현
+        // (1) 버튼에 오버시 이미지변경
+        $(".audPlay")
+          .hover(
+            function () {
+              // over
+              $("img", this).attr("src", $("img", this).attr("src").replace(".png", "-1.png"));
+            },
+            function () {
+              // out
+              $("img", this).attr("src", $("img", this).attr("src").replace("-1.png", ".png"));
+            }
+          ) //////// hover ////////
+          // 버튼 클릭시 버튼변경 및 오디오 재생/멈춤 전환!
+          .click(function () {
+            // 오디오요소
+            const myaud = $(".myaud").get(0);
+            // get(순번) -> 선택법은 제이쿼리용!
+            // JS는 오디오/비디오 선택후 바로 play()
+
+            // 오디오/비디오 재생여부 속성 -> paused
+            // 멈춤상태이면 true / 재생상태면 false
+            console.log("오디오재생여부:", myaud.paused);
+
+            // 분기하기
+            // 멈춤이면 재생
+            if (myaud.paused) {
+              // 버튼 변경하기
+              $("img", this).attr("src", "./images/vbt1-1.png");
+              // 오디오재생하기 : play 메서드
+              myaud.play();
+            } /////// if /////////
+            else {
+              // 버튼 변경하기
+              $("img", this).attr("src", "./images/vbt2-1.png");
+              // 오디오정지하기 : pause() 메서드
+              myaud.pause();
+            } /////// else ///////
+          });
+      }); //////////// JQB /////////////////
+    </script>
+  </head>
+  <body>
+    <!-- 공각기동대 스틸컷 박스 -->
+    <div id="stc">
+      <div><span class="ir">공각스틸컷</span></div>
+      <div><span class="ir">공각스틸컷</span></div>
+      <div><span class="ir">공각스틸컷</span></div>
+      <div><span class="ir">공각스틸컷</span></div>
+    </div>
+
+    <!-- 라인 SVG -->
+    <svg class="stg">
+      <line class="line1" x1="0%" y1="0%" x2="100%" y2="100%"></line>
+      <line class="line1" x1="100%" y1="0%" x2="0%" y2="100%"></line>
+    </svg>
+
+    <!-- 삼각형과 이미지박스 -->
+    <div id="mtit">
+      <img src="images/GoastInTheShell_logo.png" alt="logo" />
+      <svg class="tribox" viewBox="0 0 300 300">
+        <polygon points="0,300 300,300 150,0"></polygon>
+      </svg>
+    </div>
+
+    <!-- 오디오 -->
+    <div class="audPlay">
+      <img src="./images/vbt2.png" alt="조작버튼" />
+    </div>
+    <div class="audSpot"></div>
+    <audio src="./images/goast.mp3" class="myaud"></audio>
+  </body>
+</html>
