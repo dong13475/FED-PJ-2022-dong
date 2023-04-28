@@ -90,9 +90,9 @@ const hcode = {
                 </li>
                 <li id="gtit">상품명</li>
                 <li>
-                    <img src="img_gallery/icon_type02_social01.gif" alt="페이스북"><img
-                        src="img_gallery/icon_type02_social02.gif" alt="트위터"><img src="img_gallery/icon_mail02.gif"
-                        alt="이메일"><img src="img_gallery/btn_source_copy.gif" alt="URL복사">
+                  <img src="img_gallery/icon_type02_social01.gif" alt="페이스북"><img
+                  src="img_gallery/icon_type02_social02.gif" alt="트위터"><img src="img_gallery/icon_mail02.gif"
+                  alt="이메일"><img src="img_gallery/btn_source_copy.gif" alt="URL복사">
                 </li>
                 <li>
                     <span>판매가</span>
