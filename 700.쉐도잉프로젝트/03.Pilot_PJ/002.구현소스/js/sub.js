@@ -7,6 +7,9 @@ import comData from "./tempData/data-common.js";
 // 신상정보
 import sinsang from "./gdsData/sinsang.js";
 
+// 스와이퍼 변수
+let swiper;
+
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
 // Vue.component(내가지은요소명,{옵션})
 Vue.component("top-comp", {
@@ -52,10 +55,11 @@ new Vue({
   el: "#info",
 }); /////// 하단영역 Vue 인스턴스 /////////
 
+
 // 스와이퍼 플러그인 인스턴스 생성하기 ///
 // 스와이퍼 생성함수
 function makeSwiper() {
-  var swiper = new Swiper(".mySwiper", {
+  swiper = new Swiper(".mySwiper", {
     slidesPerView: 1,
     spaceBetween: 0,
     loop: true,
@@ -89,6 +93,10 @@ function sinsangFn() {
   let lpos = 0;
   // 재귀호출 상태값변수 (1-호출가능/0-호출불가)
   let call_sts = 0;
+  // 스크롤시 상태값변수 (1-호출가능/0-호출불가)
+  let sc_sts = 0;
+  // 재귀호출 타임아웃용변수
+  let callT;
 
   function moveList() {
     // 1. 이동위치값(left값) 감소하기
@@ -110,9 +118,12 @@ function sinsangFn() {
       left: lpos + "px",
     });
 
+    // 타임아웃비우기
+    clearTimeout(callT);
+
     // 재귀호출하기(비동기호출-setTimeout)
     // 조건 : call_sts 상태값이 1일때만 호출함!
-    if (call_sts) setTimeout(moveList, 40);
+    if (call_sts) callT = setTimeout(moveList, 40);
   } /////////// moveList 함수 /////////////
 
   // 신상품 이동함수 최초호출
@@ -120,7 +131,7 @@ function sinsangFn() {
 
   // 신상품 리스트에 마우스 오버시 멈춤
   // 신상품 리스트에 마우스 아웃시 이동
-  // hover(함수1,함수2)
+  // hover(함수1,함수2)ee
   flist.hover(
     function () {
       // over
@@ -154,7 +165,8 @@ function sinsangFn() {
       // .ibox에 상품정보넣기
       // ^는 특수문자이므로 정규식에 넣을때 역슬래쉬와 함께씀
       // -> /\^/
-      $(".ibox").html(gd_info.replace(/\^/g, "<br>")).animate(
+      $(".ibox",this).html(gd_info.replace(/\^/g, "<br>"))
+      .animate(
         {
           top: "110%",
           opacity: 1,
@@ -166,13 +178,13 @@ function sinsangFn() {
     function () {
       // out
       // .ibox 나갈때 지우기
-      $(".ibox").remove();
+      $(".ibox",this).remove();
     }
   ); ///////// hover //////////
 
-  /********************************************* 
+  /************************************************** 
       스크롤 위치가 신상품 박스가 보일때만 움직이기
-    *********************************************/
+  **************************************************/
   // JS의 getBoundingClientRect() 의 값과 같은것은?
   // 적용박스 offset().top위치값 - scroll바 위치값
 
@@ -182,6 +194,7 @@ function sinsangFn() {
   let scTop = 0;
   // 3. 화면높이값
   let winH = $(window).height();
+  console.log("화면높이값:",winH);
 
   // 4. 스크롤 이벤트함수 //
   $(window).scroll(function () {
@@ -191,18 +204,39 @@ function sinsangFn() {
     // 2. gBCR 값 구하기
     let gBCR = tgpos - scTop;
 
-    console.log("gBCR:", gBCR);
+    // console.log("gBCR:", gBCR);
 
     // 3. 신상품 리스트 이동/멈춤 분기하기
     // (1) 이동기준 gBCR값이 화면높이보다 작고 0보다 클때 이동
-    if (gBCR < winH && gBCR > 0 && call_sts===0) {
+    if (gBCR < winH && gBCR > -300 && sc_sts===0) {
+      sc_sts = 1; // 한번만실행
       call_sts = 1; // 콜백허용! (한번만실행)
       moveList(); // 함수재호출!
+      console.log("범위1");
     } //////// if //////////
     // (2) 기타경우 멈춤
-    else {
+    // (조건: 윈도우높이보다 크거나 0보다 작고 call_sts===1일때)
+    else if((gBCR > winH || gBCR < -300) && sc_sts===1){
+      sc_sts = 0; // 한번만실행
       call_sts = 0; // 콜백중단!
+      console.log("범위2");
     } //////// else //////////
+
+    //////////////////////////////
+    // 서브 배너 스와이퍼 API를 //
+    // 이용한 작동멈춤셋팅하기! //
+    //////////////////////////////
+    // 기준 : 화면높이값 보다 
+    // 스크롤위치가 크면 멈춤
+    // 스와이퍼 API : swiper.autoplay.stop()
+    // 스크롤위치가 작으면 자동넘김
+    // 스와이퍼 API : swiper.autoplay.start()
+    // if(scTop > winH){
+    //   swiper.autoplay.stop()
+    // }
+    // else{
+    //   swiper.autoplay.start()
+    // }
     
   }); //////// scroll /////////
 } ///////////// sinsangFn 함수 //////////////
