@@ -86,7 +86,7 @@
 
   /* 가상요소 비율밀기 */
   .page::before {
-    content: "";
+    content: '';
     display: block;
     padding-top: 80%;
   }

@@ -6,12 +6,13 @@
 @import url(core.css);
 @import url(common.css);
 
-html,body{
+html,
+body {
   overflow: visible;
 }
 
 /* 배너박스 */
-#ban{
+#ban {
   height: 100vh;
 }
 
