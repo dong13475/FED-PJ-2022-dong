@@ -94,7 +94,7 @@ function sinsangFn() {
     // 1. 이동위치값(left값) 감소하기
     lpos--;
 
-    console.log("위치값:", lpos);
+    // console.log("위치값:", lpos);
 
     // 2. 한계값 초기화하기 + 첫번째 요소 맨뒤로 이동하기!
     if (lpos < -300) {
@@ -129,4 +129,37 @@ function sinsangFn() {
       call_sts = 1; // 콜백허용!
       moveList(); // 함수재호출!
     }); //////// hover /////////
+
+    /*************************************************** 
+      신상품 리스트 li에 마우스 오버시 정보보이기
+      1. 대상 : .flist li
+      2. 정보구분법 : li의 클래스명으로 신상품정보와
+                    매칭하여 상품정보박스를 동적으로 
+                    생성하여 애니메이션을 주어 보이게함
+    ***************************************************/
+    flist.find("li").hover(
+      function(){ // hover
+        // 1. 클래스 정보 알아내기
+        let clsnm = $(this).attr("class");
+        // 2. 클래스 이름으로 셋팅된 신상정보 객체 데이터 가져오기
+        let gd_info = sinsang[clsnm];
+        console.log(clsnm,gd_info);
+        // 3. 상품정보박스 만들고 보이게하기
+        // 마우스 오버된 li자신 (this)에 넣어준다!
+        $(this).append(`<div class="ibox"></div>`);
+        // .ibox에 상품정보넣기
+        // ^는 특수문자이므로 정규식에 넣을때 역슬래쉬와 함께씀
+        // -> /\^/
+        $(".ibox").html(gd_info.replace(/\^/g,"<br>"))
+        .animate({
+          top:"110%",
+          opacity: 1
+        },300,"easeOutCirc");
+    },
+      function(){ // out
+        // .ibox 나갈때 지우기
+        $(".ibox").remove();
+    }); ///////// hover //////////
+    
+    
 } ///////////// sinsangFn 함수 //////////////
