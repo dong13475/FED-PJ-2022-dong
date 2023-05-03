@@ -3,13 +3,9 @@
 // 메뉴기능함수 가져오기
 import menuFn from './mainjs/menu.js';
 // 공통 데이터 가져오기
-<<<<<<< HEAD
 import comData from "./tempData/data-common.js";
 // 신상정보
 import sinsang from "./gdsData/sinsang.js";
-=======
-import comData from './tempData/data-common.js';
->>>>>>> 07d00b428b669fcdbcb7aec8772290b9d78122c2
 
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
 // Vue.component(내가지은요소명,{옵션})
@@ -53,13 +49,8 @@ new Vue({
 
 //###### 하단영역 뷰 인스턴스 생성하기 ##########
 new Vue({
-<<<<<<< HEAD
   el: "#info",
 }); /////// 하단영역 Vue 인스턴스 /////////
-=======
-  el: '#info',
-}); //////// 하단영역 뷰 인스턴스 ////////
->>>>>>> 07d00b428b669fcdbcb7aec8772290b9d78122c2
 
 // 스와이퍼 플러그인 인스턴스 생성하기 ///
 // 스와이퍼 생성함수
@@ -83,7 +74,6 @@ function makeSwiper() {
       prevEl: '.swiper-button-prev',
     },
   });
-<<<<<<< HEAD
 } //////////// makeSwiper 함수 ///////////////
 
 ////// 신상품 기능구현 함수 //////
@@ -140,6 +130,3 @@ function sinsangFn() {
       moveList(); // 함수재호출!
     }); //////// hover /////////
 } ///////////// sinsangFn 함수 //////////////
-=======
-} /////////// makeSwiper 함수 ///////////
->>>>>>> 07d00b428b669fcdbcb7aec8772290b9d78122c2
