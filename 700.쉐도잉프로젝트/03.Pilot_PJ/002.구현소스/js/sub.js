@@ -42,6 +42,11 @@ new Vue({
 
     // 신상품 기능함수 호출
     sinsangFn();
+
+    // 패럴렉스 적용함수 호출
+    setParallax(".c2",0.6);
+    // setParallax(적용할요소,속도);
+    // 속도는 0.1~0.9
   },
   // created 실행구역 : DOM연결전
   created: function () {
@@ -222,10 +227,10 @@ function sinsangFn() {
       console.log("범위2");
     } //////// else //////////
 
-    //////////////////////////////
+    /////////////////////////////
     // 서브 배너 스와이퍼 API를 //
     // 이용한 작동멈춤셋팅하기! //
-    //////////////////////////////
+    ////////////////////////////
     // 기준 : 화면높이값 보다 
     // 스크롤위치가 크면 멈춤
     // 스와이퍼 API : swiper.autoplay.stop()
@@ -240,3 +245,10 @@ function sinsangFn() {
     
   }); //////// scroll /////////
 } ///////////// sinsangFn 함수 //////////////
+
+// 패럴렉스 플러그인 적용함수
+function setParallax(ele,speed){
+  // 대상 : .c2
+  $(ele).parallax("50%",speed);
+  // parallax(배경위치,속도)
+} /////////// setParallax 함수 ////////////
