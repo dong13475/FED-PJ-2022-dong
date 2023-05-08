@@ -22,6 +22,24 @@
   (참고 : 뷰엑스 관리흐름도
     https://docs.google.com/document/d/1xT3IMlWO_kY7pJqNJSDpI4IPe6BtpfoYq9r5M5_YiRE/edit)
 
+  [ 뷰엑스 스토어 메서드 호출방법 ]
+
+  1. actions 내부 메서드 호출 : dispatch("메서드명",전달변수)
+  
+  1. mutations 내부 메서드 호출 : commit("메서드명",전달변수)
+
+  => actions 와 mutations 내부의 메서드는
+  다음과 같은 형태로 구성된다!
+  actions/mutaitons:{
+    메서드명(첫변수,둘째변수){
+
+    }
+    -> 첫변수는 
+      mutations인경우 뷰엑스 스토어의 state 변수가 자동으로 들어옴!
+      actions는 뷰엑스 스토어의 전체 객체가 자동으로 들어옴 
+    -> 둘째변수는 호출시 전달한 값이 들어옴!
+  }
+    
   예시코드)
     new Vuex.Store({
       state:{
@@ -54,7 +72,7 @@
 
 **********************************************************/
 
-////////// 뷰엑스 스터어를 활용한 변수 셋팅하기 //////////
+////////// 뷰엑스 스토어를 활용한 변수 셋팅하기 //////////
 // 1. 뷰엑스 스토어 인스턴스를 생성한다!
 
 const store = new Vuex.Store({
@@ -83,23 +101,31 @@ const store = new Vuex.Store({
 
   }, /////// state 구역 ///////
 
-  // (2) 데이터 변경 메서드 구역
+  // (2) 데이터 변경 메서드 구역 : 
+  // 호출시 commit() 사용!!!
   mutations:{
     // 초기데이터 셋업 메서드
-    initSet(state,param){
-      console.log("데이터변경! 초기화!");
+    initSet(헐,param){
+      console.log("데이터변경! 초기화!",헐);
       // 파라미터가 하나일경우
-      // state.imgsrc = param;
+      // 헐.imgsrc = param;
       
       // 파라미터가 객체일 경우(데이터다수일때!)
 
       // 이미지 데이터 셋업
-      state.imgsrc = param.url;
+      헐.imgsrc = param.url;
       // 설명 데이터 셋업
-      state.desc = param.txt;
+      헐.desc = param.txt;
       
     }, /////// initSet 메서드 ////////
-  },
+  }, ///////// mutations 구역 ////////////
+  // (3) 백엔드 관련 코딩 비동기처리 메서드 구역 : 
+  // 호출시 dispatch() 사용!!!
+  actions:{
+    myAct(헝,벙){
+      console.log("나의액션:",헝,벙);
+    }
+  } ////////// actions 구역 ///////////
 }); //////////// 뷰엑스 인스턴스 ////////////
 
 
