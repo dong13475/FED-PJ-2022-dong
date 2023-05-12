@@ -16,6 +16,7 @@ const store = new Vuex.Store({
   // (3) 백엔드 관련 코딩 비동기처리 메서드 구역 :
   // 호출시 dispatch() 사용!!!
   actions: {
+    // 제이슨 데이터 
     
   }, ////////// actions 구역 ///////////
 
