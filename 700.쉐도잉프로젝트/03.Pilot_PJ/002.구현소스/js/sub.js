@@ -17,6 +17,34 @@ import store from "./store.js";
 // 스와이퍼 변수
 let swiper;
 
+// 바로실행함수구역 ///
+// 바로실행구역을 쓰는이유 : 
+// 변수나 명령어를 다른 영역과 구분하여 코딩할때 주로 사용됨!
+// GET방식 데이터를 store에서 초기값으로 셋팅하는 것을 
+// 인스턴스 생성전에 해야 아래쪽에 빈값으로 셋팅된값이 
+// 들어가서 에러나는 것을 막을 수 있다!
+(() => {
+  // 파라미터 변수
+  let pm;
+
+  // GET 방식으로 넘어온 데이터 처리하여
+  // 분류별 서브 페이지 구성하기!
+  // location.href -> 상단 url읽어옴!
+  // indexOf("?")!==-1 -> 물음표가 있으면!(-1이 아니면)
+  if (location.href.indexOf("?") !== -1) 
+    pm = location.href.split("?")[1].split("=")[1];
+  // 물음표(?)로 잘라서 뒤에것, 이퀄(=)로 잘라서 뒤엣것
+  // 파라미터 값만 추출함!
+  // pm에 할당이 되었다면 undifined가 아니므로 true
+  if (pm) store.commit("chgData", decodeURI(pm));
+  // 메뉴를 선택해서 파라미터로 들어오지 않으면 "남성"셋팅
+  else store.commit("chgData", "남성");
+
+  // decodeURI() -> 변경할 문자열만 있어야 변환됨
+  // decodeURIComponent() -> url전체에 섞여 있어도 모두 변환
+
+})(); ////////////// 바로실행함수구역 //////////////////
+
 //###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
 // 1. 배너파트 컴포넌트
 // Vue.component(내가지은요소명,{옵션})
@@ -30,9 +58,24 @@ Vue.component("cont1-comp", {
   template: subData.cont1,
 }); ////////// 상단영역 Vue component //////////
 
+// 3. 컨텐츠2 영역 컴포넌트
+Vue.component("cont2-comp", {
+  template: subData.cont2,
+}); ////////// 상단영역 Vue component //////////
+
+// 4. 컨텐츠3 영역 컴포넌트
+Vue.component("cont3-comp", {
+  template: subData.cont3,
+}); ////////// 상단영역 Vue component //////////
+
+// 5. 컨텐츠4 영역 컴포넌트
+Vue.component("cont4-comp", {
+  template: subData.cont4,
+}); ////////// 상단영역 Vue component //////////
+
 //###### 서브영역 뷰 인스턴스 셋팅하기 #######
 new Vue({
-  el:"#cont",
+  el: "#cont",
   store, // 뷰엑스 스토어 등록 필수!!!
 }); ////////// 서브영역 Vue 인스턴스 //////////
 
@@ -71,20 +114,62 @@ new Vue({
     sinsangFn();
 
     // 패럴렉스 적용함수 호출
-    setParallax(".c2",0.6);
+    setParallax(".c2", 0.6);
     // setParallax(적용할요소,속도);
     // 속도는 0.1~0.9
 
     // 스크롤리빌 플러그인 적용호출!
     $.fn.scrollReveal();
 
-    // 전체메뉴클릭시 전체메뉴창 닫기
-    $(".mlist a").click(
-      ()=>$(".ham").trigger("click"));
+    // 전체메뉴클릭시 ///////////////
+    $(".mlist a").click(() => {
+      // 1. 전체메뉴창 닫기
+      $(".ham").trigger("click");
+      // 2. 부드러운 스크롤 위치값 업데이트
+      sc_pos = 0;
+      // 3. 스와이퍼 첫번째 슬라이드로 이동!
+      swiper.slideTo(0);
+      // 첫슬라이드는 0번: 스와이퍼 API사용!
+      // 4. 등장액션 스크롤리빌 다시 호출!
+      $.fn.scrollReveal();
+    });
     // 선택요소.trigger(이벤트명)
     // -> 선택요소의 이벤트 강제발생함!
     // 참고) JS 클릭이벤트 강제발생
     // document.querySelector(요소).click();
+
+    // GNB 메뉴 클릭시 해당위치로 스크롤이동 애니메이션
+    // 각 .gnb a 에는 href="#c2" 이런식으로 아이디요소가 있음!
+    // a요소의 #아이디명으로 기본 위치이동은 되지만
+    // 스크롤 애니메이션은 되지 않는다!
+    // 이것을 제이쿼리로 구현하자!!!
+    $(".gnb a").click(function (e) {
+      // 1. 기본이동막기
+      e.preventDefault();
+
+      // 2. 클릭된 a요소의 href값 읽어오기
+      let aid = $(this).attr("href");
+
+      // 3. 아이디요소 박스 위치구하기
+      let newpos = $(aid).offset().top;
+
+      console.log("이동아이디:", aid, "/위치:", newpos);
+
+      // 4. 애니메이션 이동
+      $("html,body").animate(
+        {
+          scrollTop: newpos + "px",
+        },
+        600,
+        "easeOutQuint"
+      );
+
+      // 5. 부드러운 스크롤 변수에 현재위치값 업데이트
+      sc_pos = newpos;
+    }); ///////////// click /////////////
+
+    // 로고 클릭시 첫페이지로 이동!!!
+    $("#logo").click(() => (location.href = "index.html"));
   },
   // created 실행구역 : DOM연결전
   created: function () {
@@ -97,7 +182,6 @@ new Vue({
 new Vue({
   el: "#info",
 }); /////// 하단영역 Vue 인스턴스 /////////
-
 
 // 스와이퍼 플러그인 인스턴스 생성하기 ///
 // 스와이퍼 생성함수
@@ -200,7 +284,10 @@ function sinsangFn() {
       // 1. 클래스 정보 알아내기
       let clsnm = $(this).attr("class");
       // 2. 클래스 이름으로 셋팅된 신상정보 객체 데이터 가져오기
-      let gd_info = sinsang[clsnm];
+      // 중간 객체속성명 상위부모박스 #c1의 data-cat 속성값
+      // 읽어와서 sinsang[요기][] -> 요기에 넣기!
+      let cat = $(this).parents("#c1").attr("data-cat");
+      let gd_info = sinsang[cat][clsnm];
       // console.log(clsnm,gd_info);
       // 3. 상품정보박스 만들고 보이게하기
       // 마우스 오버된 li자신 (this)에 넣어준다!
@@ -208,8 +295,7 @@ function sinsangFn() {
       // .ibox에 상품정보넣기
       // ^는 특수문자이므로 정규식에 넣을때 역슬래쉬와 함께씀
       // -> /\^/
-      $(".ibox",this).html(gd_info.replace(/\^/g, "<br>"))
-      .animate(
+      $(".ibox", this).html(gd_info.replace(/\^/g, "<br>")).animate(
         {
           top: "110%",
           opacity: 1,
@@ -221,7 +307,7 @@ function sinsangFn() {
     function () {
       // out
       // .ibox 나갈때 지우기
-      $(".ibox",this).remove();
+      $(".ibox", this).remove();
     }
   ); ///////// hover //////////
 
@@ -237,7 +323,7 @@ function sinsangFn() {
   let scTop = 0;
   // 3. 화면높이값
   let winH = $(window).height();
-  console.log("화면높이값:",winH);
+  console.log("화면높이값:", winH);
 
   // 4. 스크롤 이벤트함수 //
   $(window).scroll(function () {
@@ -251,7 +337,7 @@ function sinsangFn() {
 
     // 3. 신상품 리스트 이동/멈춤 분기하기
     // (1) 이동기준 gBCR값이 화면높이보다 작고 0보다 클때 이동
-    if (gBCR < winH && gBCR > -300 && sc_sts===0) {
+    if (gBCR < winH && gBCR > -300 && sc_sts === 0) {
       sc_sts = 1; // 한번만실행
       call_sts = 1; // 콜백허용! (한번만실행)
       moveList(); // 함수재호출!
@@ -259,7 +345,7 @@ function sinsangFn() {
     } //////// if //////////
     // (2) 기타경우 멈춤
     // (조건: 윈도우높이보다 크거나 0보다 작고 call_sts===1일때)
-    else if((gBCR > winH || gBCR < -300) && sc_sts===1){
+    else if ((gBCR > winH || gBCR < -300) && sc_sts === 1) {
       sc_sts = 0; // 한번만실행
       call_sts = 0; // 콜백중단!
       console.log("범위2");
@@ -269,7 +355,7 @@ function sinsangFn() {
     // 서브 배너 스와이퍼 API를 //
     // 이용한 작동멈춤셋팅하기! //
     ////////////////////////////
-    // 기준 : 화면높이값 보다 
+    // 기준 : 화면높이값 보다
     // 스크롤위치가 크면 멈춤
     // 스와이퍼 API : swiper.autoplay.stop()
     // 스크롤위치가 작으면 자동넘김
@@ -280,13 +366,12 @@ function sinsangFn() {
     // else{
     //   swiper.autoplay.start()
     // }
-    
   }); //////// scroll /////////
 } ///////////// sinsangFn 함수 //////////////
 
 // 패럴렉스 플러그인 적용함수
-function setParallax(ele,speed){
+function setParallax(ele, speed) {
   // 대상 : .c2
-  $(ele).parallax("50%",speed);
+  $(ele).parallax("50%", speed);
   // parallax(배경위치,속도)
 } /////////// setParallax 함수 ////////////
