@@ -30,7 +30,9 @@ const subData = {
   'cont c1 '+$store.state.cat
   " id="c1">
     <!-- 2-2-1. 신상품 타이틀 -->
-    <h2 class="c1tit js-reveal">New Approval</h2>
+    <h2 class="c1tit js-reveal">
+      {{$store.state.menu[0]}}
+    </h2>
     <!-- 2-2-2. 신상품 박스 -->
     <div class="flowbx js-reveal">
       <!-- 리스트박스 -->
