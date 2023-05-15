@@ -170,12 +170,12 @@ new Vue({
 
     // 로고 클릭시 첫페이지로 이동!!!
     $("#logo").click(() => (location.href = "index.html"));
-  },
+  }, ///////// mounted //////////
   // created 실행구역 : DOM연결전
   created: function () {
     // DOM연결전 데이터 가공작업
     console.log("created구역");
-  },
+  }, ////////// created //////////
 }); //////// 상단영역 뷰 인스턴스 ////////
 
 //###### 하단영역 뷰 인스턴스 생성하기 ##########
