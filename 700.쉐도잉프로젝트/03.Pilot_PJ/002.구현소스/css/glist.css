@@ -63,6 +63,7 @@ body {
   padding: 10px;
   text-align: center;
   background-color: #fff;
+  font-size: 15px;
 }
 /* 페이징박스 */
 #paging {
@@ -563,3 +564,4 @@ body {
   background-color: #ddd;
   border-radius: 5px;
 }
+
