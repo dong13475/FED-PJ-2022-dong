@@ -171,7 +171,7 @@ ReactDOM.render(myele8, document.querySelectorAll("#root>div")[7]);
 
 
 // JSX 표현식에 삼항연산자 사용하기
-let time = 8;
+let time = 2;
 
 const myele9 = (
   <React.Fragment>
