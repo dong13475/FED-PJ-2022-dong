@@ -12,17 +12,17 @@
 // 넣을요소
 const myele1 = <h1>나는 JSX를 사용하고 있어!</h1>;
 // 리액트 루트생성하기 : createRoot() 메서드 사용!
-const root1 = ReactDOM.createRoot(document.querySelectorAll('#root>div')[0]);
+const root1 = ReactDOM.createRoot(document.querySelectorAll("#root>div")[0]);
 // 적용하기 : 생성된 루트에 render() 메서드를 붙여서 사용함!
 root1.render(myele1);
 
 // (2) JSX를 사용하지 않는 방법 //////////
 // 넣을 요소를 createElement() 메서드로 생성해야함!(JSX쓰지않고...)
-const myele2 = React.createElement('h1', {}, '나는 JSX를 쓰지 않아!');
+const myele2 = React.createElement("h1", {}, "나는 JSX를 쓰지 않아!");
 // createElement(요소명,{JS코드작성},요소내용)
 
 // 두번째 div요소에 출력하기
-ReactDOM.render(myele2, document.querySelectorAll('#root>div')[1]);
+ReactDOM.render(myele2, document.querySelectorAll("#root>div")[1]);
 
 /********************************************************** 
   [ 출력방식 정리! ]
@@ -57,7 +57,7 @@ let num2 = 7;
 const myele3 = <h1>리액트는 {num1 * num2}번 사용해도 좋다!</h1>;
 
 // 세번째 div요소에 출력하기
-ReactDOM.render(myele3, document.querySelectorAll('#root>div')[2]);
+ReactDOM.render(myele3, document.querySelectorAll("#root>div")[2]);
 
 /********************************************************** 
   [ JSX 태그요소 작성시 여러줄일 경우 ]
@@ -90,7 +90,37 @@ const myele4 = (
 );
 
 // 네번째 div요소에 출력하기
-ReactDOM.render(myele4, document.querySelectorAll('#root>div')[3]);
+ReactDOM.render(myele4, document.querySelectorAll("#root>div")[3]);
+
+// 5번에는 내가 원하는 태그를 출력해본다!!!
+
+const mydata = [
+  { idx: 1, name: "김수현", movie: "별에서온그대" },
+  { idx: 2, name: "공유", movie: "도깨비" },
+  { idx: 3, name: "김고은", movie: "유미의세포들" },
+];
+
+// map()을 사용한 태그생성하기
+const mylist = mydata.map((val) => (
+  <li>
+    {val.name} : {val.movie}
+  </li>
+));
+
+const myele5 = (
+  <React.Fragment>
+    <h1>배우리스트</h1>
+    <ul>{mylist}</ul>
+  </React.Fragment>
+);
+
+// 다섯번째 div요소에 출력하기
+ReactDOM.render(myele5, document.querySelectorAll("#root>div")[4]);
+
+/********************************************************** 
+  
+**********************************************************/
+
 
 /********************************************************** 
 
