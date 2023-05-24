@@ -37,11 +37,10 @@ let Glist = {
               
               <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
               <router-link 
-                  v-bind:to="
-                  {
-                      name:'det',
-                      params:{id : v.idx, list : $route.path}
-                  }">
+              v-bind:to="{
+                  name:'det',
+                  params:{id : v.idx, list : $route.path}
+              }">
               [{{v.idx}}]
                   <img 
                       v-bind:src="
@@ -87,7 +86,7 @@ let Paging = {
               v.idx <= 10 + $store.state.pnum
           ">
 
-             
+            
           <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
           <router-link 
               v-bind:to="
@@ -120,13 +119,13 @@ let Paging = {
           $store.commit('updatePaging',0)">
               1
           </a>
-           | 
+            | 
           <a href="#" 
           @click.prevent="
           $store.commit('updatePaging',10)">
               2
           </a>
-           | 
+            | 
           <a href="#" 
           @click.prevent="
           $store.commit('updatePaging',20)">
@@ -150,7 +149,7 @@ let More = {
               v.idx <= 5 + $store.state.mnum
           ">
 
-             
+            
           <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
           <router-link 
               v-bind:to="
@@ -319,7 +318,8 @@ const Detail = {
                   <div>
                       <!--버튼영역-->
                       <button class="btn btn1">BUY NOW</button>
-                      <button class="btn">SHOPPING CART</button>
+                      <button class="btn scbtn" 
+                      @click="$store.commit('setData',$route.params.id-1)">SHOPPING CART</button>
                       <button class="btn">WISH LIST</button>
 
                   </div>
