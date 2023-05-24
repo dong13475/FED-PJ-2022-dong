@@ -65,14 +65,94 @@ const store = new Vuex.Store({
       console.log("선택gdata:",dt.gdata[pm]);
       console.log("cart전:",localStorage.getItem("cart"));
 
-      // 로컬스 데이터 cart가 없으면 [] 배열형식으로 문자넣기
+      // 1. 로컬스 데이터 cart가 없으면 [] 배열형식으로 문자넣기
       if(localStorage.getItem("cart")==null)
         localStorage.setItem("cart","[]");
 
       console.log("cart후",localStorage.getItem("cart"));
       
+      
+      // 2. 로컬스토리지 객체데이터 가져오기
+      // 입력된 데이터는 문자형 객체이므로
+      // 다시 파싱하여 원래 객체로 복원한다!
+      let org = localStorage.getItem("cart");
+      org = JSON.parse(org);
+      console.log("변환객체:",org);
+      
+      // 3. 배열뒤에 밀어넣기 메서드 : push(값)
+      org.push(dt.gdata[pm]);
+      console.log("넣은후:",org);
+
+      // 4. 객체를 문자형으로 변환후 로컬스토리지에 반영
+      localStorage.setItem("cart", JSON.stringify(org));
+      console.log("반영후 로칼쓰:", localStorage.getItem("cart"));
+      
+      // 5. 카트 애니메이션 버튼을 등장시켜 카트리스트까지 연동한다! 
+      this.commit('cartAni',org.length);
+      // org.length는 배열 데이터 개수를 넘김
+
+      // localStorage.clear();
+      
     }, /////////// setData 메서드 ////////////
-    
+
+    ////////////// 장바구니 애니메이션 버튼 생성하기 ///////////////
+    cartAni(dt,pm){
+      console.log("카트애니!",pm);
+
+      // 0. 생성될 카트이미지 지우고시작!
+      $("#mycart").remove();
+      
+      // 1. gif애니메이션 이미지를 사용하여
+      // 화면중앙에 등장하여 장바구니 담김을 알림!
+      $("body").append(`
+        <img id="mycart" 
+        src="./images/cartAni.gif" title="${pm}개의 상품이 카트에 있습니다!" />
+      `);
+
+      // 추가한 이미지 화면중앙에 위치하기
+      $("#mycart")
+      .css({
+        position:"fixed",
+        top:"50%",
+        left:"50%",
+        transform:"translate(-50%,-50%)",
+        cursor:"pointer",
+        zIndex:"99999999",
+      })
+      .delay(3000)
+      .animate({
+        top:"5%",
+        left:"80%",
+        width:"50px",
+      },1000,"easeInExpo")
+      // 클릭하면 카트리스트 보이기
+      .click(function(){
+        // body에 카트리스트 요소 넣기
+        $("body").append(`
+          <section id="cartlist"></section>
+        `);
+        // 생성된 카트리스트에 테이블 넣기
+        $("#cartlist").html(`
+          <a href="#" class="cbtn cbtn2">x</a>
+          <table>
+            <caption>
+              <h1> 카트 리스트 </h1>
+            </caption>
+            <tr>
+              <td>번호</td>
+              <td>상품명</td>
+              <td>상품코드</td>
+              <td>단가</td>
+              <td>수량</td>
+              <td>합계</td>
+              <td>삭제</td>
+            </tr>
+
+          </table>
+        `)
+      })
+      
+    }, //////////// cartAni 메서드 ///////////
     
   },
 });
