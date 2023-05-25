@@ -95,6 +95,14 @@ const store = new Vuex.Store({
       
     }, /////////// setData 메서드 ////////////
 
+    //// 테스트 편의상 로컬스토리지 데이터 지우기 ////
+    clearData(){
+      // 특정 변수만 지운다! : cart만!
+      localStorage.removeItem("cart");
+      console.log("cart지움!!!");
+    },
+    
+
     ////////////// 장바구니 애니메이션 버튼 생성하기 ///////////////
     cartAni(dt,pm){
       console.log("카트애니!",pm);
@@ -127,11 +135,65 @@ const store = new Vuex.Store({
       },1000,"easeInExpo")
       // 클릭하면 카트리스트 보이기
       .click(function(){
-        // body에 카트리스트 요소 넣기
-        $("body").append(`
-          <section id="cartlist"></section>
-        `);
-        // 생성된 카트리스트에 테이블 넣기
+        // 1. 만약 카트리스트 박스가 없으면 만들기!
+        if($("#cartlist").length==0){
+          // body에 카트리스트 요소 넣기
+          $("body").append(`
+            <section id="cartlist"></section>
+          `);
+          console.log("카트박스만들기!");
+        } ///////// if /////////
+
+        // (1) 로컬스 데이터 읽어와
+        let org = localStorage.getItem("cart");
+        org = JSON.parse(org);
+        console.log("리스트구성 객체:",org);
+
+        // (2) 데이터를 이용하여 리스트 태그 만들기
+        // forEach((값,순번)=>{})
+        // map((값,순번)=>{})
+        // -> 차이는? map은 리턴값으로 처리할 경우
+        // 값을 자동으로 대입연산처리함!
+        // v - 배열각 값, i - 배열순번
+        let rec = org.map((v,i)=> 
+          `
+            <tr>
+              <!-- 상품이미지 -->
+              <td>
+                <img 
+                src="${
+                  'images/goods/'+v.cat+'/'+v.ginfo[0]+'.png'
+                }"
+                style="width:50px" 
+                alt="item">
+              </td>
+              <!-- 번호:리스트순서번호 -->
+              <td>${i+1}</td>
+              <!-- 상품명 -->
+              <td>${v.ginfo[1]}</td>
+              <!-- 상품코드 -->
+              <td>${v.ginfo[2]}</td>
+              <!-- 단가 -->
+              <td>${v.ginfo[3]}</td>
+              <!-- 수량 -->
+              <td>1</td>
+              <!-- 합계 -->
+              <td>${v.ginfo[3]}</td>
+              <!-- 삭제 -->
+              <td>
+                <button class="cfn" 
+                data-idx="${v.idx}">
+                  ×
+                </button>
+              </td>
+              
+            </tr>
+          `
+        ); ////////// map /////////
+
+
+
+        // 3. 생성된 카트리스트에 테이블 넣기
         $("#cartlist").html(`
           <a href="#" class="cbtn cbtn2">x</a>
           <table>
@@ -139,6 +201,7 @@ const store = new Vuex.Store({
               <h1> 카트 리스트 </h1>
             </caption>
             <tr>
+              <td>상품</td>
               <td>번호</td>
               <td>상품명</td>
               <td>상품코드</td>
@@ -147,14 +210,14 @@ const store = new Vuex.Store({
               <td>합계</td>
               <td>삭제</td>
             </tr>
-
+            ${rec}
           </table>
         `)
       })
       
     }, //////////// cartAni 메서드 ///////////
     
-  },
+  }, /////////// mutation 구역 /////////
 });
 
 // 내보내기!
