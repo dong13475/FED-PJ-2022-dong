@@ -2,7 +2,7 @@
 
 // 라우터 템플릿 만들기
 let Glist = {
-    template: `
+  template: `
         <section>
             <!-- 필터옵션 체크박스구역 -->
             <div id="optbx">
@@ -31,17 +31,19 @@ let Glist = {
                     v-if="
                         v.cat==$store.state.selnm[0] ||
                         v.cat==$store.state.selnm[1] ||
-                        v.cat==$store.state.selnm[2]
+                        v.cat==$store.state.selnm[2]                    
                     "
                     @click="$store.commit('setBtn')"
+                
                 >
+
                 
                 <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
                 <router-link 
-                v-bind:to="{
-                    name:'det',
-                    params:{id : v.idx, list : $route.path}
-                }">
+                    v-bind:to="{
+                        name:'det',
+                        params:{id : v.idx, list : $route.path}
+                    }">
                 [{{v.idx}}]
                     <img 
                         v-bind:src="
@@ -53,7 +55,10 @@ let Glist = {
                         <h2>{{v.ginfo[1]}}</h2>
                         <h3>{{v.ginfo[3]}}</h3>
                     </aside>
+
+
                 </router-link>
+
                     
                 </div>
             </div>
@@ -71,7 +76,7 @@ let Glist = {
 // v.idx >= 1 + $store.state.pnum &&
 //  v.idx <= 10 + $store.state.pnum
 let Paging = {
-    template: `
+  template: `
     <section>
         <!-- 상품리스트박스 -->
         <div class="grid">
@@ -84,11 +89,10 @@ let Paging = {
                 v.idx <= 10 + $store.state.pnum
             ">
 
-                
+               
             <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
             <router-link 
-                v-bind:to="
-                {
+                v-bind:to="{
                     name:'det',
                     params:{id : v.idx, list : $route.path}
                 }">
@@ -117,13 +121,13 @@ let Paging = {
             $store.commit('updatePaging',0)">
                 1
             </a>
-                | 
+             | 
             <a href="#" 
             @click.prevent="
             $store.commit('updatePaging',10)">
                 2
             </a>
-                | 
+             | 
             <a href="#" 
             @click.prevent="
             $store.commit('updatePaging',20)">
@@ -131,7 +135,7 @@ let Paging = {
             </a>
         </div>
     </section>
-    `,
+`,
 };
 let More = {
   template: `
@@ -147,11 +151,10 @@ let More = {
                 v.idx <= 5 + $store.state.mnum
             ">
 
-                
+               
             <!-- 파라미터가 있는 뷰라우터는 이름으로 호출! -->
             <router-link 
-                v-bind:to="
-                {
+                v-bind:to="{
                     name:'det',
                     params:{id : v.idx, list : $route.path}
                 }">
@@ -183,7 +186,7 @@ let More = {
             </button>
         </div>
     </section>
-    `,
+`,
 };
 
 // 상세보기 구성 템플릿
@@ -318,10 +321,12 @@ const Detail = {
                     <div>
                         <!--버튼영역-->
                         <button class="btn btn1">BUY NOW</button>
-                        <button class="btn scbtn" 
-                        @click="$store.commit('setData',$route.params.id-1)">SHOPPING CART</button>
+                        <button class="btn scbtn"
+                        @click="$store.commit('setData',$route.params.id-1)"
+                        >SHOPPING CART</button>
                         <button class="btn"
-                        @click="$store.commit('clearData')">CLEAR CART</button>
+                        @click="$store.commit('clearData')"
+                        >CLEAR CART</button>
 
                     </div>
                 </section>
@@ -333,36 +338,36 @@ const Detail = {
 
 // 뷰라우터 인스턴스 생성하기
 const router = new VueRouter({
-    routes: [
+  routes: [
     // 1. 필터 리스트
     {
-        path: "/glist",
-        component: Glist,
+      path: "/glist",
+      component: Glist,
     },
     // 2. 페이징 리스트
     {
-        path: "/paging",
-        component: Paging,
+      path: "/paging",
+      component: Paging,
     },
     // 3. 모어 리스트
     {
-        path: "/more",
-        component: More,
+      path: "/more",
+      component: More,
     },
     // 4. 상세보기 : 파라미터 필요! - 상품구분 idx로사용
     {
       // 파라미터를 쓰려면 뷰라우터 이름이 필수
-        name: "det",
-        path: "/detail",
-        component: Detail,
+      name: "det",
+      path: "/detail",
+      component: Detail,
     },
   ], /// routes 끝
 
   // 라우터 호출시 스크롤위치 최상단 자동이동코드!!!
   // 새로 라우팅을 할때마다 이 스크롤 메서드가 호출되어 실행됨!
-    scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 };
-    },
+  },
 });
 
 // 내보내기
