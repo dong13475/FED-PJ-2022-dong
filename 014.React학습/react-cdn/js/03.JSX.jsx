@@ -14,7 +14,7 @@ const myele1 = <h1>나는 JSX를 사용하고 있어!</h1>;
 // 리액트 루트생성하기 : createRoot() 메서드 사용!
 const root1 = ReactDOM.createRoot(document.querySelectorAll("#root>div")[0]);
 // 적용하기 : 생성된 루트에 render() 메서드를 붙여서 사용함!
-root1.render(myele1);
+root1.render(myele1); 
 
 // (2) JSX를 사용하지 않는 방법 //////////
 // 넣을 요소를 createElement() 메서드로 생성해야함!(JSX쓰지않고...)
