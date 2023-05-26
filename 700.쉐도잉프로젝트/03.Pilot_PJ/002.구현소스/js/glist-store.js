@@ -103,7 +103,7 @@ const store = new Vuex.Store({
         console.log("반영후 로칼쓰:", localStorage.getItem("cart"));
 
         // 5. 카트 애니메이션 버튼을 등장시켜 카트리스트까지 연동한다!
-        this.commit("cartAni", {cnt:org.length,opt:1});
+        this.commit("cartAni", { cnt: org.length, opt: 1 });
         // org.length는 배열 데이터 개수를 넘김
       } ///////////// if //////////////
 
@@ -118,7 +118,8 @@ const store = new Vuex.Store({
     },
 
     ////////////// 장바구니 애니메이션 버튼 생성하기 ///////////////
-    cartAni(dt, pm) { // pm.cnt / pm.opt
+    cartAni(dt, pm) {
+      // pm.cnt / pm.opt
       // cnt - 카트아이템 개수
       // opt - 셋팅옵션번호 (초기CSS값 선택옵션)
       // opt값 - 0 (오른쪽위 작은것) / 1 (중앙 큰것)
@@ -127,17 +128,17 @@ const store = new Vuex.Store({
       // 초기CSS셋팅값 배열
       let icss = [
         {
-          tv:"5%",
-          lv:"80%",
-          wd:"50px",
+          tv: "5%",
+          lv: "80%",
+          wd: "50px",
         },
         {
-          tv:"50%",
-          lv:"50%",
-          wd:"370px",
+          tv: "50%",
+          lv: "50%",
+          wd: "370px",
         },
       ];
-      
+
       // 0. 생성될 카트이미지 지우고시작!
       $("#mycart").remove();
 
@@ -163,8 +164,8 @@ const store = new Vuex.Store({
           // 변경셋(top,left,width)
           top: icss[pm.opt].tv,
           left: icss[pm.opt].lv,
-          width:icss[pm.opt].wd,
-          
+          width: icss[pm.opt].wd,
+
           transform: "translate(-50%,-50%)",
           cursor: "pointer",
           zIndex: "99999999",
@@ -192,11 +193,8 @@ const store = new Vuex.Store({
 
           // 2. 로컬스 데이터로 테이블 레코드 태그 구성하기
           // 카트가 보이지 않는 상태임!(right:"-60vw")
-          store.commit('bindData',"-60vw");
-
-          
+          store.commit("bindData", "-60vw");
         }); ////////// 카트버튼 click ////////////
-
     }, //////////// cartAni 메서드 ///////////
 
     //////////////// 카트 아이템 삭제 메서드 /////////////////
@@ -222,25 +220,24 @@ const store = new Vuex.Store({
       console.log("삭제후 로칼쓰:", localStorage.getItem("cart"));
 
       // 5. 리스트 갱신하기 : 카트가 보이는 상태임!(right:"0")
-      store.commit('bindData',"0");
+      store.commit("bindData", "0");
 
       // 6. 카트버튼 툴팁 문구 업데이트하기
-      if(org.length==0){
+      if (org.length == 0) {
         $("#mycart").remove();
         $("#cartlist").remove();
         // 로컬스 데이터 지우기
         localStorage.removeItem("cart");
       } ////////// if ///////////
-      else{ // 데이터 개수 업데이트하기
-        $("#mycart")
-        .attr("title",
-        org.length+"개의 상품이 카트에 있습니다!");
+      else {
+        // 데이터 개수 업데이트하기
+        $("#mycart").attr("title", org.length + "개의 상품이 카트에 있습니다!");
       } ////////// else ///////////
-      
     }, /////////////////// delRec 메서드 /////////////////////////
 
     ////////////// 리스트 바인딩 메서드 ///////////////
-    bindData(dt, pm) { // pm - 카트박스 right값 전달!
+    bindData(dt, pm) {
+      // pm - 카트박스 right값 전달!
       // (1) 로컬스 데이터 읽어와서 객체화하기
       let org = localStorage.getItem("cart");
       org = JSON.parse(org);
@@ -305,7 +302,7 @@ const store = new Vuex.Store({
       ); ////////// map /////////
 
       // console.log("생성코드:",rec.join(""));
-      // 배열.join(구분자) 
+      // 배열.join(구분자)
       // -> 배열을 구분자로 한문자열로 만들어준다!
       // 구분자를 빈문자열로 넣으면 사이구분자 없이합쳐진다!
       // 구분자를 생략하면 콤마(,)가 사이에 들어감
@@ -407,8 +404,55 @@ const store = new Vuex.Store({
         // 삭제할 idx정보를 넘겨준다!
       }); ////// 삭제버튼 click //////
     }, ///////////// bindData 메서드 /////////////
-  }, /////////// mutation 구역 ///////////
+
+
+    ///// 상세보기 버튼 기능 셋팅 메서드 ////////
+    setBtn(dt, pm) {
+      console.log("버튼기능셋팅!");
+      /// DOM모두 로딩보장후 셋팅하기
+      // 제이쿼리 로딩구역에 넣자!
+      $(() => {
+
+        // 세자리마다 콤마함수
+        const chx = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        
+        // console.log($(".chg_num"))
+        $(".chg_num img").click(function () {
+          // 0. 수량표시요소
+          let sum = $("#sum");
+
+          // 1. 이미지 alt속성값 읽기
+          let ialt = $(this).attr("alt");
+          console.log(ialt);
+
+          // 2. 증가/감소 처리하기
+          if (ialt == "증가") sum.val(Number(sum.val()) + 1);
+          else sum.val(Number(sum.val()) - 1);
+
+          // 0이면 1로고정함
+          if (sum.val() == 0) sum.val(1);
+
+          // -,*,/ 는 숫자대상이므로 자동형변환된다
+          // 반명 +는 문자더하기도 있으므로
+          // 기본형이 문자면 자동형변환하지 않는다
+          // 그래서 Number() 로 강제형변환해야
+          // 숫자계산을 하게됨!!
+
+          // 3. 기본금액 * 개수
+          let cnum = $("#gprice")
+          .text().trim()
+          .replaceAll(",", "")
+          .replace("원", "") * sum.val();
+
+          console.log("계산된값:", cnum);
+
+          // 4. 출력하기
+          $("#total").text(chx(cnum) + "원");
+        }); ///////// click ////////////
+      }); /////////////// jQB ////////////////
+    }, //////////// setBtn 메서드 /////////////
+  }, /////////////////// mutations 구역 /////////////
 });
 
-// 내보내기!
+// 내보내기
 export default store;
