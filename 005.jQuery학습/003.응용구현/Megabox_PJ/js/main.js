@@ -3,14 +3,14 @@ $(function () {
   //// jQB1 //////////////////
 
   // 메뉴 a요소 기본이동 막기!
-  $('.gnb a,.indic a').click(function (e) {
+  $(".gnb a,.indic a").click(function (e) {
     e.preventDefault();
   }); ///////////// click ////////////////
 
   //// GNB메뉴 클릭시 해당 페이지 위치로 이동 애니메이션
   // 이벤트 대상: .gnb li + .indic li
   // 변경 대상: html,body
-  $('.gnb li,.indic li').click(function (e) {
+  $(".gnb li,.indic li").click(function (e) {
     ////// 광스크롤막기 /////////////
     if (psts) return; //돌아가!
     psts = 1; //불허용상태변경!
@@ -48,18 +48,18 @@ $(function () {
     // 참고: 가로스크롤 이동속성: scrollLeft
     // 스크롤 이동대상: html,body
     // -> 범용브라우저에서 사용하는 스크롤대상
-    $('html,body').animate(
+    $("html,body").animate(
       {
-        scrollTop: pos + 'px',
+        scrollTop: pos + "px",
       },
       1200,
-      'easeOutQuint',
+      "easeOutQuint",
       pageAction
     ); //// animate /////
 
     // 4. 클릭된 li요소에 class="on" 넣기
-    $('.gnb li').eq(idx).addClass('on').siblings().removeClass('on');
-    $('.indic li').eq(idx).addClass('on').siblings().removeClass('on');
+    $(".gnb li").eq(idx).addClass("on").siblings().removeClass("on");
+    $(".indic li").eq(idx).addClass("on").siblings().removeClass("on");
     //다른 형제 li들 class="on" 지움
 
     // 6. li순번과 pno와 일치하기! /////////////////////
@@ -82,7 +82,7 @@ $(function () {
   //// jQB2 //////////////////////////
 
   // 변경대상: .gbx
-  let gbx = $('.gbx');
+  let gbx = $(".gbx");
 
   // 광클금지변수
   let prot = 0; // 1-불허용, 0-허용
@@ -94,11 +94,11 @@ $(function () {
   // 왜? 자동호출도 같은 기능이므로!!!
   let goSlide = () => {
     // 첫번째 요소를 잘라서 맨뒤로 보냄
-    gbx.append(gbx.find('img').first());
+    gbx.append(gbx.find("img").first());
   }; ///////// goSlide함수 ////////////////
 
   /// 오른쪽 이동버튼 클릭시 ////////
-  $('.rb').click(function () {
+  $(".rb").click(function () {
     // 광클금지 //////
     if (prot) return;
     prot = 1;
@@ -119,7 +119,7 @@ $(function () {
   }); ///////////// click /////////////
 
   /// 왼쪽 이동버튼 클릭시 /////////
-  $('.lb').click(function () {
+  $(".lb").click(function () {
     // 광클금지 //////
     if (prot) return;
     prot = 1;
@@ -131,7 +131,7 @@ $(function () {
     if (autoOK) clearAuto();
 
     // 마지막 요소를 잘라서 맨앞으로 보냄
-    gbx.prepend(gbx.find('img').last());
+    gbx.prepend(gbx.find("img").last());
 
     // 만약 포스터 박스가 아래쪽으로 이동한 경우
     // 즉, autoOK===0 일경우 이미 포스터 이동후 이므로
@@ -145,10 +145,10 @@ $(function () {
   //// 이동버튼 클릭시 (하단일경우) 동영상 재생하기 ////
   let mvPlay = () => {
     // 1. 가운데 오는 동영상 정보읽기
-    let center = 'mv/' + gbx.find('img').eq(2).attr('data-mv');
+    let center = "mv/" + gbx.find("img").eq(2).attr("data-mv");
     // // console.log(center);
     // 2. 동영상 src 변경하기
-    mv.attr('src', center);
+    mv.attr("src", center);
     // 3. 동영상 재생하기
     mv.get(0).play();
   }; ////////////// mvPlay 함수 /////////////////////
@@ -178,14 +178,14 @@ $(function () {
   }; //////////// clearAuto 함수 ///////////
 
   // 동영상요소
-  mv = $('#mv');
+  mv = $("#mv");
 
   ////////////////////////////////////////////////////
   //////// 1. 영화포스터 클릭시 영화예고편 보여주기 /////
   // 대상: .gbx img
-  $('.gbx img').click(function () {
+  $(".gbx img").click(function () {
     // 0. 되돌리기 버튼 보이기
-    $('.rtn').fadeIn(300);
+    $(".rtn").fadeIn(300);
 
     // 0. 이미지 포스터 순번
     let idx = $(this).index();
@@ -199,17 +199,17 @@ $(function () {
     // 0.2. 위치를 중앙에 오게 하기 위해 ////////
 
     // 순번이 1일 경우 왼쪽버튼 클릭 트리거!
-    if (idx === 1) $('.lb').trigger('click');
+    if (idx === 1) $(".lb").trigger("click");
     // 순번이 3일 경우 오른쪽버튼 클릭 트리거!
-    else if (idx === 3) $('.rb').trigger('click');
+    else if (idx === 3) $(".rb").trigger("click");
     // 트리거 메서드: 선택자.trigger(이벤트명)
 
     // 1. 영화포스터 네비 작아지게 하단 이동 애니메이션
-    $('#gbx').css({
-      width: '40%',
-      Transform: 'translate(-50%, 130%)',
-      minWidth: '500px',
-      transition: 'all .6s ease-in-out',
+    $("#gbx").css({
+      width: "40%",
+      Transform: "translate(-50%, 130%)",
+      minWidth: "500px",
+      transition: "all .6s ease-in-out",
     }); ////////////// css //////////////
 
     // 2. 포스터 자동넘기기 완전 지우기(다시실행안함!!!)
@@ -226,11 +226,11 @@ $(function () {
     // 3-1. 동영상 변경하기
     // 포스터 이미지에 셋팅된 동영상 정보를 읽어와서 src에 넣는다
     // data-mv 속성명에 동영상 파일명이 셋팅됨
-    let mvsrc = 'mv/' + $(this).attr('data-mv');
-    mv.attr('src', mvsrc);
+    let mvsrc = "mv/" + $(this).attr("data-mv");
+    mv.attr("src", mvsrc);
 
     // 3-2. 동영상 나타나기
-    $('#screen').fadeIn(300);
+    $("#screen").fadeIn(300);
 
     // 3-3. 동영상 재생하기
     // 동영상요소.get(0) -> 미디어컬렉션 get(0) 을 꼭사용!
@@ -249,69 +249,93 @@ $(function () {
   // 대상: .btnpp img
   // 제이쿼리 메서드 : hover(함수1,함수2)
   $(".btnpp img").hover(
-    function(){ // over - 진한이미지
+    function () {
+      // over - 진한이미지
       // 이미지 경로 읽어오기
       let csrc = $(this).attr("src");
       // 이미지 경로 변경하기 : ".png" -> "-1.png"
       // JS메서드 replace(바꿀값,바뀔값)
-      csrc = csrc.replace(".png","-1.png");
+      csrc = csrc.replace(".png", "-1.png");
       // console.log("현재경로:",csrc);
       // 실제 이미지 변경하기
-      $(this).attr("src",csrc);
-    }, 
-    function(){ // out - 흐린이미지
+      $(this).attr("src", csrc);
+    },
+    function () {
+      // out - 흐린이미지
       // 이미지 경로 읽어오기
       let csrc = $(this).attr("src");
       // JS메서드 replace(바꿀값,바뀔값)
-      csrc = csrc.replace("-1.png",".png");
+      csrc = csrc.replace("-1.png", ".png");
       // console.log("현재경로:",csrc);
       // 실제 이미지 변경하기
-      $(this).attr("src",csrc);
-    }); ///////// hover ///////////
+      $(this).attr("src", csrc);
+    }
+  ); ///////// hover ///////////
 
-    // 2-1-2. 재생/멈춤 기능구현
-    // 대상: .btnpp img
-    // 원리: 재생상태이면 멈추고 멈춤상태이면 재생한다!
-    // 핵심: 동영상의 멈춤상태를 알아낼 수 있다!
-    $(".btnpp img").click(function(){
-      // 동영상 멈춤상태 알아내기 - paused 속성으로 알아냄!
-      // 결과: true - 멈춤, false - 재생중(멈춤아님)
-      let paused_sts = mv.get(0).paused;
-      console.log("비디오가 멈췄니?",paused_sts);
+  // 2-1-2. 재생/멈춤 기능구현
+  // 대상: .btnpp img
+  // 원리: 재생상태이면 멈추고 멈춤상태이면 재생한다!
+  // 핵심: 동영상의 멈춤상태를 알아낼 수 있다!
+  $(".btnpp img").click(function () {
+    // 동영상 멈춤상태 알아내기 - paused 속성으로 알아냄!
+    // 결과: true - 멈춤, false - 재생중(멈춤아님)
+    let paused_sts = mv.get(0).paused;
+    console.log("비디오가 멈췄니?", paused_sts);
 
-      // 1. 멈춤아니면(false) 동영상 멈추기
-      if(!paused_sts){ // false일때 들어오려면 NOT(!)연산자 사용
-        // 비디오 멈추기는 pause() 메서드!
-        mv.get(0).pause();
-        // 멈춤상태일 경우 진한재생버튼으로 변경!
-        $(this).attr("src","images/vbt2-1.png");
-      } ///////// if /////////
-      else{ // 멈춤상태(true)일경우
-        // 비디오 재생은 play() 메서드!
-        mv.get(0).play();
-        // 멈춤상태일 경우 진한멈춤버튼으로 변경!
-        $(this).attr("src","images/vbt1-1.png");
-      } //////// else //////////
-      
-    }); /////////////// click ////////////
+    // 1. 멈춤아니면(false) 동영상 멈추기
+    if (!paused_sts) {
+      // false일때 들어오려면 NOT(!)연산자 사용
+      // 비디오 멈추기는 pause() 메서드!
+      mv.get(0).pause();
+      // 멈춤상태일 경우 진한재생버튼으로 변경!
+      $(this).attr("src", "images/vbt2-1.png");
+    } ///////// if /////////
+    else {
+      // 멈춤상태(true)일경우
+      // 비디오 재생은 play() 메서드!
+      mv.get(0).play();
+      // 멈춤상태일 경우 진한멈춤버튼으로 변경!
+      $(this).attr("src", "images/vbt1-1.png");
+    } //////// else //////////
+  }); /////////////// click ////////////
 
-  
+  // 2-2. 소리남/안남 기능 //////////////////
+  // 대상 : .btnsnd img
+  // 원리 : 소리가 나는지 안나는지 속성 -> muted 사용해서 반대로 전환
+  // 핵심 : 현재 소리가 안나는지 상태를 확인함!
+  $(".btnsnd img").click(function(){
+    // 1. 현재 소리가 안나는지 상태 알아오기
+    // 동영상 소리 안남여부 속성 -> muted
+    let sound = mv.get(0).muted;
+    console.log("소리안나나?",sound);
+
+    // 2. 만약 소리가 안나면 나게 / 나면 안나게하기
+    // muted 속성은 현재 소리안남 상태값을 불린으로 읽기/쓰기 가능
+    mv.get(0).muted = !sound;
+    // !sound 는 true/false 전환 코드이다!
+
+    // 3. 아이콘을 현재 소리상태로 넣기
+    // sound가 true이면 반대로 했으므로 소리남 아이콘!
+    if(sound) $(this).attr("src","./images/speaker_blue.png");
+    else $(this).attr("src","./images/speaker-mute_blue.png");
+
+  }); /////////// click ///////////////
 
   ///// 3. 영화페이지 : 스와이퍼 적용하기 //////
   // swiper변수를 전역변수로 만들고 페이지액션에서 사용!
-  swiper = new Swiper('.swiper-container', {
+  swiper = new Swiper(".swiper-container", {
     slidesPerView: 1, //한 영역에 보여줄 슬라이드수
     spaceBetween: 0, //슬라이드 사이간격
     loop: true, //무한이동
     pagination: {
       // 하단 블릿표시
-      el: '.swiper-pagination',
+      el: ".swiper-pagination",
       clickable: true, //블릿클릭이동
     },
     navigation: {
       // 양쪽이동버튼
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
     // 자동넘김을 미리셋팅하면 본 페이지 오기전부터
     // 이미 넘어가고 있다.... 그러므로 메서드를 사용해야함!
@@ -329,7 +353,7 @@ $(function () {
   swiper.autoplay.stop();
 
   /// 4. 특별관 페이지 - photobox 플러그인 적용하기 ///
-  $('#gallery').photobox();
+  $("#gallery").photobox();
 }); ////////////// jQB2 ///////////////////////////
 //////////////////////////////////////////////////
 
@@ -339,22 +363,17 @@ $(function () {
 */ ///////////////////////////////////////
 function changeTime(sec) {
   //sec 초단위값
-  'use strict'; //엄격한 문법적용
+  "use strict"; //엄격한 문법적용
   var pad = function (x) {
-    return x < 10 ? '0' + x : x;
+    return x < 10 ? "0" + x : x;
   };
   var res; //결과값
   if (sec < 3600) {
     // 한시간이 넘지 않으면 분,초만 필요함
-    res = pad(parseInt((sec / 60) % 60)) + ':' + pad(sec % 60);
+    res = pad(parseInt((sec / 60) % 60)) + ":" + pad(sec % 60);
   } else {
     // 한시간이 넘으면 시,분,초가 모두 필요함
-    res =
-      pad(parseInt(sec / (60 * 60))) +
-      ':' +
-      pad(parseInt((sec / 60) % 60)) +
-      ':' +
-      pad(sec % 60);
+    res = pad(parseInt(sec / (60 * 60))) + ":" + pad(parseInt((sec / 60) % 60)) + ":" + pad(sec % 60);
   }
   return res;
 } ///////////////// changeTime함수 //////////////////////////////////////////////////////////
