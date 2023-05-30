@@ -171,9 +171,9 @@ function MovieList(props) {
       <h2>개발자가 좋아하는 영화는 최근 {mymovie.length}년간 아래와 같습니다!</h2>
       <ul>
         {
-          mymovie.forEach((v) => {
-            Movie
-          })
+          mymovie.map((x) => (
+            <MovieList year={x} />
+          ))
         }
       </ul>
     </React.Fragment>
