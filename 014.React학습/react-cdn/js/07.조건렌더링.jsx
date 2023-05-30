@@ -172,7 +172,7 @@ function MovieList(props) {
       <ul>
         {
           mymovie.map((x) => (
-            <MovieList year={x} />
+            <Movie year={x.year} mtit={x.mtit} />
           ))
         }
       </ul>
