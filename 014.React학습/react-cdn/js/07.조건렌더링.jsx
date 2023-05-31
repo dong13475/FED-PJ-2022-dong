@@ -34,8 +34,9 @@ function Developer(props) {
   if (isNow) {
     return (
       <React.Fragment>
+        {/* MakeDev 컴포넌트 선택출력 */}
         <MakeDev />
-        <MakeImg isrc={props.isrc} ialt={props.ialt} />
+        <MakeImg isrc={props.isrc} ialt={props.ialt} title={props.ialt} />
       </React.Fragment>
     );
   }
@@ -44,8 +45,9 @@ function Developer(props) {
   // return 때문에 컴포넌트를 나감!
   return (
     <React.Fragment>
+      {/* LostDev 컴포넌트 선택출력 */}
       <LostDev />
-      <MakeImg isrc={props.isrc} ialt={props.ialt} />
+      <MakeImg isrc={props.isrc} ialt={props.ialt} title={props.ialt} />
     </React.Fragment>
   );
 } /////////////// Developer 컴포넌트 ////////////////
@@ -170,11 +172,9 @@ function MovieList(props) {
       <Title1 mtit="영화" />
       <h2>개발자가 좋아하는 영화는 최근 {mymovie.length}년간 아래와 같습니다!</h2>
       <ul>
-        {
-          mymovie.map((x) => (
-            <Movie year={x.year} mtit={x.mtit} />
-          ))
-        }
+        {mymovie.map((x) => (
+          <Movie year={x.year} mtit={x.mtit} />
+        ))}
       </ul>
     </React.Fragment>
   );
@@ -182,3 +182,20 @@ function MovieList(props) {
 
 // 컴포넌트 출력하기
 ReactDOM.render(<MovieList movie={movs} />, document.querySelector("#root4"));
+
+/**************************************************************** 
+  3. 조건 연산자(삼항연산자)를 사용하여 조건부 랜더링하기
+****************************************************************/
+
+// 명화 데이터
+const worksrc = {
+  피카소: "https://m.theartin.net/web/product/big/201907/30c5a0fdd153bfdfdc8f19b2f4166fa8.jpg",
+  모네: "https://dimg.donga.com/wps/NEWS/IMAGE/2015/12/11/75316598.3.jpg",
+};
+
+// 개발자가 좋아하는 그림(명화) 찍기
+
+// 3-1. 타이틀과 그림찍기 컴포넌트
+function MakeWork(props){
+
+} ///////////// MakeWork 컴포넌트 /////////////////
