@@ -7,4 +7,9 @@ import Ban from "./dc/Ban";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root"));
-root.render(<Ban cat="main" />);
+root.render(
+  <>
+    <Ban cat="main" />
+    <Ban cat="CHARACTERS" />
+  </>
+);
