@@ -1,62 +1,94 @@
-@charset "UTF-8";
-/* MenuBtn 모듈용 CSS - menubtn.css */
+@charset "utf-8";
+/* MenuBtn 모듈용 CSS - menubtn.css  */
 
-/* 메뉴 플렉스 */
-.fbox{
+.menubtn {
+  position: relative;
+  max-width: 1320px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 5vh;
+  font-family: "Roboto Condensed", sans-serif;
+  padding-bottom: 30px;
+  gap: 2vh 0;
 }
-/* 부모박스 */
-.menubtn{
+.menubtn > div {
   position: relative;
-  width: 306px;
-  height: 550px;
-  background-color: #fff;
-  font-family: 'Roboto Condensed', sans-serif;
-  margin: 10px;
-  /* aspect-ratio: 1/2; */
-  box-shadow: 2px 2px 6px #ccc;
+  flex-basis: 23%;
+  aspect-ratio: 1/1.7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fdfdfd;
 }
-/* 이미지박스 */
-.imbx{
-  clip-path: polygon(100% 0, 100% 80%, 0 95%, 0 0);
+.imbx img {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
 }
-.imbx img{
+.titbx h3 {
+  padding: 6px 0;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 2px;
 }
-/* 타이틀박스 */
-.titbx{
-
+.titbx h2 {
+  margin-bottom: 8px;
+  padding: 0 20px;
 }
-.titbx h3{
-  color: #ccc;
-  font-size: 13px;
-  font-weight: lighter;
-}
-.titbx h2{
-  padding: 20px;
-  font-size: 25px;
-}
-/* 버튼박스 */
-.btnbx{
+.btnbx {
   position: absolute;
-  bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
-}
-.btnbx button{
-  background-color: #fff;
-  /* margin-top: 40px; */
-  padding: 15px;
-  border-radius: 25px;
-  border: 1px solid #000;
-  font-weight: bold;
-  transition: .6s;
+  bottom: 30px;
   white-space: nowrap;
+}
+.btnbx button {
+  padding: 15px 30px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 25px;
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: transparent;
+  transition: 0.4s;
   cursor: pointer;
 }
-.btnbx button:hover{
-  background-color: #0074e8;
+.btnbx button:hover {
+  background-color: #0074eb;
   color: #fff;
-  border: none;
+}
+
+@media screen and (max-width: 1300px) {
+  .menubtn > div {
+    aspect-ratio: 1/2;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .menubtn > div {
+    aspect-ratio: 1/1.6;
+    flex-basis: 49%;
+  }
+  .titbx h3 {
+    font-size: 1.2vw;
+  }
+  .titbx h2 {
+    font-size: 2vw;
+  }
+  .btnbx button {
+    font-size: 1.5vw;
+  }
+}
+@media screen and (max-width: 570px) {
+  .menubtn > div {
+    aspect-ratio: 1/1.4;
+    flex-basis: 100%;
+  }
+  .titbx h3 {
+    font-size: 2vw;
+  }
+  .titbx h2 {
+    font-size: 5vw;
+  }
+  .btnbx button {
+    font-size: 3vw;
+  }
 }

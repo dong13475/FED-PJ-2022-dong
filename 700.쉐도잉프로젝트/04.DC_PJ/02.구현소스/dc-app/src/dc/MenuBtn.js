@@ -1,52 +1,41 @@
-/// 메뉴버튼 모듈 - MenuBtn.js ///
+///  메뉴버튼 모듈 - MenuBtn.js
 import $ from "jquery";
 import "./css/menubtn.css";
-// import menubtn_data from "./data/menubtn";
+import menubtn_data from "./data/menubtn";
+import { Link } from "react-router-dom";
 
-// 제이쿼리 로드구역 함수
+// 제이쿼리 로드구역 함수 /////////
 function jqFn() {
-  $(() => {
+  $(() => {}); //////// jQB ///////////
+} ////////////// jQFn ///////////
 
-  }); ///////////// JQB ///////////////
-} ///////////////// jqFn 함수 /////////////////
-
-function MenuBtn(props) {
+function MenuBtn() {
   return (
     <>
       <section className="menubtn">
-        <div>
-          {/* 이미지박스 */}
-          <div className="imbx">
-            <img src={props.rec["isrc"]} alt="배너이미지" />
+        {menubtn_data.map((v, i) => (
+          <div key={i}>
+            <div className="imbx">
+              <img src={v.isrc} alt="메뉴버튼" />
+            </div>
+            <div className="titbx">
+              <h3>{v.tit.split("^")[0]}</h3>
+              <h2>{v.tit.split("^")[1].toUpperCase()}</h2>
+            </div>
+            <div className="btnbx">
+              {/* 라우터를 이용한 이동은 반드시 Link를 사용하자! 
+              디자인은 a태그로 하면된다! */}
+              <Link to={v.link}>
+                <button>{v.btn.toUpperCase()}</button>
+              </Link>
+            </div>
           </div>
-          {/* 타이틀박스 */}
-          <div className="titbx">
-            <h3>{props.rec["tit"].split("^")[0]}</h3>
-            <h2>{props.rec["tit"].split("^")[1]}</h2>
-          </div>
-          {/* 버튼박스 */}
-          <div className="btnbx">
-            <button>{props.rec["btn"]}</button>
-          </div>
-        </div>
+        ))}
       </section>
       {/* 빈루트를 만들고 JS로드함수포함 */}
       {jqFn()}
     </>
   );
-} /////////////// MenuBtn 함수 ///////////////
-export default MenuBtn;
-// 메뉴 출력용 컴포넌트 ///////
-// function Menu(){
-//   const menubtnData = menubtn_data;
-//   return(
-//     <>
-//       <div>
-//         {menubtnData.map((x,i)=>(
-//           <MenuBtn rec={x} key={i} idx={i} />
-//         ))}
-//       </div>
-//     </>
-//   );
-// }
+}
 
+export default MenuBtn;

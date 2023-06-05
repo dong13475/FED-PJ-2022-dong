@@ -2,30 +2,29 @@
 
 const menubtn_data = [
   {
-    "isrc":"./images/menubtn1.jpg",
-    "tit":"WORLDS COLLIDE^THE FLASH IS ONLY IN THEATERS JUNE 16",
-    "btn":"TICKET ON SALE NOW",
-    "link":"/co",
+    isrc: "./images/menubtn1.jpg",
+    tit: "WORLDS COLLIDE^The Flash is Only in Theaters June 16",
+    btn: "TICKETS ON SALE NOW",
+    link: "/co",
   },
   {
-    "isrc":"./images/menubtn2.jpg",
-    "tit":"DC SHOP^GET NUTS WITH THE 1/6 SCALE BATMAN FIGURE",
-    "btn":"SHOP NEW ARRIVALS",
-    "link":"/co",
+    isrc: "./images/menubtn2.jpg",
+    tit: "DC SHOP^GET NUTS WITH THE 1/6 SCALE BATMAN FIGURE",
+    btn: "Shop New Arrivals",
+    link: "/mv",
   },
   {
-    "isrc":"./images/menubtn3.jpg",
-    "tit":"DC PRIDE^CELEBRATE WITH LGBTQ CREATORS, CHARACTERS, & STORIES",
-    "btn":"VISIT OUR PRIDE HUB",
-    "link":"/co",
+    isrc: "./images/menubtn3.jpg",
+    tit: "DC PRIDE^Celebrate with LGBTQ creators, characters, & stories",
+    btn: "Visit our Pride Hub",
+    link: "/gm",
   },
   {
-    "isrc":"./images/menubtn4.jpg",
-    "tit":"DC COMMUNITY^SHARE YOUR DC PRIDE FANWORKS",
-    "btn":"SUBMIT YOUR ART",
-    "link":"/co",
+    isrc: "./images/menubtn4.jpg",
+    tit: "DC COMMUNITY ^Share Your DC Pride Fanworks",
+    btn: "SUBMIT YOUR ART",
+    link: "/nw",
   },
-]
+];
 
-// 내보내기
 export default menubtn_data;
