@@ -54,7 +54,7 @@ function jqFn() {
       // 2. 분기하여 기능구현하기
       // (1) 오른쪽버튼 클릭시 : 오른쪽에서 들어옴(left: 0 -> -100%)
       if (isB) {
-        tg.animate({ left: "-100%" }, 500, function () {
+        tg.animate({ left: "-100%" }, 400, function () {
           // this는 타겟!
           // 첫번째 li 맨뒤로 보내기! 동시에 left:0
           $(this).append($(this).find("li").first()).css({ left: 0 });
