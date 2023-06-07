@@ -1,4 +1,4 @@
-// DC 페인 페이지 컴포넌트
+// DC 메인 페이지 컴포넌트
 import Ban from "./modules/Ban";
 import MenuBtn from "./modules/MenuBtn";
 import VidIntro from "./modules/VidIntro";
