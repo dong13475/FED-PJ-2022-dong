@@ -1,7 +1,7 @@
 // DC 메인 페이지 컴포넌트
 import React from "react";
-import Ban from "./Ban";
-import MenuBtn from "./MenuBtn";
+import Ban from "./modules/Ban";
+import MenuBtn from "./modules/MenuBtn";
 import menubtn_data from "./data/menubtn";
 
 const Main = () => {

@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/* VidIntro 모듈용 CSS - VidIntro.css */
+
+.vidbox{
+  display: flex;
+  /* flex-wrap: wrap; */
+  max-width: 1320px;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 2%;
+  padding: 50px;
+}
+/* 비디오파트 */
+.vd1{
+
+}
+.vd1 iframe{
+  width: 600px;
+  border: none;
+}
+/* 타이틀파트 */
+.vd2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.vd2 h3{
+  font-size: 23px;
+}
+.vd2 h2{
+  font-size: 38px;
+  padding: 10px 0;
+}
+.vd2 p{
+  font-size: 14px;
+  font-weight: bold;
+}
+.vd2 p:first-of-type{
+  padding: 10px 0 25px;
+  /* margin: 10px; */
+  /* color: #f00; */
+}

@@ -1,6 +1,6 @@
 /// 메뉴버튼 모듈 - MenuBtn.js ///
 import $ from "jquery";
-import "./css/menubtn.css";
+import "../css/menubtn.css";
 // import menubtn_data from "./data/menubtn";
 
 // 제이쿼리 로드구역 함수
