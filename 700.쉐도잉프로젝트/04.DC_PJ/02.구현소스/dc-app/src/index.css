@@ -1,7 +1,6 @@
-@charset "UTF-8";
-/* 전체 페이지 공통 CSS 
+@charset "utf-8";
+/* 전체 페이지 공통 CSS
 - index.html 페이지 전체에 적용됨! */
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 html,body,ul,ol,dl,dt,dd,p,figure,figcaption,h1,h2,h3,h4 {
@@ -9,9 +8,8 @@ html,body,ul,ol,dl,dt,dd,p,figure,figcaption,h1,h2,h3,h4 {
   padding: 0;
 }
 body{
-  /* background-color: #e5e5e5; */
+  background-color: #fafafa;
 }
-
 /* ul,ol */
 ul,ol{
   list-style: none;

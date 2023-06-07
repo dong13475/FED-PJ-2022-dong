@@ -1,8 +1,9 @@
-@charset "UTF-8";
-/* 메인배너용 CSS ban.css */
+@charset "utf-8";
+/* 메인배너용 CSS - ban.css */
 .banner {
   position: relative;
   overflow: hidden;
+  /* 넘치는 배너 숨기기 */
 }
 .bantit {
   position: absolute;

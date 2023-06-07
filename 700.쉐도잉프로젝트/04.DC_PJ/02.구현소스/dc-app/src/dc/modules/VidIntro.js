@@ -4,16 +4,17 @@ import $ from "jquery";
 import "../css/vidintro.css";
 import vidintro_data from "../data/vidintro";
 
-// 제이쿼리 로드구역 함수
+// 제이쿼리 로드구역 함수 /////////
 function jqFn() {
-  $(() => {}); ///////////// JQB ///////////////
-} ///////////////// jqFn 함수 /////////////////
+  $(() => {}); //////// jQB ///////////
+} ////////////// jQFn ///////////
 
 function VidIntro(props) {
   // props.pg - 해당페이지 데이터속성명
+  // props.mm - 디자인 CSS클래스"on"속성
 
   // 데이터 선택하기
-  const rec = vidintro_data[props.pg];
+  const sdt = vidintro_data[props.pg];
 
   // 링크코드 생성 함수 : desc 데이터 / sum 데이터에서 처리
   const lcode = (data) => {
@@ -21,8 +22,8 @@ function VidIntro(props) {
     return (
       <>
         {data.split("*")[0]}
-        <a href={rec.link[1]} target="_blank">
-          {rec.link[0]}
+        <a href={sdt.link[1]} target="_blank">
+          {sdt.link[0]}
         </a>
         {data.split("*")[1]}
       </>
@@ -32,24 +33,24 @@ function VidIntro(props) {
   return (
     <>
       {/* 모듈코드 */}
-      <section className="vidbox">
+      <section className={"vidbox" + " " + props.mm}>
         {/* 비디오파트 */}
         <div className="vb1">
-          <iframe src={rec.vsrc} title={rec.btit}></iframe>
+          <iframe src={sdt.vsrc} title={sdt.btit}></iframe>
         </div>
         {/* 타이틀파트 */}
-        <div className="vd2">
-          <h3>{rec.stit}</h3>
-          <h2>{rec.btit}</h2>
+        <div className="vb2">
+          <h3>{sdt.stit}</h3>
+          <h2>{sdt.btit}</h2>
           <p>
-            {/* 특수문자(*)여부에 따라 처리 
-            indexOf(문자열) -> 없으면 -1 리턴 */}
-            {rec.sum.indexOf("*") == -1 ? rec.sum : lcode(rec.sum)}
+            {/* 특수문자(*)여부에 따라 처리
+                    indexOf(문자열) -> 없으면 -1리턴 */}
+            {sdt.sum.indexOf("*") == -1 ? sdt.sum : lcode(sdt.sum)}
           </p>
           <p className="desc">
-            {/* 특수문자(*)여부에 따라 처리 
-            indexOf(문자열) -> 없으면 -1 리턴 */}
-            {rec.desc.indexOf("*") == -1 ? rec.desc : lcode(rec.desc)}
+            {/* 특수문자(*)여부에 따라 처리
+                    indexOf(문자열) -> 없으면 -1리턴 */}
+            {sdt.desc.indexOf("*") == -1 ? sdt.desc : lcode(sdt.desc)}
           </p>
           {/* 링크있을경우 표시 */}
         </div>
@@ -58,6 +59,6 @@ function VidIntro(props) {
       {jqFn()}
     </>
   );
-} /////////////// 어떤 함수 ///////////////
+}
 
 export default VidIntro;

@@ -1,6 +1,4 @@
 @charset "utf-8";
-/* 레이아웃 CSS - layout.css */
-
 .top {
   background-image: linear-gradient(to bottom, #ccc, #111);
   border: 4px double #000;
@@ -32,17 +30,6 @@ h1 {
 }
 
 /* 메인영역 */
-.cont {
-  text-align: center;
-  /* padding: 30px; */
-}
-.cont img {
-  max-width: 100%;
-}
-iframe {
-  width: 731px;
-  height: 412px;
-}
 
 /* 하단영역 */
 .info {
