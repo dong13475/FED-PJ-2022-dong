@@ -1,7 +1,9 @@
 // DC 메인 페이지 컴포넌트
+import Swiper from 'swiper';
 import Ban from "./modules/Ban";
 import MenuBtn from "./modules/MenuBtn";
 import VidIntro from "./modules/VidIntro";
+import SwiperVid from "./plugin/SwiperVid";
 
 const Main = () => {
   return (
@@ -12,6 +14,8 @@ const Main = () => {
       <MenuBtn />
       {/* 3. 비디오소개모듈 */}
       <VidIntro pg="main" mm="" />
+      {/* 4. 비디오스와이프모듈 */}
+      <SwiperVid />
     </>
   );
 }; /////////// Main //////////////
