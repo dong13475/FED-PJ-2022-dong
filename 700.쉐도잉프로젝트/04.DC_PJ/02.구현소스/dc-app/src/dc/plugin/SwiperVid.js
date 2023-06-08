@@ -10,6 +10,8 @@ import './swipervid.css';
 
 // import required modules
 import { Navigation } from 'swiper';
+// 데이터 가져오기
+import swipervid_data from '../data/swipervid';
 
 export default function SwiperVid(props) {
 
