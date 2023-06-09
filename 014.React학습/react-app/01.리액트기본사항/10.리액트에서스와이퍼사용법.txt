@@ -24,3 +24,10 @@ https://swiperjs.com/
    붙여 넣기를 하고 수정한다
    (html,body 는 모두 지우고 
    .swiper{height:400px} 만 우선 수정함!
+
+(5) 필요한 기능을 가진 Demos의 예시 React코드를 참조하여
+SwiperVid.js 컴포넌트 코드를 업데이트함
+
+4. 데이터 연결하기
+(1) 데이터 만큼 반복하기 : map 메서드 사용!
+(2) 컴포넌트 속성 전달하기 : props사용!

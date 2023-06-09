@@ -38,13 +38,13 @@ const swipervid_data = [
     tit: `Superman (1978) - Modern Trailer Recut`,
   },
   {
-    isrc: './images/vidswp/vidswp7.jpeg',
+    isrc: './images/vidswp/vidswp7.jpg',
     vsrc: 'https://www.youtube.com/embed/vS3_72Gb-bI',
     cat: 'MOVIES & TV',
     tit: `BLUE BEETLE - OFFICIAL TRAILER`,
   },
   {
-    isrc: './images/vidswp/vidswp8.jpg',
+    isrc: './images/vidswp/vidswp8.jpeg',
     vsrc: 'https://www.youtube.com/embed/Yw91jQwJnDo',
     cat: 'MOVIES & TV',
     tit: `MY ADVENTURES WITH SUPERMAN - OFFICIAL TEASER`,

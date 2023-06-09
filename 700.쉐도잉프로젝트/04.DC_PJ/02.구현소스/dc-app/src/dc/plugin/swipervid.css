@@ -34,7 +34,8 @@
   .tit{    
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 40px;
-    background: url(../../../public/images/dcm01.jpg);
+    /* 경로확인용 이미지 */
+    /* background: url(../../../public/images/dcm01.jpg); */
   }
   
   /* 컨텐츠 박스 */

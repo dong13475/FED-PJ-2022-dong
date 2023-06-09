@@ -1,7 +1,7 @@
 // 배너 컴포넌트 사용 데이터 - data/banner.js
 
 const ban_data = {
-  "main": [
+  main1: [
     {
       src: "./images/dcm21.jpg",
       tit1: "GOTHAM GAZETTE",
@@ -12,7 +12,16 @@ const ban_data = {
       btn: "New Places, Familiar Faces",
     },
   ],
-  "CHARACTERS": [
+  main2: [
+    {
+      src: "./images/dcmb2.jpg",
+      tit1: "",
+      tit2: "WATCH THE NEW TRAILER",
+      cont: `Mysteries abound in DC's latest animated blockbuster. Coming to a screen near you this July!`,
+      btn: "A World at Stake",
+    },
+  ],
+  CHARACTERS: [
     {
       src: "./images/dcm23.jpg",
       tit1: "GET TO KNOW",
@@ -42,7 +51,7 @@ const ban_data = {
       btn: "MEET RYAN",
     },
   ],
-  "COMICS": [
+  COMICS: [
     {
       src: "./images/dcm03.jpg",
       tit1: "GOTHAM GAZETTE",
@@ -53,7 +62,7 @@ const ban_data = {
       btn: "New Places, Familiar Faces",
     },
   ],
-  "MOVIES": [
+  MOVIES: [
     {
       src: "./images/dcm34.jpg",
       tit1: "GOTHAM GAZETTE",
@@ -64,7 +73,7 @@ const ban_data = {
       btn: "New Places, Familiar Faces",
     },
   ],
-  "GAMES": [
+  GAMES: [
     {
       src: "./images/dcm37.jpg",
       tit1: "GOTHAM GAZETTE",
@@ -75,7 +84,7 @@ const ban_data = {
       btn: "New Places, Familiar Faces",
     },
   ],
-  "NEWS": [
+  NEWS: [
     {
       src: "./images/dcm33.jpg",
       tit1: "GOTHAM GAZETTE",
@@ -86,7 +95,6 @@ const ban_data = {
       btn: "New Places, Familiar Faces",
     },
   ],
-  
 };
 
 // 데이터 내보내기

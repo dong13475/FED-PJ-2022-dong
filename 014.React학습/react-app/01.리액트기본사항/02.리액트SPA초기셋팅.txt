@@ -83,7 +83,7 @@ npm i -D react-router-dom
 npm i -D react-router-dom@latest
 
 팩키지가 devDependencies에 설치될경우
-npm uninstall 팩키지명으로 지운뒤 npm i -D react-router-dom --save 로 설치해준다
+npm uninstall 팩키지명으로 지운뒤 npm install react-router-dom --save 로 설치해준다
 
 7. 부트스트랩 추가 설치
 npm install react-bootstrap bootstrap
