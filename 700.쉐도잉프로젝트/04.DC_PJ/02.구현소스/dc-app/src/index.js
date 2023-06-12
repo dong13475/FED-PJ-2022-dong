@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Characters from "./dc/Characters";
 import Comics from "./dc/Comics";
+import ScrollTop from "./dc/common/ScrollTop";
 import Games from "./dc/Games";
 import Layout from "./dc/Layout";
 import Main from "./dc/Main";
@@ -43,6 +44,8 @@ import "./index.css";
 export default function App(){
   return(
     <BrowserRouter>
+    {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
+      <ScrollTop />
       <Routes>
         {/* 중요!!! : 레이아웃 컴포넌트를 루트로 잡아준다!!! */}
         <Route path="/" element={<Layout />}>
