@@ -7,6 +7,7 @@ import Comics from "./dc/Comics";
 import Games from "./dc/Games";
 import Layout from "./dc/Layout";
 import Main from "./dc/Main";
+import Member from "./dc/Member";
 import Movies from "./dc/Movies";
 import News from "./dc/News";
 import Video from "./dc/Video";
@@ -57,6 +58,7 @@ export default function App(){
           <Route path="gm" element={<Games />} />
           <Route path="nw" element={<News />} />
           <Route path="vd" element={<Video />} />
+          <Route path="mem" element={<Member />} />
         </Route>
       </Routes>
     </BrowserRouter>

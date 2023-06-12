@@ -1,4 +1,4 @@
-// DC 코믹스 페이지 컴포넌트
+// DC Comics 페이지 컴포넌트
 import React from "react";
 import VidIntro from "./modules/VidIntro";
 
@@ -16,6 +16,6 @@ const Comics = (props) => {
       <VidIntro pg="COMICS" mm="on" />
     </>
   );
-}; ////////////// Comics /////////////
+}; /////////// Comics //////////////
 
 export default Comics;

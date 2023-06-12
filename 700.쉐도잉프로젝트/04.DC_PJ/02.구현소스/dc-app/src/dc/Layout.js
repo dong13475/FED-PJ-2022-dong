@@ -28,19 +28,19 @@ const Layout = () => {
     },
     {
       txt: "COMICS",
-      link: "/co",
+      link: "/co1",
       sub: [
         {
           txt: "LATEST COMICS",
-          link: "/lc",
+          link: "/co1",
         },
         {
           txt: "DC UNIVERSE INFINITE",
-          link: "/dui",
+          link: "/co2",
         },
         {
           txt: "ALL COMICS SERIES",
-          link: "/acs",
+          link: "/co3",
         },
       ],
     },
@@ -141,7 +141,7 @@ const Layout = () => {
               <FontAwesomeIcon icon={faSearch} />
             </li>
             <li>
-              <Link to="/signup">SIGN UP</Link>
+              <Link to="/mem">Join Us</Link>
             </li>
             <li>
               <Link to="/login">LOG IN</Link>

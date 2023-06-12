@@ -46,7 +46,27 @@ export default function SwiperVid(props) {
 
   return (
     <>
-      <Swiper slidesPerView={4} spaceBetween={20} navigation={true} modules={[Navigation]} className="mySwiper">
+      <Swiper
+        spaceBetween={20}
+        navigation={true}
+        modules={[Navigation]}
+        // 스와이퍼 사이즈별 슬라이드수 변경!
+        breakpoints={{
+          200: {
+            slidesPerView: 2,
+          },
+          700: {
+            slidesPerView: 2,
+          },
+          1000: {
+            slidesPerView: 3,
+          },
+          1200: {
+            slidesPerView: 4,
+          },
+        }}
+        className="mySwiper"
+      >
         {sdt.map((v, i) => (
           <SwiperSlide key={i}>
             <section className="swinbx" onClick={() => showVid(v.vsrc, v.tit)}>
