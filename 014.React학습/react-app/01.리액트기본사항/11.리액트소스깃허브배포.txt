@@ -53,3 +53,22 @@ BrowserRouter를 사용한다!)
   <Link to="/main">
     <Logo gb="top" />
   </Link>
+
+문제
+github pages에 배포 후 라우팅된 페이지에서 새로고침시 404 페이지가 보여지는 문제
+
+원인
+github pages는 SPA를 지원하지 않습니다. 그래서 URL이 https://[도메인]에서는 새로고침해도 
+페이지가 잘 보이지만 https://[도메인]/main에서 새로고침할 경우 깃허브 페이지 서버는 
+/main를 모르기 때문에 404 에러와 404.html 페이지를 리턴합니다.
+
+해결방법
+GitHub Pages 를 사용하는 경우에는 편법이지만 404.html 을 많이 사용해요.
+자체적으로 제공해주기 때문이에요.
+CI 에서는 그래서 index.html 을 404.html 로 복사하는 스크립트를 추가해주면 될거에요 ;)
+
+GitHub Pages 에서는 라우팅을 지원하지 않기 때문에
+CI 에서 빌드할 때 index.html -> 404.html 로 옮겨서 처리해줘야 해요.
+그래서 404 페이지를 index 페이지로 잡아줘서 라우팅을 시켜주는방법이에요.
+
+CI에서 빌드할 때 index.html을 404.html로 복사하는 스크립트를 추가해주면 된다!
