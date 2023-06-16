@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,44 +36,44 @@
       }
     </style>
     <script>
-      window.addEventListener("DOMContentLoaded", () => {
+      window.addEventListener('DOMContentLoaded', () => {
         const sz = [10, 40, 20, 60, 30, 80];
-        const bx = document.querySelector(".bx");
-        const tg = document.querySelector(".tg");
+        const bx = document.querySelector('.bx');
+        const tg = document.querySelector('.tg');
         const fn = () => {
           /****************************************************** 
-            [ CSS로 곡선이동하기 ] 
-            1. 우선 이동 위치값 top, left를 지정한다
-            2. 이동시에 top과 left의 이징값을 반대로 설정한다
-            조합의 예)
-                top -> ease-in / left -> ease-out
-                top -> ease-out / left -> ease-in
-            3. 곡선의 원리:
-                -> 직선이동시 top/left방향으로 처음에 느리게/빠르게
-                혹은 나중에 느리게/빠르게 설정하면 이동시 곡선경로를
-                그리게 된다!
-          
-          ******************************************************/ 
+                [ CSS로 곡선이동하기 ] 
+                1. 우선 이동 위치값 top, left를 지정한다
+                2. 이동시에 top과 left의 이징값을 반대로 설정한다
+                조합의 예)
+                    top -> ease-in / left -> ease-out
+                    top -> ease-out / left -> ease-in
+                3. 곡선의 원리:
+                    -> 직선이동시 top/left방향으로 처음에 느리게/빠르게
+                    혹은 나중에 느리게/빠르게 설정하면 이동시 곡선경로를
+                    그리게 된다!
+                
+                ******************************************************/
 
           setTimeout(() => {
-            tg.style.top = "50%";
-            tg.style.left = "0";
-            tg.style.transition = "top 2s ease-in,left 2s ease-out";
+            tg.style.top = '50%';
+            tg.style.left = '0';
+            tg.style.transition = 'top 2s ease-in,left 2s ease-out';
           }, 0);
           setTimeout(() => {
-            tg.style.top = "0";
-            tg.style.left = "50%";
-            tg.style.transition = "top 2s ease-out,left 2s ease-in";
+            tg.style.top = '0';
+            tg.style.left = '50%';
+            tg.style.transition = 'top 2s ease-out,left 2s ease-in';
           }, 2000);
           setTimeout(() => {
-            tg.style.top = "50%";
-            tg.style.left = "100%";
-            tg.style.transition = "top 2s ease-in,left 2s ease-out";
+            tg.style.top = '50%';
+            tg.style.left = '100%';
+            tg.style.transition = 'top 2s ease-in,left 2s ease-out';
           }, 4000);
           setTimeout(() => {
-            tg.style.top = "100%";
-            tg.style.left = "50%";
-            tg.style.transition = "top 2s ease-out,left 2s ease-in";
+            tg.style.top = '100%';
+            tg.style.left = '50%';
+            tg.style.transition = 'top 2s ease-out,left 2s ease-in';
           }, 6000);
           setTimeout(fn, 8000);
         };
@@ -81,7 +82,7 @@
 
         let num = 0;
         setInterval(() => {
-          bx.style.width = sz[num] + "vw";
+          bx.style.width = sz[num] + 'vw';
           num++;
           if (num > sz.length - 1) num = 0;
         }, 500);
