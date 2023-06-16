@@ -1,8 +1,9 @@
 ///  어떤 모듈 - 어떤.js
-import React, { useState } from "react";
-import $ from "jquery";
-import "./css/member.css";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import $ from 'jquery';
+import './css/member.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { clearData, initData } from './fns/fnMem';
 
 /* 
     [ 후크 : Hook - 왜 필요한가? ]
@@ -37,18 +38,29 @@ function Member() {
   // 요구사항 : 각 입력항목에 맞는 유효성검사를 입력하는 순간!
   //            실시간으로 체크하여 결과를 화면에 리턴한다!
 
+  // [ 리액트 라우터 이동시 이동메서드 사용하기 : useNavigate ]
+  // 1. Link 를 사용한 셋팅으로 라우터를 이동하였다!
+  // -> 코드적으로 이동할때는? 바로 useNavigate
+  // 2. import 하기 : import {useNavigate} from "react-router-dom";
+  // 3. 사용법 :
+  // 변수 = useNavigate()
+  // -> 변수(라우터경로)
+
+  // 라우터 이동 네비게이트 생성하기
+  const goRoute = useNavigate();
+
   // [ 후크 useState 메서드 셋팅하기 ]
   // [ 1. 입력요소 후크변수 ]
   // 1. 아이디변수
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState('');
   // 2. 비밀번호변수
-  const [pwd, setPwd] = useState("");
+  const [pwd, setPwd] = useState('');
   // 3. 비밀번호확인변수
-  const [chkPwd, setChkPwd] = useState("");
+  const [chkPwd, setChkPwd] = useState('');
   // 4. 사용자이름변수
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
   // 5. 이메일변수
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
   // [ 2. 에러상태값 후크변수 ]
   // -> 에러상태값변수 : 초기값은 에러 아님상태(false)
@@ -64,9 +76,41 @@ function Member() {
   const [emailError, setEmailError] = useState(false);
 
   // [ 아이디관련 메시지 프리셋 ]
-  const msgId = ["User ID must contain a minimum of 5 characters", "This ID is already in use!", "That's a great ID!"];
+  const msgId = [
+    'User ID must contain a minimum of 5 characters',
+    'This ID is already in use!',
+    "That's a great ID!",
+  ];
   // 후크변수 메시지
   const [idMsg, setIdMsg] = useState(msgId[0]);
+
+  // [ 로컬쓰 클리어 ] // -> fns/fnMem.js로 보냄
+  // const clearData = () => {
+  //     localStorage.clear();
+  //     console.log("로컬쓰 클리어!");
+  // }; /////////// clearData //////////////
+
+  // [ 로컬쓰 초기체크셋팅! ] /// -> fns/fnMem.js로 보냄
+  // const initData = () => {
+
+  //     // 만약 로컬스 "mem-data"가 null이면 만들어준다!
+  //     if (localStorage.getItem("mem-data") === null) {
+  //         localStorage.setItem(
+  //             "mem-data",
+  //             `
+  //                 [
+  //                     {
+  //                         "idx": "1",
+  //                         "uid":"tomtom",
+  //                         "pwd":"1111",
+  //                         "unm":"Tom",
+  //                         "eml":"tom@gmail.com"
+  //                     }
+  //                 ]
+  //             `
+  //         );
+  //     }
+  // }; ///////////// initData /////////////////
 
   // [ 3. 유효성 검사 메서드 ]
   // 1. 아이디 유효성 검사
@@ -83,15 +127,18 @@ function Member() {
     // 정규식.test() -> 정규식 검사결과 리턴 메서드
     // 결과: true이면 에러상태값 false / false이면 에러상태값 true
     if (valid.test(e.target.value)) {
+      // 로컬쓰 데이터 체크 함수호출
+      initData();
+
       // 아이디 형식에는 맞지만 사용중인 아이디인지 검사하기
-      let memData = localStorage.getItem("mem-data");
-      console.log("로컬쓰:", memData);
+      let memData = localStorage.getItem('mem-data');
+      console.log('로컬쓰:', memData);
       // 로컬쓰 null아닌경우
       if (memData) {
         // 로컬쓰에 기존 아이디중 있는지 확인하기
         // 문자형데이터를 객체형 데이터로 변환(배열형!)
         memData = JSON.parse(memData);
-        console.log("검사:", memData);
+        console.log('검사:', memData);
 
         // 기존아이디가 있으면 상태값 false로 업데이트
         let isOK = true;
@@ -99,8 +146,8 @@ function Member() {
         // 검사돌기!
         memData.forEach((v) => {
           // 기존의 아이디와 같은 경우!
-          if (v["uid"] === e.target.value) {
-            console.log(v["uid"]);
+          if (v['uid'] === e.target.value) {
+            console.log(v['uid']);
             // 메시지변경
             setIdMsg(msgId[1]);
             // 아이디에러상태값 업데이트
@@ -112,7 +159,7 @@ function Member() {
 
         // 기존아이디가 없으면 들어감!
         if (isOK) {
-          console.log("바깥");
+          console.log('바깥');
           // 메시지변경(처음메시지로 변경)
           setIdMsg(msgId[0]);
           // 아이디에러상태값 업데이트
@@ -120,7 +167,7 @@ function Member() {
         } /////////// if : isOK /////////
       } ///////// if ////////////////////
       else {
-        console.log("DB가 없어욧!!!");
+        console.log('DB가 없어욧!!!');
       } ////////// else /////////////////
 
       // setUserIdError(false); // 에러아님상태!
@@ -164,7 +211,7 @@ function Member() {
   // 4. 사용자이름 유효성검사
   const changeUserName = (e) => {
     // 1. 빈값 체크
-    if (e.target.value !== "") setUserNameError(false);
+    if (e.target.value !== '') setUserNameError(false);
     else setUserNameError(true);
 
     // 2. 입력값 반영하기
@@ -213,40 +260,20 @@ function Member() {
       return true;
     else return false; // 하나라도 에러면  false값 리턴!
   }; ////////////// totalValid ////////////////
-localStorage.clear();
+
   // 7. 서브밋 기능함수 ///////////////
   const onSubmit = (e) => {
     // 기본 서브밋기능 막기!
     e.preventDefault();
 
-    console.log("서브밋!");
+    console.log('서브밋!');
 
     // 유효성검사 전체 통과시 ////
     if (totalValid()) {
       // alert("처리페이지로 이동!");
-      // localStorage.clear();
-
-
-      // 만약 로컬스 "mem-data"가 null이면 만들어준다!
-      if (localStorage.getItem("mem-data") === null) {
-        localStorage.setItem(
-          "mem-data",
-          `
-                    [
-                        {
-                            "idx": "1",
-                            "uid":"tomtom",
-                            "pwd":"1111",
-                            "unm":"Tom",
-                            "eml":"tom@gmail.com"
-                        }
-                    ]
-                `
-        );
-      }
 
       // 로컬스 변수할당
-      let memData = localStorage.getItem("mem-data");
+      let memData = localStorage.getItem('mem-data');
 
       console.log(memData);
 
@@ -271,10 +298,14 @@ localStorage.clear();
       console.log(memData);
 
       // 로컬쓰에 반영하기
-      localStorage.setItem("mem-data", JSON.stringify(memData));
+      localStorage.setItem('mem-data', JSON.stringify(memData));
 
-      // 로컬쓰 확인
-      console.log(localStorage.getItem("mem-data"));
+      // 로그인 페이지로 이동(라우터이동하기!)
+      // useNavigate 사용!
+      $('.sbtn').text('넌 이제 회원인거야~!!');
+      setTimeout(() => {
+        goRoute('/login');
+      }, 1500);
     } /// if ////
     // 불통과시 ////////////////
     else {
@@ -283,19 +314,19 @@ localStorage.clear();
   }; ///////////// onSubmit ////////////////
 
   return (
-    <>
+    <div className='outbx'>
       {/* 모듈코드 */}
-      <section className="membx">
-        <h2>Join Us</h2>
-        <form method="post" action="process.php">
+      <section className='membx'>
+        <h2 onClick={clearData}>Join Us</h2>
+        <form method='post' action='process.php'>
           <ul>
             <li>
               {/* 1.아이디 */}
               <label>ID : </label>
               <input
-                type="text"
-                maxLength="20"
-                placeholder="Please enter your ID"
+                type='text'
+                maxLength='20'
+                placeholder='Please enter your ID'
                 value={userId}
                 onChange={changeUserId}
               />
@@ -304,8 +335,10 @@ localStorage.clear();
                 // 조건문 && 요소 -> 조건이 true이면 요소출력
                 // 훅크 데이터 idMsg로 변경출력!
                 userIdError && (
-                  <div className="msg">
-                    <small style={{ color: "red", fontSize: "10px" }}>{idMsg}</small>
+                  <div className='msg'>
+                    <small style={{ color: 'red', fontSize: '10px' }}>
+                      {idMsg}
+                    </small>
                   </div>
                 )
               }
@@ -317,8 +350,10 @@ localStorage.clear();
                 // 조건추가 : userId가 입력전일때는 안보임
                 // userId가 입력전엔 false를 리턴함!
                 !userIdError && userId && (
-                  <div className="msg">
-                    <small style={{ color: "green", fontSize: "10px" }}>{msgId[2]}</small>
+                  <div className='msg'>
+                    <small style={{ color: 'green', fontSize: '10px' }}>
+                      {msgId[2]}
+                    </small>
                   </div>
                 )
 
@@ -333,9 +368,9 @@ localStorage.clear();
               {/* 2.비밀번호 */}
               <label>Password : </label>
               <input
-                type="password"
-                maxLength="20"
-                placeholder="Please enter your Password"
+                type='password'
+                maxLength='20'
+                placeholder='Please enter your Password'
                 value={pwd}
                 onChange={changePwd}
               />
@@ -343,10 +378,10 @@ localStorage.clear();
                 // 에러일 경우 메시지 보여주기
                 // 조건문 && 요소 -> 조건이 true이면 요소출력
                 pwdError && (
-                  <div className="msg">
-                    <small style={{ color: "red", fontSize: "10px" }}>
-                      Password must be at least 8 characters long and must contain at least one letter and one number
-                      each.
+                  <div className='msg'>
+                    <small style={{ color: 'red', fontSize: '10px' }}>
+                      Password must be at least 8 characters long and must
+                      contain at least one letter and one number each.
                     </small>
                   </div>
                 )
@@ -356,9 +391,9 @@ localStorage.clear();
               {/* 3.비밀번호확인 */}
               <label>Confirm password : </label>
               <input
-                type="password"
-                maxLength="20"
-                placeholder="Please enter your Confirm Password"
+                type='password'
+                maxLength='20'
+                placeholder='Please enter your Confirm Password'
                 value={chkPwd}
                 onChange={changeChkPwd}
               />
@@ -366,8 +401,10 @@ localStorage.clear();
                 // 에러일 경우 메시지 보여주기
                 // 조건문 && 요소 -> 조건이 true이면 요소출력
                 chkPwdError && (
-                  <div className="msg">
-                    <small style={{ color: "red", fontSize: "10px" }}>Password verification does not match</small>
+                  <div className='msg'>
+                    <small style={{ color: 'red', fontSize: '10px' }}>
+                      Password verification does not match
+                    </small>
                   </div>
                 )
               }
@@ -376,9 +413,9 @@ localStorage.clear();
               {/* 4.이름 */}
               <label>User Name : </label>
               <input
-                type="text"
-                maxLength="20"
-                placeholder="Please enter your Name"
+                type='text'
+                maxLength='20'
+                placeholder='Please enter your Name'
                 value={userName}
                 onChange={changeUserName}
               />
@@ -386,8 +423,10 @@ localStorage.clear();
                 // 에러일 경우 메시지 보여주기
                 // 조건문 && 요소 -> 조건이 true이면 요소출력
                 userNameError && (
-                  <div className="msg">
-                    <small style={{ color: "red", fontSize: "10px" }}>This is a required entry</small>
+                  <div className='msg'>
+                    <small style={{ color: 'red', fontSize: '10px' }}>
+                      This is a required entry
+                    </small>
                   </div>
                 )
               }
@@ -396,9 +435,9 @@ localStorage.clear();
               {/* 5.이메일 */}
               <label>Email : </label>
               <input
-                type="text"
-                maxLength="50"
-                placeholder="Please enter your Email"
+                type='text'
+                maxLength='50'
+                placeholder='Please enter your Email'
                 value={email}
                 onChange={changeEmail}
               />
@@ -406,24 +445,26 @@ localStorage.clear();
                 // 에러일 경우 메시지 보여주기
                 // 조건문 && 요소 -> 조건이 true이면 요소출력
                 emailError && (
-                  <div className="msg">
-                    <small style={{ color: "red", fontSize: "10px" }}>Please enter a valid email format</small>
+                  <div className='msg'>
+                    <small style={{ color: 'red', fontSize: '10px' }}>
+                      Please enter a valid email format
+                    </small>
                   </div>
                 )
               }
             </li>
-            <li style={{ overflow: "hidden" }}>
+            <li style={{ overflow: 'hidden' }}>
               {/* 6.버튼 */}
-              <button className="sbtn" onClick={onSubmit}>
+              <button className='sbtn' onClick={onSubmit}>
                 Submit
               </button>
               {/* input submit버튼이 아니어도 form요소
-                            내부의 button은 submit기능이 있다! */}
+              내부의 button은 submit기능이 있다! */}
             </li>
             <li>
               {/* 7.로그인페이지링크 */}
               Are you already a member?
-              <Link to="/login"> Log In </Link>
+              <Link to='/login'> Log In </Link>
             </li>
           </ul>
         </form>
@@ -431,7 +472,7 @@ localStorage.clear();
 
       {/* 빈루트를 만들고 JS로드함수포함 */}
       {jqFn()}
-    </>
+    </div>
   );
 }
 

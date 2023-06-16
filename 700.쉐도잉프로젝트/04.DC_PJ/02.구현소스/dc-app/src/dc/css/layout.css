@@ -1,4 +1,9 @@
 @charset "utf-8";
+main.cont {
+  /* 최소높이 상단,하단제외 채우기
+    - 하단 여백이 생기는 일이 없어짐! */
+  min-height: calc(100vh - 58px - 210px);
+}
 .top {
   position: fixed;
   top: 0;
@@ -7,7 +12,7 @@
   height: 58px;
   z-index: 9999;
   background-color: #fff;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 .gnb {
   max-width: 1320px;
@@ -53,7 +58,7 @@
   display: block;
 }
 .smenu::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -17px;
   left: 50%;
@@ -65,7 +70,7 @@
   border-right: 16px solid transparent;
 }
 .smenu::after {
-  content: "";
+  content: '';
   position: absolute;
   top: -15px;
   left: 50%;
@@ -82,11 +87,6 @@ h1 {
 }
 
 /* 메인영역 */
-main.cont{
-  /* 최소높이 상단,하단제외 채우기 
-  - 하단 여백이 생기는 일이 없어짐! */
-  min-height: calc(100vh - 58px - 210px);
-}
 
 /* 하단영역 */
 .info {
@@ -101,7 +101,7 @@ main.cont{
   font-weight: bold;
 }
 .bmenu {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   display: flex;
   justify-content: center;
   margin: 15px 0;

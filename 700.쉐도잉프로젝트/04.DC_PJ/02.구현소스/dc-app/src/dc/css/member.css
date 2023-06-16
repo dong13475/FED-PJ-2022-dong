@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* Member 모듈용 CSS - member.css  */
-main.cont {
+.outbx {
   padding: 25px;
 }
 /* 전체박스 */
@@ -10,7 +10,7 @@ main.cont {
   padding: 15px;
   border: 1px solid #555;
   margin: 0 auto;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .membx h2 {
@@ -38,7 +38,7 @@ main.cont {
   margin-left: 5%;
   font-size: 20px;
   vertical-align: baseline;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 .membx .msg {
   position: absolute;
@@ -53,7 +53,7 @@ main.cont {
 .membx .sbtn {
   padding: 15px;
   background-color: #0d6efd;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 20px;
   font-weight: bold;
   color: #fff;
