@@ -62,7 +62,7 @@ const Layout = () => {
   return (
     <>
       {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함!
-            + 로그인셋팅함수 호출전달하기! 자식에게 setLogin함수전달 */}
+      + 로그인셋팅함수 호출전달하기! 자식에게 setLogin함수전달 */}
       <ScrollTop sfn={setLogin} />
       {/* 1.상단영역 */}
       <header className='top'>
