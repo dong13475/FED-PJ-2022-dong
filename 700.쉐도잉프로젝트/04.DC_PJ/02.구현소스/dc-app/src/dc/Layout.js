@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import "./css/layout.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { gnb_data, bmenu } from "./data/common";
+import $ from "jquery";
 
 /* 폰트어썸 임포트 */
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -87,14 +88,19 @@ const Layout = () => {
   }; /////////////// goSearch //////////////
 
   /////////// 상단메뉴 변경 함수 /////////////
+  // .top.on 이면 메뉴가 나타남
   const chgMenu = () => {
-
+    $(".top").toggleClass("on");
+    // let topA = $(".top");
+    // let isOn = topA.is(".on");
+    // if(isOn) topA.removeClass("on");
+    // else topA.addClass("on");
   }; /////////////// chgMenu 함수 ////////////////
   
   return (
     <>
       {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함!
-            + 로그인셋팅함수 호출전달하기! 자식에게 setLogin함수전달 */}
+      + 로그인셋팅함수 호출전달하기! 자식에게 setLogin함수전달 */}
       <ScrollTop sfn={setLogin} />
       {/* 1.상단영역 */}
       <header className="top">
@@ -114,7 +120,7 @@ const Layout = () => {
               </Link>
             </li>
             {gnb_data.map((v, i) => (
-              <li key={i}>
+              <li key={i} onClick={chgMenu}>
                 <Link to={v.link}>{v.txt}</Link>
                 {/* {console.log(v.sub)} */}
                 {/* v.sub가 없으면 undefined */}
@@ -156,10 +162,10 @@ const Layout = () => {
               /* 회원가입,로그인은 로그인아닌 상태일때만 */
               logSts === null && (
                 <>
-                  <li>
+                  <li onClick={chgMenu}>
                     <Link to="/mem">Join Us</Link>
                   </li>
-                  <li>
+                  <li onClick={chgMenu}>
                     <Link to="/login">LOGIN</Link>
                   </li>
                 </>
@@ -169,7 +175,7 @@ const Layout = () => {
             {
               /* 로그아웃버튼은 로인인상태일때만 */
               logSts !== null && (
-                <li>
+                <li onClick={chgMenu}>
                   <a href="#" onClick={logout}>
                     LOGOUT
                   </a>

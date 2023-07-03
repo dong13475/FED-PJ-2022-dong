@@ -43,7 +43,7 @@ export default function SwiperCat(props) {
             slidesPerView: 7,
           },
         }}
-        className="mySwiper"
+        className="mySwiper2"
       >
         {sdt.map(
           (v, i) =>
@@ -67,13 +67,13 @@ export default function SwiperCat(props) {
                     facts: v.facts,
                   }}
                 >
-                  <section className="swinbx">
+                  <section className="swinbx2">
                     {/* 캐릭터이미지영역 */}
-                    <div className="catimg">
+                    <div className="catimg2">
                       <img src={v.tmsrc} alt={v.cname} />
                     </div>
                     {/* 동영상타이틀영역 */}
-                    <div className="cattit">
+                    <div className="cattit2">
                       <h3>{v.cname}</h3>
                     </div>
                   </section>

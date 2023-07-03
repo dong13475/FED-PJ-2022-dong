@@ -116,18 +116,39 @@ input:focus {
   margin-top: 9px;
   margin-left: 10px;
 }
+/* 햄버거버튼 */
+.hambtn {
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+}
+
+.hambtn::before {
+  content: "≡";
+}
+.top.on .hambtn::before {
+  content: "×";
+}
 
 /* 1320px 이하 미디어쿼리 */
 @media screen and (max-width: 1320px) {
   body {
     padding-top: 58px;
     /* 첫번째 컨텐츠 가려짐방지 패딩 */
+    overflow-x: hidden;
   }
   /* 보이는 화면 고정 */
   .top {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 58px;
     padding: 0 20px;
     box-sizing: border-box;
@@ -185,8 +206,8 @@ input:focus {
     border-bottom: 1px solid #000;
   }
   /* Join Us */
-  .gnb > ul > li:nth-child(10) a,
-  .gnb > ul > li:nth-child(11) a {
+  .gnb > ul > li:nth-child(10) > a,
+  .gnb > ul > li:nth-child(11) > a {
     position: absolute;
     top: calc(58px * 8);
     left: 5%;
@@ -208,8 +229,8 @@ input:focus {
     color: #fff;
     background-color: #0d6efd;
   }
-  .gnb > ul > li:nth-child(3) a::after,
-  .gnb > ul > li:nth-child(4) a::after {
+  .gnb > ul > li:nth-child(3) > a::after,
+  .gnb > ul > li:nth-child(4) > a::after {
     content: "▼";
     font-size: 11px;
     vertical-align: 2px;
@@ -223,22 +244,7 @@ input:focus {
 
   /* 햄버거버튼 */
   .hambtn {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
-    border: none;
-    background-color: transparent;
-    font-size: 30px;
-    cursor: pointer;
-  }
-
-  .hambtn::before {
-    content: "≡";
-  }
-  .top.on .hambtn::before {
-    content: "×";
+    display: block;
   }
 }
 /* 1024px 이하 미디어쿼리 끝 */
@@ -277,4 +283,11 @@ input:focus {
 }
 .bmenu a:hover {
   color: #007aff;
+}
+
+/* 서브메뉴 */
+.smenu {
+  left: 5%;
+  transform: none;
+  z-index: 1;
 }

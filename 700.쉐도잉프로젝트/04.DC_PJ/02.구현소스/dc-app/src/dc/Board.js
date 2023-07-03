@@ -1,8 +1,8 @@
 /// 게시판 모듈 - Board.js ///
 
-import $ from 'jquery';
-import './css/board.css';
-import { useEffect } from 'react';
+import $ from "jquery";
+import "./css/board.css";
+import { useEffect, useState } from "react";
 // 제이슨 불러오기
 import orgdata from "./data/data.json";
 
@@ -21,12 +21,12 @@ function Board() {
   // 상단에서 불러옴!
 
   // 2. 로컬스토리지 변수를 설정하여 할당하기
-  localStorage.setItem('bdata', JSON.stringify(jsn));
+  localStorage.setItem("bdata", JSON.stringify(jsn));
   // console.log("로컬스:",localStorage.getItem("bdata"));
 
   // 3. 로컬스토리지 데이터를 파싱하여 게시판 리스트에 넣기
   // 3-1. 로컬 스토리지 데이터 파싱하기
-  let bdata = JSON.parse(localStorage.getItem('bdata'));
+  let bdata = JSON.parse(localStorage.getItem("bdata"));
   // console.log("로컬스파싱:",bdata,"개수:",bdata.length);
 
   // 페이지번호 : 페이지단위별 순서번호
@@ -46,7 +46,7 @@ function Board() {
   function bindList(pgnum) {
     // pgnum - 페이지번호
     // 0. 게시판 리스트 생성하기
-    let blist = '';
+    let blist = "";
     // 1. 전체 레코드 개수
     let totnum = bdata.length;
 
@@ -58,24 +58,24 @@ function Board() {
       if (i < totnum) {
         blist += `
       <tr>
-        <td>${bdata[i]['idx']}</td>
+        <td>${bdata[i]["idx"]}</td>
         <td>
-          <a href="view.html?idx=${bdata[i]['idx']}">
-            ${bdata[i]['tit']}
+          <a href="view.html?idx=${bdata[i]["idx"]}">
+            ${bdata[i]["tit"]}
           </a>
         </td>
-        <td>${bdata[i]['writer']}</td>
-        <td>${bdata[i]['date']}</td>
-        <td>${bdata[i]['cnt']}</td>
+        <td>${bdata[i]["writer"]}</td>
+        <td>${bdata[i]["date"]}</td>
+        <td>${bdata[i]["cnt"]}</td>
       </tr>
     `;
       } ///////// if ////////////
     } ///////////// for 문 /////////////
 
-    console.log('코드:', blist);
+    console.log("코드:", blist);
 
     // 2. 리스트 코드 테이블에 넣기
-    $('#board tbody').html(blist);
+    $("#board tbody").html(blist);
 
     // 3. 페이징 블록 만들기
     // 3-1. 전체 페이지 번호수 계산하기
@@ -83,11 +83,11 @@ function Board() {
     // 전체 레코드수 : totnum
     let pgtotal = Math.floor(totnum / pgblock);
     let pgadd = totnum % pgblock;
-    console.log('페이지전체수:', pgtotal);
-    console.log('페이지나머지:', pgadd);
+    console.log("페이지전체수:", pgtotal);
+    console.log("페이지나머지:", pgadd);
 
     // 페이징코드변수
-    let pgcode = '';
+    let pgcode = "";
 
     // 3-2. 페이징코드 만들기
     // 나머지가 있으면 1을 더함
@@ -100,14 +100,14 @@ function Board() {
         pgnum == i ? `<b>${i}</b>` : `<a href="#">${i}</a>`;
 
       // 사이구분자 (마지막번호 뒤는 제외)
-      if (i != pgtotal) pgcode += ' | ';
+      if (i != pgtotal) pgcode += " | ";
     } ///////// for 문 //////////
 
     // 3-3. 페이징코드 넣기
-    $('.paging').html(pgcode);
+    $(".paging").html(pgcode);
 
     // 3-5. 이벤트링크 생성하기
-    $('.paging a').click(function (e) {
+    $(".paging a").click(function (e) {
       // 기본이동막기
       e.preventDefault();
       // 바인딩함수 호출! (페이지번호 보냄)
@@ -115,15 +115,21 @@ function Board() {
     }); /////////// click ////////////
   } ///////////////////// bindList 함수 ////////////////////////
 
+  // 게시판 모드별 상태구분 Hook 변수 만들기 /////
+  // 모드 구분값 : CRUD (Create / Read / Update / Delete)
+  // C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 삭제
+  // 상태추가 : L - 글목록
+  const [bdmode, setBdmode] = useState("L");
+
   const callFn = () => bindList(1);
-  useEffect(callFn,[]);
+  useEffect(callFn, []);
 
   return (
     <>
       {/* 모듈코드 */}
 
       {/* 게시판 리스트 */}
-      <table className='dtbl' id='board'>
+      <table className="dtbl" id="board">
         <caption>OPINION</caption>
         {/* 상단 컬럼명 표시영역 */}
         <thead>
@@ -139,14 +145,14 @@ function Board() {
         {/* 중앙 레코드 표시부분 */}
         <tbody>
           <tr>
-            <td colspan='5'>There is no data.</td>
+            <td colspan="5">There is no data.</td>
           </tr>
         </tbody>
 
         {/* 하단 페이징 표시부분 */}
         <tfoot>
           <tr>
-            <td colspan='5' className='paging'>
+            <td colspan="5" className="paging">
               {/* 페이징번호 위치  */}
             </td>
           </tr>
@@ -154,15 +160,62 @@ function Board() {
       </table>
 
       <br />
-      <table className='dtbl btngrp'>
+      <table className="dtbl btngrp">
         <tr>
           <td>
-            <button>
-              <a href='list.php'>List</a>
-            </button>
-            <button className='wbtn'>
-              <a href='write.php'>Write</a>
-            </button>
+            {
+              // 리스트모드(L)
+              bdmode === "L" && (
+                <>
+                  <button>
+                    <a href="#">Write</a>
+                  </button>
+                </>
+              )
+            }
+            {
+              // 글쓰기모드(C) : 서브밋 + 리스트버튼
+              bdmode === "C" && (
+                <>
+                  <button>
+                    <a href="#">Submit</a>
+                  </button>
+                  <button>
+                    <a href="#">List</a>
+                  </button>
+                </>
+              )
+            }
+            {
+              // 읽기모드(R) : 리스트버튼 + 수정모드버튼
+              bdmode === "R" && (
+                <>
+                  <button>
+                    <a href="#">List</a>
+                  </button>
+                  <button>
+                    <a href="#">Modify</a>
+                  </button>
+                </>
+              )
+            }
+            {
+              // 수정모드(U) : 서브밋 + 삭제 + 리스트버튼
+              bdmode === "U" && (
+                <>
+                  <button>
+                    <a href="#">Submit</a>
+                  </button>
+                  <button>
+                    <a href="#">Delete</a>
+                  </button>
+                  <button>
+                    <a href="#">List</a>
+                  </button>
+                </>
+              )
+            }
+            
           </td>
         </tr>
       </table>
