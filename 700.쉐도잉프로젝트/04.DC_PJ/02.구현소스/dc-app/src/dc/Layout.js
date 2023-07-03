@@ -95,7 +95,13 @@ const Layout = () => {
     // let isOn = topA.is(".on");
     // if(isOn) topA.removeClass("on");
     // else topA.addClass("on");
+    
   }; /////////////// chgMenu 함수 ////////////////
+  
+  // 메뉴 클릭시 닫기 부가기능 함수!
+  const rmCls = () => {
+    $(".top").removeClass("on");
+  }
   
   return (
     <>
@@ -120,7 +126,7 @@ const Layout = () => {
               </Link>
             </li>
             {gnb_data.map((v, i) => (
-              <li key={i} onClick={chgMenu}>
+              <li key={i} onClick={rmCls}>
                 <Link to={v.link}>{v.txt}</Link>
                 {/* {console.log(v.sub)} */}
                 {/* v.sub가 없으면 undefined */}
@@ -162,10 +168,10 @@ const Layout = () => {
               /* 회원가입,로그인은 로그인아닌 상태일때만 */
               logSts === null && (
                 <>
-                  <li onClick={chgMenu}>
+                  <li onClick={rmCls}>
                     <Link to="/mem">Join Us</Link>
                   </li>
-                  <li onClick={chgMenu}>
+                  <li onClick={rmCls}>
                     <Link to="/login">LOGIN</Link>
                   </li>
                 </>
@@ -175,7 +181,7 @@ const Layout = () => {
             {
               /* 로그아웃버튼은 로인인상태일때만 */
               logSts !== null && (
-                <li onClick={chgMenu}>
+                <li onClick={rmCls}>
                   <a href="#" onClick={logout}>
                     LOGOUT
                   </a>

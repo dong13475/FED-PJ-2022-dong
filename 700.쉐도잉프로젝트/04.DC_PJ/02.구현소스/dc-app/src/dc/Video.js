@@ -6,7 +6,7 @@ import VidIntro from "./modules/VidIntro";
 const Video = () => {
     return(
         <>
-            <h2>Video 페이지</h2>            
+            <h2 style={{textAlign:'center'}}>Video 페이지</h2>            
             <VidIntro pg="VIDEO" mm="on" />
 
         </>
