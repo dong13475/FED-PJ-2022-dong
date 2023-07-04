@@ -31,8 +31,11 @@ function Board() {
   const [jsn, setJsn] = useState(org); // 초기데이터 셋팅
 
   // Hook /////////////////////////////////////////////////
-  // 현재로그인 사용자 정보
-  let [nowmem, setNowmem] = useState("");
+  // 현재로그인 사용자 정보 : 처음에 현재로그인 정보로 셋팅함!
+  // 삼항연산자로 셋팅된 경우에만 할당함!
+  let [nowmem, setNowmem] = 
+  useState(localStorage.getItem("minfo") ?
+  JSON.parse(localStorage.getItem("minfo")) : "");
 
   // 게시판 모드별 상태구분 Hook 변수만들기 ////
   // 모드구분값 : CRUD (Create/Read/Update/Delete)
@@ -43,6 +46,14 @@ function Board() {
   // 로그인 상태 Hook 변수 만들기 ///
   // 상태값 : false - 로그아웃상태 / true - 로그인상태
   const [log, setLog] = useState(false);
+
+  // 쓰기버튼 출력여부상태 : 로그인사용자와 글작성자 일치시 true
+  const [wtmode, setWtmode] = useState(false);
+
+  // 수정모드에서 사용할 현재글 정보 셋팅하기 : [idx,uid,tit,cont]
+  const [currItem, setCurrItem] = useState([]);
+
+  // Hook /////////////////////////////////////////////////
 
   // 2. 로컬스토리지 변수를 설정하여 할당하기
   localStorage.setItem("bdata", JSON.stringify(jsn));
@@ -166,6 +177,8 @@ function Board() {
 
       console.log(selnum, seldt);
 
+      // 글쓴이(seldt.writer)와 현재로그인한이(nowmem.uid)가 같으면
+      // 수정하기 버튼 상태값 true로 업데이트 아니면 false
       if (seldt.writer === nowmem.uid) setWtmode(true);
       else setWtmode(false);
 
@@ -175,10 +188,11 @@ function Board() {
         $(".readone .content").val(seldt.cont);
         console.log(nowmem.unm, seldt.tit);
 
+        // 수정모드로 이동시 읽기에서 기본데이터 셋팅하여 재사용목적!!!
+        // 저장순서 : 글idx, 글쓴이 아이디, 글제목, 글내용
         setCurrItem([seldt.idx, seldt.writer, seldt.tit, seldt.cont]);
       });
     }); ///////////// click /////////////
-
   } /////////////// bindList함수 ///////////////
 
   /// 로그인 상태 체크 함수 //////////
@@ -186,7 +200,7 @@ function Board() {
     // 로컬스에 'minfo'가 있는지 체크
     let chk = localStorage.getItem("minfo");
     // console.log("요기:",chk);
-    // 로컬스에 셋팅했을 경우 상태Hook에 treu값 업데이트!
+    // 로컬스에 셋팅했을 경우 상태Hook에 true값 업데이트!
     if (chk) setLog(true);
     else setLog(false);
 
@@ -237,7 +251,7 @@ function Board() {
         // 날짜데이터 처리
         let today = new Date();
         let yy = today.getFullYear();
-        let mm = today.getMonth() + 1;
+        let mm = today.getMonth() + 1; // 숫자월은 + 1
         mm = mm < 10 ? "0" + mm : mm;
         let dd = today.getDate();
         dd = dd < 10 ? "0" + dd : dd;
@@ -274,6 +288,65 @@ function Board() {
         bindList(1);
       }
     } ////////////// 새로입력 ///////////
+    // (4) 수정모드(U) 일때 //////////////
+    else if (txt == "Modify") {
+      // 게시판 모드 상태값 업데이트
+      setBdmode("U");
+
+      // currItem 변수에 읽기모드에서 셋팅한 값을 읽어온다!
+      $(() => {
+        $(".updateone .name").val(currItem[1]);
+        $(".updateone .subject").val(currItem[2]);
+        $(".updateone .content").val(currItem[3]);
+      });
+    } //////////// else if ///////////////
+    // (5) 수정모드(U)에서 Submit버튼 클릭시 //////
+    else if (txt == "Submit" && bdmode == "U") {
+      // 1. 제목과 내용을 읽어옴!(고친내용읽기)
+      let tit = $(".updateone .subject").val();
+      let cont = $(".updateone .content").val();
+
+      // 2. 빈값 체크하기
+      if (tit.trim() == "" || cont.trim() == "") {
+        alert("Title and content are required");
+      } ///// if /////
+      // 3. 빈값이 아니면 해당데이터 찾아서 값을 변경하기
+      else {
+        // 원본데이터에서 idx값이 일치하는 레코드의 값 변경
+        jsn.find((v) => {
+          if (v.idx == currItem[0]) {
+            v.tit = tit;
+            v.cont = cont;
+            return true; // 필수!
+          } ///// if /////
+        }); //////// find /////////
+
+        // 4. 게시판 모드 업데이트('L')
+        setBdmode("L");
+
+        // 5. 리스트 바인딩호출
+        bindList(1);
+      } ///// else /////
+    } ///////////// else if //////////////
+    // (6) 수정모드(U)에서 Delete버튼 클릭시 //
+    else if (txt == "Delete" && bdmode == "U") {
+      // 확인 대화창을 띄워 OK클릭시 true처리
+      if (window.confirm("Are you sure you want to delete it?")) {
+        // 1. 원본데이터에서 해당항목 레코드를 찾아 삭제
+        jsn.find((v, i) => { // v-값, i-순번
+          if (v.idx == currItem[0]) {
+            console.log(v.idx, currItem[0]);
+            jsn.splice(i, 1);
+            return true; // 필수!
+          } ///// if /////
+        });
+        // 2. 게시판 모드 업데이트('L')
+        setBdmode("L");
+
+        // 3. 리스트 바인딩호출
+        bindList(1);
+      } ///// if /////
+    } ///// else if /////
 
     // 리스트 태그로딩구역에서 일괄호출!
     // 리스트 태그가 출력되었을때 적용됨!
@@ -455,7 +528,7 @@ function Board() {
                 )
               }
               {
-                // 읽기모드(R + wtmode가 true) 
+                // 읽기모드(R + wtmode가 true)
                 // 수정모드버튼
                 bdmode == "R" && wtmode && (
                   <>
