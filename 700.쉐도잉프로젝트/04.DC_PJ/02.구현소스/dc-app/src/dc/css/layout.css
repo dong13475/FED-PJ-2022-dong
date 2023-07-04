@@ -132,6 +132,7 @@ input:focus {
 
 .hambtn::before {
   content: "≡";
+  margin-left: 10px;
 }
 .top.on .hambtn::before {
   content: "×";
